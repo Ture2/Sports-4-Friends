@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2019 a las 21:57:37
+-- Tiempo de generación: 03-04-2019 a las 00:11:11
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -109,13 +109,14 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID_USUARIO`, `NICKNAME`, `NOMBRE`, `CORREO`, `PASSWORD`, `ROL_USUARIO`) VALUES
-(41, 'admin', 'admin', 'admin@ucm', 'adminpass', 'ADMIN'),
-(42, 'alv1', 'Alvaro', 'alvcarpi@ucm', '1111', 'USER'),
-(43, 'jhce2', 'Jhimmy Ender', 'jcandela@ucm.es', '2222', 'USER'),
-(44, 'jvp3', 'Jorge', 'jvalma01@ucm.es', '3333', 'USER'),
-(45, 'iif4', 'Iker', 'ikeriban@ucm.es', '4444', 'USER'),
-(46, 'atc5', 'Alberto', 'alberture@ucm.es', '5555', 'USER'),
-(47, 'jjjj6', 'Jonathan Jose', 'jonathanj@ucm.es', '6666', 'USER');
+(1, 'admin', 'admin', 'admin@ucm', '25e4ee4e9229397b6b17776bfceaf8e7', 'ADMIN'),
+(2, 'alv1', 'Alvaro', 'alvcarpi@ucm', 'b59c67bf196a4758191e42f76670ceba', 'USER'),
+(3, 'jhce2', 'Jhimmy Ender', 'jcandela@ucm.es', '934b535800b1cba8f96a5d72f72f1611', 'USER'),
+(4, 'jvp3', 'Jorge', 'jvalma01@ucm.es', '2be9bd7a3434f7038ca27d1918de58bd', 'USER'),
+(5, 'iif4', 'Iker', 'ikeriban@ucm.es', 'dbc4d84bfcfe2284ba11beffb853a8c4', 'USER'),
+(6, 'atc5', 'Alberto', 'alberture@ucm.es', '6074c6aa3488f3c2dddff2a7ca821aab', 'USER'),
+(7, 'jjjj6', 'Jonathan Jose', 'jonathanj@ucm.es', 'e9510081ac30ffa83f10b68cde1cac07', 'USER'),
+(8, 'jjjj8', 'Jonathan Josa', 'jonathanf@ucm.es', 'd79c8788088c2193f0244d8f1f36d2db', 'USER');
 
 --
 -- Índices para tablas volcadas
@@ -190,7 +191,7 @@ ALTER TABLE `jugadores`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
