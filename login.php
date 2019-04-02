@@ -5,14 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
 	<title>Login</title>
 </head>
 
 <body>
 	<div id="logo">
-		<img class="logo" src="../images/logo.png">
+		<img class="logo" src="images/logo.png">
 	</div>
 
 	<div id="login">

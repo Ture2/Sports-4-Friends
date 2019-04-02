@@ -1,7 +1,10 @@
 <?php 
-	session_start(); 
+require_once __DIR__.'/includes/config.php';
 
-	unset($_SESSION);
+//Doble seguridad: unset + destroy
+unset($_SESSION["login"]);
+unset($_SESSION["esAdmin"]);
+unset($_SESSION["nombre"]);
 
 	session_destroy(); 
 ?>
@@ -18,7 +21,7 @@
 
 	<?php 
 		require("includes/comun/cabecera.php");
-		require("menu.php"); 
+		require("includes/comun/menu.php"); 
 	?>
 
 	<div id="contenido">

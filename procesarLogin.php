@@ -35,7 +35,7 @@ if (count($erroresFormulario) === 0) {
             header('Location: index.php');
             exit();
         } else {
-            $erroresFormulario[] = "El usuario o el password no coinciden";
+            $erroresFormulario[] = "El usuario o el password no coinciden2";
         }
     }
 }
@@ -48,20 +48,21 @@ if (count($erroresFormulario) === 0) {
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="estilo.css" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
 	<title></title>
 </head>
 
 <body>
 	<div id="logo">
-		<img class="logo" src="logo.png">
+		<img class="logo" src="images/logo.png">
 	</div>   
 
 		<?php
 			if (isset($_SESSION["login"])) {  //Usuario incorrecto
-				echo "<h1>ERROR</h1>";
-				echo "<p>El usuario o contraseña no son válidos.</p>";
+					
+			    echo "<h1>Bienvenido ". $_SESSION['nombre'] . "</h1>";
+			    echo "<p>Usa el men� de la izquierda para navegar.</p>";
 			}
 			else {  //Usuario registrado
 				/*echo "<h1>Bienvenido {$_SESSION['nombre']}</h1>";
@@ -89,7 +90,7 @@ if (count($erroresFormulario) === 0) {
 		</form>
 	</div>
 	<?php 
-		include("pie.php"); 
+		include("includes/comun/pie.php"); 
 	?>
 
 </body>

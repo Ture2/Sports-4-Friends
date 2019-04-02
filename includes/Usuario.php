@@ -17,15 +17,17 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Usuarios U WHERE U.nombre = '%s'", $conn->real_escape_string($nombreUsuario));
+        $query = sprintf("SELECT * FROM Usuarios U WHERE U.NICKNAME = '%s'", $conn->real_escape_string($nombreUsuario));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
             if ( $rs->num_rows == 1) {
                 $fila = $rs->fetch_assoc();
+                //var_dump($rs);
                 //$user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
-                $user = new Usuario($fila['NICKNAME'], $fila['NOMBRE'], $fila['PASSWORD'], $fila['APELLIDOS']);
-                $user->id = $fila['id'];
+                $user = new Usuario($fila['NICKNAME'], $fila['NOMBRE'], $fila['CORREO'], $fila['PASSWORD'], $fila['ROL_USUARIO']);
+                var_dump($user);
+                $user->id = $fila['ID_USUARIO'];
                 $result = $user;
             }
             $rs->free();
@@ -36,13 +38,13 @@ class Usuario
         return $result;
     }
     
-    public static function crea($nombreUsuario, $nombre, $password, $rol)
+    public static function crea($nombreUsuario, $nombre, $correo, $password, $rol)
     {
         $user = self::buscaUsuario($nombreUsuario);
         if ($user) {
             return false;
         }
-        $user = new Usuario($nombreUsuario, $nombre, self::hashPassword($password), $rol);
+        $user = new Usuario($nombreUsuario, $nombre, $correo, self::hashPassword($password), $rol);
         return self::guarda($user);
     }
     
@@ -63,9 +65,10 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO Usuarios(nombreUsuario, nombre, password, rol) VALUES('%s', '%s', '%s', '%s')"
-            , $conn->real_escape_string($usuario->nombreUsuario)
+        $query=sprintf("INSERT INTO Usuarios(NICKNAME, NOMBRE, CORREO, PASSWORD, ROL_USUARIO) VALUES('%s', '%s', '%s', '%s', '%s')"
+            , $conn->real_escape_string($usuario->nickname)
             , $conn->real_escape_string($usuario->nombre)
+            , $conn->real_escape_string($usuario->mail)
             , $conn->real_escape_string($usuario->password)
             , $conn->real_escape_string($usuario->rol));
         if ( $conn->query($query) ) {
@@ -82,7 +85,7 @@ class Usuario
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $query=sprintf("UPDATE Usuarios U SET nombreUsuario = '%s', nombre='%s', password='%s', rol='%s' WHERE U.id=%i"
-            , $conn->real_escape_string($usuario->nombreUsuario)
+            , $conn->real_escape_string($usuario->nickname)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->password)
             , $conn->real_escape_string($usuario->rol)
@@ -102,18 +105,21 @@ class Usuario
     
     private $id;
 
-    private $nombreUsuario;
+    private $nickname;
 
     private $nombre;
 
     private $password;
 
+    private $mail;
+
     private $rol;
 
-    private function __construct($nombreUsuario, $nombre, $password, $rol)
+    private function __construct($nombreUsuario, $nombre, $mail, $password, $rol)
     {
-        $this->nombreUsuario= $nombreUsuario;
+        $this->nickname= $nombreUsuario;
         $this->nombre = $nombre;
+        $this->mail= $mail;
         $this->password = $password;
         $this->rol = $rol;
     }
@@ -128,9 +134,14 @@ class Usuario
         return $this->rol;
     }
 
+    public function mail()
+    {
+        return $this->mail;
+    }
+
     public function nombreUsuario()
     {
-        return $this->nombreUsuario;
+        return $this->nickname;
     }
 
     public function compruebaPassword($password)
