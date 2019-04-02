@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2019 a las 00:11:11
+-- Tiempo de generación: 03-04-2019 a las 00:20:25
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -109,8 +109,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID_USUARIO`, `NICKNAME`, `NOMBRE`, `CORREO`, `PASSWORD`, `ROL_USUARIO`) VALUES
-(1, 'admin', 'admin', 'admin@ucm', '25e4ee4e9229397b6b17776bfceaf8e7', 'ADMIN'),
-(2, 'alv1', 'Alvaro', 'alvcarpi@ucm', 'b59c67bf196a4758191e42f76670ceba', 'USER'),
+(1, 'admin', 'admin', 'admin@ucm.es', '25e4ee4e9229397b6b17776bfceaf8e7', 'ADMIN'),
+(2, 'alv1', 'Alvaro', 'alvcarpi@ucm.es', 'b59c67bf196a4758191e42f76670ceba', 'USER'),
 (3, 'jhce2', 'Jhimmy Ender', 'jcandela@ucm.es', '934b535800b1cba8f96a5d72f72f1611', 'USER'),
 (4, 'jvp3', 'Jorge', 'jvalma01@ucm.es', '2be9bd7a3434f7038ca27d1918de58bd', 'USER'),
 (5, 'iif4', 'Iker', 'ikeriban@ucm.es', 'dbc4d84bfcfe2284ba11beffb853a8c4', 'USER'),
