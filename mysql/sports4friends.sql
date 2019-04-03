@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2019 a las 02:48:34
+-- Tiempo de generación: 03-04-2019 a las 14:27:21
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -116,12 +116,12 @@ CREATE TABLE `jugadores` (
 --
 
 INSERT INTO `jugadores` (`ID_JUGADOR`, `EQUIPO`, `USUARIO`, `ROL_JUGADOR`, `FECHA_PJUGADOR`, `HORA_PJUGADOR`) VALUES
-(330001, 550001, 1, 1, '2019-04-03', '02:08:27'),
-(330002, 550001, 2, 0, '2019-04-03', '02:10:16'),
-(330003, 550002, 3, 1, '2019-04-03', '02:10:16'),
-(330004, 550002, 4, 0, '2019-04-03', '02:10:16'),
-(330005, 550003, 5, 1, '2019-04-03', '02:10:16'),
-(330006, 550003, 6, 0, '2019-04-03', '02:10:16');
+(330007, 550001, 1, 1, '2019-04-03', '14:23:53'),
+(330008, 550001, 2, 0, '2019-04-03', '14:23:53'),
+(330009, 550002, 3, 1, '2019-04-03', '14:23:53'),
+(330010, 550002, 4, 0, '2019-04-03', '14:23:53'),
+(330011, 550003, 5, 1, '2019-04-03', '14:23:53'),
+(330012, 550003, 6, 0, '2019-04-03', '14:23:53');
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,7 @@ CREATE TABLE `usuarios` (
   `NICKNAME` varchar(15) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `NOMBRE` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `CORREO` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `PASSWORD` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `PASSWORD` varchar(400) NOT NULL,
   `ROL_USUARIO` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'USER'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -143,14 +143,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID_USUARIO`, `NICKNAME`, `NOMBRE`, `CORREO`, `PASSWORD`, `ROL_USUARIO`) VALUES
-(1, 'admin', 'admin', 'admin@ucm.es', '25e4ee4e9229397b6b17776bfceaf8e7', 'ADMIN'),
-(2, 'alv1', 'Alvaro', 'alvcarpi@ucm.es', 'b59c67bf196a4758191e42f76670ceba', 'USER'),
-(3, 'jhce2', 'Jhimmy Ender', 'jcandela@ucm.es', '934b535800b1cba8f96a5d72f72f1611', 'USER'),
-(4, 'jvp3', 'Jorge', 'jvalma01@ucm.es', '2be9bd7a3434f7038ca27d1918de58bd', 'USER'),
-(5, 'iif4', 'Iker', 'ikeriban@ucm.es', 'dbc4d84bfcfe2284ba11beffb853a8c4', 'USER'),
-(6, 'atc5', 'Alberto', 'alberture@ucm.es', '6074c6aa3488f3c2dddff2a7ca821aab', 'USER'),
-(7, 'jjjj6', 'Jonathan Jose', 'jonathanj@ucm.es', 'e9510081ac30ffa83f10b68cde1cac07', 'USER'),
-(8, 'jjjj8', 'Jonathan Josa', 'jonathanf@ucm.es', 'd79c8788088c2193f0244d8f1f36d2db', 'USER');
+(1, 'admin', 'admin', 'admin@ucm.es', '$2y$10$9a4JwHk7lWyFTD7zdCuJVejAxOVHxBN5NIlBJ82xhDG0GQE4q0czS', 'ADMIN'),
+(2, 'alv1', 'Alvaro', 'alvcarpi@ucm.es', '$2y$10$.wMVVI01Uuj8dxOXvf443.o6XAcFrhcNWdBrAzK/jCYX3A3bFgU9a', 'USER'),
+(3, 'jhce2', 'Jhimmy Ender', 'jcandela@ucm.es', '$2y$10$3wJl3O81bdsI0a4L7iTGvOocRVFnIlzx6xZ7VvI8Vgto9x/bKGv2G', 'USER'),
+(4, 'jvp3', 'Jorge', 'jvalma01@ucm.es', '$2y$10$AaoHd58VRYJqQ1QZXMMMKuR5uF.ZDZc4rJF/F2z0LrOU3y0Q8VKqi', 'USER'),
+(5, 'iif4', 'Iker', 'ikeriban@ucm.es', '$2y$10$YiSg6sVyOMVGSAfP9YXxn.52ulfwfI3oC7JKEgv5WheRnSIh/zfhW', 'USER'),
+(6, 'atc5', 'Alberto', 'alberture@ucm.es', '$2y$10$oEB5gyRuHPDKqM4ZF2sb5uHMiZ5V4m6lnXJgIOX.ipDkLiQm3RFxO', 'USER'),
+(7, 'jjjj6', 'Jonathan Jose', 'jonathanj@ucm.es', '$2y$10$U96bK9tO7sIxKSHTw/Ojie6P.ccoGlGuu2kPksun1g3aqCVMJEini', 'USER');
 
 --
 -- Índices para tablas volcadas
@@ -215,19 +214,19 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `ID_EVENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=990001;
+  MODIFY `ID_EVENTO` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `ID_JUGADOR` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330007;
+  MODIFY `ID_JUGADOR` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330013;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
