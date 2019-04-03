@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2019 a las 00:20:25
+-- Tiempo de generación: 03-04-2019 a las 02:48:34
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -35,8 +35,19 @@ CREATE TABLE `deportes` (
   `NOMBRE_DEPORTE` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `NUMERO_MAXIMO_JUGADORES` int(3) DEFAULT NULL,
   `DURACION_MIN` int(5) DEFAULT NULL,
-  `FECHA` date NOT NULL
+  `FECHA_CDEPORTE` date NOT NULL,
+  `HORA_CDEPORTE` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `deportes`
+--
+
+INSERT INTO `deportes` (`ID_DEPORTE`, `NOMBRE_DEPORTE`, `NUMERO_MAXIMO_JUGADORES`, `DURACION_MIN`, `FECHA_CDEPORTE`, `HORA_CDEPORTE`) VALUES
+(880001, 'FUTBOL', 20, 90, '2019-04-03', '01:13:26'),
+(880002, 'BALONCESTO', 10, 40, '2019-04-03', '01:13:26'),
+(880003, 'BEISBOL', 10, 60, '2019-04-03', '01:13:26'),
+(880004, 'BALONMANO', 15, 40, '2019-04-03', '01:13:26');
 
 -- --------------------------------------------------------
 
@@ -48,14 +59,24 @@ CREATE TABLE `equipos` (
   `ID_EQUIPO` int(10) NOT NULL,
   `DEPORTE` int(10) NOT NULL,
   `NOMBRE_EQUIPO` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `FECHA` date NOT NULL,
-  `PARTIDOS_GANADOS` int(11) NOT NULL DEFAULT '0',
-  `PARTIDOS_PERDIDOS` int(11) NOT NULL DEFAULT '0',
-  `PARTIDOS_EMPATADOS` int(11) NOT NULL DEFAULT '0',
-  `LOGO` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `DESCRIPCION` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `DESCRIPCION_EQUIPO` varchar(200) COLLATE utf8_spanish_ci NOT NULL
+  `FECHA_CEQUIPO` date NOT NULL,
+  `HORA_CEQUIPO` time NOT NULL,
+  `PARTIDOS_GANADOS` int(4) NOT NULL DEFAULT '0',
+  `PARTIDOS_EMPATADOS` int(4) NOT NULL DEFAULT '0',
+  `PARTIDOS_PERDIDOS` int(4) NOT NULL DEFAULT '0',
+  `LOGO_EQUIPO` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `DESCRIPCION_EQUIPO` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `equipos`
+--
+
+INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`, `HORA_CEQUIPO`, `PARTIDOS_GANADOS`, `PARTIDOS_EMPATADOS`, `PARTIDOS_PERDIDOS`, `LOGO_EQUIPO`, `DESCRIPCION_EQUIPO`) VALUES
+(550001, 880001, 'BULL', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de basket'),
+(550002, 880002, 'REAL MADRID', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de fútbol'),
+(550003, 880003, 'SALOU', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de beisbol'),
+(550004, 880004, 'VALENCIA', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de balonmano');
 
 -- --------------------------------------------------------
 
@@ -69,8 +90,8 @@ CREATE TABLE `eventos` (
   `LOCALIZACION` varchar(100) NOT NULL,
   `TIPO_DEPORTE` varchar(45) NOT NULL,
   `DESCRIPCION` varchar(100) DEFAULT NULL,
-  `EQUIPO_1` varchar(45) NOT NULL,
-  `EQUIPO_2` varchar(45) DEFAULT NULL,
+  `EQUIPO_1` int(10) DEFAULT NULL,
+  `EQUIPO_2` int(10) DEFAULT NULL,
   `PORCENTAJE` decimal(10,2) NOT NULL,
   `FECHA_CREACION` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -86,8 +107,21 @@ CREATE TABLE `jugadores` (
   `EQUIPO` int(10) NOT NULL,
   `USUARIO` int(10) NOT NULL,
   `ROL_JUGADOR` tinyint(1) NOT NULL DEFAULT '0',
-  `FECHA` date NOT NULL
+  `FECHA_PJUGADOR` date NOT NULL,
+  `HORA_PJUGADOR` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `jugadores`
+--
+
+INSERT INTO `jugadores` (`ID_JUGADOR`, `EQUIPO`, `USUARIO`, `ROL_JUGADOR`, `FECHA_PJUGADOR`, `HORA_PJUGADOR`) VALUES
+(330001, 550001, 1, 1, '2019-04-03', '02:08:27'),
+(330002, 550001, 2, 0, '2019-04-03', '02:10:16'),
+(330003, 550002, 3, 1, '2019-04-03', '02:10:16'),
+(330004, 550002, 4, 0, '2019-04-03', '02:10:16'),
+(330005, 550003, 5, 1, '2019-04-03', '02:10:16'),
+(330006, 550003, 6, 0, '2019-04-03', '02:10:16');
 
 -- --------------------------------------------------------
 
@@ -141,7 +175,9 @@ ALTER TABLE `equipos`
 -- Indices de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  ADD PRIMARY KEY (`ID_EVENTO`);
+  ADD PRIMARY KEY (`ID_EVENTO`),
+  ADD KEY `eventos_ibfk_1` (`EQUIPO_1`),
+  ADD KEY `eventos_ibfk_2` (`EQUIPO_2`);
 
 --
 -- Indices de la tabla `jugadores`
@@ -179,13 +215,13 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `ID_EVENTO` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_EVENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=990001;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `ID_JUGADOR` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330018;
+  MODIFY `ID_JUGADOR` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330007;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -202,6 +238,13 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `equipos`
   ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`DEPORTE`) REFERENCES `deportes` (`ID_DEPORTE`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`EQUIPO_1`) REFERENCES `equipos` (`ID_EQUIPO`) ON DELETE CASCADE,
+  ADD CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`EQUIPO_2`) REFERENCES `equipos` (`ID_EQUIPO`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `jugadores`
