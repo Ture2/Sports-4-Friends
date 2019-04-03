@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2019 a las 14:27:21
+-- Tiempo de generación: 03-04-2019 a las 17:01:43
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -116,12 +116,12 @@ CREATE TABLE `jugadores` (
 --
 
 INSERT INTO `jugadores` (`ID_JUGADOR`, `EQUIPO`, `USUARIO`, `ROL_JUGADOR`, `FECHA_PJUGADOR`, `HORA_PJUGADOR`) VALUES
-(330007, 550001, 1, 1, '2019-04-03', '14:23:53'),
-(330008, 550001, 2, 0, '2019-04-03', '14:23:53'),
-(330009, 550002, 3, 1, '2019-04-03', '14:23:53'),
-(330010, 550002, 4, 0, '2019-04-03', '14:23:53'),
-(330011, 550003, 5, 1, '2019-04-03', '14:23:53'),
-(330012, 550003, 6, 0, '2019-04-03', '14:23:53');
+(330001, 550001, 2, 1, '2019-04-03', '16:40:46'),
+(330002, 550001, 3, 0, '2019-04-03', '16:40:46'),
+(330003, 550002, 4, 1, '2019-04-03', '16:40:46'),
+(330004, 550002, 5, 0, '2019-04-03', '16:40:46'),
+(330005, 550003, 6, 1, '2019-04-03', '16:40:46'),
+(330006, 550003, 7, 0, '2019-04-03', '16:40:46');
 
 -- --------------------------------------------------------
 
@@ -220,7 +220,7 @@ ALTER TABLE `eventos`
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `ID_JUGADOR` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330013;
+  MODIFY `ID_JUGADOR` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330007;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
