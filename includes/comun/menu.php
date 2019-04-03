@@ -17,7 +17,10 @@
 							<li><a href="">Tenis</a></li>
 							<li><a href="">Otros</a></li>
 						</ul></li>
-					<li><a href="">Eventos</a></li>
+					<li><a href="">Eventos</a>
+							<ul>
+							<li><a href="eventos.php"> proximos eventos </a></li>
+							</ul></li>
 					<li><a href="">Quedadas</a>
 						<ul>
 							<li><a href="">Bares</a></li>
