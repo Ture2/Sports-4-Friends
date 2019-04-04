@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2019 a las 17:01:43
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 04-04-2019 a las 21:15:34
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sports4friends`
 --
-CREATE DATABASE IF NOT EXISTS `sports4friends` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `sports4friends`;
 
 -- --------------------------------------------------------
 
@@ -73,10 +71,11 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`, `HORA_CEQUIPO`, `PARTIDOS_GANADOS`, `PARTIDOS_EMPATADOS`, `PARTIDOS_PERDIDOS`, `LOGO_EQUIPO`, `DESCRIPCION_EQUIPO`) VALUES
-(550001, 880001, 'BULL', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de basket'),
+(550001, 880001, 'BULL', '2019-04-03', '01:50:02', 0, 0, 0, 'images/logo_equipos/bull_logo.jpg', 'Somos un equipo de basket'),
 (550002, 880002, 'REAL MADRID', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de fútbol'),
 (550003, 880003, 'SALOU', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de beisbol'),
-(550004, 880004, 'VALENCIA', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de balonmano');
+(550004, 880004, 'VALENCIA', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de balonmano'),
+(550005, 880001, 'LOS CHACHOS FC', '2019-04-04', '03:00:00', 2, 4, 1, 'images/logo_equipos/loschachosfc_logo.jpg', 'El equipo de los chachos ha sido creado con la intención de ser el mejor equipo de fútbol en Sports 4 Friends, únete ! ');
 
 -- --------------------------------------------------------
 
@@ -208,7 +207,7 @@ ALTER TABLE `deportes`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550005;
+  MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550006;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
