@@ -20,7 +20,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	<!--<link rel="stylesheet" type="text/css" href="css/estilo.css" />-->
 	<meta charset="utf-8">
 	<title>Inicio</title>
 </head>
@@ -29,40 +29,42 @@
 	<?php
 		require("includes/comun/cabecera.php");
 		require("includes/comun/menu.php");
-
-		var_dump($equipos);
-		if(isset($equipos)) 
-			echo "<p>Actualmente no hay ningun equipo disponible</p>";
+		
 		if(isset($_SESSION["login"])){
 			echo "<button onclick='crearEquipo.php'>Pulsa aquí para crear un equipo</button>";
+		}else{
+			echo "<p><a href='registro.php'>Si desea crear un equipo pulse aquí para crear una cuenta</a></p>";
 		}?>
-		<div id="tablaEquipos">
-			<table>
+		<div>
+			<table id="tablaEquipos">
 				<thead>
 					<tr>
 						<th colspan="4">Listado de los equipos actuales</th> 
 					</tr>
-					<tr>
-						<th>
 				</thead>
 			<tbody>
 				<?php
+				if(!isset($equipos))
+					echo "<p>Actualmente no hay ningun equipo disponible</p>";
+				else{
 					foreach ($equipos as $equipo) {
+						echo "<div>";
+						echo "<tr class='celdaVerEquipos'>";
+						echo "<td colspan='2'>".$equipo->get_nombre_equipo()."</td></tr>";
 						echo "<tr>";
-						echo "<td colspan='2'>".$equipo->nombre_equipo."</td></tr>";
-						echo "<tr>";
-						echo "<td rowspan='2'><img src=".$equipo->logo_equipo."></td>";
+						echo "<td rowspan='2'><img src=".$equipo->get_logo_equipo()." alt='No image'></td>";
 						echo "<td>Descripcion</td>";
-						echo "<td><p>".$equipo->descripcion_equipo."</p></td>";
+						echo "<td><p>".$equipo->get_descripcion_equipo()."</p></td>";
 						echo "<tr>";
+						echo "</div>";
 					}
+				}
 				?>
 			</tbody>
 			</table>
 		</div>
 
 		<?php
-		
 		require("includes/comun/pie.php");  
 	?>
 

@@ -6,16 +6,16 @@ class Equipo{
     {
        $app = Aplicacion::getSingleton();
        $conn = $app->conexionBd();
-       $query = sprintf("SELECT e.NOMBRE_EQUIPO, e.LOGO_EQUIPO, e.DESCRIPCION_EQUIPO FROM EQUIPOS e JOIN DEPORTES d ON d.ID_DEPORTE = e.DEPORTE AND d.NOMBRE_DEPORTE = '%s'", $deporte);
+       $query = sprintf("SELECT e.NOMBRE_EQUIPO AS NOMBRE, e.LOGO_EQUIPO AS LOGO, e.DESCRIPCION_EQUIPO AS DESCRP FROM EQUIPOS e JOIN DEPORTES d ON d.ID_DEPORTE = e.DEPORTE AND d.NOMBRE_DEPORTE = '%s'", $deporte);
        $rs =$conn->query($query); 
        if ( $rs ) {
        		if($rs->num_rows == 0)
        			$equipos = null;
        		else {
        			$equipos = array();
-       			$row = $rs->fetch_assoc();
-       			foreach ($row as $equipo) {
-       				$equipos = new Equipo($equipo[0], $equipo[1], $equipo[2], $equipo[3]);
+       			while ($equipo = $rs->fetch_assoc()) {
+       				$aux = new Equipo($deporte, $equipo["NOMBRE"], $equipo["LOGO"], $equipo["DESCRP"]);
+       				array_push($equipos, $aux);
        			}
        			$rs->free();
        		}
@@ -56,7 +56,25 @@ class Equipo{
         $this->descripcion_equipo = $descripcion;
     }
 
+    public function get_deporte()
+    {
+        return $this->deporte;
+    }
 
+    public function get_nombre_equipo()
+    {
+        return $this->nombre_equipo;
+    }
+
+    public function get_descripcion_equipo()
+    {
+        return $this->descripcion_equipo;
+    }
+
+    public function get_logo_equipo()
+    {
+        return $this->logo_equipo;
+    }
 
 
 } 

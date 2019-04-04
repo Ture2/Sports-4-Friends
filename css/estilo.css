@@ -386,3 +386,13 @@ a#pie {
 	border: none;
 
 }
+
+/* Tablas */
+
+table#tablaEquipos{
+	width: 100%;
+}
+
+th#tablaEquipos{
+	height: 50px;
+}
