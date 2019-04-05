@@ -1,7 +1,14 @@
+<?php
+	if(!isset(($_SESSION['login']))){
+		$username = false; 
+	}else{
+		$username = $_SESSION['nombre'];
+	}
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="estilo.css" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
 	<title></title>
 </head>
@@ -25,11 +32,29 @@
 							<li><a href="">Parques</a></li>
 							<li><a href="">Otros</a></li>
 						</ul></li>
-					<li><a href="">Cuenta</a>
-						<ul>
-							<li><a href="">Mi Cuenta</a></li>
-							<li><a href="logout.php">Cerrar Sesión</a></li>
-						</ul></li>		
+					<li><!--<a href="">-->
+						<?php
+							if($username){
+								echo '<a href="">Hola '.$username.'</a>';
+							}else{
+								echo '<a href="login.php"> Inicia Sesion</a>';
+							}
+						  ?>
+					<!--</a>-->
+					<?php
+						if ($username) {
+							echo '<ul>
+									<li><a href="">Mi Cuenta</a></li>
+									<li><a href="logout.php">Cerrar Sesión</a></li>
+								</ul>';
+						}
+					  ?>
+					</li>
+					<?php
+						if(!$username){
+							echo '<li><a href="registro.php">Registrarse</a></li>';
+						}
+					  ?>		
 				</ul>
 			</nav>
 		</div>

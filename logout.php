@@ -1,14 +1,17 @@
 <?php 
-require_once __DIR__.'/includes/config.php';
+	header('Refresh: 3; URL=http://localhost/Sports-4-Friends/index.php');
+	require_once __DIR__.'/includes/config.php';
 
-//Doble seguridad: unset + destroy
-unset($_SESSION["login"]);
-unset($_SESSION["esAdmin"]);
+	//Doble seguridad: unset + destroy
+	unset($_SESSION["login"]);
+	unset($_SESSION["esAdmin"]);
 
-//pruebagit
-unset($_SESSION["nombre"]);
+	//pruebagit
+	unset($_SESSION["nombre"]);
 
-	session_destroy(); 
+	session_destroy();
+
+
 ?>
 
 <!DOCTYPE html>

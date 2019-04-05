@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="estilo.css" />
-	<link rel="stylesheet" type="text/css" href="calendar.css" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	<link rel="stylesheet" type="text/css" href="css/calendar.css" />
 	<meta charset="utf-8">
 	<title></title>
 </head>
@@ -48,7 +48,7 @@
 	</div>
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script src="calendar.js"></script>
+<script src="javascript/calendar.js"></script>
 <script>
 var cal = CALENDAR();
 
