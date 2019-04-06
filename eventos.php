@@ -1,18 +1,23 @@
 <?php
+require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/Eventos.php';
 
-/*
-formulario en el que pueda apuntarme aun evento determinado
-con una imagen y una pequeña descripcion del mismo
+$errores = array();
 
-campos a complementar
+$eventos = array(Eventos::listarEventos());
 
-comprobar si esta en sesion y verificar en la base de datos si el usuario es admin en la tabla equipos 
+var_dump($eventos);
 
-nombre del equipo, capitan del equipo,  tipo de deporte, 
-*/
+if(isset($_SESSION["login"])){
 
-
-session_start();
+	$eventos = Eventos::listarEventos();
+	if(!sset($eventos)){
+		$errores[] = "No hay registros disponibles";
+	}
+}
+else{
+	$errores[] = "No puedes acceder al contenido";
+}
 		
 ?>
 
