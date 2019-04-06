@@ -48,8 +48,8 @@ class Eventos
                                         $row['NOMBRE_EVENTO'],
                                         $row['LOCALIZACION'],
                                         $row['TIPO_DEPORTE'],
-                                        $row['DESCRIPCION'],
                                         $row['EQUIPO_INSCRITO'],
+                                        $row['DESCRIPCION'],
                                         $row['PORCENTAJE'],
                                         $row['FECHA_CREACION']);
                         }
@@ -72,11 +72,12 @@ class Eventos
     private $localizacion;
     private $tipo_deporte;
     private $equipo;
+    private $descripcion;
     private $porcentaje_victorias;
     private $fecha;
 
     //Constructora
-    private function __construct($id, $nombre, $localizacion, $tipo_deporte, $equipo, $porcentaje_victorias, $fecha)
+    private function __construct($id, $nombre, $localizacion, $tipo_deporte, $equipo, $descripcion, $porcentaje_victorias, $fecha)
     {
         $this->id= $id;
         $this->nombre= $nombre;
