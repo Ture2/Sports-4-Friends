@@ -20,7 +20,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!--<link rel="stylesheet" type="text/css" href="css/estilo.css" />-->
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
 	<title>Inicio</title>
 </head>
@@ -36,32 +36,28 @@
 			echo "<p><a href='registro.php'>Si desea crear un equipo pulse aquí para crear una cuenta</a></p>";
 		}?>
 		<div>
-			<table id="tablaEquipos">
-				<thead>
-					<tr>
-						<th colspan="4">Listado de los equipos actuales</th> 
-					</tr>
-				</thead>
-			<tbody>
-				<?php
-				if(!isset($equipos))
-					echo "<p>Actualmente no hay ningun equipo disponible</p>";
-				else{
-					foreach ($equipos as $equipo) {
-						echo "<div>";
-						echo "<tr class='celdaVerEquipos'>";
-						echo "<td colspan='2'>".$equipo->get_nombre_equipo()."</td></tr>";
-						echo "<tr>";
-						echo "<td rowspan='2'><img src=".$equipo->get_logo_equipo()." alt='No image'></td>";
-						echo "<td>Descripcion</td>";
-						echo "<td><p>".$equipo->get_descripcion_equipo()."</p></td>";
-						echo "<tr>";
-						echo "</div>";
-					}
-				}
+			<?php
+			if(!isset($equipos))
+				echo "<p>Actualmente no hay ningun equipo disponible</p>";
+			else{
+			 	
+				echo "<div class='teams_container'>";
+				echo "<p class='titulo'>Listado de los equipos actuales</p>";
+				foreach ($equipos as $equipo){ 
 				?>
-			</tbody>
-			</table>
+					<div class="team box">
+						<div class="team title"><p><?php echo $equipo->get_nombre_equipo();?></p></div>
+						<div class="team img"><img class ="logo_equipo" src=<?php echo $equipo->get_logo_equipo();?> alt='No image'></div>
+						<div class="team text_title"><h4>Descripcion</h4></div>
+						<div class="team text"><p><?php echo $equipo->get_descripcion_equipo();?></p></div>
+					</div>
+				
+				<?php
+				}
+				echo "</div>";
+			}
+			?>
+			
 		</div>
 
 		<?php
