@@ -4,7 +4,7 @@ require_once __DIR__.'/includes/Eventos.php';
 
 $errores = array();
 
-$eventos = array(Eventos::listarEventos());
+$eventos = Eventos::listarEventos();
 
 var_dump($eventos);
 

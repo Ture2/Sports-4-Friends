@@ -34,7 +34,7 @@ class Eventos
         if ($rs = $conn->query($query))
         {   
             /*
-            Creo un variable de tipo array para guardar n eventos
+            Creo un variable de tipo array para guardar n-1 eventos
             la clave por defecto empieza de 0 a n-1
             el valor es cada tupla de la consulta.
             */
@@ -43,19 +43,15 @@ class Eventos
             //cargo en mi variable fila cada una de mis tuplas
             while($row = $rs->fetch_assoc())
             {
-                /*
-                cargo en el array el objeto (valor) al final de $result
-                array_pus inserta mi objeto en la ultima posicion del array
-                como no tiene posiciones empieza desde 0 - n-1
-                */                  
-                array_push($result, (new Eventos  ( $row['ID_EVENTO'], 
-                                                    $row['NOMBRE_EVENTO'],
-                                                    $row['LOCALIZACION'],
-                                                    $row['TIPO_DEPORTE'],
-                                                    $row['DESCRIPCION'],
-                                                    $row['EQUIPO_INSCRITO'],
-                                                    $row['PORCENTAJE'],
-                                                    $row['FECHA_CREACION'])));
+                //cargo en el array el objeto (valor)                   
+                $result[] = new Eventos($row['ID_EVENTO'], 
+                                        $row['NOMBRE_EVENTO'],
+                                        $row['LOCALIZACION'],
+                                        $row['TIPO_DEPORTE'],
+                                        $row['DESCRIPCION'],
+                                        $row['EQUIPO_INSCRITO'],
+                                        $row['PORCENTAJE'],
+                                        $row['FECHA_CREACION']);
                         }
             $rs->free();
         } 
