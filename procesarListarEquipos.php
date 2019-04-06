@@ -33,23 +33,23 @@
 		if(isset($_SESSION["login"])){
 			echo "<button onclick='crearEquipo.php'>Pulsa aquí para crear un equipo</button>";
 		}else{
-			echo "<p><a href='registro.php'>Si desea crear un equipo pulse aquí para crear una cuenta</a></p>";
+			echo "<p class='login-equipos'><a href='registro.php'>Si desea crear un equipo pulse aquí para crear una cuenta</a></p>";
 		}?>
-		<div>
 			<?php
 			if(!isset($equipos))
 				echo "<p>Actualmente no hay ningun equipo disponible</p>";
 			else{
-			 	
 				echo "<div class='teams_container'>";
 				echo "<p class='titulo'>Listado de los equipos actuales</p>";
 				foreach ($equipos as $equipo){ 
 				?>
-					<div class="team box">
-						<div class="team title"><p><?php echo $equipo->get_nombre_equipo();?></p></div>
-						<div class="team img"><img class ="logo_equipo" src=<?php echo $equipo->get_logo_equipo();?> alt='No image'></div>
-						<div class="team text_title"><h4>Descripcion</h4></div>
-						<div class="team text"><p><?php echo $equipo->get_descripcion_equipo();?></p></div>
+					<div class="box">
+						<p class="box-equipo"><?php echo $equipo->get_nombre_equipo();?></p>
+						<a href="procesarVerEquipo.php"><img class ="box-logo" src=<?php echo $equipo->get_logo_equipo();?> alt='No image'></a>
+						<div class = "box-texto">
+							<h4 class ="box-desc">Descripcion</h4>
+							<p class = "box-texto2"><?php echo $equipo->get_descripcion_equipo();?></p>
+						</div>
 					</div>
 				
 				<?php
@@ -58,7 +58,6 @@
 			}
 			?>
 			
-		</div>
 
 		<?php
 		require("includes/comun/pie.php");  

@@ -389,64 +389,64 @@ a#pie {
 
 /* Alberto */
 
-.teams_container{
-	/*height: 500px;
-	width: 500px;*/
-	display: grid;
-	text-align: center;
-    grid-gap: 10px;
-    grid-template-columns: repeat(2, 400px) ;
-    grid-template-rows: 80px, 600px;
-    background-color: #fff;
-    color: #344;
+.login-equipos{
+	padding: 20px;
+	text-align: left;
+	font-size: 10px;
 }
 
-.teams_container > div{
-	display: block;
+.teams_container{
+	grid-template-rows: 80px 400px;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 400px;
+    background-color: #fff;
 }
+
 
 .titulo{
 	grid-column: 1 / 4;
-	font-size: 10px; 
+	font-size: 30px; 
 	text-align: center;
 	color: #37273F;
 }
 
-.team{
-	background-color: #444;
-    color: #eee;
-    border-radius: 5px;
-    font-size: 150%;
-    height: 100px;
- 	width: 100px;
-}
 
 .box{
 	align-self: start;
 	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
 	grid-template-areas: 
-	"title title title"
-	"img text_title text";
+	"title title"
+	"logo texto"
+	"logo texto"
+
 }
 
-div.title p{
-	font-size: 10px;
+.box-equipo{
+	grid-area: title;
 	text-align: center;
+	color: green;
+}
+.box-logo{
+	grid-area: logo;
+	width: 200px;
+	height: 200px;
 }
 
-div.img img{
-	 height: 100px;
- 	 width: 100px;
-
+.box-texto{
+	grid-area: texto;
+	font-size: 20px;
+	color: green;
 }
 
-div.text_title h4{
-	font-size: 10px;
-	text-align: center;
-
+.box-texto2{
+	font-size: 20px;
+	color: green;
 }
 
-div.text p{
-	font-size: 10px;
-	text-align: center;
+.box-desc{
+	font-size: 15px;
+	color: black;
 }
