@@ -1,11 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 4.8.3
+﻿-- phpMyAdmin SQL Dump
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2019 a las 02:48:34
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 08-04-2019 a las 00:47:41
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sports4friends`
 --
-CREATE DATABASE IF NOT EXISTS `sports4friends` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `sports4friends`;
 
 -- --------------------------------------------------------
 
@@ -32,7 +30,7 @@ USE `sports4friends`;
 
 CREATE TABLE `deportes` (
   `ID_DEPORTE` int(10) NOT NULL,
-  `NOMBRE_DEPORTE` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `NOMBRE_DEPORTE` varchar(30) CHARACTER SET utf8 NOT NULL,
   `NUMERO_MAXIMO_JUGADORES` int(3) DEFAULT NULL,
   `DURACION_MIN` int(5) DEFAULT NULL,
   `FECHA_CDEPORTE` date NOT NULL,
@@ -58,7 +56,7 @@ INSERT INTO `deportes` (`ID_DEPORTE`, `NOMBRE_DEPORTE`, `NUMERO_MAXIMO_JUGADORES
 CREATE TABLE `equipos` (
   `ID_EQUIPO` int(10) NOT NULL,
   `DEPORTE` int(10) NOT NULL,
-  `NOMBRE_EQUIPO` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `NOMBRE_EQUIPO` varchar(30) CHARACTER SET utf8 NOT NULL,
   `FECHA_CEQUIPO` date NOT NULL,
   `HORA_CEQUIPO` time NOT NULL,
   `PARTIDOS_GANADOS` int(4) NOT NULL DEFAULT '0',
@@ -85,16 +83,22 @@ INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`,
 --
 
 CREATE TABLE `eventos` (
-  `ID_EVENTO` int(11) NOT NULL,
-  `NOMBRE` varchar(45) NOT NULL,
-  `LOCALIZACION` varchar(100) NOT NULL,
-  `TIPO_DEPORTE` varchar(45) NOT NULL,
-  `DESCRIPCION` varchar(100) DEFAULT NULL,
-  `EQUIPO_1` int(10) DEFAULT NULL,
-  `EQUIPO_2` int(10) DEFAULT NULL,
-  `PORCENTAJE` decimal(10,2) NOT NULL,
-  `FECHA_CREACION` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_eventos` int(10) NOT NULL,
+  `nombre_evento` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `deporte` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `localizacion` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `fecha_creacion` date NOT NULL,
+  `fecha_evento` date NOT NULL,
+  `descripcion` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `foto_evento` varchar(100) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `eventos`
+--
+
+INSERT INTO `eventos` (`id_eventos`, `nombre_evento`, `deporte`, `localizacion`, `fecha_creacion`, `fecha_evento`, `descripcion`, `foto_evento`) VALUES
+(3, 'baloncesto 3v3 abril 2019', 'BALONCESTO', 'parque ugenia de montijo, canchas de detras del metro.', '2019-04-01', '2019-05-31', 'Se enfrentaras equipos de tres integrantes cada uno, que lucharán por hacersen con los tres puestos premiables del evento.', 'url');
 
 -- --------------------------------------------------------
 
@@ -126,6 +130,27 @@ INSERT INTO `jugadores` (`ID_JUGADOR`, `EQUIPO`, `USUARIO`, `ROL_JUGADOR`, `FECH
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `registros_eventos`
+--
+
+CREATE TABLE `registros_eventos` (
+  `id_registro` int(10) NOT NULL,
+  `evento` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `equipo` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `p_victorias` int(11) NOT NULL,
+  `fecha_creacion` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `registros_eventos`
+--
+
+INSERT INTO `registros_eventos` (`id_registro`, `evento`, `equipo`, `p_victorias`, `fecha_creacion`) VALUES
+(1, 'baloncesto 3v3 abril 2019', 'BULL', 10, '2019-04-03');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -150,7 +175,8 @@ INSERT INTO `usuarios` (`ID_USUARIO`, `NICKNAME`, `NOMBRE`, `CORREO`, `PASSWORD`
 (5, 'iif4', 'Iker', 'ikeriban@ucm.es', 'dbc4d84bfcfe2284ba11beffb853a8c4', 'USER'),
 (6, 'atc5', 'Alberto', 'alberture@ucm.es', '6074c6aa3488f3c2dddff2a7ca821aab', 'USER'),
 (7, 'jjjj6', 'Jonathan Jose', 'jonathanj@ucm.es', 'e9510081ac30ffa83f10b68cde1cac07', 'USER'),
-(8, 'jjjj8', 'Jonathan Josa', 'jonathanf@ucm.es', 'd79c8788088c2193f0244d8f1f36d2db', 'USER');
+(8, 'jjjj8', 'Jonathan Josa', 'jonathanf@ucm.es', 'd79c8788088c2193f0244d8f1f36d2db', 'USER'),
+(9, 'lucas', 'lucas', 'lucas@ucm.es', '$2y$10$qawAzPmYtYqLkWHgdrKxSusWbknFCrP6PzVnrcswN0Js6cK1JvAby', 'USER');
 
 --
 -- Índices para tablas volcadas
@@ -175,9 +201,9 @@ ALTER TABLE `equipos`
 -- Indices de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  ADD PRIMARY KEY (`ID_EVENTO`),
-  ADD KEY `eventos_ibfk_1` (`EQUIPO_1`),
-  ADD KEY `eventos_ibfk_2` (`EQUIPO_2`);
+  ADD PRIMARY KEY (`id_eventos`),
+  ADD UNIQUE KEY `nombre_evento` (`nombre_evento`),
+  ADD KEY `deporte` (`deporte`);
 
 --
 -- Indices de la tabla `jugadores`
@@ -186,6 +212,14 @@ ALTER TABLE `jugadores`
   ADD PRIMARY KEY (`ID_JUGADOR`),
   ADD KEY `USUARIO` (`USUARIO`),
   ADD KEY `EQUIPO` (`EQUIPO`);
+
+--
+-- Indices de la tabla `registros_eventos`
+--
+ALTER TABLE `registros_eventos`
+  ADD PRIMARY KEY (`id_registro`),
+  ADD KEY `equipo` (`equipo`),
+  ADD KEY `registros_eventos_ibfk_2` (`evento`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -215,7 +249,7 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `ID_EVENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=990001;
+  MODIFY `id_eventos` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
@@ -224,10 +258,16 @@ ALTER TABLE `jugadores`
   MODIFY `ID_JUGADOR` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330007;
 
 --
+-- AUTO_INCREMENT de la tabla `registros_eventos`
+--
+ALTER TABLE `registros_eventos`
+  MODIFY `id_registro` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
@@ -243,8 +283,7 @@ ALTER TABLE `equipos`
 -- Filtros para la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`EQUIPO_1`) REFERENCES `equipos` (`ID_EQUIPO`) ON DELETE CASCADE,
-  ADD CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`EQUIPO_2`) REFERENCES `equipos` (`ID_EQUIPO`) ON DELETE CASCADE;
+  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`NOMBRE_DEPORTE`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `jugadores`
@@ -252,6 +291,13 @@ ALTER TABLE `eventos`
 ALTER TABLE `jugadores`
   ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`USUARIO`) REFERENCES `usuarios` (`ID_USUARIO`) ON DELETE CASCADE,
   ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`EQUIPO`) REFERENCES `equipos` (`ID_EQUIPO`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `registros_eventos`
+--
+ALTER TABLE `registros_eventos`
+  ADD CONSTRAINT `registros_eventos_ibfk_1` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`NOMBRE_EQUIPO`) ON DELETE CASCADE,
+  ADD CONSTRAINT `registros_eventos_ibfk_2` FOREIGN KEY (`evento`) REFERENCES `eventos` (`nombre_evento`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
