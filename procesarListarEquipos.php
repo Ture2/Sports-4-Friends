@@ -24,7 +24,7 @@
 	<title>Inicio</title>
 </head>
 <body>
-
+	<main>
 	<?php
 		require("includes/comun/cabecera.php");
 		require("includes/comun/menu.php");
@@ -57,7 +57,7 @@
 			}
 			?>
 			
-
+		</main>
 		<?php
 		require("includes/comun/pie.php");  
 	?>
