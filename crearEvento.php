@@ -25,8 +25,10 @@
 			<form action="MisEventos.php" method="POST">
 			<fieldset id="event">
 			<p><label>Nombre del evento:</label> <input type="text" name="name" value=""></p>
-			<p><label>Fecha del evento:</label> <input type="date" name="fecha" value=""></p>
 			<p><label>Deporte:</label> <input type="text" name="sport" value=""></p>
+			<p><label>Fecha del evento:</label> <input type="date" name="fecha" value=""></p>
+			<p><label>Hora del evento:</label> <input type="time" name="hora" value=""></p>
+			<p><label>Ubicación:</label> <input type="text" name="ubicacion" value=""></p>
 			<p><label>Descripción del evento: </label><textarea></textarea></p>
 			<div id="event">
 				<button id="event" type="submit" name="crear">Crear</button>

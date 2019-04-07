@@ -26,56 +26,70 @@
 				<a href="pantallaEvento.php"><img class="logoC" src="images/event.png"></a>
 				<div id="evento">
 					<p id="evento">Nombre</p>
-					<p id="evento">Fecha</p>
 					<p id="evento">Deporte</p>
+					<p id="evento">Fecha</p>
+					<p id="evento">Hora</p>
+					<p id="evento">Ubicación</p>
 				</div>
 			</fieldset>
 			<fieldset id="eventos">
 				<img class="logoC" src="images/event.png">
 				<div id="evento">
 					<p id="evento">Nombre</p>
-					<p id="evento">Fecha</p>
 					<p id="evento">Deporte</p>
+					<p id="evento">Fecha</p>
+					<p id="evento">Hora</p>
+					<p id="evento">Ubicación</p>
 				</div>
 			</fieldset>
 			<fieldset id="eventos">
 				<img class="logoC" src="images/event.png">
 				<div id="evento">
 					<p id="evento">Nombre</p>
-					<p id="evento">Fecha</p>
 					<p id="evento">Deporte</p>
+					<p id="evento">Fecha</p>
+					<p id="evento">Hora</p>
+					<p id="evento">Ubicación</p>
 				</div>
 			</fieldset>
 			<fieldset id="eventos">
 				<img class="logoC" src="images/event.png">
 				<div id="evento">
 					<p id="evento">Nombre</p>
-					<p id="evento">Fecha</p>
 					<p id="evento">Deporte</p>
+					<p id="evento">Fecha</p>
+					<p id="evento">Hora</p>
+					<p id="evento">Ubicación</p>
 				</div>
 			</fieldset>
 			<fieldset id="eventos">
 				<img class="logoC" src="images/event.png">
 				<div id="evento">
 					<p id="evento">Nombre</p>
-					<p id="evento">Fecha</p>
 					<p id="evento">Deporte</p>
+					<p id="evento">Fecha</p>
+					<p id="evento">Hora</p>
+					<p id="evento">Ubicación</p>
 				</div>
 			</fieldset>
 			<fieldset id="eventos">
 				<img class="logoC" src="images/event.png">
 				<div id="evento">
 					<p id="evento">Nombre</p>
-					<p id="evento">Fecha</p>
 					<p id="evento">Deporte</p>
+					<p id="evento">Fecha</p>
+					<p id="evento">Hora</p>
+					<p id="evento">Ubicación</p>
 				</div>
 			</fieldset>
 			<fieldset id="eventos">
 				<img class="logoC" src="images/event.png">
 				<div id="evento">
 					<p id="evento">Nombre</p>
-					<p id="evento">Fecha</p>
 					<p id="evento">Deporte</p>
+					<p id="evento">Fecha</p>
+					<p id="evento">Hora</p>
+					<p id="evento">Ubicación</p>
 				</div>
 			</fieldset>
 		</div>

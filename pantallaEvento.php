@@ -26,8 +26,10 @@
 		<div>
 			<fieldset id="event">
 			<p><label>Nombre del evento</label></p>
-			<p><label>Fecha del evento</label></p>
 			<p><label>Deporte</label></p>
+			<p><label>Fecha del evento</label></p>
+			<p><label>Hora del evento</label></p>
+			<p><label>Ubicación</label></p>
 			<p><label>Descripción del evento</label></p>
 			<div id="event">
 				<form action="" method="POST">

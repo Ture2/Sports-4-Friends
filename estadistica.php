@@ -15,11 +15,14 @@
 	<!-- METER LOS DATOS DE CADA JUGADOR CON LA BASE DE DATOS -->
 	<div id="contenido">
 		<div id="tabla">
+			<p>FÚTBOL</p>
 	  		<table>
 	  			<tr>
 	  				<th>Equipo</th>
 	  				<th>Posición</th>
-	  				<th>Deporte</th>
+	  				<th>Faltas</th>
+	  				<th>Goles</th>
+	  				<th>Tarjetas</th>
 	  				<th>PJ</th>
 	  				<th>PG</th>
 	  				<th>PP</th>
@@ -31,6 +34,23 @@
 	  				<td>-</td>
 	  				<td>-</td>
 	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  			</tr>
+	  		</table>
+	  	</div>
+
+	  	<div id="tabla">
+	  		<p>BALONCESTO</p>
+	  		<table>
+	  			<tr>
+	  				<th>Equipo</th>
+	  				<th>Posición</th>
+	  				<th>Puntos</th>
+	  				<th>Faltas</th>
+	  				<th>PJ</th>
+	  				<th>PG</th>
+	  				<th>PP</th>
 	  			</tr>
 	  			<tr>
 	  				<td>-</td>
@@ -39,38 +59,21 @@
 	  				<td>-</td>
 	  				<td>-</td>
 	  				<td>-</td>
-	  			</tr>
-	  			<tr>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
 	  				<td>-</td>
 	  			</tr>
+	  		</table>
+	  	</div>
+
+	  	<div id="tabla">
+	  		<p>TENIS</p>
+	  		<table>
 	  			<tr>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  			</tr>
-	  			<tr>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  			</tr>
-	  			<tr>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
+	  				<th>Equipo</th>
+	  				<th>Sets</th>
+	  				<th>Puntos</th>
+	  				<th>PJ</th>
+	  				<th>PG</th>
+	  				<th>PP</th>
 	  			</tr>
 	  			<tr>
 	  				<td>-</td>
