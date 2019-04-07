@@ -45,14 +45,14 @@ if ( empty($password) || mb_strlen($password) < 3 ) {
 }
 $password2 = isset($_POST['password2']) ? $_POST['password2'] : null;
 if ( empty($password2) || strcmp($password, $password2) !== 0 ) {
-	$erroresFormulario[] = "Los passwords deben coincidir";
+	$erroresFormulario[] = "Los passwords deben coincidir.";
 }
 
 if (count($erroresFormulario) === 0) {
 	$usuario = Usuario::crea($nombreUsuario, $nombre, $correo, $password, 'USER');
     
     if (! $usuario ) {
-        $erroresFormulario[] = "El usuario ya existe";
+        $erroresFormulario[] = "El usuario ya existe.";
     } else {
         $_SESSION['login'] = true;
         $_SESSION['nombre'] = $nombreUsuario;
@@ -76,7 +76,9 @@ if (count($erroresFormulario) === 0) {
 	<div id="logo">
 		<img class="logo" src="images/logo.png">
 	</div>
-
+<div id="error">
+	<fieldset id="errorReg">
+		<legend id="error">ERROR</legend>
 	<?php
 		if (count($erroresFormulario) > 0) {
 			echo '<ul class="errores">';
@@ -87,8 +89,9 @@ if (count($erroresFormulario) === 0) {
 		if (count($erroresFormulario) > 0) {
 			echo '</ul>';
 		}
-	?>		
-		
+	?>
+	</fieldset>		
+</div>		
 
 
 
@@ -104,6 +107,7 @@ if (count($erroresFormulario) === 0) {
 		<p id="reg"><label id="reg">Contraseña:</label> <input type="password" name="password" value=""></p>
 		<p id="reg"><label id="reg">Repetir Contraseña:</label> <input type="password" name="password2" value=""></p>
 		<button id= "index" type="submit" name="registro">Validar</button>
+		<button formaction="index.php" id="index" type="submit" name="volver">Volver</button>
 		</fieldset>
 		</form>
 	</div>

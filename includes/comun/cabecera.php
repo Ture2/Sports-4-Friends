@@ -13,15 +13,18 @@
 	<title></title>
 </head>
 <body>
-	<div>
-		<?php
-			echo $Error;
-		  ?>
-	</div>
 	<div id="cabecera">
 		<div id="logoC">
-			<img class="logoC" src="images/logo.png">
+			<a href="index.php"><img class="logoC" src="images/logo.png"></a>
 		</div>
+		<div id="cab">
+			<?php
+				echo $Error;
+		  	?>
+		</div>
+		<?php
+			require("includes/comun/menu.php");
+		?>
 	</div>
 </body>
 </html>

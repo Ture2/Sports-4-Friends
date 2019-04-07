@@ -16,16 +16,19 @@
 		<div id="barra">
 			<nav>
 				<ul class="nav">
-					<li><a href="index.php">Inicio</a></li>
-					<li><a href="">Deportes</a>
+					<li><a href="index.php"><img id="menu" src="images/inicio.png">Inicio</a></li>
+					<li><a href=""><img id="menu" src="images/deportes.png">Deportes</a>
 						<ul>
 							<li><a href="">Fútbol</a></li>
 							<li><a href="">Baloncesto</a></li>
 							<li><a href="">Tenis</a></li>
 							<li><a href="">Otros</a></li>
 						</ul></li>
-					<li><a href="">Eventos</a></li>
-					<li><a href="">Quedadas</a>
+					<li><a href="eventos.php"><img id="menu" src="images/eventos.png">Eventos</a>
+						<ul>
+							<li><a href="MisEventos.php">Mis Eventos</a></li>
+						</ul></li>
+					<li><a href=""><img id="menu" src="images/quedadas.png">Quedadas</a>
 						<ul>
 							<li><a href="">Bares</a></li>
 							<li><a href="">Estadios</a></li>
@@ -35,16 +38,17 @@
 					<li><!--<a href="">-->
 						<?php
 							if($username){
-								echo '<a href="">Hola '.$username.'</a>';
+								echo '<a href=""><img id="menu" src="images/cuenta.png">Hola '.$username.'</a>';
 							}else{
-								echo '<a href="login.php"> Inicia Sesion</a>';
+								echo '<a href="login.php"><img id="menu" src="images/login.png"> Iniciar Sesión</a>';
 							}
 						  ?>
 					<!--</a>-->
 					<?php
 						if ($username) {
 							echo '<ul>
-									<li><a href="">Mi Cuenta</a></li>
+									<li><a href="perfil.php">Mi Perfil</a></li>
+									<li><a href="estadistica.php">Estadísticas</a></li>
 									<li><a href="logout.php">Cerrar Sesión</a></li>
 								</ul>';
 						}
@@ -52,7 +56,7 @@
 					</li>
 					<?php
 						if(!$username){
-							echo '<li><a href="registro.php">Registrarse</a></li>';
+							echo '<li><a href="registro.php"><img id="menu" src="images/registro.png">Registrarse</a></li>';
 						}
 					  ?>		
 				</ul>

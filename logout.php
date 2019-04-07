@@ -26,7 +26,6 @@
 
 	<?php 
 		require("includes/comun/cabecera.php");
-		require("includes/comun/menu.php"); 
 	?>
 
 	<div id="contenido">

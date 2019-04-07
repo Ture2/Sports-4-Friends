@@ -9,7 +9,6 @@
 
 	<?php
 		require("includes/comun/cabecera.php");
-		require("includes/comun/menu.php");
 		require("contenido.php");
 		require("includes/comun/pie.php");  
 	?>

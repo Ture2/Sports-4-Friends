@@ -9,11 +9,6 @@
 
 	<?php 
 	require("includes/comun/cabecera.php");
-	require("menu.php");
-	//require("contenido.php");
-	
-	
-		
 	?>
 
 	<div id="contenido">

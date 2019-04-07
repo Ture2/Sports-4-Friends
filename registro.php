@@ -25,6 +25,7 @@ require_once __DIR__.'/includes/config.php';
 		<p id="reg"><label id="reg">Contraseña:</label> <input type="password" name="password" value=""></p>
 		<p id="reg"><label id="reg">Repetir Contraseña:</label> <input type="password" name="password2" value=""></p>
 		<button id= "index" type="submit" name="registro">Validar</button>
+		<button formaction="index.php" id="index" type="submit" name="volver">Volver</button>
 		</fieldset>
 		</form>
 	</div>

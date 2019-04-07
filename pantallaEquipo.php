@@ -9,7 +9,6 @@
 
 	<?php
 		require("cabecera.php");
-		require("menu.php");
 	?>
 
 	  <div id="contenido">

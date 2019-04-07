@@ -22,6 +22,7 @@
 		<p id="log"><label id="reg">Usuario:</label> <input type="text" name="username" value=""></p>
 		<p id="log"><label id="reg">Contraseña:</label> <input type="password" name="password" value=""></p>
 		<button id="index" type="submit" name="login">Entrar</button>
+		<button formaction="index.php" id="index" type="submit" name="volver">Volver</button>
 		</fieldset>
 		</form>
 	</div>
