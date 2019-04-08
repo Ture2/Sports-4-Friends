@@ -82,12 +82,13 @@ class Eventos
     private $localizacion;
     private $fecha_creacion;
     private $fecha_evento;
+    private $hora_evento;
     private $descripcion;
     private $foto_evento;
     
 
     //Constructora
-    private function __construct($id_evento, $nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $descripcion, $foto_evento)
+    private function __construct($id_evento, $nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $foto_evento)
     {
         $this->id_evento=$id_evento;
         $this->nombre_evento= $nombre_evento;
@@ -97,6 +98,7 @@ class Eventos
         $this->localizacion = $localizacion;
         $this->fecha_creacion= $fecha_creacion;
         $this->fecha_evento=$fecha_evento;
+        $this->hora_evento=$hora_evento;
         $this->descripcion=$descripcion;
         $this->foto_evento=$foto_evento;
     }
@@ -110,6 +112,7 @@ class Eventos
     public function localizacion(){return $this->localizacion;}
     public function fecha_creacion(){return $this->fecha_creacion;}
     public function fecha_evento(){return $this->fecha_evento;}
+    public function hora_evento(){return $this->hora_evento;}
     public function descripcion(){ return $this->descripcion;}
     public function foto_evento(){return $this->foto_evento;}
 }

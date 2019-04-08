@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2019 a las 23:09:22
+-- Tiempo de generación: 08-04-2019 a las 23:19:58
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -101,8 +101,8 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id_evento`, `nombre_evento`, `deporte`, `ciudad`, `municipio`, `localizacion`, `fecha_creacion`, `fecha_evento`, `hora_evento`, `descripcion`, `foto_evento`) VALUES
-(3, 'baloncesto 3v3 abril 2019', 'BALONCESTO', 'madrid', 'Carabanchel', 'parque ugenia de montijo, canchas de detras del metro.', '2019-04-01', '2019-05-31', '', 'Se enfrentaras equipos de tres integrantes cada uno, que lucharán por hacersen con los tres puestos premiables del evento.', 'images/evento1.png'),
-(4, 'futbol rey de la pista', 'FUTBOL', 'madrid', 'Usera', 'parque aluche en las pista de futbol', '2019-04-01', '2019-04-27', '', 'partidos de futbol sala minimo 6 participantes por equipo', 'images/evento2.jpg');
+(3, 'baloncesto 3v3 abril 2019', 'BALONCESTO', 'madrid', 'Carabanchel', 'parque ugenia de montijo, canchas de detras del metro.', '2019-04-01', '2019-05-31', '10:00 - 15:00', 'Se enfrentaras equipos de tres integrantes cada uno, que lucharán por hacersen con los tres puestos premiables del evento.', 'images/evento1.png'),
+(4, 'futbol rey de la pista', 'FUTBOL', 'madrid', 'Usera', 'parque aluche en las pista de futbol', '2019-04-01', '2019-04-27', '09:00 - 18:00', 'partidos de futbol sala minimo 6 participantes por equipo', 'images/evento2.jpg');
 
 -- --------------------------------------------------------
 

@@ -24,7 +24,7 @@ else{
 Depuracion: solo para mostrar informacion de las variables
 
 */
-//var_dump($eventos);
+var_dump($eventos);
 var_dump($_SESSION);
 var_dump($errores);
 
@@ -90,8 +90,8 @@ var_dump($errores);
 								<th>Municipio</th>
 								<th>Nombre del Evento</th>
 								<th>Deporte </th>
-
 								<th>Fecha evento</th>
+								<th>Hora Evento </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -110,6 +110,7 @@ var_dump($errores);
 										<td> <?=$value->nombre_evento(); ?> </td>
 										<td> <?=$value->deporte(); ?> </td>
 										<td> <?=$value->fecha_evento(); ?> </td>
+										<td> <?=$value->hora_evento(); ?> </td>
 								<?php
 								}
 							?>
