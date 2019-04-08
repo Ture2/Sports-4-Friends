@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2019 a las 00:47:41
+-- Tiempo de generación: 08-04-2019 a las 10:57:46
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -83,9 +83,11 @@ INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`,
 --
 
 CREATE TABLE `eventos` (
-  `id_eventos` int(10) NOT NULL,
+  `id_evento` int(10) NOT NULL,
   `nombre_evento` varchar(30) CHARACTER SET utf8 NOT NULL,
   `deporte` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `ciudad` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `municipio` varchar(30) CHARACTER SET ascii NOT NULL,
   `localizacion` varchar(100) CHARACTER SET utf8 NOT NULL,
   `fecha_creacion` date NOT NULL,
   `fecha_evento` date NOT NULL,
@@ -97,8 +99,9 @@ CREATE TABLE `eventos` (
 -- Volcado de datos para la tabla `eventos`
 --
 
-INSERT INTO `eventos` (`id_eventos`, `nombre_evento`, `deporte`, `localizacion`, `fecha_creacion`, `fecha_evento`, `descripcion`, `foto_evento`) VALUES
-(3, 'baloncesto 3v3 abril 2019', 'BALONCESTO', 'parque ugenia de montijo, canchas de detras del metro.', '2019-04-01', '2019-05-31', 'Se enfrentaras equipos de tres integrantes cada uno, que lucharán por hacersen con los tres puestos premiables del evento.', 'url');
+INSERT INTO `eventos` (`id_evento`, `nombre_evento`, `deporte`, `ciudad`, `municipio`, `localizacion`, `fecha_creacion`, `fecha_evento`, `descripcion`, `foto_evento`) VALUES
+(3, 'baloncesto 3v3 abril 2019', 'BALONCESTO', 'madrid', 'Carabanchel', 'parque ugenia de montijo, canchas de detras del metro.', '2019-04-01', '2019-05-31', 'Se enfrentaras equipos de tres integrantes cada uno, que lucharán por hacersen con los tres puestos premiables del evento.', 'images/evento1.png'),
+(4, 'futbol rey de la pista', 'FUTBOL', 'madrid', 'Usera', 'parque aluche en las pista de futbol', '2019-04-01', '2019-04-27', 'partidos de futbol sala minimo 6 participantes por equipo', 'images/evento2.jpg');
 
 -- --------------------------------------------------------
 
@@ -201,7 +204,7 @@ ALTER TABLE `equipos`
 -- Indices de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  ADD PRIMARY KEY (`id_eventos`),
+  ADD PRIMARY KEY (`id_evento`),
   ADD UNIQUE KEY `nombre_evento` (`nombre_evento`),
   ADD KEY `deporte` (`deporte`);
 
@@ -249,7 +252,7 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id_eventos` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_evento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
