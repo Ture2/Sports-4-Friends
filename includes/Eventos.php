@@ -25,10 +25,7 @@ class Eventos
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        //Creo la consulta
         $query = sprintf("SELECT * FROM Eventos");
-
-        //creo una variable y la inicializo a false para devolver algo si devuelve la consulta de la BD
         $result = false; 
 
         //si realizado la consulta y la cargo en la variable rs sin fallos continuo
