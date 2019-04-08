@@ -15,6 +15,64 @@ div#contenedor {
 }
 
 
+/* popup */
+
+#mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9000;
+  background-color: #000;
+  display: none;
+}
+
+#boxes .window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 440px;
+  height: 200px;
+  display: none;
+  z-index: 9999;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+#boxes #dialog {
+  width: 750px;
+  height: 300px;
+  padding: 10px;
+  background-color: darkgreen;
+  font-family: 'Segoe UI Light', sans-serif;
+  font-size: 20pt;
+}
+
+#popupfoot {
+  font-size: 16pt;
+  position: absolute;
+  margin-bottom: 15px;
+  bottom: 10px;
+  width: 500px;
+  left: 115px;
+}
+
+a#popup{
+    padding: 10px;
+    font-size: 15px;
+    position: relative;
+    background-color: lightblue;
+    color:black;
+    box-shadow: inset 0 0 1px 0px black;
+    text-decoration: none;
+}
+
+#pop{
+	font-size: 15pt;
+	color:lightblue;
+	padding-top: 20px;
+}
+
 /* error */
 
 #error{
@@ -47,7 +105,7 @@ legend#error {
 div#cab{
 	float:right;
 	font-size: 25px;
-	color:red;
+	color:lightblue;
 	margin-right: 250px;
 }
 
@@ -160,12 +218,10 @@ img.logoC{
 div#logoC{
 	text-align: center;
 	margin: -25px auto;
-
 }
 	
 
 /* menu de navegacion */
-
 
 img#menu{
 	width: 15px;
@@ -239,6 +295,12 @@ div#saludo {
 div#adios {
 	text-align: center;
 	padding-top: 100px;
+}
+
+#out{
+	color:darkblue;
+	font-size:75px;
+
 }
 
 div#cal {
@@ -373,6 +435,7 @@ fieldset#unir {
 
 div#datos{
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	margin-top: 30px;
@@ -380,6 +443,7 @@ div#datos{
 
 div#perfil{
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	margin-top: -300px;
@@ -422,7 +486,7 @@ th {
 	padding: 15px;
 	height: 50px;
 	text-align: center;
-	background-color: red;
+	background-color: darkblue;
 	color:white;
 }
 
@@ -493,6 +557,116 @@ button#event{
 	margin-bottom: auto;
 	padding: 10px;
 	margin: 10px;
+}
+
+
+/* Procesar listar equipos */
+
+.login-equipos{
+	margin-top: 30px;
+    margin-bottom: 15px;
+    padding: 15px;
+    text-align: left;
+    font-size: 15px;
+    position: relative;
+    right: -200px;
+    background-color: lightblue;
+    box-shadow: inset 0 0 1px 0px black;
+}
+
+.login-equipos > a{
+	font-size: 15px;
+    text-decoration-line: none;
+}
+
+.teams_container{
+	display: grid;
+	grid-template-rows: 80px 400px;
+	grid-template-areas: 
+	"titulo titulo"
+	"teambox teambox";
+    text-align: center;
+    /*grid-template-columns: 480px 480px;*/
+    background-color: #fff;
+}
+
+.titulo{
+	grid-area: titulo;
+	padding-top: 15px;
+	font-size: 30px; 
+	text-align: center;
+	color: #37273F;
+}
+
+.box{
+	align-self: start;
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    grid-template-areas: "title title"
+ 	"logo texto"
+ 	"logo texto";
+    margin-bottom: 25px;
+}
+
+.box-equipo{
+	grid-area: title;
+	text-align: center;
+	color: green;
+}
+.box-logo{
+	padding-left: 15px;
+	
+	position: relative;
+    float: left;
+    width:  200px;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+.box-texto{
+	grid-area: texto;
+	font-size: 20px;
+	color: green;
+}
+
+.box-texto2{
+	font-size: 20px;
+	color: green;
+}
+
+.box-desc{
+	font-size: 15px;
+	color: black;
+}
+
+
+/* pantalla equipo */
+
+#p1{
+	color:black;
+	margin-left: 500px;
+	text-decoration: underline;
+	text-decoration-color: black;
+}
+
+#p2{
+	color:white;
+	margin-left: 50px;
+}
+
+#p3{
+	color:black;
+	margin-left: 200px;
+	text-decoration: underline;
+	text-decoration-color: black;
+}
+
+#h{
+	color:blue;
+	font-size: 50px;
 }
 
 

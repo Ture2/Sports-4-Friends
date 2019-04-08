@@ -30,7 +30,8 @@
 
 	<div id="contenido">
 		<div id="adios">
-			<h1>Hasta pronto!</h1>
+			<h1 id="out">Cerrando Sesión</h1>
+			<h2>Será redireccionado automáticamente.</h2>
 		</div>
 	</div>
 
