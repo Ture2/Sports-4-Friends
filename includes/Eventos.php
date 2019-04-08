@@ -9,8 +9,9 @@ CLASE EVENTOS:
     1)debe devolver una lista de eventos    imp_f
     2)permite crear un eventos              imp
     3)poder eliminar un Eventos             imp
-    opcional:
-    4)permitir editar un evento             imp
+    4)actuliazar eventos                    imp
+    5)permitir editar un evento             imp
+    6)buscar evento                         imp
 */
 class Eventos
 {
@@ -61,6 +62,24 @@ class Eventos
             exit();
         }
         return $result;
+    }
+
+    public static function elimnarEvento($nombre_evento)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+
+        $query=sprintf("DELETE FROM Eventos WHERE nombre_evento='%'"
+            , $conn->real_escape_string($nombre_evento));
+
+        $eliminar = false;
+
+        if($conn->query($query))
+        {
+            $eliminar = true;
+        }
+
+        return $eliminar;
     }
 
     public static function crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $foto_evento)
