@@ -43,15 +43,21 @@ class Eventos
             //cargo en mi variable fila cada una de mis tuplas
             while($row = $rs->fetch_assoc())
             {
-                //cargo en el array el objeto (valor)                   
-                $result[] = new Eventos($row['ID_EVENTO'], 
-                                        $row['NOMBRE_EVENTO'],
-                                        $row['LOCALIZACION'],
-                                        $row['TIPO_DEPORTE'],
-                                        $row['EQUIPO_INSCRITO'],
-                                        $row['DESCRIPCION'],
-                                        $row['PORCENTAJE'],
-                                        $row['FECHA_CREACION']);
+                /*
+                1)cargo en el array el objeto (valor) 
+                2)el objecto es una de las tuplas devueltas de la consulta
+                3)se instancia el objeto con el orden de los campos sport4friends.evento
+                */
+                $result[] = new Eventos($row['id_evento'], 
+                                        $row['nombre_evento'],
+                                        $row['deporte'],
+                                        $row['ciudad'],
+                                        $row['municipio'],
+                                        $row['localizacion'],
+                                        $row['fecha_creacion'],
+                                        $row['fecha_evento'],
+                                        $row['descripcion'],
+                                        $row['foto_evento']);
                         }
             $rs->free();
         } 
@@ -67,35 +73,44 @@ class Eventos
     //************************************************************************
 
     //Atributos de mi clase Eventos (concuerda con mi tabla eventos mysql)
-    private $id;
-    private $nombre;
+    private $id_evento;
+    private $nombre_evento;
+    private $deporte;
+    private $ciudad;
+    private $municipio;
     private $localizacion;
-    private $tipo_deporte;
-    private $equipo;
+    private $fecha_creacion;
+    private $fecha_evento;
     private $descripcion;
-    private $porcentaje_victorias;
-    private $fecha;
+    private $foto_evento;
+    
 
     //Constructora
-    private function __construct($id, $nombre, $localizacion, $tipo_deporte, $equipo, $descripcion, $porcentaje_victorias, $fecha)
+    private function __construct($id_evento, $nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $descripcion, $foto_evento)
     {
-        $this->id= $id;
-        $this->nombre= $nombre;
+        $this->id_evento=$id_evento;
+        $this->nombre_evento= $nombre_evento;
+        $this->deporte= $deporte;
+        $this->ciudad=$ciudad;
+        $this->municipio=$municipio;
         $this->localizacion = $localizacion;
-        $this->tipo_deporte= $tipo_deporte;
-        $this->equipo= $equipo;
-        $this->porcentaje_victorias = $porcentaje_victorias;
-        $this->fecha = $fecha;
+        $this->fecha_creacion= $fecha_creacion;
+        $this->fecha_evento=$fecha_evento;
+        $this->descripcion=$descripcion;
+        $this->foto_evento=$foto_evento;
     }
 
     //Funciones para acceder a los atributos de Eventos
-    public function id(){return $this->id;}
-    public function nombre(){return $this->nombre;}
+    public function id_evento(){return $this->id_evento;}
+    public function nombre_evento(){return $this->nombre_evento;}
+    public function deporte(){return $this->deporte;}
+    public function ciudad(){return $this->ciudad;}
+    public function municipio(){return $this->municipio;}
     public function localizacion(){return $this->localizacion;}
-    public function tipo_deporte(){return $this->tipo_deporte;}
-    public function equipo(){return $this->equipo;}
-    public function porcentaje_victorias(){return $this->porcentaje_victorias;}
-    public function fecha(){ return $this->fecha;}
+    public function fecha_creacion(){return $this->fecha_creacion;}
+    public function fecha_evento(){return $this->fecha_evento;}
+    public function descripcion(){ return $this->descripcion;}
+    public function foto_evento(){return $this->foto_evento;}
 }
 
 ?>

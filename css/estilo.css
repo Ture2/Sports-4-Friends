@@ -412,5 +412,6 @@ img#img_eventos{
 h1,pre#texto{
 
 	text-align: center;
+	text-transform: capitalize;
 }
 

@@ -5,6 +5,7 @@ require_once __DIR__.'/includes/Eventos.php';
 //guardamos en un array los posibles errores que puedan darse
 $errores = array();
 
+
 if(isset($_SESSION["login"])){
 
 	/*
@@ -12,7 +13,7 @@ if(isset($_SESSION["login"])){
 	2)comprueba si la variable esta declarada y no es nula
 	*/
 	$eventos = Eventos::listarEventos();
-
+	var_dump($eventos);
 	if(!isset($eventos)){
 		$errores[] = "No hay registros disponibles";
 	}
@@ -40,27 +41,43 @@ else{
 		<?php
 		if (isset($_SESSION["login"]))
 		{
+			empty($errores);
 			if(empty($errores))
 			{
-			?>
+				foreach ($eventos as $key => $value) {
+				?>
 				<br/><br/>
-				<h1 id="texto"> TORNEO 3V3 DE BALONCESTO </h1>
+				<h1 id="texto"><?=$value->nombre_evento();?></h1>
 
-				<img id="img_eventos" src="images/evento1.png"></img>
+				<img id="img_eventos" src="<?=$value->foto_evento();?>"></img>
 
+
+				<pre id=texto><?=$value->descripcion();?></pre>
+
+				<?php
+				}
+				?>
+				
+				<br/><br/>
 				<pre id="texto">Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
 
 				<br/><br/>
-				<!--INDENTIFICADO PARA EL CSS -->
+				<!--
+					INDENTIFICADOR PARA EL CSS 
+					ME GUSTARIA: lista desplegable al pulsar un boton
+						Implementacion con javaScript
+				-->
 				<table id="eventos">
 					<caption>LISTA DE LOS EVENTOS DISPONIBLES</caption>
 						</thead>
 							<tr>
-								<th>Nº </th>
+								<th>Nº</th>
+								<th>Ciudad</th>
+								<th>Municipio</th>
 								<th>Nombre del Evento</th>
 								<th>Deporte </th>
-								<th>Victorias (%) </th>
-								<th>Fecha creacion </th>
+
+								<th>Fecha evento</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -73,11 +90,12 @@ else{
 								foreach ($eventos as $key => $value) {
 								?>
 									<tr>
-										<td> <?=$value->id(); ?> </td>
-										<td> <?=$value->nombre(); ?> </td>
-										<td> <?=$value->tipo_deporte(); ?> </td>
-										<td> <?=$value->porcentaje_victorias(); ?> </td>
-										<td> <?=$value->fecha(); ?> </td>
+										<td> <?=$value->id_evento(); ?> </td>
+										<td> <?=$value->ciudad(); ?> </td>
+										<td> <?=$value->Municipio(); ?> </td>
+										<td> <?=$value->nombre_evento(); ?> </td>
+										<td> <?=$value->deporte(); ?> </td>
+										<td> <?=$value->fecha_evento(); ?> </td>
 								<?php
 								}
 							?>
