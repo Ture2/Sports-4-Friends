@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2019 a las 10:57:46
+-- Tiempo de generación: 08-04-2019 a las 23:09:22
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -91,6 +91,7 @@ CREATE TABLE `eventos` (
   `localizacion` varchar(100) CHARACTER SET utf8 NOT NULL,
   `fecha_creacion` date NOT NULL,
   `fecha_evento` date NOT NULL,
+  `hora_evento` varchar(30) CHARACTER SET utf8 NOT NULL,
   `descripcion` varchar(200) CHARACTER SET utf8 NOT NULL,
   `foto_evento` varchar(100) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -99,9 +100,9 @@ CREATE TABLE `eventos` (
 -- Volcado de datos para la tabla `eventos`
 --
 
-INSERT INTO `eventos` (`id_evento`, `nombre_evento`, `deporte`, `ciudad`, `municipio`, `localizacion`, `fecha_creacion`, `fecha_evento`, `descripcion`, `foto_evento`) VALUES
-(3, 'baloncesto 3v3 abril 2019', 'BALONCESTO', 'madrid', 'Carabanchel', 'parque ugenia de montijo, canchas de detras del metro.', '2019-04-01', '2019-05-31', 'Se enfrentaras equipos de tres integrantes cada uno, que lucharán por hacersen con los tres puestos premiables del evento.', 'images/evento1.png'),
-(4, 'futbol rey de la pista', 'FUTBOL', 'madrid', 'Usera', 'parque aluche en las pista de futbol', '2019-04-01', '2019-04-27', 'partidos de futbol sala minimo 6 participantes por equipo', 'images/evento2.jpg');
+INSERT INTO `eventos` (`id_evento`, `nombre_evento`, `deporte`, `ciudad`, `municipio`, `localizacion`, `fecha_creacion`, `fecha_evento`, `hora_evento`, `descripcion`, `foto_evento`) VALUES
+(3, 'baloncesto 3v3 abril 2019', 'BALONCESTO', 'madrid', 'Carabanchel', 'parque ugenia de montijo, canchas de detras del metro.', '2019-04-01', '2019-05-31', '', 'Se enfrentaras equipos de tres integrantes cada uno, que lucharán por hacersen con los tres puestos premiables del evento.', 'images/evento1.png'),
+(4, 'futbol rey de la pista', 'FUTBOL', 'madrid', 'Usera', 'parque aluche en las pista de futbol', '2019-04-01', '2019-04-27', '', 'partidos de futbol sala minimo 6 participantes por equipo', 'images/evento2.jpg');
 
 -- --------------------------------------------------------
 

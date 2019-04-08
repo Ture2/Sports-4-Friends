@@ -56,6 +56,7 @@ class Eventos
                                         $row['localizacion'],
                                         $row['fecha_creacion'],
                                         $row['fecha_evento'],
+                                        $row['hora_evento'],
                                         $row['descripcion'],
                                         $row['foto_evento']);
                         }
