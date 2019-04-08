@@ -7,10 +7,10 @@ METADATA:                               |
 ----------------------------------------
 CLASE EVENTOS: 
     1)debe devolver una lista de eventos    imp_f
-    2)permite crear un eventos              ^
-    3)poder eliminar un Eventos             ^
+    2)permite crear un eventos              imp
+    3)poder eliminar un Eventos             imp
     opcional:
-    4)permitir editar un evento             ^
+    4)permitir editar un evento             imp
 */
 class Eventos
 {
