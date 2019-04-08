@@ -65,7 +65,7 @@ class Eventos
 
     public static function crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $foto_evento)
     {
-        $evento = self::buscarEvento($nombre_evento;
+        $evento = self::buscarEvento($nombre_evento);
         if ($evento) {
             return false;
         }
@@ -88,16 +88,16 @@ class Eventos
             $evento = new Eventos($row['nombre_evento'],$row['deporte'], $row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['foto_evento']);
             $evento->id_evento = $row['id_evento'];
             $result[] = $evento;
-        }
-        $rs->free();
+            $rs->free();
         } 
         else {
             echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
         }
         return $result;
+    }
 
-     public static function guardarEvento($evento)
+    public static function guardarEvento($evento)
     {
         if ($evento->id_evento !== null) {
             return self::actualizarEvento($evento);
