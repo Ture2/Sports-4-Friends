@@ -85,7 +85,6 @@ var_dump($errores);
 					<caption>LISTA DE LOS EVENTOS DISPONIBLES</caption>
 						</thead>
 							<tr>
-								<th>Nº</th>
 								<th>Ciudad</th>
 								<th>Municipio</th>
 								<th>Nombre del Evento</th>
@@ -104,7 +103,6 @@ var_dump($errores);
 								foreach ($eventos as $key => $value) {
 								?>
 									<tr>
-										<td> <?=$value->id_evento(); ?> </td>
 										<td> <?=$value->ciudad(); ?> </td>
 										<td> <?=$value->Municipio(); ?> </td>
 										<td> <?=$value->nombre_evento(); ?> </td>
