@@ -409,9 +409,9 @@ img#img_eventos{
 	margin: auto;
 }
 
-h1,pre#texto{
+h1,pre,p#texto{
 
 	text-align: center;
-	text-transform: capitalize;
+	text-transform: uppercase;
 }
 

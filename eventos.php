@@ -5,15 +5,13 @@ require_once __DIR__.'/includes/Eventos.php';
 //guardamos en un array los posibles errores que puedan darse
 $errores = array();
 
-
 if(isset($_SESSION["login"])){
-
 	/*
 	1)guardo en un variable el array de listar eventos
 	2)comprueba si la variable esta declarada y no es nula
 	*/
 	$eventos = Eventos::listarEventos();
-	var_dump($eventos);
+
 	if(!isset($eventos)){
 		$errores[] = "No hay registros disponibles";
 	}
@@ -21,6 +19,15 @@ if(isset($_SESSION["login"])){
 else{
 	$errores[] = "No puedes acceder al contenido";
 }
+
+/*
+Depuracion: solo para mostrar informacion de las variables
+
+*/
+//var_dump($eventos);
+var_dump($_SESSION);
+var_dump($errores);
+
 ?>
 
 <!DOCTYPE html>
@@ -41,9 +48,16 @@ else{
 		<?php
 		if (isset($_SESSION["login"]))
 		{
-			empty($errores);
-			if(empty($errores))
+			if(empty($errores == 0))
 			{
+				/*
+				recorro todos los eventos disponibles mostrando:
+					-nombre del evento
+					-url de la foto
+					-decripcion del evento
+				que recupero del array de objetos donde tengo mis eventos.
+
+				*/
 				foreach ($eventos as $key => $value) {
 				?>
 				<br/><br/>
@@ -57,7 +71,7 @@ else{
 				<?php
 				}
 				?>
-				
+
 				<br/><br/>
 				<pre id="texto">Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
 
@@ -110,8 +124,12 @@ else{
 		}
 		else{
 		?>
-			<p>Debes hacer <a href="login.php">login</a> o <a 	href="registro.php">registrarte</a> para
-			poder ver el contenido de los PROXIMOS EVENTOS DE TU CIUDAD </p>
+			<br/><br/>
+			<h1 id="texto"> <?php print $errores['0'];?></h1>
+			<br/>
+			<p id="texto"><a  href="login.php">login</a> </p>
+			<br/>
+			<p id="texto"><a href="registro.php">registrarte</a></p>
 
 		<?php
 		}
