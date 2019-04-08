@@ -48,16 +48,7 @@ class Eventos
                 2)el objecto es una de las tuplas devueltas de la consulta
                 3)se instancia el objeto con el orden de los campos sport4friends.evento
                 */
-                $evento = new Eventos($row['nombre_evento'],
-                                     $row['deporte'],
-                                     $row['ciudad'],
-                                     $row['municipio'],
-                                     $row['localizacion'],
-                                     $row['fecha_creacion'],
-                                     $row['fecha_evento'],
-                                     $row['hora_evento'],
-                                     $row['descripcion'],
-                                     $row['foto_evento']);
+                $evento = new Eventos($row['nombre_evento'],$row['deporte'],$row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['foto_evento']);
 
                 $evento->id_evento = $row['id_evento'];
 
@@ -72,7 +63,7 @@ class Eventos
         return $result;
     }
 
-    public static function crea($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $foto_evento)
+    public static function crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $foto_evento)
     {
         $evento = self::buscarEvento($nombre_evento;
         if ($evento) {
@@ -88,7 +79,7 @@ class Eventos
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $query = sprintf("SELECT * FROM Eventos E WHERE E.nombre_evento= '%s'", $conn->real_escape_string($nombre_evento));
-        
+
         $result = false; 
 
         if (($rs = $conn->query($query))  && ($rs->num_rows == 1))
