@@ -26,7 +26,7 @@ require_once __DIR__.'/includes/Deporte.php';
    		{
       // Ruta donde se guardarán las imágenes que subamos
    		    //C:\xampp\htdocs\Sports-4-Friends\imgbd
-      $directorio = $_SERVER['DOCUMENT_ROOT'].'/Sports-4-Friends/imgbd/';
+      $directorio = $_SERVER['DOCUMENT_ROOT'].'/Sports-4-Friends/images/logo_equipos/';
      
       
       // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
