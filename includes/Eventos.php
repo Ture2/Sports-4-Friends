@@ -17,25 +17,13 @@ class Eventos
 {
     public static function listarEventos()
     {
-        /*
-        1-Permite obtener una instancia de <code>Aplicacion</code>.
-        2-array $bdDatosConexion datos de configuración de la BD
-        3-continua con la session
-        */
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
         $query = sprintf("SELECT * FROM Eventos");
         $result = false; 
-
-        //si realizado la consulta y la cargo en la variable rs sin fallos continuo
         if ($rs = $conn->query($query))
         {   
-            /*
-            Creo un variable de tipo array para guardar n-1 eventos
-            la clave por defecto empieza de 0 a n-1
-            el valor es cada tupla de la consulta.
-            */
             $result = array();
 
             //cargo en mi variable fila cada una de mis tuplas
@@ -61,6 +49,7 @@ class Eventos
         return $result;
     }
 
+    //solo el admin
     public static function elimnarEvento($nombre_evento)
     {
         $app = Aplicacion::getSingleton();
@@ -75,7 +64,6 @@ class Eventos
         {
             $eliminar = true;
         }
-
         return $eliminar;
     }
 
@@ -103,7 +91,7 @@ class Eventos
             $row = $rs->fetch_assoc();
             $evento = new Eventos($row['nombre_evento'],$row['deporte'], $row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['foto_evento']);
             $evento->id_evento = $row['id_evento'];
-            $result[] = $evento;
+            $result = $evento;
             $rs->free();
         } 
         else {
@@ -137,7 +125,7 @@ class Eventos
             , $conn->real_escape_string($evento->descripcion)
             , $conn->real_escape_string($evento->foto_evento));
         if ( $conn->query($query) ) {
-            $evento->id = $conn->insert_id;
+            $evento->id_evento = $conn->insert_id;
         } else {
             echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
@@ -149,7 +137,7 @@ class Eventos
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE Eventos E SET nombre_evento = '%s', deporte='%s', ciudad='%s', municipio='%s', localizacion='%',fecha_creacion='%', fecha_evento='%', hora_evento='%',descripcion='%', foto_evento='%' WHERE U.id_evento=%i"
+        $query=sprintf("UPDATE Eventos E SET nombre_evento = '%s', deporte='%s', ciudad='%s', municipio='%s', localizacion='%',fecha_creacion='%', fecha_evento='%', hora_evento='%',descripcion='%', foto_evento='%' WHERE E.id_evento='%i'"
             , $conn->real_escape_string($evento->nombre_evento)
             , $conn->real_escape_string($evento->deporte)
             , $conn->real_escape_string($evento->ciudad)
@@ -161,9 +149,10 @@ class Eventos
             , $conn->real_escape_string($evento->descripcion)
             , $conn->real_escape_string($evento->foto_evento)
             , $evento->id_evento);
+
         if ( $conn->query($query) ) {
             if ( $conn->affected_rows != 1) {
-                echo "No se ha podido actualizar el evento: " . $evento->id;
+                echo "No se ha podido actualizar el evento: " . $evento->id_evento;
                 exit();
             }
         } else {

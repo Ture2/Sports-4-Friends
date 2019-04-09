@@ -85,12 +85,8 @@ var_dump($errores);
 					<caption>LISTA DE LOS EVENTOS DISPONIBLES</caption>
 						</thead>
 							<tr>
-								<th>Ciudad</th>
-								<th>Municipio</th>
-								<th>Nombre del Evento</th>
-								<th>Deporte </th>
-								<th>Fecha evento</th>
-								<th>Hora Evento </th>
+								<th>Ciudad</th><th>Municipio</th><th>Nombre del Evento</th><th>Deporte </th>
+								<th>Fecha evento</th><th>Hora Evento </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -134,7 +130,12 @@ var_dump($errores);
 		}
 		?>
 
-	</div>
+		<!--crear un boton de nos de acceso al formulario -->
+
+	<!--implenmentar el formulario de registro de eventos
+		que redirige a procesarregistroevento con su logica correspondiente
+	-->
+		<a href="registroEvento.php"><button>REGISTRATE</button></a>
 
 	<?php
 	require("includes/comun/pie.php");

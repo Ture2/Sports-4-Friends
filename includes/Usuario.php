@@ -17,7 +17,8 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf(xattr_get(filename, name)
+        $query = sprintf("SELECT * FROM USUARIOS WHERE nickname = '%s'",
+                    $conn->real_escape_string($nombreUsuario));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
