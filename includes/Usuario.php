@@ -17,7 +17,8 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Usuarios U WHERE U.NICKNAME = '%s'", $conn->real_escape_string($nombreUsuario));
+        $query = sprintf("SELECT * FROM USUARIOS WHERE nickname = '%s'",
+                    $conn->real_escape_string($nombreUsuario));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
@@ -92,7 +93,7 @@ class Usuario
         if ( $conn->query($query) ) {
             var_dump($conn->affected_rows);
             if ( $conn->affected_rows != 1) {
-                echo "No se ha podido actualizar el usuario: " . $usuario->id;
+                echo "No se ha podido actualizar el evento: " . $usuario->id;
                 exit();
             }
         } else {

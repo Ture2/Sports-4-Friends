@@ -24,11 +24,12 @@
 							<li><a href="">Tenis</a></li>
 							<li><a href="">Otros</a></li>
 						</ul></li>
-					<li><a href="eventos.php"><img id="menu" src="images/eventos.png">Eventos</a>
-						<ul>
-							<li><a href="MisEventos.php">Mis Eventos</a></li>
-						</ul></li>
-					<li><a href=""><img id="menu" src="images/quedadas.png">Quedadas</a>
+
+					<li><a href="">Eventos</a>
+							<ul>
+							<li><a href="eventos.php"> proximos eventos </a></li>
+							</ul></li>
+					<li><a href="">Quedadas</a>
 						<ul>
 							<li><a href="">Bares</a></li>
 							<li><a href="">Estadios</a></li>

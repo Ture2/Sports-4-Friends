@@ -1,0 +1,136 @@
+
+<?php
+/*
+----------------------------------------
+METADATA:                               |
+    imp_f (implementado y funcionando)  |
+    ^  (falta por hacer)                |
+----------------------------------------
+COMPROBACIONES:
+   -errores en un array $erroresFormulario; 			imp
+   -datos del post  									imp
+   -comprobar que los datos no son nulos 				imp
+
+*/
+
+require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/Usuario.php';
+require_once __DIR__.'/includes/Equipo.php';
+require_once __DIR__.'/includes/Deporte.php';
+require_once __DIR__.'/includes/Evento.php';
+
+if (! isset($_POST['esAdmin']) ) {
+    header('Location: login.php');
+    exit();
+}
+
+$erroresFormulario = array();
+
+
+$nombreEvento = isset($_POST['nombreEvento']) ? $_POST['nombreEvento'] : null;
+if ( empty($nombreEvento) || mb_strlen($nombreEvento) < 5 ) {
+	$erroresFormulario[] = "El nombre del evento tiene que tener una longitud de al menos 5 caracteres.";
+}
+
+$deporte= isset($_POST['deporte']) ? $_POST['deporte'] : null;
+if ( empty($deporte) || mb_strlen($deporte) < 2 ) {
+    $erroresFormulario[] = "El deporte tiene que tener una longitud de al menos 4 caracteres.";
+}
+
+$ciudad = isset($_POST['ciudad']) ? $_POST['ciudad'] : null;
+
+if ( empty($ciudad) || mb_strlen($ciudad) < 5 ) {
+	$erroresFormulario[] = "tiene que tener una longitud de al menos 5 caracteres.";
+}
+
+$municipio = isset($_POST['municipio']) ? $_POST['municipio'] : null;
+
+if ( empty($municipio) || mb_strlen($municipio) < 5 ) {
+	$erroresFormulario[] = "El municipio tiene que tener una longitud de al menos 5 caracteres.";
+}
+
+$localizacion = isset($_POST['localizacion']) ? $_POST['localizacion'] : null;
+
+if ( empty($localizacion) || mb_strlen($localizacion) < 5 ) {
+	$erroresFormulario[] = "La localizacion tiene que tener una longitud de al menos 5 caracteres.";
+}
+
+$fechaEvento = isset($_POST['fechaEvento']) ? $_POST['fechaEvento'] : null;
+
+if ( empty($fechaEvento) || mb_strlen($fechaEvento) < 5 ) {
+	$erroresFormulario[] = "La fecha tiene que tener una longitud de al menos 5 caracteres.";
+}
+
+$horaEvento = isset($_POST['hora']) ? $_POST['hora'] : null;
+
+if ( empty($horaEvento) || mb_strlen($horaEvento) < 5 ) {
+	$erroresFormulario[] = "La hora tiene que tener una longitud de al menos 5 caracteres.";
+}
+
+$descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : null;
+
+if ( empty($descripcion) || mb_strlen($descripcion) < 5 ) {
+	$erroresFormulario[] = "La descripcion tiene que tener una longitud de al menos 5 caracteres.";
+}
+
+if (count($erroresFormulario) === 0) {
+
+	//CONSTRUCTORA $usuario = Usuario::crea($nombreUsuario, $nombre, $correo, $password, 'USER');
+
+    /*
+    compruebo que no haya fallos y 
+    */
+
+
+    /*
+    if (! $usuario ) {
+        $erroresFormulario[] = "El usuario ya existe";
+    } else {
+        $_SESSION['login'] = true;
+        $_SESSION['nombre'] = $nombreUsuario;
+        header('Location: index.php');
+        exit();
+        
+    }
+    */
+}
+
+?>
+
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<?php
+		require("../includes/comun/cabecera.php");
+		require("menu.php");
+	?>
+
+	<div id="logo">
+		<img class="logo" src="images/logo.png">
+	</div>
+
+	<?php
+		if (count($erroresFormulario) > 0) {
+			echo '<ul class="errores">';
+		}
+		foreach($erroresFormulario as $error) {
+			echo "<li>$error</li>";
+		}
+		if (count($erroresFormulario) > 0) {
+			echo '</ul>';
+		}
+	?>		
+
+	<!--TERMINAR EL FORMULARIO EN ALTAEVENTO Y COPIARLO AQUI
+
+	<?php 
+		include("includes/comun/pie.php"); 
+	?>
+</body>
+</html>

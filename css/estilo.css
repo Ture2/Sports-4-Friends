@@ -694,4 +694,36 @@ a#pie {
 	text-align: center;
 	background-color: #32FF00;
 	border: none;
+
 }
+
+
+
+/*
+ESTILO PARA EVENTOS
+
+*/
+
+div#eventos {
+	width: auto;
+	margin: auto;
+	border: 1px solid black;
+	background-color: #32FF00;
+	margin-top: 30px;
+}
+
+img#img_eventos{
+	width: 500px;
+	height: 500px;
+	display: block;
+	background-color: #32FF00;
+	margin: auto;
+}
+
+h1,pre,p#texto{
+
+	text-align: center;
+	text-transform: uppercase;
+}
+
+

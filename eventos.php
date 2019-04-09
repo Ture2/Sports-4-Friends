@@ -1,103 +1,143 @@
+<?php
+require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/Eventos.php';
+
+//guardamos en un array los posibles errores que puedan darse
+$errores = array();
+
+if(isset($_SESSION["login"])){
+	/*
+	1)guardo en un variable el array de listar eventos
+	2)comprueba si la variable esta declarada y no es nula
+	*/
+	$eventos = Eventos::listarEventos();
+
+	if(!isset($eventos)){
+		$errores[] = "No hay registros disponibles";
+	}
+}
+else{
+	$errores[] = "No puedes acceder al contenido";
+}
+
+/*
+Depuracion: solo para mostrar informacion de las variables
+
+*/
+var_dump($eventos);
+var_dump($_SESSION);
+var_dump($errores);
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
-	<meta charset="utf-8">
 	<title>Eventos</title>
 </head>
 <body>
-
-	<?php 
+	<?php
 		require("includes/comun/cabecera.php");
-	?>
+		require("includes/comun/menu.php");
+	?>	
+
+	<div id= "eventos">
+
+		<?php
+		if (isset($_SESSION["login"]))
+		{
+			if(empty($errores == 0))
+			{
+				/*
+				recorro todos los eventos disponibles mostrando:
+					-nombre del evento
+					-url de la foto
+					-decripcion del evento
+				que recupero del array de objetos donde tengo mis eventos.
+
+				*/
+				foreach ($eventos as $key => $value) {
+				?>
+				<br/><br/>
+				<h1 id="texto"><?=$value->nombre_evento();?></h1>
+
+				<img id="img_eventos" src="<?=$value->foto_evento();?>"></img>
 
 
-	<?php /*AQUI SE DEBERIA CONSULTAR LA BASE DE DATOS PARA QUE MUESTRE TODOS LOS EVENTOS DISPONIBLES, 
-	DONDE PONE NOMBRE-FECHA-DEPORTE QUE SE ACTUALICE AUTOMATICAMENTE
-	TAMBIEN ALGO QUE GENERE <DIV> PARA QUE ALMACENE ESOS DATOS*/ ?>
+				<pre id=texto><?=$value->descripcion();?></pre>
 
-	<div id="contenido">
-		<form>
-			<button formaction="crearEvento.php" id="eventos" type="submit" name="evento">CREAR EVENTO</button>
-			<button formaction="MisEventos.php" id="eventos" type="submit" name="MisEventos">MIS EVENTOS</button>
-		</form>
-		<div id="eventos">
-			<fieldset id="eventos">
-				<a href="pantallaEvento.php"><img class="logoC" src="images/event.png"></a>
-				<div id="evento">
-					<p id="evento">Nombre</p>
-					<p id="evento">Deporte</p>
-					<p id="evento">Fecha</p>
-					<p id="evento">Hora</p>
-					<p id="evento">Ubicación</p>
-				</div>
-			</fieldset>
-			<fieldset id="eventos">
-				<img class="logoC" src="images/event.png">
-				<div id="evento">
-					<p id="evento">Nombre</p>
-					<p id="evento">Deporte</p>
-					<p id="evento">Fecha</p>
-					<p id="evento">Hora</p>
-					<p id="evento">Ubicación</p>
-				</div>
-			</fieldset>
-			<fieldset id="eventos">
-				<img class="logoC" src="images/event.png">
-				<div id="evento">
-					<p id="evento">Nombre</p>
-					<p id="evento">Deporte</p>
-					<p id="evento">Fecha</p>
-					<p id="evento">Hora</p>
-					<p id="evento">Ubicación</p>
-				</div>
-			</fieldset>
-			<fieldset id="eventos">
-				<img class="logoC" src="images/event.png">
-				<div id="evento">
-					<p id="evento">Nombre</p>
-					<p id="evento">Deporte</p>
-					<p id="evento">Fecha</p>
-					<p id="evento">Hora</p>
-					<p id="evento">Ubicación</p>
-				</div>
-			</fieldset>
-			<fieldset id="eventos">
-				<img class="logoC" src="images/event.png">
-				<div id="evento">
-					<p id="evento">Nombre</p>
-					<p id="evento">Deporte</p>
-					<p id="evento">Fecha</p>
-					<p id="evento">Hora</p>
-					<p id="evento">Ubicación</p>
-				</div>
-			</fieldset>
-			<fieldset id="eventos">
-				<img class="logoC" src="images/event.png">
-				<div id="evento">
-					<p id="evento">Nombre</p>
-					<p id="evento">Deporte</p>
-					<p id="evento">Fecha</p>
-					<p id="evento">Hora</p>
-					<p id="evento">Ubicación</p>
-				</div>
-			</fieldset>
-			<fieldset id="eventos">
-				<img class="logoC" src="images/event.png">
-				<div id="evento">
-					<p id="evento">Nombre</p>
-					<p id="evento">Deporte</p>
-					<p id="evento">Fecha</p>
-					<p id="evento">Hora</p>
-					<p id="evento">Ubicación</p>
-				</div>
-			</fieldset>
-		</div>
-	</div>
+				<?php
+				}
+				?>
 
-	<?php  
-		require("includes/comun/pie.php");  
-	?>
+				<br/><br/>
+				<pre id="texto">Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
 
+				<br/><br/>
+				<!--
+					INDENTIFICADOR PARA EL CSS 
+					ME GUSTARIA: lista desplegable al pulsar un boton
+						Implementacion con javaScript
+				-->
+				<table id="eventos">
+					<caption>LISTA DE LOS EVENTOS DISPONIBLES</caption>
+						</thead>
+							<tr>
+								<th>Ciudad</th><th>Municipio</th><th>Nombre del Evento</th><th>Deporte </th>
+								<th>Fecha evento</th><th>Hora Evento </th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+								/*
+								1)Recorremos todo el array.
+								2)Accedemos a nuestro objeto (valor) y a los metodos
+								3)Mostramos lo que nos retorna los metodos
+								*/
+								foreach ($eventos as $key => $value) {
+								?>
+									<tr>
+										<td> <?=$value->ciudad(); ?> </td>
+										<td> <?=$value->Municipio(); ?> </td>
+										<td> <?=$value->nombre_evento(); ?> </td>
+										<td> <?=$value->deporte(); ?> </td>
+										<td> <?=$value->fecha_evento(); ?> </td>
+										<td> <?=$value->hora_evento(); ?> </td>
+								<?php
+								}
+							?>
+						</tbody>
+				</table>
+		<?php
+			}	
+			else
+			{
+				echo $errores();
+			}
+		}
+		else{
+		?>
+			<br/><br/>
+			<h1 id="texto"> <?php print $errores['0'];?></h1>
+			<br/>
+			<p id="texto"><a  href="login.php">login</a> </p>
+			<br/>
+			<p id="texto"><a href="registro.php">registrarte</a></p>
+
+		<?php
+		}
+		?>
+
+		<!--crear un boton de nos de acceso al formulario -->
+
+	<!--implenmentar el formulario de registro de eventos
+		que redirige a procesarregistroevento con su logica correspondiente
+	-->
+		<a href="registroEvento.php"><button>REGISTRATE</button></a>
+
+	<?php
+	require("includes/comun/pie.php");
+	?>	
 </body>
 </html>
