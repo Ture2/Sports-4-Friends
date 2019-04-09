@@ -23,21 +23,10 @@ if ( empty($nombre) || mb_strlen($nombre) < 2 ) {
 	$erroresFormulario[] = "El nombre tiene que tener una longitud de al menos 5 caracteres.";
 }
 
-/*$apellido = isset($_POST['apellido']) ? $_POST['apellido'] : null;
-if ( empty($apellido) || mb_strlen($apellido) < 2 ) {
-    $erroresFormulario[] = "El apellido tiene que tener una longitud de al menos 2 caracteres.";
-}*/
-
 $correo = isset($_POST['correo']) ? $_POST['correo'] : null;
 if ( empty($correo) || mb_strlen($correo) < 2 ) {
     $erroresFormulario[] = "El correo tiene que tener una longitud de al menos 5 caracteres.";
 }
-
-/*$telefono = isset($_POST['telefono']) ? $_POST['telefono'] : null;
-if ( empty($telefono) || mb_strlen($telefono) < 2 ) {
-    $erroresFormulario[] = "El telefono tiene que tener una longitud de al menos 5 caracteres.";
-}*/
-
 
 $password = isset($_POST['password']) ? $_POST['password'] : null;
 if ( empty($password) || mb_strlen($password) < 3 ) {

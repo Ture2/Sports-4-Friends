@@ -64,11 +64,7 @@ if (count($erroresFormulario) === 0) {
 			    echo "<h1>Bienvenido ". $_SESSION['nombre'] . "</h1>";
 			    echo "<p>Usa el menú de la izquierda para navegar.</p>";
 			}
-			else {  //Usuario registrado
-				/*echo "<h1>Bienvenido {$_SESSION['nombre']}</h1>";
-				echo "<p>Usa el menÃº para navegar.</p>";*/
-				
-				//echo"<h1>ERROR</h1>";
+			else {
 		    
 				foreach($erroresFormulario as $error) {
 					echo "<li>$error</li>";

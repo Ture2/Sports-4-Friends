@@ -1,3 +1,8 @@
+<?php
+	require_once __DIR__.'/includes/config.php';
+	require_once __DIR__.'/includes/Usuario.php';
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +18,13 @@
 
 	<div id="contenido">
 		<div id="datos">
+			<?php
+				//comprobamos que hay un usuario logueado
+				if(isset(($_SESSION['login']))){
+					//Creamos el objeto usuario de la sesion que está inciada actualmente
+					$nickname = $_SESSION['nombre'];
+				 	$usuario = Usuario::buscaUsuario($nickname);
+			  ?>
 			<div id="perfil">
 			<fieldset id="avatar">
 				<img class="logoC" src="images/user.png">
@@ -21,13 +33,22 @@
 				</div>
 			</fieldset>
 			</div>
-			<fieldset id="perfil"> <!-- CAMBIAR LOS DATOS POR LOS DATOS DE LA BASE DE DATOS -->
-				<p>Nombre:</p>
-				<p>Apellido:</p>
-				<p>Correo:</p>
-				<p>Usuario:</p>
-				<p>Teléfono:</p>
-			</fieldset>
+				<fieldset id="perfil">
+					<?php
+						//campos que el usuario le interesa que muestre a nivel de cuenta
+						echo '<p id="perfil">Usuario: '.$usuario->nicknameUsuario().'</p>';
+						echo '<p id="perfil">Nombre: '.$usuario->nombreUsuario().'</p>';
+						echo '<p id="perfil">Correo: '.$usuario->mail().'</p>';
+					  ?>
+					<button onclick= "location.href='editarPerfil.php'" id="editar" type="button" name="editar">Editar</button>
+				</fieldset>
+			<?php
+			}else{
+			 ?>
+			 <h1>Error debes estar logueado para poder acceder al contenido de esta pagina</h1>
+			 <?php
+				}
+			 ?>
 		</div>
 	</div>
 

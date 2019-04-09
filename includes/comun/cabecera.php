@@ -1,5 +1,5 @@
  <?php
- 	session_start();
+ 	if (!isset($_SESSION)) { session_start(); }
 	$Error = "";
 	if(!isset(($_SESSION['login']))){
 		$Error = "No tienes una sesión iniciada.";

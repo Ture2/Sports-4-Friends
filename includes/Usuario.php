@@ -23,10 +23,8 @@ class Usuario
         if ($rs) {
             if ( $rs->num_rows == 1) {
                 $fila = $rs->fetch_assoc();
-                //var_dump($rs);
                 //$user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
                 $user = new Usuario($fila['NICKNAME'], $fila['NOMBRE'], $fila['CORREO'], $fila['PASSWORD'], $fila['ROL_USUARIO']);
-                var_dump($user);
                 $user->id = $fila['ID_USUARIO'];
                 $result = $user;
             }
@@ -84,13 +82,15 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE Usuarios U SET nombreUsuario = '%s', nombre='%s', password='%s', rol='%s' WHERE U.id=%i"
+        $query=sprintf("UPDATE USUARIOS SET NICKNAME = '%s', NOMBRE = '%s', CORREO = '%s', PASSWORD = '%s', ROL_USUARIO = '%s' WHERE ID_USUARIO = '%i' "
             , $conn->real_escape_string($usuario->nickname)
             , $conn->real_escape_string($usuario->nombre)
+            , $conn->real_escape_string($usuario->mail)
             , $conn->real_escape_string($usuario->password)
             , $conn->real_escape_string($usuario->rol)
             , $usuario->id);
         if ( $conn->query($query) ) {
+            var_dump($conn->affected_rows);
             if ( $conn->affected_rows != 1) {
                 echo "No se ha podido actualizar el usuario: " . $usuario->id;
                 exit();
@@ -141,7 +141,24 @@ class Usuario
 
     public function nombreUsuario()
     {
+        return $this->nombre;
+    }
+
+    public function nicknameUsuario()
+    {
         return $this->nickname;
+    }
+
+    public function setNickname($nickname){
+        $this->nickname = $nickname;
+    }
+
+    public function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
+
+    public function setMail($mail){
+        $this->mail = $mail;
     }
 
     public function compruebaPassword($password)
