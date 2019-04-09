@@ -27,10 +27,10 @@
 	<main>
 	<?php
 		require("includes/comun/cabecera.php");
-		echo "<div id='contenido'>";
+		require("includes/comun/menu.php");
 		
 		if(isset($_SESSION["login"])){
-			echo "<button class='login-equipos' onclick='crearEquipo.php'>Pulsa aquí para crear un equipo</button>";
+			echo "<button onclick='crearEquipo.php'>Pulsa aquí para crear un equipo</button>";
 		}else{
 			echo "<button class='login-equipos'><a href='registro.php'>Si desea crear un equipo pulse aquí para crear una cuenta</a></button>";
 		}?>
@@ -53,7 +53,6 @@
 				
 				<?php
 				}
-				echo "</div>";
 				echo "</div>";
 			}
 			?>

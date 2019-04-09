@@ -19,7 +19,9 @@
 					<li><a href="index.php"><img id="menu" src="images/inicio.png">Inicio</a></li>
 					<li><a href=""><img id="menu" src="images/deportes.png">Deportes</a>
 						<ul>
-							<li><a href="procesarListarEquipos.php?deporte=futbol">Fútbol</a></li>
+
+							<li><a href="procesarListarEquipos.php?deporte=futbol" >Fútbol</a></li>
+
 							<li><a href="">Baloncesto</a></li>
 							<li><a href="">Tenis</a></li>
 							<li><a href="">Otros</a></li>

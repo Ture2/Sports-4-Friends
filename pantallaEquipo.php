@@ -17,21 +17,21 @@
 
 	<?php
 		require("includes/comun/cabecera.php");
+		require("includes/comun/menu.php");
 	?>
 
 	<div id="contenido">
 
-	  	<h1 id="h"><?php echo $info->get_nombre_equipo();?></h1>
+	  	<p><?php echo $info->get_nombre_equipo();?></p>
 
 		  	<div id="team">
 		  		<img id="fut1" src=<?php echo $info->get_logo_equipo();?>>
 		  	</div>
 
 		<div>
-			<b><p id="p1">DESCRIPCIÓN</p></b>
-			<fieldset>
-				<p id="p2"><?php echo $info->get_descripcion_equipo();?></p>
-			</fieldset>
+
+			<h2>DESCRIPCIÓN</h2>
+			<p><?php echo $info->get_descripcion_equipo();?></p>
 			<div id="botones-equipo">
 				<?php
 
@@ -41,13 +41,14 @@
 
 					if(isset($_SESSION["login"])){ ?>
 						<form action="procesarUnirEquipo.php" method="POST">
-			    			<input class="login-equipos" type="submit" value="Unirme a este quipo" />
+
+			    			<input type="submit" value="Unirme a este quipo" />
 			    			<input type="hidden" name="usuario" value="">
 						</form>
 						<?php 
 					}else{ ?>
 						<form action="procesarSalirEquipo.php" method="POST">
-			    			<input class="login-equipos" type="submit" value="Abandonar Equipo" />
+			    			<input type="submit" value="Abandonar Equipo" />
 			    			<input type="hidden" name="usuario" value="">
 						</form>
 					<?php } ?>
@@ -55,7 +56,8 @@
 
 			</div>
 			  	<div id="tabla">
-			  		<b><p id="p3">ESTADÍSTICAS</p></b>
+
+			  		<h2 id="index">ESTADÍSTICAS</h2>
 			  		<table>
 			  			<tr>
 			  				<th>Posición en la liga</th>

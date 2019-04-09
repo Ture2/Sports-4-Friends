@@ -1,3 +1,11 @@
+<?php 
+require_once __DIR__.'/includes/config.php';
+//require_once __DIR__.'/includes/Usuario.php';
+require_once __DIR__.'/includes/Deporte.php';
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,31 +16,32 @@
 <body>
 
 	<?php
-		require("../includes/comun/cabecera.php");
+
+		require("includes/comun/cabecera.php");
+		require("includes/comun/menu.php");
 	?>
 
 	<div id="contenido">
 		<div id="crear">
 			<fieldset id="crear">
 				<legend id="log">EQUIPO</legend>
-				<form action="procesarCrearEquipo.php">
+				<form action="procesarCrearEquipo.php" enctype="multipart/form-data" method="post">
 				<p>Nombre del Equipo: <input type="text" name="name"></p>
 				<p>Deporte:
-				<select>
+				<select name="deporte" id="dep">
 					<?php
-						$con = new DAOEquiposImp();
-						$equipos = $con->getAll();
-						//echo $equipos[0]. " " .$equipos[1];
-						$longitud = count($equipos);
-						$equipos[1]->getNombreEquipo();
-						foreach ($equipos as $valor) { 
+						
+					
+					$deportes = Deporte::getAll();
+						
+						foreach ($deportes as $valor) { 
 							//echo $valor. " ";
-						  	echo '<option value=" '.$valor->getNombreEquipo().'" >'.$valor->getNombreEquipo().'</option>';
+						  	echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
 						  }  
 					?>
 				</select></p>
 				<p>Imagen del Equipo: <input type="file" name="imagen"></p>
-				<button id="index" type="submit">Entrar</button>
+				<button id="index" type="submit">CREAR</button>
 				</form>
 			</fieldset>
 		</div>
@@ -40,7 +49,7 @@
 	</div>
 
 	<?php
-		require("../includes/comun/pie.php");
+		require("includes/comun/pie.php");
 	?>	
 
 </body>
