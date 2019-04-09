@@ -32,7 +32,8 @@ if (count($erroresFormulario) === 0) {
         if ( $usuario->compruebaPassword($password) ) {
             $_SESSION['login'] = true;
             $_SESSION['nombre'] = $nombreUsuario;
-           // $_SESSION['esAdmin'] = strcmp($fila['rol'], 'admin') == 0 ? true : false;
+            // Comparación de string segura a nivel binario devuelve 0 si son iguales
+           	$_SESSION['esAdmin'] = strcmp($usuario->rol(), 'ADMIN') == 0 ? true : false;
             header('Location: index.php');
             exit();
         } else {
