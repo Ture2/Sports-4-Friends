@@ -1,12 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
-
--- Tiempo de generación: 07-04-2019 a las 12:27:01
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.2
+-- Tiempo de generación: 09-04-2019 a las 23:55:01
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -22,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sports4friends`
 --
+CREATE DATABASE IF NOT EXISTS `sports4friends` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `sports4friends`;
 
 -- --------------------------------------------------------
 
@@ -63,6 +64,9 @@ CREATE TABLE `equipos` (
   `PARTIDOS_GANADOS` int(4) NOT NULL DEFAULT '0',
   `PARTIDOS_EMPATADOS` int(4) NOT NULL DEFAULT '0',
   `PARTIDOS_PERDIDOS` int(4) NOT NULL DEFAULT '0',
+  `MAYOR_RACHA` int(2) NOT NULL DEFAULT '0',
+  `ULTIMO_RESULTADO` int(2) NOT NULL,
+  `POSICION_LIGA` int(2) NOT NULL,
   `LOGO_EQUIPO` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `DESCRIPCION_EQUIPO` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -71,14 +75,13 @@ CREATE TABLE `equipos` (
 -- Volcado de datos para la tabla `equipos`
 --
 
-INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`, `HORA_CEQUIPO`, `PARTIDOS_GANADOS`, `PARTIDOS_EMPATADOS`, `PARTIDOS_PERDIDOS`, `LOGO_EQUIPO`, `DESCRIPCION_EQUIPO`) VALUES
-(550001, 880001, 'BULL', '2019-04-03', '01:50:02', 0, 0, 0, 'images/logo_equipos/bull_logo.jpg', 'Somos un equipo de basket'),
-(550002, 880002, 'REAL MADRID', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de fútbol'),
-(550003, 880003, 'SALOU', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de beisbol'),
-(550004, 880004, 'VALENCIA', '2019-04-03', '01:50:02', 0, 0, 0, NULL, 'Somos un equipo de balonmano'),
-(550005, 880001, 'LOS CHACHOS FC', '2019-04-04', '03:00:00', 2, 4, 1, 'images/logo_equipos/loschachosfc_logo.jpg', 'El equipo de los chachos ha sido creado con la intención de ser el mejor equipo de fútbol en Sports 4 Friends, únete ! '),
-(550006, 880001, 'FLORIDA CDF', '2019-04-07', '13:00:00', 2, 1, 4, 'images/logo_equipos/floridacdf_logo.jpg', 'Salidos del barrio de Hortaleza somos un equipo con las herramientas necesarias para vencer en la liga norte');
-
+INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`, `HORA_CEQUIPO`, `PARTIDOS_GANADOS`, `PARTIDOS_EMPATADOS`, `PARTIDOS_PERDIDOS`, `MAYOR_RACHA`, `ULTIMO_RESULTADO`, `POSICION_LIGA`, `LOGO_EQUIPO`, `DESCRIPCION_EQUIPO`) VALUES
+(550001, 880001, 'BULL', '2019-04-03', '01:50:02', 0, 0, 0, 0, 0, 0, 'images/logo_equipos/bull_logo.jpg', 'Somos un equipo de basket'),
+(550002, 880002, 'REAL MADRID', '2019-04-03', '01:50:02', 0, 0, 0, 0, 0, 0, NULL, 'Somos un equipo de fútbol'),
+(550003, 880003, 'SALOU', '2019-04-03', '01:50:02', 0, 0, 0, 0, 0, 0, NULL, 'Somos un equipo de beisbol'),
+(550004, 880004, 'VALENCIA', '2019-04-03', '01:50:02', 0, 0, 0, 0, 0, 0, NULL, 'Somos un equipo de balonmano'),
+(550005, 880001, 'LOS CHACHOS FC', '2019-04-04', '03:00:00', 2, 4, 1, 0, 0, 0, 'images/logo_equipos/loschachosfc_logo.jpg', 'El equipo de los chachos ha sido creado con la intención de ser el mejor equipo de fútbol en Sports 4 Friends, únete ! '),
+(550006, 880001, 'FLORIDA CDF', '2019-04-07', '13:00:00', 2, 1, 4, 0, 0, 0, 'images/logo_equipos/floridacdf_logo.jpg', 'Salidos del barrio de Hortaleza somos un equipo con las herramientas necesarias para vencer en la liga norte');
 
 -- --------------------------------------------------------
 
@@ -252,12 +255,12 @@ ALTER TABLE `deportes`
 --
 ALTER TABLE `equipos`
   MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550007;
-  
+
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `ID_EVENTO` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_EVENTO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=990003;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
@@ -275,7 +278,7 @@ ALTER TABLE `registros_eventos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
