@@ -1,43 +1,65 @@
+<?php
+require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/RegistroEvento.php';
+
+//guardamos en un array los posibles errores que puedan darse
+$errores = array();
+
+if(isset($_SESSION["login"]) && isset($_SESSION["nickname"])){
+	
+	/*
+	CONSULTA SQL:
+	todos los equipos donde pertenezca el usuario y ademas este registrado el equipo en un evento
+	*/
+	$eventos = Eventos::listarRegistroEvento($nickname);
+
+	if(!isset($eventos)){
+		$errores[] = "No hay registros disponibles";
+	}
+}
+else{
+	$errores[] = "No puedes acceder al contenido";
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
-	<title>Mis Eventos</title>
+	<title></title>
 </head>
 <body>
 
+	<?php
+		require("../includes/comun/cabecera.php");
+		require("menu.php");
+	?>
+
+
+	<?php
+	if (isset($_SESSION["login"]))
+	{
+		if(empty($errores == 0))
+		{
+			//...
+		}
+		else{
+			//....
+		}
+	}
+	else
+	{
+			//...
+	}
+
+
+	?>
+
 	<?php 
-		require("includes/comun/cabecera.php");
+		include("includes/comun/pie.php"); 
 	?>
-
-
-	<?php /*AQUI DEBERIA SER IGUAL QUE EL OTRO PERO CON COMPROBACIONES PARA VER SI TIENES EVENTOS CREADOS O A LOS QUE TE HAS UNIDO Y QUE TE LOS MUESTRE*/ ?>
-
-	<div id="contenido">
-		<form>
-			<button formaction="crearEvento.php" id="eventos" type="submit" name="evento">CREAR EVENTO</button>
-			<button formaction="eventos.php" id="eventos" type="submit" name="volver">VOLVER</button>
-		</form>
-		<div id="eventos">
-			<fieldset id="eventos">
-				<a href="pantallaEvento.php"><img class="logoC" src="images/event.png"></a>
-				<div id="evento">
-					<p id="evento">Nombre</p>
-					<p id="evento">Deporte</p>
-					<p id="evento">Fecha</p>
-					<p id="evento">Hora</p>
-					<p id="evento">Ubicación</p>
-				</div>
-			</fieldset>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-
-	<?php  
-		require("includes/comun/pie.php");  
-	?>
-
 </body>
 </html>

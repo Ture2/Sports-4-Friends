@@ -1,0 +1,697 @@
+body {
+	background-color: #32b000;
+}
+
+div#contenedor {
+	width: 900px;
+	margin: auto;
+	border: 1px solid black;
+	background-color: #aaaaaa;
+	margin-top: 30px;
+}
+
+*{
+	padding:0px;
+}
+
+
+/* popup */
+
+#mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9000;
+  background-color: #000;
+  display: none;
+}
+
+#boxes .window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 440px;
+  height: 200px;
+  display: none;
+  z-index: 9999;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+#boxes #dialog {
+  width: 750px;
+  height: 300px;
+  padding: 10px;
+  background-color: darkgreen;
+  font-family: 'Segoe UI Light', sans-serif;
+  font-size: 20pt;
+}
+
+#popupfoot {
+  font-size: 16pt;
+  position: absolute;
+  margin-bottom: 15px;
+  bottom: 10px;
+  width: 500px;
+  left: 115px;
+}
+
+a#popup{
+    padding: 10px;
+    font-size: 15px;
+    position: relative;
+    background-color: lightblue;
+    color:black;
+    box-shadow: inset 0 0 1px 0px black;
+    text-decoration: none;
+}
+
+#pop{
+	font-size: 15pt;
+	color:lightblue;
+	padding-top: 20px;
+}
+
+/* error */
+
+#error{
+	margin-top: 20px;
+	float: center;
+	text-align: center;
+	font-size: 15pt;
+}
+
+fieldset#errorLogin {
+	border: 1px solid red;
+	width: 20em;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+fieldset#errorReg {
+	border: 1px solid red;
+	width: 35em;
+	margin: 0 auto;
+}
+
+legend#error {
+	color: #fff;
+	background: red;
+	border: 1px black;
+	padding: 2px 6px;
+}
+
+div#cab{
+	float:right;
+	font-size: 25px;
+	color:lightblue;
+	margin-right: 250px;
+}
+
+/* portada */
+
+#borde {
+	background-color: transparent;
+	border: none;
+	margin-top: auto;
+	margin-bottom: auto;
+} 
+
+img.logo {
+	width: 500px;
+	height: 500px;
+	display: block;
+	margin: auto;
+}
+
+#sesion li {
+	margin: 20px;
+	list-style: none;
+	float: center;
+	text-align: center;
+	font-size: 10pt;
+}
+
+u#reg {
+	color: darkgreen;
+}
+
+button#index {
+	background-color: darkgreen;
+	color: white;
+	border: none;
+	margin-top: auto;
+	margin-bottom: auto;
+	padding: 10px;
+}
+
+
+/* login */
+
+#login {
+	margin: 50px;
+	float: center;
+	text-align: center;
+	font-size: 30pt;
+}
+
+fieldset#campo {
+	border: 1px solid darkgreen;
+	width: 15em;
+	margin: 0 auto;
+}
+
+legend#log {
+	color: #fff;
+	background: darkgreen;
+	border: 1px darkgreen;
+	padding: 2px 6px;
+}
+
+p#log {
+	color: darkgreen;
+}
+
+
+/* registro */
+
+#registro {
+	margin: 20px;
+	float: center;
+	font-size: 20pt;
+	text-align: center;
+}
+
+legend#log {
+	background: darkgreen;
+	border: 1px darkgreen;
+	padding: 2px 6px;
+	text-align: center;
+} 
+
+label#reg {
+	width: 4em;
+	text-align: left;
+	margin-right: 0.5em;
+	display: inline-block;
+}
+
+p#reg {
+	color: darkgreen;
+}
+
+
+/* cabecera */
+
+div#cabecera {
+	padding: 30px;
+	height: 100px;
+	background-color: darkgreen;
+}
+
+img.logoC{
+	width: 150px;
+	height: 150px;
+}
+
+div#logoC{
+	text-align: center;
+	margin: -25px auto;
+}
+	
+
+/* menu de navegacion */
+
+img#menu{
+	width: 15px;
+	height: 15px;
+	margin-right: 5px;
+}
+
+div#barra {
+	margin: auto;
+	padding: 0px;
+	width: 700px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+ul, ol {
+	list-style: none;
+}
+			
+.nav > li {
+	float: left;
+}
+			
+.nav li a {
+	background-color: darkgreen;
+	color: #fff;
+	text-decoration: none;
+	padding: 10px 12px;
+	display: block;
+}
+			
+.nav li a:hover {
+	background-color: lightgreen;
+	color: darkgreen;
+}
+			
+.nav li ul {
+	display: none;
+	position: absolute;
+	min-width: 140px;
+}
+			
+.nav li:hover > ul {
+	display: block;
+}
+			
+.nav li ul li {
+	position: relative;
+}
+			
+.nav li ul li ul {
+	right: -140px;
+	top: 0px;
+}
+
+
+/* contenido */
+
+div#contenido {
+	margin-top: 35px;
+	padding: 10px;
+	height: 600px;
+	background-color: green;
+	overflow: auto;
+}
+
+div#saludo {
+	text-align: center;
+	padding-top: 100px; 
+}
+
+div#adios {
+	text-align: center;
+	padding-top: 100px;
+}
+
+#out{
+	color:darkblue;
+	font-size:75px;
+
+}
+
+div#cal {
+	float: right;
+}
+
+div#noticia {
+	position: absolute;
+	margin-left: 200px;
+	margin-top: 10px;
+}
+
+fieldset#not {
+	border: 1px solid lightgreen;
+	width: 15em;
+	margin: 0 auto;
+	background-color: darkgreen;
+	text-align: center;
+	padding-bottom: 200px;
+}
+
+p {
+	font-size: 30pt;
+	color: white;
+}
+
+u {
+	color: white;
+}
+
+/* equipos */
+
+
+div#team {
+	float: left;
+}
+
+fieldset#team1 {
+	border: 1px solid lightgreen;
+	width: 15em;
+	margin: 10px auto;
+	background-color: darkgreen;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+fieldset#team2 {
+	border: 1px solid lightgreen;
+	width: 15em;
+	margin: 10px auto;
+	background-color: darkgreen;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+legend#team {
+	background: darkgreen;
+	padding: 2px 6px;
+	text-align: center;
+	color: lightgreen;
+	outline-color: lightgreen;
+}
+
+div#opc {
+	float: right;
+}
+
+button#opc {
+	background-color: darkgreen;
+	color: white;
+	border: none;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 30px;
+}
+
+img#fut {
+	width: 100px;
+	height: 100px;
+}
+
+
+/* crear equipo */
+
+#crear{
+ 	float: center;
+ 	text-align: center;
+ }
+
+div#crear {
+	margin: 0 auto; 
+	position: absolute;
+	margin-left: 600px;
+	margin-top: 100px;
+}
+
+fieldset#crear {
+	padding: 10px;
+}
+
+
+/* eliminar equipo */
+
+div#eliminar {
+	margin: 0 auto; 
+	float: left;
+	margin-left: 525px;
+	margin-top: 100px;
+}
+
+fieldset#eliminar {
+	text-align: center;
+	padding: 10px;
+}
+
+
+/* unirse a equipo */
+
+div#unir {
+	margin: 0 auto; 
+	position: absolute;
+	margin-left: 650px;
+	margin-top: 100px;
+}
+
+fieldset#unir {
+	padding: 10px;
+}
+
+
+/* perfil */
+
+div#datos{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
+}
+
+div#perfil{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: -300px;
+}
+
+fieldset#avatar{
+	border: 1px solid lightgreen;
+	background-color: darkgreen;
+	text-align: center;
+}
+
+fieldset#perfil{
+	border: 1px solid lightgreen;
+	background-color: darkgreen;
+	text-align: left;
+	width: 307px;
+	padding-left: 10px;
+
+}
+
+
+/* estadisticas */
+
+div#tabla {
+	float: center;
+}
+
+img#fut1 {
+	width: 300px;
+	height: 300px;
+}
+
+table {
+	width: 100%;
+	border: 1px solid lightgreen;
+	align-content: center;
+}
+
+th {
+	padding: 15px;
+	height: 50px;
+	text-align: center;
+	background-color: darkblue;
+	color:white;
+}
+
+td {
+	padding: 15px;
+	text-align: center;
+	background-color: #32b000;
+	vertical-align: middle;
+}
+
+
+/* eventos */
+
+div#eventos{
+	display: flex;
+	flex-direction: row;
+}
+
+div#evento{
+	text-align: left;
+}
+
+p#evento{
+	font-size: 15px;
+	color: white;
+	margin-left: 5px;
+}
+
+fieldset#eventos{
+	border: 1px solid lightgreen;
+	background-color: darkgreen;
+	text-align: center;
+
+}
+
+button#eventos{
+	background-color: darkgreen;
+	color: white;
+	border: none;
+	margin-top: auto;
+	margin-bottom: auto;
+	padding: 10px;
+	margin: 10px;
+}
+
+
+/* crear evento */
+
+div#event{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
+}
+
+fieldset#event{
+	border: 1px solid lightgreen;
+	background-color: darkgreen;
+	text-align: center;
+	justify-content: left;
+}
+
+button#event{
+	background-color: green;
+	color: white;
+	border: none;
+	margin-top: auto;
+	margin-bottom: auto;
+	padding: 10px;
+	margin: 10px;
+}
+
+
+/* Procesar listar equipos */
+
+.login-equipos{
+	margin-top: 30px;
+    margin-bottom: 15px;
+    padding: 15px;
+    text-align: left;
+    font-size: 15px;
+    position: relative;
+    right: -200px;
+    background-color: lightblue;
+    box-shadow: inset 0 0 1px 0px black;
+}
+
+.login-equipos > a{
+	font-size: 15px;
+    text-decoration-line: none;
+}
+
+.teams_container{
+	display: grid;
+	grid-template-rows: 80px 400px;
+	grid-template-areas: 
+	"titulo titulo"
+	"teambox teambox";
+    text-align: center;
+    /*grid-template-columns: 480px 480px;*/
+    background-color: #fff;
+}
+
+.titulo{
+	grid-area: titulo;
+	padding-top: 15px;
+	font-size: 30px; 
+	text-align: center;
+	color: #37273F;
+}
+
+.box{
+	align-self: start;
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    grid-template-areas: "title title"
+ 	"logo texto"
+ 	"logo texto";
+    margin-bottom: 25px;
+}
+
+.box-equipo{
+	grid-area: title;
+	text-align: center;
+	color: green;
+}
+.box-logo{
+	padding-left: 15px;
+	
+	position: relative;
+    float: left;
+    width:  200px;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+.box-texto{
+	grid-area: texto;
+	font-size: 20px;
+	color: green;
+}
+
+.box-texto2{
+	font-size: 20px;
+	color: green;
+}
+
+.box-desc{
+	font-size: 15px;
+	color: black;
+}
+
+
+/* pantalla equipo */
+
+#p1{
+	color:black;
+	margin-left: 500px;
+	text-decoration: underline;
+	text-decoration-color: black;
+}
+
+#p2{
+	color:white;
+	margin-left: 50px;
+}
+
+#p3{
+	color:black;
+	margin-left: 200px;
+	text-decoration: underline;
+	text-decoration-color: black;
+}
+
+#h{
+	color:blue;
+	font-size: 50px;
+}
+
+
+/* pie */
+
+div#pie {
+	margin-top: 25px;
+	padding: 20px;
+	height: 50px;
+	background-color: darkgreen;
+}
+
+img#icon {
+	width: 50px;
+	height: 50px;
+	padding-right: 15px;
+}
+
+div#icon {
+	float: center;
+	text-align: center;
+}
+
+a#pie {
+	text-align: center;
+	background-color: #32FF00;
+	border: none;
+}
