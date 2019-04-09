@@ -39,7 +39,6 @@ var_dump($errores);
 <body>
 	<?php
 		require("includes/comun/cabecera.php");
-		require("includes/comun/menu.php");
 	?>	
 
 	<div id= "eventos">
