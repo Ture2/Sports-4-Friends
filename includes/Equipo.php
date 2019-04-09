@@ -1,7 +1,9 @@
 <?php
 
+require_once __DIR__ . '/Aplicacion.php';
+
 class Equipo{
-	
+   
 
   //Función que nos devuelve los equipos que hay en un determinado deporte
 	public static function getEquiposPorDeporte($deporte)
@@ -61,10 +63,117 @@ class Equipo{
     public static function equipoContieneAlUsuario(){
     }
 
+    
+    
+    
+    
+    ////JJ
+    
+    /*
+     * Devuelve false si el usuario no se encuentra, en caso contrario devuelve el equipo
+     */
+    public static function buscaEquipo($nombreEquipo)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("SELECT * FROM equipos E WHERE E.NOMBRE_EQUIPO = '%s'", $conn->real_escape_string($nombreEquipo));
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            if ( $rs->num_rows == 1) {
+                $fila = $rs->fetch_assoc();
+                //var_dump($rs);
+                //$user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
+                $user = new Usuario($fila['NICKNAME'], $fila['NOMBRE'], $fila['CORREO'], $fila['PASSWORD'], $fila['ROL_USUARIO']);
+                var_dump($user);
+                $user->id = $fila['ID_USUARIO'];
+                $result = $user;
+            }
+            $rs->free();
+        } else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $result;
+    }
+    
+    
+    
+    
+    
+    
+    public static function crea($deporte, $nombre, $imagen, $desc)
+    {
+        $equipo = self::buscaEquipo($nombre);
+        if ($equipo) {
+            return false;// el equipo ya existe
+        }
+        $equipo = new Equipo($deporte, $nombre, $imagen, $desc);
+        return self::guarda($equipo);
+    }
+    
+  
+    
+    public static function guarda($equipo)
+    {
+        if ($equipo->id !== null) {
+            return self::actualiza($equipo);
+        }
+        return self::inserta($equipo);
+    }
+    
+    private static function actualiza($usuario)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query=sprintf("UPDATE Usuarios U SET nombreUsuario = '%s', nombre='%s', password='%s', rol='%s' WHERE U.id=%i"
+            , $conn->real_escape_string($usuario->nickname)
+            , $conn->real_escape_string($usuario->nombre)
+            , $conn->real_escape_string($usuario->password)
+            , $conn->real_escape_string($usuario->rol)
+            , $usuario->id);
+        if ( $conn->query($query) ) {
+            if ( $conn->affected_rows != 1) {
+                echo "No se ha podido actualizar el usuario: " . $usuario->id;
+                exit();
+            }
+        } else {
+            echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        
+        return $usuario;
+    }
+    
+    
+    
+    
+    private static function inserta($equipo)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $fecha=date("Y-m-d");
+        $hora=date("H:i:s");
+        $query=sprintf("INSERT INTO equipos(DEPORTE, NOMBRE_EQUIPO,FECHA_CEQUIPO,HORA_CEQUIPO,LOGO_EQUIPO, DESCRIPCION_EQUIPO) VALUES('%s', '%s', '%s','%s' ,'%s','%s')"
+            , $conn->real_escape_string($equipo->deporte)
+            , $conn->real_escape_string($equipo->nombre_equipo)
+            ,$conn->real_escape_string($fecha)
+            ,$conn->real_escape_string($hora)
+            , $conn->real_escape_string($equipo->logo_equipo)
+            , $conn->real_escape_string($equipo->descripcion_equipo));
+        if ( $conn->query($query) ) {
+            $equipo->id = $conn->insert_id;
+        } else {
+            echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $equipo;
+    }
+    
 
 
     /*TAO Region*/
-    private $id_equipo;
+    private $id;//autoincrement
     private $deporte;
     private $nombre_equipo;
     private $descripcion_equipo;
@@ -79,8 +188,9 @@ class Equipo{
     /*Constructor*/
     private function __construct($deporte, $nombre_equipo, $imagen_logo, $descripcion)
     {
-        $this->nombre_equipo= $nombre_equipo;
+        
         $this->deporte = $deporte;
+        $this->nombre_equipo= $nombre_equipo;
         $this->logo_equipo = $imagen_logo;
         $this->descripcion_equipo = $descripcion;
     }
