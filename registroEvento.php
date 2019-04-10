@@ -12,15 +12,14 @@
 <body>
 
 	<?php
-		require("../includes/comun/cabecera.php");
-		require("menu.php");
+		require("includes/comun/cabecera.php");
 	?>
 	
-	<div id="registro">
+	<div id="contenido">
 		<form action="procesarRegistroEvento.php" method="POST">
-				<fieldset id="campo">
+				<fieldset id="evento">
 				<legend id="log">Registra tu Equipo en el evento</legend>
-					Evento:<input list="lEventos" name="evento">
+					<p id="log">Evento: <input list="lEventos" name="evento">
 						<datalist id="lEventos">
 								<option>Url</option>
 								<option>PRU1E</option>
@@ -29,8 +28,8 @@
 								<option>PRUE4</option>
 								<option>PRUE5</option>
 							</datalist>			
-						</input>
-					Equipos:<input list="lEquipos" name="equipo">
+						</input></p>
+					<p id="log">Equipos: <input list="lEquipos" name="equipo">
 						<datalist id="lEquipos">
 								<option>Url</option>
 								<option>PRU1E</option>
@@ -39,9 +38,9 @@
 								<option>PRUE4</option>
 								<option>PRUE5</option>
 						</datalist>	
-							</input>	
+							</input></p>	
 
-			 NickUser:<input type="text" name="nickUsuario" value="">
+			 <p id="log">NickUser: <input type="text" name="nickUsuario" value=""></p>
 			<button id= "index" type="submit" name="registro">Validar</button>
 		</fieldset>
 	</form>

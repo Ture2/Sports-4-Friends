@@ -27,6 +27,7 @@ Depuracion: solo para mostrar informacion de las variables
 var_dump($eventos);
 var_dump($_SESSION);
 var_dump($errores);
+var_dump($_SESSION["esAdmin"]);
 
 ?>
 
@@ -41,13 +42,17 @@ var_dump($errores);
 		require("includes/comun/cabecera.php");
 	?>	
 
-	<div id= "eventos">
+	<div id= "contenido">
 
 		<?php
-		if (isset($_SESSION["login"]))
-		{
-			if(empty($errores == 0))
-			{
+		if (isset($_SESSION["login"])){
+
+			if(empty($errores == 0)){
+				echo "<a href='registroEvento.php'><button class='login-equipos'>REGISTRATE</button></a>";
+
+				if(isset($_SESSION["esAdmin"])){
+					echo "<a href='AdminEventos.php'><button class='login-equipos'>MIS EVENTOS</button></a>";
+				}
 				/*
 				recorro todos los eventos disponibles mostrando:
 					-nombre del evento
@@ -58,29 +63,26 @@ var_dump($errores);
 				*/
 				foreach ($eventos as $key => $value) {
 				?>
-				<br/><br/>
-				<h1 id="texto"><?=$value->nombre_evento();?></h1>
-
-				<img id="img_eventos" src="<?=$value->foto_evento();?>"></img>
-
-
-				<pre id=texto><?=$value->descripcion();?></pre>
-
+				<div id="eventos">
+					<h1 id="h"><?=$value->nombre_evento();?></h1>
+					<img id="img_eventos" src="<?=$value->foto_evento();?>"></img>
+					<pre id=texto><?=$value->descripcion();?></pre>
+				</div>
 				<?php
 				}
 				?>
 
-				<br/><br/>
-				<pre id="texto">Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
+				<fieldset id="errorLogin">
+					<pre >Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
+				</fieldset>
 
-				<br/><br/>
 				<!--
 					INDENTIFICADOR PARA EL CSS 
 					ME GUSTARIA: lista desplegable al pulsar un boton
 						Implementacion con javaScript
 				-->
-				<table id="eventos">
-					<caption>LISTA DE LOS EVENTOS DISPONIBLES</caption>
+				<table>
+					<p class="titulo">LISTA DE LOS EVENTOS DISPONIBLES</p>
 						</thead>
 							<tr>
 								<th>Ciudad</th><th>Municipio</th><th>Nombre del Evento</th><th>Deporte </th>
@@ -103,6 +105,7 @@ var_dump($errores);
 										<td> <?=$value->deporte(); ?> </td>
 										<td> <?=$value->fecha_evento(); ?> </td>
 										<td> <?=$value->hora_evento(); ?> </td>
+									</tr>
 								<?php
 								}
 							?>
@@ -117,13 +120,14 @@ var_dump($errores);
 		}
 		else{
 		?>
-			<br/><br/>
-			<h1 id="texto"> <?php print $errores['0'];?></h1>
-			<br/>
-			<p id="texto"><a  href="login.php">login</a> </p>
-			<br/>
-			<p id="texto"><a href="registro.php">registrarte</a></p>
-
+			<div id="errorEvento">
+				<h1 id="h"> <?php print $errores['0'];?></h1>
+				<div id="errorEvento2">
+					<a href='login.php'><button class='login-equipos'>INICIAR SESIÓN</button></a>
+					<a href='registro.php'><button class='login-equipos'>REGISTRO</button></a>
+					<a href='index.php'><button class='login-equipos'>VOLVER</button></a>
+				</div>
+			</div>
 		<?php
 		}
 		?>
@@ -133,7 +137,7 @@ var_dump($errores);
 	<!--implenmentar el formulario de registro de eventos
 		que redirige a procesarregistroevento con su logica correspondiente
 	-->
-		<a href="registroEvento.php"><button>REGISTRATE</button></a>
+	</div>
 
 	<?php
 	require("includes/comun/pie.php");

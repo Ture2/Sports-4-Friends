@@ -2,38 +2,38 @@ $(document).ready(function() {
 
 var id = '#dialog';
 	
-//Get the screen height and width
+//coger dimension de imagen
 var maskHeight = $(document).height();
 var maskWidth = $(window).width();
 	
-//Set heigth and width to mask to fill up the whole screen
+//poner dimension para ocultar la pantalla
 $('#mask').css({'width':maskWidth,'height':maskHeight});
 
-//transition effect
+//transicion efecto
 $('#mask').fadeIn(500);	
 $('#mask').fadeTo("slow",0.9);	
 	
-//Get the window height and width
+//coger dimension de la pantalla
 var winH = $(window).height();
 var winW = $(window).width();
               
-//Set the popup window to center
+//poner el popup en el centro
 $(id).css('top',  winH/2-$(id).height()/2);
 $(id).css('left', winW/2-$(id).width()/2);
 	
-//transition effect
+//transicion efecto
 $(id).fadeIn(2000); 	
 	
-//if close button is clicked
+//si se pulsa el boton de cerrar
 $('.window .close').click(function (e) {
-//Cancel the link behavior
+//cancela el link
 e.preventDefault();
 
 $('#mask').hide();
 $('.window').hide();
 });
 
-//if mask is clicked
+//si se pulsa fuera del popup
 $('#mask').click(function () {
 $(this).hide();
 $('.window').hide();

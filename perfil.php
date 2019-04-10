@@ -25,7 +25,6 @@
 					$nickname = $_SESSION['nombre'];
 				 	$usuario = Usuario::buscaUsuario($nickname);
 			  ?>
-			<div id="perfil">
 			<fieldset id="avatar">
 				<img class="logoC" src="images/user.png">
 				<div>
@@ -33,15 +32,20 @@
 				</div>
 			</fieldset>
 			</div>
+			<div id="datos">
 				<fieldset id="perfil">
+					<legend id="log">PANEL DE CONTROL</legend>
 					<?php
 						//campos que el usuario le interesa que muestre a nivel de cuenta
 						echo '<p id="perfil">Usuario: '.$usuario->nicknameUsuario().'</p>';
 						echo '<p id="perfil">Nombre: '.$usuario->nombreUsuario().'</p>';
 						echo '<p id="perfil">Correo: '.$usuario->mail().'</p>';
 					  ?>
-					<button onclick= "location.href='editarPerfil.php'" id="editar" type="button" name="editar">Editar</button>
+					<div>
+						<button onclick= "location.href='editarPerfil.php'" id="index" type="button" name="editar">Editar</button>
+					</div>
 				</fieldset>
+			</div>
 			<?php
 			}else{
 			 ?>
@@ -49,7 +53,7 @@
 			 <?php
 				}
 			 ?>
-		</div>
+		
 	</div>
 
 	<?php  

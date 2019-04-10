@@ -18,7 +18,6 @@ require_once __DIR__.'/includes/Deporte.php';
 	<?php
 
 		require("includes/comun/cabecera.php");
-		require("includes/comun/menu.php");
 	?>
 
 	<div id="contenido">
@@ -26,8 +25,8 @@ require_once __DIR__.'/includes/Deporte.php';
 			<fieldset id="crear">
 				<legend id="log">EQUIPO</legend>
 				<form action="procesarCrearEquipo.php" enctype="multipart/form-data" method="post">
-				<p>Nombre del Equipo: <input type="text" name="name"></p>
-				<p>Deporte:
+				<p id="log">Nombre del Equipo: <input type="text" name="name"></p>
+				<p id="log">Deporte:
 				<select name="deporte" id="dep">
 					<?php
 						
@@ -40,7 +39,7 @@ require_once __DIR__.'/includes/Deporte.php';
 						  }  
 					?>
 				</select></p>
-				<p>Imagen del Equipo: <input type="file" name="imagen"></p>
+				<p id="log">Imagen del Equipo: <input type="file" name="imagen"></p>
 				<button id="index" type="submit">CREAR</button>
 				</form>
 			</fieldset>

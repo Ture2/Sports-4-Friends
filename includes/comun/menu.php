@@ -1,9 +1,16 @@
 <?php
+
+	require_once __DIR__.'/../config.php';
+	require_once __DIR__.'/../Deporte.php';
+
 	if(!isset(($_SESSION['login']))){
 		$username = false; 
 	}else{
 		$username = $_SESSION['nombre'];
 	}
+
+	$deportes = Deporte::getAll();
+
   ?>
 <!DOCTYPE html>
 <html>
@@ -19,26 +26,20 @@
 					<li><a href="index.php"><img id="menu" src="images/inicio.png">Inicio</a></li>
 					<li><a href=""><img id="menu" src="images/deportes.png">Deportes</a>
 						<ul>
-
-							<li><a href="procesarListarEquipos.php?deporte=futbol" >Fútbol</a></li>
-
-							<li><a href="">Baloncesto</a></li>
-							<li><a href="">Tenis</a></li>
-							<li><a href="">Otros</a></li>
+							<?php
+								$i = 0;
+								while($i < 5 && $i < count($deportes)){
+									echo "<li><a href='procesarListarEquipos.php?deporte=".$deportes[$i]->nombreDeporte()."''>".$deportes[$i]->nombreDeporte()."</a></li>";
+									$i++;
+								}
+							?>
 						</ul></li>
 
-					<li><a href="">Eventos</a>
-							<ul>
-							<li><a href="eventos.php"> proximos eventos </a></li>
-							</ul></li>
-					<li><a href="">Quedadas</a>
-						<ul>
-							<li><a href="">Bares</a></li>
-							<li><a href="">Estadios</a></li>
-							<li><a href="">Parques</a></li>
-							<li><a href="">Otros</a></li>
-						</ul></li>
-					<li><!--<a href="">-->
+					<li><a href="eventos.php"><img id="menu" src="images/eventos.png">Eventos</a></li>
+
+					<li><a href="quedadas.php"><img id="menu" src="images/quedadas.png">Quedadas</a></li>
+
+					<li>
 						<?php
 							if($username){
 								echo '<a href=""><img id="menu" src="images/cuenta.png">Hola '.$username.'</a>';

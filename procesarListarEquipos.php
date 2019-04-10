@@ -30,7 +30,7 @@
 	echo "<div id='contenido'>";
 		
 		if(isset($_SESSION["login"])){
-			echo "<button onclick='crearEquipo.php'>Pulsa aquí para crear un equipo</button>";
+			echo "<button class='login-equipos' onclick='crearEquipo.php'>Pulsa aquí para crear un equipo</button>";
 		}else{
 			echo "<button class='login-equipos'><a href='registro.php'>Si desea crear un equipo pulse aquí para crear una cuenta</a></button>";
 		}?>
@@ -39,12 +39,12 @@
 				echo "<p>Actualmente no hay ningun equipo disponible</p>";
 			else{
 				echo "<div class='teams_container'>";
-				echo "<p class='titulo'>Listado de los equipos actuales</p>";
+				echo "<p class='titulo'>LISTADO DE LOS EQUIPOS ACTUALES</p>";
 				foreach ($equipos as $equipo){ 
 				?>
 					<div class="box">
 						<p class="box-equipo"><?php echo $equipo->get_nombre_equipo();?></p>
-						<a href="pantallaEquipo.php?equipo=<?php echo $equipo->get_nombre_equipo();?>"><img class ="box-logo" src=<?php echo $equipo->get_logo_equipo();?> alt='No image'></a>
+						<a href="pantallaEquipo.php?equipo=<?php echo $equipo->get_nombre_equipo();?>"><img class ="box-logo" src=<?php echo $equipo->get_logo_equipo();?>></a>
 						<div class = "box-texto">
 							<h4 class ="box-desc">Descripcion</h4>
 							<p class = "box-texto2"><?php echo $equipo->get_descripcion_equipo();?></p>

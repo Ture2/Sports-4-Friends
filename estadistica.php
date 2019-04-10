@@ -15,7 +15,7 @@
 	<!-- METER LOS DATOS DE CADA JUGADOR CON LA BASE DE DATOS -->
 	<div id="contenido">
 		<div id="tabla">
-			<p>FÚTBOL</p>
+			<p id="p2">FÚTBOL</p>
 	  		<table>
 	  			<tr>
 	  				<th>Equipo</th>
@@ -41,7 +41,7 @@
 	  	</div>
 
 	  	<div id="tabla">
-	  		<p>BALONCESTO</p>
+	  		<p id="p2">BALONCESTO</p>
 	  		<table>
 	  			<tr>
 	  				<th>Equipo</th>
@@ -64,8 +64,60 @@
 	  		</table>
 	  	</div>
 
+		<div id="tabla">
+			<p id="p2">BEISBOL</p>
+	  		<table>
+	  			<tr>
+	  				<th>Equipo</th>
+	  				<th>Posición</th>
+	  				<th>Strike</th>
+	  				<th>Homerun</th>
+	  				<th>Tarjetas</th>
+	  				<th>PJ</th>
+	  				<th>PG</th>
+	  				<th>PP</th>
+	  			</tr>
+	  			<tr>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  			</tr>
+	  		</table>
+	  	</div>
+
 	  	<div id="tabla">
-	  		<p>TENIS</p>
+			<p id="p2">BALONMANO</p>
+	  		<table>
+	  			<tr>
+	  				<th>Equipo</th>
+	  				<th>Posición</th>
+	  				<th>Faltas</th>
+	  				<th>Goles</th>
+	  				<th>Tarjetas</th>
+	  				<th>PJ</th>
+	  				<th>PG</th>
+	  				<th>PP</th>
+	  			</tr>
+	  			<tr>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  				<td>-</td>
+	  			</tr>
+	  		</table>
+	  	</div>
+
+	  	<div id="tabla">
+	  		<p id="p2">TENIS</p>
 	  		<table>
 	  			<tr>
 	  				<th>Equipo</th>
@@ -86,7 +138,6 @@
 	  		</table>
 	  	</div>
 	</div>
-
 	<?php  
 		require("includes/comun/pie.php");  
 	?>
