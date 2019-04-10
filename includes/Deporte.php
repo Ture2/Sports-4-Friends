@@ -1,17 +1,10 @@
 <?php
+
 require_once __DIR__ . '/Aplicacion.php';
 
 class Deporte
 {
 
-    public static function login($nombreUsuario, $password)
-    {
-        $user = self::buscaUsuario($nombreUsuario);
-        if ($user && $user->compruebaPassword($password)) {
-            return $user;
-        }
-        return false;
-    }
 
     public static function buscaDeporte($nombreDeporte)
     {
@@ -38,6 +31,7 @@ class Deporte
         return $result;
     }
     
+     /*???????*/
     public static function crea($nombreUsuario, $nombre, $correo, $password, $rol)
     {
         $user = self::buscaUsuario($nombreUsuario);
@@ -48,11 +42,7 @@ class Deporte
         return self::guarda($user);
     }
     
-    private static function hashPassword($password)
-    {
-        return password_hash($password, PASSWORD_DEFAULT);
-    }
-    
+    /*???????*/
     public static function guarda($usuario)
     {
         if ($usuario->id !== null) {
@@ -61,6 +51,7 @@ class Deporte
         return self::inserta($usuario);
     }
     
+    /*??????*/
     private static function inserta($usuario)
     {
         $app = Aplicacion::getSingleton();
@@ -80,6 +71,7 @@ class Deporte
         return $usuario;
     }
     
+    /*???????*/
     private static function actualiza($usuario)
     {
         $app = Aplicacion::getSingleton();
@@ -103,59 +95,35 @@ class Deporte
         return $usuario;
     }
     
-    public function getAll(){
-      //  $query = "Select * from deportes";
-        $equipos = array();
-      /* $con=$this->conexion->query($query);
-        
-        while($row = mysqli_fetch_array($con)){
-            $equipo = new Deporte($row[0], $row[1], $row[2]);
-            array_push($equipos, $equipo);
-        }
-        
-        */
-        
+    /*Función que devuelve un array con todos los deportes*/
+    public static function getAll(){
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = "SELECT * FROM deportes";
+        $query = "SELECT * FROM DEPORTES";
         $rs = $conn->query($query);
-        $result = false;
         if ($rs) {
-            if ( $rs->num_rows > 0) {//ojo mirar para el caso de deportes
-                //$fila = $rs->fetch_assoc();
-             
-                
-                while($row = mysqli_fetch_array($rs)){
-                    $equipo = new Deporte($row[1], $row[2], $row[3],$row[4],$row[5]);
-                    var_dump($equipo);
-                    $equipo->id = $row['ID_DEPORTE'];
-                    array_push($equipos, $equipo);
+            if ( $rs->num_rows == 0)
+                $deportes = null;
+            else {
+                $deportes = array();
+                while($deporte = $rs->fetch_assoc()){
+                    $aux = new Deporte($deporte['NOMBRE_DEPORTE'], $deporte['NUMERO_MAXIMO_JUGADORES'], $deporte['DURACION_MIN'],$deporte['FECHA_CDEPORTE'],$deporte['HORA_CDEPORTE']);
+                    $aux->set_id($deporte['ID_DEPORTE']);
+                    array_push($deportes, $aux);
                 }
-                
-                
-                
-               
-                
-               
+
             }
-            $rs->free();// no hay deportes
+            $rs->free();
         } else {
             echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
         }
        
-        
-        
-        
-        
-        
-        
-        
-        return $equipos;
+        return $deportes;
     }
     
     
-    
+    /*TAO Region*/
     private $id;
 
     private $nombre_deporte;
@@ -177,19 +145,12 @@ class Deporte
         $this->hora_cdeporte = $hora;
     }
 
+
+    /*Getters*/
+
     public function id()
     {
         return $this->id;
-    }
-
-    public function rol()
-    {
-        return $this->rol;
-    }
-
-    public function mail()
-    {
-        return $this->mail;
     }
 
     public function nombreDeporte()
@@ -197,13 +158,55 @@ class Deporte
         return $this->nombre_deporte;
     }
 
-    public function compruebaPassword($password)
+    public function get_numero_maximo_jugadores()
     {
-        return password_verify($password, $this->password);
+        return $this->numero_maximo_jugadores;
+    }
+    
+    public function get_duracion_min()
+    {
+        return $this->duracion_min;
     }
 
-    public function cambiaPassword($nuevoPassword)
+    public function get_fecha_cdeporte()
     {
-        $this->password = self::hashPassword($nuevoPassword);
+        return $this->fecha_cdeporte;
+    }
+
+    public function get_hora_cdeporte()
+    {
+        return $this->hora_cdeporte;
+    }
+
+    /*Setters*/
+
+    public function set_id($id)
+    {
+        $this->id = $id;
+    }
+
+    public function set_nombreDeporte($nombre_deporte)
+    {
+        $this->nombre_deporte = $nombre_deporte;
+    }
+
+    public function set_numero_maximo_jugadores($numero_maximo_jugadores)
+    {
+        $this->numero_maximo_jugadores = $numero_maximo_jugadores;
+    }
+    
+    public function set_duracion_min($duracion_min)
+    {
+        $this->duracion_min = $duracion_min;
+    }
+
+    public function set_fecha_cdeporte($fecha_cdeporte)
+    {
+        $this->fecha_cdeporte = $fecha_cdeporte;
+    }
+
+    public function set_hora_cdeporte($hora_cdeporte)
+    {
+        $this->hora_cdeporte = $hora_cdeporte;
     }
 }
