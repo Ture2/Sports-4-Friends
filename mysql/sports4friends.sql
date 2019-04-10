@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2019 a las 23:55:01
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.10
+-- Tiempo de generación: 10-04-2019 a las 16:05:40
+-- Versión del servidor: 10.1.35-MariaDB
+-- Versión de PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -47,7 +47,8 @@ INSERT INTO `deportes` (`ID_DEPORTE`, `NOMBRE_DEPORTE`, `NUMERO_MAXIMO_JUGADORES
 (880001, 'FUTBOL', 20, 90, '2019-04-03', '01:13:26'),
 (880002, 'BALONCESTO', 10, 40, '2019-04-03', '01:13:26'),
 (880003, 'BEISBOL', 10, 60, '2019-04-03', '01:13:26'),
-(880004, 'BALONMANO', 15, 40, '2019-04-03', '01:13:26');
+(880004, 'BALONMANO', 15, 40, '2019-04-03', '01:13:26'),
+(880005, 'TENIS', 2, 60, '2019-04-10', '12:58:52');
 
 -- --------------------------------------------------------
 
@@ -65,8 +66,8 @@ CREATE TABLE `equipos` (
   `PARTIDOS_EMPATADOS` int(4) NOT NULL DEFAULT '0',
   `PARTIDOS_PERDIDOS` int(4) NOT NULL DEFAULT '0',
   `MAYOR_RACHA` int(2) NOT NULL DEFAULT '0',
-  `ULTIMO_RESULTADO` int(2) NOT NULL,
-  `POSICION_LIGA` int(2) NOT NULL,
+  `ULTIMO_RESULTADO` varchar(10) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'NO HAY',
+  `POSICION_LIGA` int(2) NOT NULL DEFAULT '0',
   `LOGO_EQUIPO` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `DESCRIPCION_EQUIPO` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -76,12 +77,16 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`, `HORA_CEQUIPO`, `PARTIDOS_GANADOS`, `PARTIDOS_EMPATADOS`, `PARTIDOS_PERDIDOS`, `MAYOR_RACHA`, `ULTIMO_RESULTADO`, `POSICION_LIGA`, `LOGO_EQUIPO`, `DESCRIPCION_EQUIPO`) VALUES
-(550001, 880001, 'BULL', '2019-04-03', '01:50:02', 0, 0, 0, 0, 0, 0, 'images/logo_equipos/bull_logo.jpg', 'Somos un equipo de basket'),
-(550002, 880002, 'REAL MADRID', '2019-04-03', '01:50:02', 0, 0, 0, 0, 0, 0, NULL, 'Somos un equipo de fútbol'),
-(550003, 880003, 'SALOU', '2019-04-03', '01:50:02', 0, 0, 0, 0, 0, 0, NULL, 'Somos un equipo de beisbol'),
-(550004, 880004, 'VALENCIA', '2019-04-03', '01:50:02', 0, 0, 0, 0, 0, 0, NULL, 'Somos un equipo de balonmano'),
-(550005, 880001, 'LOS CHACHOS FC', '2019-04-04', '03:00:00', 2, 4, 1, 0, 0, 0, 'images/logo_equipos/loschachosfc_logo.jpg', 'El equipo de los chachos ha sido creado con la intención de ser el mejor equipo de fútbol en Sports 4 Friends, únete ! '),
-(550006, 880001, 'FLORIDA CDF', '2019-04-07', '13:00:00', 2, 1, 4, 0, 0, 0, 'images/logo_equipos/floridacdf_logo.jpg', 'Salidos del barrio de Hortaleza somos un equipo con las herramientas necesarias para vencer en la liga norte');
+(550001, 880001, 'BULL', '2019-04-03', '01:50:02', 5, 2, 6, 2, '3-1(G)', 0, 'images/logo_equipos/bull_logo.jpg', 'Somos los diablos rojos del basket, letales como nadie.'),
+(550002, 880002, 'REAL MADRID', '2019-04-03', '01:50:02', 0, 0, 0, 0, '0', 0, NULL, 'El equipo rey de reyes del barrio.'),
+(550003, 880003, 'SALOU', '2019-04-03', '01:50:02', 0, 0, 0, 0, '0', 0, NULL, 'Bateamos con estilo y las cogemos cada pelota al vuelo.'),
+(550004, 880004, 'VALENCIA', '2019-04-03', '01:50:02', 0, 0, 0, 0, '0', 0, NULL, 'Gladidores chés, atacamos con fuerza, defendemos con murallas.'),
+(550005, 880001, 'LOS CHACHOS FC', '2019-04-04', '03:00:00', 2, 4, 1, 1, '2-2(E)', 0, 'images/logo_equipos/loschachosfc_logo.jpg', 'El equipo de los chachos ha sido creado con la intención de ser el mejor equipo de fútbol en Sports 4 Friends, únete ! '),
+(550006, 880001, 'FLORIDA CDF', '2019-04-07', '13:00:00', 2, 1, 4, 1, '1-1(E)', 0, 'images/logo_equipos/floridacdf_logo.jpg', 'Salidos del barrio de Hortaleza somos un equipo con las herramientas necesarias para vencer en la liga norte'),
+(550007, 880001, 'ASTON BIRRAS', '2019-04-10', '15:23:43', 6, 2, 1, 3, '4-2(G)', 0, 'images/logo_equipos/aston_birra.jpg', 'Un equipo que jugamos con corazon y con una birra para levantar la moral'),
+(550008, 880001, 'MESSIRIANOS FC', '2019-04-10', '15:34:57', 18, 2, 4, 10, '1-1(E)', 0, 'images/logo_equipos/messirianos.jpg', 'Equipo formado por los discipulos del más grandes de todos los tiempos'),
+(550009, 880001, 'AC MILANAS', '2019-04-10', '15:37:05', 2, 2, 9, 1, '2-2(E)', 0, 'images/logo_equipos/ac_milanas.jpg', 'Milanas que daremos muchas guerra con estilo y diversion'),
+(550010, 880001, 'RAYO MONCLOA', '2019-04-10', '15:37:41', 7, 8, 1, 3, '1-3(P)', 0, 'images/logo_equipos/rayo_moncloa.jpg', 'Somos el rayo que descargará toda nuestra electricidad para ganar todos los partidos ');
 
 -- --------------------------------------------------------
 
@@ -187,7 +192,39 @@ INSERT INTO `usuarios` (`ID_USUARIO`, `NICKNAME`, `NOMBRE`, `CORREO`, `PASSWORD`
 (5, 'iiif4', 'Iker', 'ikeriban@ucm.es', '$2y$10$IexT7ht8yM5olEMl9kQKYeoUM54HKWtKyjqUQ436CTuinSNAAivA.', 'USER'),
 (6, 'atc5', 'Alberto', 'alberture@ucm.es', '$2y$10$14haQw95h4UGzooRpCzbQOwddRDsIzQTbZW4r8Sg6aBYmA/hZY2uO', 'USER'),
 (7, 'jjjj6', 'Jonathan Jose', 'jonathanj@ucm.es', '$2y$10$tnSbgl4cOzAurLUb0MXK1eAGUTJi2ASnjGOPCs/GjWT5bL53gZWTO', 'USER'),
-(8, 'lucas', 'Lucas', 'lucas@ucm.es', '$2y$10$0dVHdan2jVD8/O.zgt2nXeKx8dYF9WMRe1S3zvulKmqpFV/UqreEK', 'USER');
+(8, 'lucas', 'Lucas', 'lucas@ucm.es', '$2y$10$0dVHdan2jVD8/O.zgt2nXeKx8dYF9WMRe1S3zvulKmqpFV/UqreEK', 'USER'),
+(9, 'mlc9', 'Marta', 'martalopezc@ucm.es', '$2y$10$95CJ3WOCkdSQcTOfra3UmeoIsNd12NS3oy2xKbRGgMu3KyBiTHK2i', 'USER'),
+(10, 'dfh10', 'Diana', 'dianadf@ucm.es', '$2y$10$AC6JL1NAMKow1BroC4YLi.zAt/tL/WNxlXpVIX4wiGBwT5g.w61Gq', 'USER'),
+(11, 'rcg11', 'Ruben', 'rubi4512@gmail.com', '$2y$10$5wl9bSiKKMcQvjIrRoFAn.7t7Ju5Gz9Lu.l/Of3EhNHRT7fzwX4em', 'USER'),
+(12, 'esmin12', 'Esmeralda', 'esmeral33@outlook.com', '$2y$10$UUpnYo2Xn80hTUoUvPWL9uLuKJ3oGj5wbwn24tYDVOnmEI7canYL6', 'USER'),
+(13, 'sofivb13', 'Sofia', 'sofiavelasco@gmail.es', '$2y$10$WVPCMl88heXbqRBMQtNHzOI8K971iDxLmYBtfD8jSlJ6cpFDMJnSG', 'USER'),
+(14, 'carmengar14', 'Carmen', 'carmengarri23@outlook.es', '$2y$10$MzzKTQYSOLv0BsL.z61JEO6Cc2GzHW3pJEe4itGKvIOnKEFsVFxoq', 'USER'),
+(15, 'lucy15', 'Lucia', 'luciagimenezpi@ucm.es', '$2y$10$2TsfIdxcpgiPWHeYZWKxZOh0JS.OFt6XEdbsdq8/pc8rU35.3lf7.', 'USER'),
+(16, 'sarase16', 'Sara', 'saraseboblanco@yahoo.es', '$2y$10$sGNIO1u56jf/.Ajxav1OhOMXTiw62w0MvsdT8PWokeJ9CI1dq2fTm', 'USER'),
+(17, 'marisol17', 'Maria Soledad', 'mariasol567@gmail.es', '$2y$10$iZL.ACIBVQiLl0tD57JuHeeuEYwegn2D6ZHyvIeWtT/YGEq4mV/4C', 'USER'),
+(18, 'Gonza18', 'Gonzalo', 'gonzagimenez@ucm.es', '$2y$10$rrtIVIoXLlBc4gwqYjGWa.W/f08X9Z3jQZOpEHMU4JKQXhQbe0S92', 'USER'),
+(19, 'Miri19', 'Miriam', 'miriangelfe@yahoo.es', '$2y$10$KmgRlwHhNuk9Zs3yT7yg0umNm2.tenJnmoQla776T7qcckWd/BdEe', 'USER'),
+(20, 'Leire20', 'Leire', 'leirebilbao@outlook.com', '$2y$10$gTnSHWlGshE2fPXEWpM8tego8AlbgSVb/MvzrawQodubD1uNKhpzC', 'USER'),
+(21, 'Marcos21', 'Marcos', 'realmadridmarcos13@gmail.es', '$2y$10$PbdtVLi3ytA34nG6KaloWOahe8gsFIMc0Y/NaWFzeH24GstcUkZ3e', 'USER'),
+(22, 'Jenni22', 'Jennifer', 'jenninformatica@ucm.es', '$2y$10$3TabhIqAjDWLFpoptN4f.elAq6KfaCNRFc1XSaOqwTk3UTbCDejKW', 'USER'),
+(23, 'nadia23', 'Nadia', 'nadiagarciagh@gmail.es', '$2y$10$aPJIVe.AqltsQxBUjqOCSO/IR7uqy.dNI6ODbDuOXUWH/Icvt64hq', 'USER'),
+(24, 'almu24', 'Almudena', 'almuceu@ucm.es', '$2y$10$RM.5E2E026DXeuBSnGhwgO34GsMWXXEJZkC/oKZopQG4ZUJsEyOxi', 'USER'),
+(25, 'robert25', 'Roberto', 'robertoledo@gmail.es', '$2y$10$S1qpoJktObbfqeCXnsK5mOzzmj9SJq4sI9VGxFbCkaxerH5fR.Tyy', 'USER'),
+(26, 'susin26', 'Susana', 'susanarroyoss@ucm.es', '$2y$10$ytCX1lI9c2tYPDQ6aQ1FZukOiDWey4A0LwGZIMmjR45s2SPHPS5rK', 'USER'),
+(27, 'yao27', 'Yao Ying', 'yaoyingvv@outlook.uk', '$2y$10$IVTA8OlnvR835H87umLNb.oawnIg75IelFPvLcOFzvmw3iEFW5Dti', 'USER'),
+(28, 'isid28', 'Isidoro', 'isidoromadrid@gmail.es', '$2y$10$RY1p1EXUvlG5xSYSOqQ4O.9MwoeKI2oxDcDG5koBfnsqaw1l7w4IW', 'USER'),
+(29, 'beloki29', 'Rodolfo', 'rodolfobeloki@gmail.com', '$2y$10$xpiuEvnzSa3L570Ro/Xgx.LAtKHCo2kscyoxhZMabeoa6G0NzTjdS', 'USER'),
+(30, 'rubi30', 'Sergio', 'sergioroplata@outlook.com', '$2y$10$lbgpHfQi0vlkhvUnvjPN7.BDR0GojC/XT1yAFDNj74bar91te6Dv6', 'USER'),
+(31, 'marti31', 'Martina', 'martinacardoso@ucm.es', '$2y$10$UBeJmTFiSt/CJGqI1qBHzeVdZZg0Cx63T.ZB4qiPlqsCwcox8PCTW', 'USER'),
+(32, 'marina32', 'Marina', 'marinabarcelona92@outlook.es', '$2y$10$YXCbvHtM8yVsH2pOPdWOcunZdBFO2ESdwk1/sA4lNuFqQ.AJY66Wm', 'USER'),
+(33, 'juanpa33', 'Juan Pablo', 'jpmagicima@yahoo.com', '$2y$10$IEysk4hPOHiP1dT/ucCoVe7k0jQ5UGngFzl1exS2P.NI5IQGmwHDu', 'USER'),
+(34, 'danizz34', 'Daniel', 'danielvalladolid@ucm.es', '$2y$10$N/5wIzClIIzLKg8JRbHZ4ekM.GeSf7c5JNeQQJOmQADSgvaCxtT32', 'USER'),
+(35, 'kira35', 'Kira', 'kiragarrido@gmail.es', '$2y$10$fEBhmAppQQ4006ysf4octeVVBTXlQCTJdL2HkD1qvWMO1VVJlBjX.', 'USER'),
+(36, 'rocii36', 'Rocio', 'rocitorrosca@gmail.es', '$2y$10$AWbaNYH35W3apMF34symw.PR/8HDu6DR7jPU0gMjEh1J9a8FOUj1G', 'USER'),
+(37, 'rebeca37', 'Rebeca', 'rebe01ruiz@gmail.es', '$2y$10$zxaYepsuwmzdQiajPV5pW.m90BUHokkQY4Rm1UbrtMBMYnkjR4aY6', 'USER'),
+(38, 'kevin38', 'Kevin', 'kevineeuu@yahoo.com', '$2y$10$FYhMCEVFPD1QAhpJerDfg.zlPeTu.tX.1bgrAotk.mOWQKGGkcnJi', 'USER'),
+(39, 'blanca39', 'Blanca', 'blanca23fernan@gmail.es', '$2y$10$96pQ6nCIQjxDxxv2QfF.gu6i8PAsz5HDJw/1GSMG9MZMKaafdKS1C', 'USER'),
+(40, 'gabri40', 'Gabriela', 'gabryespefer@yahoo.es', '$2y$10$V.do61Og2/lLU6zIKs3.lOkTh./GHPWu6pHVGgxfx7Rih7r1ceulq', 'USER');
 
 --
 -- Índices para tablas volcadas
@@ -248,13 +285,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `deportes`
 --
 ALTER TABLE `deportes`
-  MODIFY `ID_DEPORTE` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=880005;
+  MODIFY `ID_DEPORTE` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=880006;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550007;
+  MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550011;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
@@ -278,7 +315,7 @@ ALTER TABLE `registros_eventos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Restricciones para tablas volcadas
