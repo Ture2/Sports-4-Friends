@@ -6,18 +6,8 @@
 	$estadisticas = $info->get_estadisticas();
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="css/estilo.css"/>
-	<meta charset="utf-8">
-	<title>Información del Equipo</title>
-</head>
-<body>
-
 	<?php
 		require("includes/comun/cabecera.php");
-		require("includes/comun/menu.php");
 	?>
 
 	<div id="contenido">
@@ -89,5 +79,3 @@
 		require("includes/comun/pie.php");  
 	?>  
 
-</body>
-</html>
