@@ -1,6 +1,7 @@
 <?php
 	require_once __DIR__.'/includes/config.php';
 	require_once __DIR__.'/includes/Equipo.php';
+	require_once __DIR__.'/includes/Jugador.php';
 
 	$info = Equipo::getInfoPorNombre($_GET['equipo']);
 	$estadisticas = $info->get_estadisticas();
@@ -28,19 +29,30 @@
 				(hay que modificar la base de datos) y tambien si se ha logueado. Esto es importante para
 				decidir que botón mostrar*/
 
-					if(isset($_SESSION["login"])){ ?>
-						<form action="procesarUnirEquipo.php" method="POST">
-			    			<input type="submit" value="Unirme a este quipo" />
-			    			<input type="hidden" name="usuario" value="">
+					if(!isset($_SESSION["login"])){ ?>
+						<form action="procesarLogin.php" method="POST">
+			    				Desea unirse a este equipo, pulse la siguiente casilla: <input type="submit" value="Sign Up"/>
 						</form>
 						<?php 
-					}else{ ?>
-						<form action="procesarSalirEquipo.php" method="POST">
-			    			<input type="submit" value="Abandonar Equipo" />
-			    			<input type="hidden" name="usuario" value="">
-						</form>
-					<?php } ?>
+					}else {
 
+						$jugador = Jugador::getJugadorPorNombre($_SESSION['nombre']);
+
+						if($_SESSION["login"] && !is_null($jugador)) { ?>
+						<form action="procesarSalirEquipo.php" method="POST">
+			    			Si desea abandonar el equipo, pulse aquí: <input type="submit" value="Abandonar Equipo"/>
+			    			<input type="hidden" name="usuario" value=<?php echo $_SESSION['nombre'];?>>
+						</form>
+					<?php 
+						}else 
+							if($_SESSION["login"] && is_null($jugador)){ ?>
+								<form action="procesarUnirmeEquipo.php" method="POST">
+					    			Si desea unirse al equipo, pulse aquí: <input type="submit" value="Unirme al Equipo"/>
+					    			<input type="hidden" name="usuario" value=<?php echo $_SESSION['nombre'];?>>
+								</form>
+						<?php 
+						}
+					}?>
 
 			</div>
 			  	<div id="tabla">
