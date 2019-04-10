@@ -1,9 +1,16 @@
 <?php
+
+	require_once __DIR__.'/../config.php';
+	require_once __DIR__.'/../Deporte.php';
+
 	if(!isset(($_SESSION['login']))){
 		$username = false; 
 	}else{
 		$username = $_SESSION['nombre'];
 	}
+
+	$deportes = Deporte::getAll();
+
   ?>
 <!DOCTYPE html>
 <html>
@@ -19,11 +26,13 @@
 					<li><a href="index.php"><img id="menu" src="images/inicio.png">Inicio</a></li>
 					<li><a href=""><img id="menu" src="images/deportes.png">Deportes</a>
 						<ul>
-
-							<li><a href="procesarListarEquipos.php?deporte=futbol" >Fútbol</a></li>
-
-							<li><a href="">Baloncesto</a></li>
-							<li><a href="">Tenis</a></li>
+							<?php
+								$i = 0;
+								while($i < 3 && $i < count($deportes)){
+									echo "<li><a href='procesarListarEquipos.php?deporte=".$deportes[$i]->nombreDeporte()."''>".$deportes[$i]->nombreDeporte()."</a></li>";
+									$i++;
+								}
+							?>
 							<li><a href="">Otros</a></li>
 						</ul></li>
 
