@@ -29,7 +29,7 @@
 							<?php
 								$i = 0;
 								while($i < 5 && $i < count($deportes)){
-									echo "<li><a href='procesarListarEquipos.php?deporte=".$deportes[$i]->nombreDeporte()."''>".$deportes[$i]->nombreDeporte()."</a></li>";
+									echo "<li><a href='procesarListarEquipos.php?deporte=".$deportes[$i]->nombreDeporte()."''>".ucfirst(strtolower($deportes[$i]->nombreDeporte()))."</a></li>";
 									$i++;
 								}
 							?>
