@@ -60,6 +60,32 @@ class Equipo{
         return $equipo;
     }
 
+    /*Función que devuelve todos los equipos de la BBDD, solo su nombre e id*/
+    public static function getAllEquipos()
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = "SELECT * FROM EQUIPOS";
+        $rs = $conn->query($query);
+        if ($rs) {
+            if ( $rs->num_rows == 0)
+                $equipos = null;
+            else {
+                $equipos = array();
+                while($equipo = $rs->fetch_assoc()){
+                    $aux = new Equipo($equipo['DEPORTE'], $equipo['NOMBRE_EQUIPO'], null, null);
+                    $aux->set_id($equipo['ID_DEPORTE']);
+                    array_push($equipos, $aux);
+                }
+
+            }
+            $rs->free();
+        } else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $equipos;
+    }
     /*Funcion que nos permitirá obtener los equipos a los que pertenece un jugador*/
     public static function equipoContieneAlUsuario(){
     }
@@ -121,6 +147,7 @@ class Equipo{
         return self::inserta($equipo);
     }
     
+    //??????
     private static function actualiza($usuario)
     {
         $app = Aplicacion::getSingleton();
@@ -188,7 +215,6 @@ class Equipo{
     private function __construct($deporte, $nombre_equipo, $imagen_logo, $descripcion)
     {
 
-        
         $this->deporte = $deporte;
         $this->nombre_equipo= $nombre_equipo;
         $this->logo_equipo = $imagen_logo;
@@ -233,6 +259,11 @@ class Equipo{
 
 
     /*Setters*/
+    public function set_id($id)
+    {
+        $this->id = $id;
+    }
+
     public function set_deporte($deporte)
     {
         $this->deporte = $deporte;
