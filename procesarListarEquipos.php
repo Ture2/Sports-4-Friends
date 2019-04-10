@@ -30,7 +30,7 @@
 	echo "<div id='contenido'>";
 		
 		if(isset($_SESSION["login"])){
-			echo "<button class='login-equipos' onclick='crearEquipo.php'>Pulsa aquí para crear un equipo</button>";
+			echo "<button class='login-equipos'><a href='crearEquipo.php'>Pulsa aquí para crear un equipo</a></button>";
 		}else{
 			echo "<button class='login-equipos'><a href='registro.php'>Si desea crear un equipo pulse aquí para crear una cuenta</a></button>";
 		}?>
