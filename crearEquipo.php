@@ -4,6 +4,8 @@ require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Deporte.php';
 
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +32,8 @@ require_once __DIR__.'/includes/Deporte.php';
 				<select name="deporte" id="dep">
 					<?php
 						
+					
+					
 					
 					$deportes = Deporte::getAll();
 						

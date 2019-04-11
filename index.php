@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__.'/includes/config.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +17,7 @@
 	?>
 
 	<?php
-	if(!isset(($_SESSION['login']))){
+	if(!isset($_SESSION['login'])){
 	
 	echo "<div id='boxes'>";
   	echo "<div id='dialog' class='window'>";

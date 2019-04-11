@@ -30,7 +30,9 @@
 	echo "<div id='contenido'>";
 		
 		if(isset($_SESSION["login"])){
-			echo "<button class='login-equipos'><a href='crearEquipo.php'>Pulsa aquí para crear un equipo</a></button>";
+    	   echo "<button class='login-equipos'><a href='crearEquipo.php'>Pulsa aquí para crear un equipo</a></button>";
+    	   //echo"<button onclick= 'location.href='crearEquipo.php''id='index' type='button' name='editar'>Pulse aqui para crear Equipo</button>";
+    	   //<button onclick= "location.href='editarPerfil.php'" id="index" type="button" name="editar">Editar</button>
 		}else{
 			echo "<button class='login-equipos'><a href='registro.php'>Si desea crear un equipo pulse aquí para crear una cuenta</a></button>";
 		}?>

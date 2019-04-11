@@ -20,7 +20,7 @@
 		<div id="datos">
 			<?php
 				//comprobamos que hay un usuario logueado
-				if(isset(($_SESSION['login']))){
+				if(isset($_SESSION['login'])){
 					//Creamos el objeto usuario de la sesion que está inciada actualmente
 					$nickname = $_SESSION['nombre'];
 				 	$usuario = Usuario::buscaUsuario($nickname);

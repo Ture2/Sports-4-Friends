@@ -3,6 +3,8 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Equipo.php';
 require_once __DIR__.'/includes/Deporte.php';
+require_once __DIR__.'/includes/Jugador.php';
+require_once __DIR__.'/includes/Usuario.php';
 
 	$nombre_img = $_FILES['imagen']['name'];
 	$tipo = $_FILES['imagen']['type'];
@@ -10,7 +12,8 @@ require_once __DIR__.'/includes/Deporte.php';
     $nombreEquipo=$_POST['name'];
     $deporte=$_POST['deporte'];
     $desc=$_POST['desc'];
-    //$deporte="880001";
+    //$nickUsuario=$_SESSION[''];
+    $nickUsuario=$_SESSION['nombre'];
     
     $dep=Deporte::buscaDeporte($deporte);
     
@@ -50,11 +53,29 @@ else
 }
     
 
+$usu= Usuario::buscaUsuario($nickUsuario);
 
-  Equipo::crea($res,$nombreEquipo,$nombre_img,$desc);
+  
     //link para mostrar imagen
   //http://www.formacionwebonline.com/guia-para-subir-y-visualizar-imagenes-con-php-y-mysql/
+ 
+    
+ 
+    $fecha=date("Y-m-d");
+    $hora=date("H:i:s");
+    
+    $ret=Equipo::crea($res,$nombreEquipo,$nombre_img,$desc);
+    
+    
+    $id_equipo=$ret->get_id();
+    $jugador=Jugador::crea($id_equipo,$usu->id(),"1",$fecha,$hora);
+    
+ Jugador::guardaJugador($jugador);
+ 
+ 
 
+ 
+  
   header('Location: index.php');
   
 

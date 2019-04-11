@@ -220,10 +220,17 @@ class Equipo{
         $this->logo_equipo = $imagen_logo;
         $this->descripcion_equipo = $descripcion;
     }
-
+    
+    
 
 
     /* Getters */
+    
+    public function get_id(){
+        
+        return $this->id;
+    }
+    
     public function get_deporte()
     {
         return $this->deporte;
