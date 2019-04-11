@@ -75,6 +75,7 @@ $usu= Usuario::buscaUsuario($nickUsuario);
     
  Jugador::guardaJugador($jugador);
  
+  
  
 
  
