@@ -9,6 +9,7 @@ require_once __DIR__.'/includes/Deporte.php';
 	$tamano = $_FILES['imagen']['size'];
     $nombreEquipo=$_POST['name'];
     $deporte=$_POST['deporte'];
+    $desc=$_POST['desc'];
     //$deporte="880001";
     
     $dep=Deporte::buscaDeporte($deporte);
@@ -50,7 +51,7 @@ else
     
 
 
-  Equipo::crea($res,$nombreEquipo,$nombre_img,"SOmos los nuevos");
+  Equipo::crea($res,$nombreEquipo,$nombre_img,$desc);
     //link para mostrar imagen
   //http://www.formacionwebonline.com/guia-para-subir-y-visualizar-imagenes-con-php-y-mysql/
 

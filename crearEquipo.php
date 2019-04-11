@@ -40,6 +40,7 @@ require_once __DIR__.'/includes/Deporte.php';
 					?>
 				</select></p>
 				<p id="log">Imagen del Equipo: <input type="file" name="imagen"></p>
+				<p id="log">Descripción (max 50) : <input type="text" name="desc" maxlength="50">></p>
 				<button id="index" type="submit">CREAR</button>
 				</form>
 			</fieldset>
