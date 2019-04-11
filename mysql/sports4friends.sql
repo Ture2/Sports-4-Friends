@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2019 a las 16:05:40
+-- Tiempo de generación: 11-04-2019 a las 14:34:17
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -77,16 +77,19 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`, `HORA_CEQUIPO`, `PARTIDOS_GANADOS`, `PARTIDOS_EMPATADOS`, `PARTIDOS_PERDIDOS`, `MAYOR_RACHA`, `ULTIMO_RESULTADO`, `POSICION_LIGA`, `LOGO_EQUIPO`, `DESCRIPCION_EQUIPO`) VALUES
-(550001, 880001, 'BULL', '2019-04-03', '01:50:02', 5, 2, 6, 2, '3-1(G)', 0, 'images/logo_equipos/bull_logo.jpg', 'Somos los diablos rojos del basket, letales como nadie.'),
-(550002, 880002, 'REAL MADRID', '2019-04-03', '01:50:02', 0, 0, 0, 0, '0', 0, NULL, 'El equipo rey de reyes del barrio.'),
-(550003, 880003, 'SALOU', '2019-04-03', '01:50:02', 0, 0, 0, 0, '0', 0, NULL, 'Bateamos con estilo y las cogemos cada pelota al vuelo.'),
-(550004, 880004, 'VALENCIA', '2019-04-03', '01:50:02', 0, 0, 0, 0, '0', 0, NULL, 'Gladidores chés, atacamos con fuerza, defendemos con murallas.'),
-(550005, 880001, 'LOS CHACHOS FC', '2019-04-04', '03:00:00', 2, 4, 1, 1, '2-2(E)', 0, 'images/logo_equipos/loschachosfc_logo.jpg', 'El equipo de los chachos ha sido creado con la intención de ser el mejor equipo de fútbol en Sports 4 Friends, únete ! '),
-(550006, 880001, 'FLORIDA CDF', '2019-04-07', '13:00:00', 2, 1, 4, 1, '1-1(E)', 0, 'images/logo_equipos/floridacdf_logo.jpg', 'Salidos del barrio de Hortaleza somos un equipo con las herramientas necesarias para vencer en la liga norte'),
-(550007, 880001, 'ASTON BIRRAS', '2019-04-10', '15:23:43', 6, 2, 1, 3, '4-2(G)', 0, 'images/logo_equipos/aston_birra.jpg', 'Un equipo que jugamos con corazon y con una birra para levantar la moral'),
-(550008, 880001, 'MESSIRIANOS FC', '2019-04-10', '15:34:57', 18, 2, 4, 10, '1-1(E)', 0, 'images/logo_equipos/messirianos.jpg', 'Equipo formado por los discipulos del más grandes de todos los tiempos'),
-(550009, 880001, 'AC MILANAS', '2019-04-10', '15:37:05', 2, 2, 9, 1, '2-2(E)', 0, 'images/logo_equipos/ac_milanas.jpg', 'Milanas que daremos muchas guerra con estilo y diversion'),
-(550010, 880001, 'RAYO MONCLOA', '2019-04-10', '15:37:41', 7, 8, 1, 3, '1-3(P)', 0, 'images/logo_equipos/rayo_moncloa.jpg', 'Somos el rayo que descargará toda nuestra electricidad para ganar todos los partidos ');
+(550001, 880001, 'BULL', '2019-04-03', '01:50:02', 5, 2, 6, 2, '3-1(G)', 0, 'bull_logo.jpg', 'Somos los diablos rojos del basket, letales como nadie.'),
+(550002, 880002, 'REAL MADRID', '2019-04-03', '01:50:02', 9, 0, 1, 8, '60-35(G)', 0, 'real_madrid.jpg', 'El equipo rey de reyes del barrio.'),
+(550003, 880003, 'SALOU', '2019-04-03', '01:50:02', 3, 0, 1, 2, '8-5(G)', 0, 'salou.jpg', 'Bateamos con estilo y las cogemos cada pelota al vuelo.'),
+(550004, 880004, 'VALENCIA', '2019-04-03', '01:50:02', 4, 0, 2, 2, '28-24(G)', 0, 'valencia.jpg', 'Gladidores chés, atacamos con fuerza, defendemos con murallas.'),
+(550005, 880001, 'LOS CHACHOS FC', '2019-04-04', '03:00:00', 2, 4, 1, 1, '2-2(E)', 0, 'loschachosfc_logo.jpg', 'El equipo de los chachos ha sido creado con la intención de ser el mejor equipo de fútbol en Sports 4 Friends, únete ! '),
+(550006, 880001, 'FLORIDA CDF', '2019-04-07', '13:00:00', 2, 1, 4, 1, '1-1(E)', 0, 'floridacdf_logo.jpg', 'Salidos del barrio de Hortaleza somos un equipo con las herramientas necesarias para vencer en la liga norte.'),
+(550007, 880001, 'ASTON BIRRAS', '2019-04-10', '15:23:43', 6, 2, 1, 3, '4-2(G)', 0, 'aston_birra.jpg', 'Un equipo que jugamos con corazón y con una birra para levantar la moral.'),
+(550008, 880001, 'MESSIRIANOS FC', '2019-04-10', '15:34:57', 18, 2, 4, 10, '1-1(E)', 0, 'messirianos.jpg', 'Equipo formado por los discipulos del más grande de todos los tiempos.'),
+(550009, 880001, 'AC MILANAS', '2019-04-10', '15:37:05', 2, 2, 9, 1, '2-2(E)', 0, 'ac_milanas.jpg', 'Milanas que daremos muchas guerra con estilo y diversión.'),
+(550010, 880001, 'RAYO MONCLOA', '2019-04-10', '15:37:41', 7, 8, 1, 3, '1-3(P)', 0, 'rayo_moncloa.jpg', 'Somos el rayo que descargará toda nuestra electricidad para ganar todos los partidos. '),
+(550011, 880001, 'REAL ALUCHE', '2019-04-11', '13:33:13', 4, 2, 1, 2, '1-1(E)', 0, 'real_aluche.jpg', 'Equipo de un barrio de risas y con ganas de comernos la capital. '),
+(550012, 880002, 'BASKETLEGA', '2019-04-11', '13:55:13', 5, 0, 2, 2, '35-60(P)', 0, 'basketlega.jpg', 'Equipo de Leganes que LEGAnamos a cualquiera '),
+(550013, 880002, 'ADECORON', '2019-04-11', '14:06:44', 2, 0, 5, 1, '22-55(P)', 0, 'adecoron.png', 'Hay dos cosas que no gusta de verdad, el basket y el ron, viva las dos! ');
 
 -- --------------------------------------------------------
 
@@ -291,7 +294,7 @@ ALTER TABLE `deportes`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550011;
+  MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550014;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
