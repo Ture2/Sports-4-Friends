@@ -18,7 +18,7 @@ class Equipo{
        		else {
        			$equipos = array();
        			while ($equipo = $rs->fetch_assoc()) {
-       				$aux = new Equipo($deporte, $equipo["NOMBRE"], $equipo["LOGO"], $equipo["DESCRP"]);
+       			    $aux = new Equipo($deporte, $equipo["NOMBRE"],'/Sports-4-Friends/images/logo_equipos/'.$equipo["LOGO"], $equipo["DESCRP"]);
        				array_push($equipos, $aux);
        			}
        			$rs->free();
