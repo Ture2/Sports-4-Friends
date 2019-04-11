@@ -17,7 +17,7 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM USUARIOS WHERE nickname = '%s'",
+        $query = sprintf("SELECT * FROM USUARIOS WHERE NICKNAME = '%s'",
                     $conn->real_escape_string($nombreUsuario));
         $rs = $conn->query($query);
         $result = false;
