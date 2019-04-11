@@ -28,12 +28,12 @@
 		$usuario->setMail($correo);
 		$usuario->cambiaPassword($password);
 		$usuario = Usuario::guarda($usuario);
-    	
 	    if (! $usuario ) {
 	        $erroresFormulario[] = "El usuario ya existe.";
 	    } else {
 	        $_SESSION['login'] = true;
-	        $_SESSION['nombre'] = $nombreUsuario;
+	        $_SESSION['nombre'] = $username;
+	        var_dump( $_SESSION['nombre']);
 	        header('Location: perfil.php');
 	        exit();
 	    }

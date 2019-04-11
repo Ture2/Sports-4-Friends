@@ -111,6 +111,14 @@ class Jugador{
         $this->hora_pjugador;
     }
 
+    public function compruebaLider($idUsuario, $idEquipo){
+    	$resultado = false;
+    	if($idUsuario == $usuario && $idEquipo == $equipo && $rol_jugador = 1 ){
+    		$resultado = true;
+    	}
+    	return $resultado;
+    }
+
 } 
 
 ?>
