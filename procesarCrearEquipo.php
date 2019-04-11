@@ -60,6 +60,8 @@ $usu= Usuario::buscaUsuario($nickUsuario);
   //http://www.formacionwebonline.com/guia-para-subir-y-visualizar-imagenes-con-php-y-mysql/
  
     
+
+
  
     $fecha=date("Y-m-d");
     $hora=date("H:i:s");
