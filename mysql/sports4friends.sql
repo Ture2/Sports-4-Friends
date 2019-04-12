@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2019 a las 14:34:17
+-- Tiempo de generación: 12-04-2019 a las 17:10:25
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sports4friends`
 --
-CREATE DATABASE IF NOT EXISTS `sports4friends` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+CREATE DATABASE IF NOT EXISTS `sports4friends` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `sports4friends`;
 
 -- --------------------------------------------------------
@@ -37,7 +37,7 @@ CREATE TABLE `deportes` (
   `DURACION_MIN` int(5) DEFAULT NULL,
   `FECHA_CDEPORTE` date NOT NULL,
   `HORA_CDEPORTE` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `deportes`
@@ -66,11 +66,11 @@ CREATE TABLE `equipos` (
   `PARTIDOS_EMPATADOS` int(4) NOT NULL DEFAULT '0',
   `PARTIDOS_PERDIDOS` int(4) NOT NULL DEFAULT '0',
   `MAYOR_RACHA` int(2) NOT NULL DEFAULT '0',
-  `ULTIMO_RESULTADO` varchar(10) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'NO HAY',
+  `ULTIMO_RESULTADO` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'NO HAY',
   `POSICION_LIGA` int(2) NOT NULL DEFAULT '0',
-  `LOGO_EQUIPO` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `DESCRIPCION_EQUIPO` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `LOGO_EQUIPO` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `DESCRIPCION_EQUIPO` varchar(200) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `equipos`
@@ -89,7 +89,12 @@ INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`,
 (550010, 880001, 'RAYO MONCLOA', '2019-04-10', '15:37:41', 7, 8, 1, 3, '1-3(P)', 0, 'rayo_moncloa.jpg', 'Somos el rayo que descargará toda nuestra electricidad para ganar todos los partidos. '),
 (550011, 880001, 'REAL ALUCHE', '2019-04-11', '13:33:13', 4, 2, 1, 2, '1-1(E)', 0, 'real_aluche.jpg', 'Equipo de un barrio de risas y con ganas de comernos la capital. '),
 (550012, 880002, 'BASKETLEGA', '2019-04-11', '13:55:13', 5, 0, 2, 2, '35-60(P)', 0, 'basketlega.jpg', 'Equipo de Leganes que LEGAnamos a cualquiera '),
-(550013, 880002, 'ADECORON', '2019-04-11', '14:06:44', 2, 0, 5, 1, '22-55(P)', 0, 'adecoron.png', 'Hay dos cosas que no gusta de verdad, el basket y el ron, viva las dos! ');
+(550013, 880002, 'ADECORON', '2019-04-11', '14:06:44', 2, 0, 5, 1, '22-55(P)', 0, 'adecoron.png', 'Hay dos cosas que no gusta de verdad, el basket y el ron, viva las dos! '),
+(550014, 880002, 'OLIMPICACOS', '2019-04-12', '13:59:54', 4, 0, 2, 3, '55-22(G)', 0, 'olimpicacos.jpg', 'Del Olimpo de los cacos, canastas y malos es lo que metemos.'),
+(550015, 880002, 'CSKA USERA', '2019-04-12', '16:58:56', 7, 0, 1, 6, '74-73(G)', 0, 'cska_usera.jpg', 'Usera sabe quien controla las canchas y los tiros del barrio.'),
+(550016, 880002, 'RUBIN BASKET', '2019-04-12', '16:58:56', 4, 0, 3, 2, '73-74(P)', 0, 'rubin_basket.jpg', 'Rubin Basket, recordad nuestro nombre.'),
+(550017, 880002, 'NBDR', '2019-04-12', '16:58:56', 10, 0, 0, 10, '90-79(G)', 0, 'nbdr.jpg', 'Somos NBDR, marcaremos una época.'),
+(550018, 880002, 'ESTUDIANTES  DTM', '2019-04-12', '16:58:56', 4, 0, 6, 1, '79-90(P)', 0, 'estu_dtm.jpg', 'Estudiantes que vivimos el basket.');
 
 -- --------------------------------------------------------
 
@@ -132,7 +137,7 @@ CREATE TABLE `jugadores` (
   `ROL_JUGADOR` tinyint(1) NOT NULL DEFAULT '0',
   `FECHA_PJUGADOR` date NOT NULL,
   `HORA_PJUGADOR` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `jugadores`
@@ -179,9 +184,9 @@ CREATE TABLE `usuarios` (
   `NICKNAME` varchar(15) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `NOMBRE` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `CORREO` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `PASSWORD` varchar(400) NOT NULL,
+  `PASSWORD` varchar(400) CHARACTER SET utf8 NOT NULL,
   `ROL_USUARIO` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'USER'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -294,7 +299,7 @@ ALTER TABLE `deportes`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550014;
+  MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550019;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
