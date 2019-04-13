@@ -14,6 +14,7 @@
 
 	<section class="forms-section">
   <div>
+	<div>
 		<img class="logo" src="images/logo.png">
 	</div>
   <div class="forms">
@@ -71,7 +72,6 @@
       </form>
     </div>
 </section>
-
 
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
