@@ -1,5 +1,11 @@
 body {
-	background-color: white;
+	height: 100%;
+	background-image: url("../images/sport.png");
+	background-color: black;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
 }
 
 *{
@@ -186,17 +192,17 @@ p#log {
 	text-align: center;
 }
 
-legend#log {
-	background: darkgreen;
-	border: 1px darkgreen;
-	padding: 2px 6px;
-	text-align: center;
-} 
+fieldset#campoReg {
+	border: 3px solid darkgreen;
+	width: 20em;
+	margin: 0 auto;
+	background-color: lightblue;
+}
 
 label#reg {
 	width: 4em;
 	text-align: left;
-	margin-right: 0.5em;
+	margin-right: 20em;
 	display: inline-block;
 }
 
@@ -462,17 +468,18 @@ img#fut {
 
 #crear{
  	text-align: center;
+ 	float:center;
  }
 
 div#crear {
 	margin: 0 auto; 
 	position: absolute;
 	margin-left: 600px;
-	margin-top: 100px;
 }
 
 fieldset#crear {
 	padding: 10px;
+	width: 50em;
 	border:3px solid darkgreen;
 	background-color: lightblue;
 }

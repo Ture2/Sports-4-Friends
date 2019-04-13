@@ -2,16 +2,12 @@
 require_once __DIR__.'/includes/config.php';
 //require_once __DIR__.'/includes/Usuario.php';
 require_once __DIR__.'/includes/Deporte.php';
-
-
-
-
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
 	<title>Crear Equipo</title>
 </head>
@@ -27,14 +23,11 @@ require_once __DIR__.'/includes/Deporte.php';
 			<fieldset id="crear">
 				<legend id="log">EQUIPO</legend>
 				<form action="procesarCrearEquipo.php" enctype="multipart/form-data" method="post">
-				<p id="log">Nombre del Equipo: <input type="text" name="name"></p>
+				<p id="log">Nombre del Equipo: <input type="text" name="name" required></p>
 				<p id="log">Deporte:
-				<select name="deporte" id="dep">
+				<select name="deporte" id="dep" required>
 					<?php
-						
-					
-					
-					
+
 					$deportes = Deporte::getAll();
 						
 						foreach ($deportes as $valor) { 
@@ -44,8 +37,9 @@ require_once __DIR__.'/includes/Deporte.php';
 					?>
 				</select></p>
 				<p id="log">Imagen del Equipo: <input type="file" name="imagen"></p>
-				<p id="log">Descripción (max 50) : <input type="text" name="desc" maxlength="50">></p>
-				<button id="index" type="submit">CREAR</button>
+				<p id="log">Descripcion (max 50): <textarea type="text" name="desc" maxlength="50"></textarea></p>
+				<button id="index" type="submit" name="crear">CREAR</button>
+				<button onclick="history.back()" id="index" type="submit" name="volver">VOLVER</button>
 				</form>
 			</fieldset>
 		</div>

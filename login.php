@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<div id="logo">
+	<div>
 		<img class="logo" src="images/logo.png">
 	</div>
 
@@ -26,6 +26,5 @@
 		</fieldset>
 		</form>
 	</div>
-
 </body>
 </html>
