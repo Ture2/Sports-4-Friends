@@ -34,7 +34,7 @@ class Eventos
                 2)el objecto es una de las tuplas devueltas de la consulta
                 3)se instancia el objeto con el orden de los campos sport4friends.evento
                 */
-                $evento = new Eventos($row['nombre_evento'],$row['deporte'],$row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['foto_evento']);
+                $evento = new Eventos($row['nombre_evento'],$row['deporte'],$row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['ruta_foto']);
 
                 $evento->id_evento = $row['id_evento'];
 
@@ -67,13 +67,13 @@ class Eventos
         return $eliminar;
     }
 
-    public static function crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $foto_evento)
+    public static function crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion,$fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $ruta_foto)
     {
         $evento = self::buscarEvento($nombre_evento);
         if ($evento) {
             return false;
         }
-        $evento = new Eventos($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $foto_evento);
+        $evento = new Eventos($nombre_evento, $deporte, $ciudad, $municipio, $localizacion,$fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $ruta_foto);
 
         return self::guardarEvento($evento);
     }
@@ -82,6 +82,7 @@ class Eventos
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
+
         $query = sprintf("SELECT * FROM Eventos E WHERE E.nombre_evento= '%s'", $conn->real_escape_string($nombre_evento));
 
         $result = false; 
@@ -89,7 +90,7 @@ class Eventos
         if (($rs = $conn->query($query))  && ($rs->num_rows == 1))
         {   
             $row = $rs->fetch_assoc();
-            $evento = new Eventos($row['nombre_evento'],$row['deporte'], $row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['foto_evento']);
+            $evento = new Eventos($row['nombre_evento'],$row['deporte'], $row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['ruta_foto']);
             $evento->id_evento = $row['id_evento'];
             $result = $evento;
             $rs->free();
@@ -106,14 +107,14 @@ class Eventos
         if ($evento->id_evento !== null) {
             return self::actualizarEvento($evento);
         }
-        return self::insertarEvento($evento);
+        return self::insertarEvenSSto($evento);
     }
 
     private static function insertarEvento($evento)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO Eventos(nombre_evento, deporte, ciudad, municipio, localizacion, fecha_creacion, fecha_evento, hora_evento, descripcion, foto_evento) VALUES('%s', '%s', '%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO Eventos(nombre_evento, deporte, ciudad, municipio, localizacion, fecha_creacion, fecha_evento, hora_evento, descripcion, ruta_foto) VALUES('%s', '%s', '%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')"
             , $conn->real_escape_string($evento->nombre_evento)
             , $conn->real_escape_string($evento->deporte)
             , $conn->real_escape_string($evento->ciudad)
@@ -123,7 +124,7 @@ class Eventos
             , $conn->real_escape_string($evento->fecha_evento)
             , $conn->real_escape_string($evento->hora_evento)
             , $conn->real_escape_string($evento->descripcion)
-            , $conn->real_escape_string($evento->foto_evento));
+            , $conn->real_escape_string($evento->ruta_foto));
         if ( $conn->query($query) ) {
             $evento->id_evento = $conn->insert_id;
         } else {
@@ -137,7 +138,7 @@ class Eventos
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE Eventos E SET nombre_evento = '%s', deporte='%s', ciudad='%s', municipio='%s', localizacion='%',fecha_creacion='%', fecha_evento='%', hora_evento='%',descripcion='%', foto_evento='%' WHERE E.id_evento='%i'"
+        $query=sprintf("UPDATE Eventos E SET nombre_evento = '%s', deporte='%s', ciudad='%s', municipio='%s', localizacion='%',fecha_creacion='%', fecha_evento='%', hora_evento='%',descripcion='%', ruta_foto='%' WHERE E.id_evento='%i'"
             , $conn->real_escape_string($evento->nombre_evento)
             , $conn->real_escape_string($evento->deporte)
             , $conn->real_escape_string($evento->ciudad)
@@ -147,7 +148,7 @@ class Eventos
             , $conn->real_escape_string($evento->fecha_evento)
             , $conn->real_escape_string($evento->hora_evento)
             , $conn->real_escape_string($evento->descripcion)
-            , $conn->real_escape_string($evento->foto_evento)
+            , $conn->real_escape_string($evento->ruta_foto)
             , $evento->id_evento);
 
         if ( $conn->query($query) ) {
@@ -177,11 +178,11 @@ class Eventos
     private $fecha_evento;
     private $hora_evento;
     private $descripcion;
-    private $foto_evento;
+    private $ruta_foto;
     
 
     //Constructora
-    private function __construct($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $foto_evento)
+    private function __construct($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $ruta_foto)
     {
         $this->nombre_evento= $nombre_evento;
         $this->deporte= $deporte;
@@ -192,7 +193,7 @@ class Eventos
         $this->fecha_evento=$fecha_evento;
         $this->hora_evento=$hora_evento;
         $this->descripcion=$descripcion;
-        $this->foto_evento=$foto_evento;
+        $this->ruta_foto=$ruta_foto;
     }
 
     //Funciones para acceder a los atributos de Eventos
@@ -206,7 +207,7 @@ class Eventos
     public function fecha_evento(){return $this->fecha_evento;}
     public function hora_evento(){return $this->hora_evento;}
     public function descripcion(){ return $this->descripcion;}
-    public function foto_evento(){return $this->foto_evento;}
+    public function ruta_foto(){return $this->ruta_foto;}
 }
 
 ?>
