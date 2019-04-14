@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-04-2019 a las 21:06:00
+-- Tiempo de generación: 14-04-2019 a las 21:45:16
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -416,54 +416,55 @@ CREATE TABLE `usuarios` (
   `NOMBRE` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `CORREO` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `PASSWORD` varchar(400) CHARACTER SET utf8 NOT NULL,
-  `ROL_USUARIO` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'USER'
+  `ROL_USUARIO` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'USER',
+  `FOTO_USUARIO` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID_USUARIO`, `NICKNAME`, `NOMBRE`, `CORREO`, `PASSWORD`, `ROL_USUARIO`) VALUES
-(1, 'admin', 'Administrador', 'admin@ucm.es', '$2y$10$hSK.JgAQXT5YJIz6k207I.YyHiP4WlLPr2SIlI6dPrEqCf34Z8ifa', 'ADMIN'),
-(2, 'alv1', 'Alvaro', 'alvcarpi@ucm.es', '$2y$10$yvOHIrk7LyJH1bxhyvPbX.eAf7JguNq0RJM0OQZUcOr82z/Jji7Wi', 'USER'),
-(3, 'jhce2', 'Jhimmy Ender', 'jcandela@ucm.es', '$2y$10$WvEf90rD98SDOXOIUuf5/Ou28TEZTlBkC6WNFEA6UQFqsGtfrGEUi', 'USER'),
-(4, 'jvp3', 'Jorge', 'jvalma01@ucm.es', '$2y$10$kPaZzPpNemtlB/bhFQ7k1eEGAvmThp/eVtZPtUmPq6D.kD6OpMexu', 'USER'),
-(5, 'iiif4', 'Iker', 'ikeriban@ucm.es', '$2y$10$IexT7ht8yM5olEMl9kQKYeoUM54HKWtKyjqUQ436CTuinSNAAivA.', 'USER'),
-(6, 'atc5', 'Alberto', 'alberture@ucm.es', '$2y$10$14haQw95h4UGzooRpCzbQOwddRDsIzQTbZW4r8Sg6aBYmA/hZY2uO', 'USER'),
-(7, 'jjjj6', 'Jonathan Jose', 'jonathanj@ucm.es', '$2y$10$tnSbgl4cOzAurLUb0MXK1eAGUTJi2ASnjGOPCs/GjWT5bL53gZWTO', 'USER'),
-(8, 'lucas', 'Lucas', 'lucas@ucm.es', '$2y$10$0dVHdan2jVD8/O.zgt2nXeKx8dYF9WMRe1S3zvulKmqpFV/UqreEK', 'USER'),
-(9, 'mlc9', 'Marta', 'martalopezc@ucm.es', '$2y$10$95CJ3WOCkdSQcTOfra3UmeoIsNd12NS3oy2xKbRGgMu3KyBiTHK2i', 'USER'),
-(10, 'dfh10', 'Diana', 'dianadf@ucm.es', '$2y$10$AC6JL1NAMKow1BroC4YLi.zAt/tL/WNxlXpVIX4wiGBwT5g.w61Gq', 'USER'),
-(11, 'rcg11', 'Ruben', 'rubi4512@gmail.com', '$2y$10$5wl9bSiKKMcQvjIrRoFAn.7t7Ju5Gz9Lu.l/Of3EhNHRT7fzwX4em', 'USER'),
-(12, 'esmin12', 'Esmeralda', 'esmeral33@outlook.com', '$2y$10$UUpnYo2Xn80hTUoUvPWL9uLuKJ3oGj5wbwn24tYDVOnmEI7canYL6', 'USER'),
-(13, 'sofivb13', 'Sofia', 'sofiavelasco@gmail.es', '$2y$10$WVPCMl88heXbqRBMQtNHzOI8K971iDxLmYBtfD8jSlJ6cpFDMJnSG', 'USER'),
-(14, 'carmengar14', 'Carmen', 'carmengarri23@outlook.es', '$2y$10$MzzKTQYSOLv0BsL.z61JEO6Cc2GzHW3pJEe4itGKvIOnKEFsVFxoq', 'USER'),
-(15, 'lucy15', 'Lucia', 'luciagimenezpi@ucm.es', '$2y$10$2TsfIdxcpgiPWHeYZWKxZOh0JS.OFt6XEdbsdq8/pc8rU35.3lf7.', 'USER'),
-(16, 'sarase16', 'Sara', 'saraseboblanco@yahoo.es', '$2y$10$sGNIO1u56jf/.Ajxav1OhOMXTiw62w0MvsdT8PWokeJ9CI1dq2fTm', 'USER'),
-(17, 'marisol17', 'Maria Soledad', 'mariasol567@gmail.es', '$2y$10$iZL.ACIBVQiLl0tD57JuHeeuEYwegn2D6ZHyvIeWtT/YGEq4mV/4C', 'USER'),
-(18, 'Gonza18', 'Gonzalo', 'gonzagimenez@ucm.es', '$2y$10$rrtIVIoXLlBc4gwqYjGWa.W/f08X9Z3jQZOpEHMU4JKQXhQbe0S92', 'USER'),
-(19, 'Miri19', 'Miriam', 'miriangelfe@yahoo.es', '$2y$10$KmgRlwHhNuk9Zs3yT7yg0umNm2.tenJnmoQla776T7qcckWd/BdEe', 'USER'),
-(20, 'Leire20', 'Leire', 'leirebilbao@outlook.com', '$2y$10$gTnSHWlGshE2fPXEWpM8tego8AlbgSVb/MvzrawQodubD1uNKhpzC', 'USER'),
-(21, 'Marcos21', 'Marcos', 'realmadridmarcos13@gmail.es', '$2y$10$PbdtVLi3ytA34nG6KaloWOahe8gsFIMc0Y/NaWFzeH24GstcUkZ3e', 'USER'),
-(22, 'Jenni22', 'Jennifer', 'jenninformatica@ucm.es', '$2y$10$3TabhIqAjDWLFpoptN4f.elAq6KfaCNRFc1XSaOqwTk3UTbCDejKW', 'USER'),
-(23, 'nadia23', 'Nadia', 'nadiagarciagh@gmail.es', '$2y$10$aPJIVe.AqltsQxBUjqOCSO/IR7uqy.dNI6ODbDuOXUWH/Icvt64hq', 'USER'),
-(24, 'almu24', 'Almudena', 'almuceu@ucm.es', '$2y$10$RM.5E2E026DXeuBSnGhwgO34GsMWXXEJZkC/oKZopQG4ZUJsEyOxi', 'USER'),
-(25, 'robert25', 'Roberto', 'robertoledo@gmail.es', '$2y$10$S1qpoJktObbfqeCXnsK5mOzzmj9SJq4sI9VGxFbCkaxerH5fR.Tyy', 'USER'),
-(26, 'susin26', 'Susana', 'susanarroyoss@ucm.es', '$2y$10$ytCX1lI9c2tYPDQ6aQ1FZukOiDWey4A0LwGZIMmjR45s2SPHPS5rK', 'USER'),
-(27, 'yao27', 'Yao Ying', 'yaoyingvv@outlook.uk', '$2y$10$IVTA8OlnvR835H87umLNb.oawnIg75IelFPvLcOFzvmw3iEFW5Dti', 'USER'),
-(28, 'isid28', 'Isidoro', 'isidoromadrid@gmail.es', '$2y$10$RY1p1EXUvlG5xSYSOqQ4O.9MwoeKI2oxDcDG5koBfnsqaw1l7w4IW', 'USER'),
-(29, 'beloki29', 'Rodolfo', 'rodolfobeloki@gmail.com', '$2y$10$xpiuEvnzSa3L570Ro/Xgx.LAtKHCo2kscyoxhZMabeoa6G0NzTjdS', 'USER'),
-(30, 'rubi30', 'Sergio', 'sergioroplata@outlook.com', '$2y$10$lbgpHfQi0vlkhvUnvjPN7.BDR0GojC/XT1yAFDNj74bar91te6Dv6', 'USER'),
-(31, 'marti31', 'Martina', 'martinacardoso@ucm.es', '$2y$10$UBeJmTFiSt/CJGqI1qBHzeVdZZg0Cx63T.ZB4qiPlqsCwcox8PCTW', 'USER'),
-(32, 'marina32', 'Marina', 'marinabarcelona92@outlook.es', '$2y$10$YXCbvHtM8yVsH2pOPdWOcunZdBFO2ESdwk1/sA4lNuFqQ.AJY66Wm', 'USER'),
-(33, 'juanpa33', 'Juan Pablo', 'jpmagicima@yahoo.com', '$2y$10$IEysk4hPOHiP1dT/ucCoVe7k0jQ5UGngFzl1exS2P.NI5IQGmwHDu', 'USER'),
-(34, 'danizz34', 'Daniel', 'danielvalladolid@ucm.es', '$2y$10$N/5wIzClIIzLKg8JRbHZ4ekM.GeSf7c5JNeQQJOmQADSgvaCxtT32', 'USER'),
-(35, 'kira35', 'Kira', 'kiragarrido@gmail.es', '$2y$10$fEBhmAppQQ4006ysf4octeVVBTXlQCTJdL2HkD1qvWMO1VVJlBjX.', 'USER'),
-(36, 'rocii36', 'Rocio', 'rocitorrosca@gmail.es', '$2y$10$AWbaNYH35W3apMF34symw.PR/8HDu6DR7jPU0gMjEh1J9a8FOUj1G', 'USER'),
-(37, 'rebeca37', 'Rebeca', 'rebe01ruiz@gmail.es', '$2y$10$zxaYepsuwmzdQiajPV5pW.m90BUHokkQY4Rm1UbrtMBMYnkjR4aY6', 'USER'),
-(38, 'kevin38', 'Kevin', 'kevineeuu@yahoo.com', '$2y$10$FYhMCEVFPD1QAhpJerDfg.zlPeTu.tX.1bgrAotk.mOWQKGGkcnJi', 'USER'),
-(39, 'blanca39', 'Blanca', 'blanca23fernan@gmail.es', '$2y$10$96pQ6nCIQjxDxxv2QfF.gu6i8PAsz5HDJw/1GSMG9MZMKaafdKS1C', 'USER'),
-(40, 'gabri40', 'Gabriela', 'gabryespefer@yahoo.es', '$2y$10$V.do61Og2/lLU6zIKs3.lOkTh./GHPWu6pHVGgxfx7Rih7r1ceulq', 'USER');
+INSERT INTO `usuarios` (`ID_USUARIO`, `NICKNAME`, `NOMBRE`, `CORREO`, `PASSWORD`, `ROL_USUARIO`, `FOTO_USUARIO`) VALUES
+(1, 'admin', 'Administrador', 'admin@ucm.es', '$2y$10$hSK.JgAQXT5YJIz6k207I.YyHiP4WlLPr2SIlI6dPrEqCf34Z8ifa', 'ADMIN', 'admin.jpg'),
+(2, 'alv1', 'Alvaro', 'alvcarpi@ucm.es', '$2y$10$yvOHIrk7LyJH1bxhyvPbX.eAf7JguNq0RJM0OQZUcOr82z/Jji7Wi', 'USER', 'alvaro.jpg'),
+(3, 'jhce2', 'Jhimmy Ender', 'jcandela@ucm.es', '$2y$10$WvEf90rD98SDOXOIUuf5/Ou28TEZTlBkC6WNFEA6UQFqsGtfrGEUi', 'USER', 'jhimmy.jpg'),
+(4, 'jvp3', 'Jorge', 'jvalma01@ucm.es', '$2y$10$kPaZzPpNemtlB/bhFQ7k1eEGAvmThp/eVtZPtUmPq6D.kD6OpMexu', 'USER', 'jorge.jpg'),
+(5, 'iiif4', 'Iker', 'ikeriban@ucm.es', '$2y$10$IexT7ht8yM5olEMl9kQKYeoUM54HKWtKyjqUQ436CTuinSNAAivA.', 'USER', 'iker.jpg'),
+(6, 'atc5', 'Alberto', 'alberture@ucm.es', '$2y$10$14haQw95h4UGzooRpCzbQOwddRDsIzQTbZW4r8Sg6aBYmA/hZY2uO', 'USER', 'ture.jpg'),
+(7, 'jjjj6', 'Jonathan Jose', 'jonathanj@ucm.es', '$2y$10$tnSbgl4cOzAurLUb0MXK1eAGUTJi2ASnjGOPCs/GjWT5bL53gZWTO', 'USER', 'jose.jpg'),
+(8, 'lucas', 'Lucas', 'lucas@ucm.es', '$2y$10$0dVHdan2jVD8/O.zgt2nXeKx8dYF9WMRe1S3zvulKmqpFV/UqreEK', 'USER', NULL),
+(9, 'mlc9', 'Marta', 'martalopezc@ucm.es', '$2y$10$95CJ3WOCkdSQcTOfra3UmeoIsNd12NS3oy2xKbRGgMu3KyBiTHK2i', 'USER', 'marta.jpg'),
+(10, 'dfh10', 'Diana', 'dianadf@ucm.es', '$2y$10$AC6JL1NAMKow1BroC4YLi.zAt/tL/WNxlXpVIX4wiGBwT5g.w61Gq', 'USER', 'diana.jpg'),
+(11, 'rcg11', 'Ruben', 'rubi4512@gmail.com', '$2y$10$5wl9bSiKKMcQvjIrRoFAn.7t7Ju5Gz9Lu.l/Of3EhNHRT7fzwX4em', 'USER', NULL),
+(12, 'esmin12', 'Esmeralda', 'esmeral33@outlook.com', '$2y$10$UUpnYo2Xn80hTUoUvPWL9uLuKJ3oGj5wbwn24tYDVOnmEI7canYL6', 'USER', 'esmeralda.jpg'),
+(13, 'sofivb13', 'Sofia', 'sofiavelasco@gmail.es', '$2y$10$WVPCMl88heXbqRBMQtNHzOI8K971iDxLmYBtfD8jSlJ6cpFDMJnSG', 'USER', NULL),
+(14, 'carmengar14', 'Carmen', 'carmengarri23@outlook.es', '$2y$10$MzzKTQYSOLv0BsL.z61JEO6Cc2GzHW3pJEe4itGKvIOnKEFsVFxoq', 'USER', NULL),
+(15, 'lucy15', 'Lucia', 'luciagimenezpi@ucm.es', '$2y$10$2TsfIdxcpgiPWHeYZWKxZOh0JS.OFt6XEdbsdq8/pc8rU35.3lf7.', 'USER', NULL),
+(16, 'sarase16', 'Sara', 'saraseboblanco@yahoo.es', '$2y$10$sGNIO1u56jf/.Ajxav1OhOMXTiw62w0MvsdT8PWokeJ9CI1dq2fTm', 'USER', NULL),
+(17, 'marisol17', 'Maria Soledad', 'mariasol567@gmail.es', '$2y$10$iZL.ACIBVQiLl0tD57JuHeeuEYwegn2D6ZHyvIeWtT/YGEq4mV/4C', 'USER', NULL),
+(18, 'Gonza18', 'Gonzalo', 'gonzagimenez@ucm.es', '$2y$10$rrtIVIoXLlBc4gwqYjGWa.W/f08X9Z3jQZOpEHMU4JKQXhQbe0S92', 'USER', NULL),
+(19, 'Miri19', 'Miriam', 'miriangelfe@yahoo.es', '$2y$10$KmgRlwHhNuk9Zs3yT7yg0umNm2.tenJnmoQla776T7qcckWd/BdEe', 'USER', NULL),
+(20, 'Leire20', 'Leire', 'leirebilbao@outlook.com', '$2y$10$gTnSHWlGshE2fPXEWpM8tego8AlbgSVb/MvzrawQodubD1uNKhpzC', 'USER', NULL),
+(21, 'Marcos21', 'Marcos', 'realmadridmarcos13@gmail.es', '$2y$10$PbdtVLi3ytA34nG6KaloWOahe8gsFIMc0Y/NaWFzeH24GstcUkZ3e', 'USER', NULL),
+(22, 'Jenni22', 'Jennifer', 'jenninformatica@ucm.es', '$2y$10$3TabhIqAjDWLFpoptN4f.elAq6KfaCNRFc1XSaOqwTk3UTbCDejKW', 'USER', NULL),
+(23, 'nadia23', 'Nadia', 'nadiagarciagh@gmail.es', '$2y$10$aPJIVe.AqltsQxBUjqOCSO/IR7uqy.dNI6ODbDuOXUWH/Icvt64hq', 'USER', NULL),
+(24, 'almu24', 'Almudena', 'almuceu@ucm.es', '$2y$10$RM.5E2E026DXeuBSnGhwgO34GsMWXXEJZkC/oKZopQG4ZUJsEyOxi', 'USER', NULL),
+(25, 'robert25', 'Roberto', 'robertoledo@gmail.es', '$2y$10$S1qpoJktObbfqeCXnsK5mOzzmj9SJq4sI9VGxFbCkaxerH5fR.Tyy', 'USER', NULL),
+(26, 'susin26', 'Susana', 'susanarroyoss@ucm.es', '$2y$10$ytCX1lI9c2tYPDQ6aQ1FZukOiDWey4A0LwGZIMmjR45s2SPHPS5rK', 'USER', NULL),
+(27, 'yao27', 'Yao Ying', 'yaoyingvv@outlook.uk', '$2y$10$IVTA8OlnvR835H87umLNb.oawnIg75IelFPvLcOFzvmw3iEFW5Dti', 'USER', NULL),
+(28, 'isid28', 'Isidoro', 'isidoromadrid@gmail.es', '$2y$10$RY1p1EXUvlG5xSYSOqQ4O.9MwoeKI2oxDcDG5koBfnsqaw1l7w4IW', 'USER', NULL),
+(29, 'beloki29', 'Rodolfo', 'rodolfobeloki@gmail.com', '$2y$10$xpiuEvnzSa3L570Ro/Xgx.LAtKHCo2kscyoxhZMabeoa6G0NzTjdS', 'USER', NULL),
+(30, 'rubi30', 'Sergio', 'sergioroplata@outlook.com', '$2y$10$lbgpHfQi0vlkhvUnvjPN7.BDR0GojC/XT1yAFDNj74bar91te6Dv6', 'USER', NULL),
+(31, 'marti31', 'Martina', 'martinacardoso@ucm.es', '$2y$10$UBeJmTFiSt/CJGqI1qBHzeVdZZg0Cx63T.ZB4qiPlqsCwcox8PCTW', 'USER', NULL),
+(32, 'marina32', 'Marina', 'marinabarcelona92@outlook.es', '$2y$10$YXCbvHtM8yVsH2pOPdWOcunZdBFO2ESdwk1/sA4lNuFqQ.AJY66Wm', 'USER', NULL),
+(33, 'juanpa33', 'Juan Pablo', 'jpmagicima@yahoo.com', '$2y$10$IEysk4hPOHiP1dT/ucCoVe7k0jQ5UGngFzl1exS2P.NI5IQGmwHDu', 'USER', NULL),
+(34, 'danizz34', 'Daniel', 'danielvalladolid@ucm.es', '$2y$10$N/5wIzClIIzLKg8JRbHZ4ekM.GeSf7c5JNeQQJOmQADSgvaCxtT32', 'USER', NULL),
+(35, 'kira35', 'Kira', 'kiragarrido@gmail.es', '$2y$10$fEBhmAppQQ4006ysf4octeVVBTXlQCTJdL2HkD1qvWMO1VVJlBjX.', 'USER', NULL),
+(36, 'rocii36', 'Rocio', 'rocitorrosca@gmail.es', '$2y$10$AWbaNYH35W3apMF34symw.PR/8HDu6DR7jPU0gMjEh1J9a8FOUj1G', 'USER', NULL),
+(37, 'rebeca37', 'Rebeca', 'rebe01ruiz@gmail.es', '$2y$10$zxaYepsuwmzdQiajPV5pW.m90BUHokkQY4Rm1UbrtMBMYnkjR4aY6', 'USER', NULL),
+(38, 'kevin38', 'Kevin', 'kevineeuu@yahoo.com', '$2y$10$FYhMCEVFPD1QAhpJerDfg.zlPeTu.tX.1bgrAotk.mOWQKGGkcnJi', 'USER', NULL),
+(39, 'blanca39', 'Blanca', 'blanca23fernan@gmail.es', '$2y$10$96pQ6nCIQjxDxxv2QfF.gu6i8PAsz5HDJw/1GSMG9MZMKaafdKS1C', 'USER', NULL),
+(40, 'gabri40', 'Gabriela', 'gabryespefer@yahoo.es', '$2y$10$V.do61Og2/lLU6zIKs3.lOkTh./GHPWu6pHVGgxfx7Rih7r1ceulq', 'USER', NULL);
 
 --
 -- Índices para tablas volcadas
