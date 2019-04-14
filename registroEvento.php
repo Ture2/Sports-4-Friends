@@ -18,7 +18,7 @@
 	<div id="contenido">
 		<form action="procesarRegistroEvento.php" method="POST">
 				<fieldset id="evento">
-				<legend id="log">Registra tu Equipo en el evento</legend>
+				<legend id="log">Registra tu equipo en el evento</legend>
 					<p id="log">Evento: <input list="lEventos" name="evento">
 						<datalist id="lEventos">
 								<option>Url</option>
@@ -42,6 +42,7 @@
 
 			 <p id="log">NickUser: <input type="text" name="nickUsuario" value=""></p>
 			<button id= "index" type="submit" name="registro">Validar</button>
+			<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
 		</fieldset>
 	</form>
 	</div>

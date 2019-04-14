@@ -15,7 +15,7 @@
 	<!-- METER LOS DATOS DE CADA JUGADOR CON LA BASE DE DATOS -->
 	<div id="contenido">
 		<div id="tabla">
-			<p id="p2">FÚTBOL</p>
+			<p id="p4">FÚTBOL</p>
 	  		<table>
 	  			<tr>
 	  				<th>Equipo</th>
@@ -41,7 +41,7 @@
 	  	</div>
 
 	  	<div id="tabla">
-	  		<p id="p2">BALONCESTO</p>
+	  		<p id="p4">BALONCESTO</p>
 	  		<table>
 	  			<tr>
 	  				<th>Equipo</th>
@@ -65,7 +65,7 @@
 	  	</div>
 
 		<div id="tabla">
-			<p id="p2">BEISBOL</p>
+			<p id="p4">BEISBOL</p>
 	  		<table>
 	  			<tr>
 	  				<th>Equipo</th>
@@ -91,7 +91,7 @@
 	  	</div>
 
 	  	<div id="tabla">
-			<p id="p2">BALONMANO</p>
+			<p id="p4">BALONMANO</p>
 	  		<table>
 	  			<tr>
 	  				<th>Equipo</th>
@@ -117,7 +117,7 @@
 	  	</div>
 
 	  	<div id="tabla">
-	  		<p id="p2">TENIS</p>
+	  		<p id="p4">TENIS</p>
 	  		<table>
 	  			<tr>
 	  				<th>Equipo</th>

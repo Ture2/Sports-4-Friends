@@ -24,7 +24,7 @@
 			<nav>
 				<ul class="nav">
 					<li><a href="index.php"><img id="menu" src="images/inicio.png">Inicio</a></li>
-					<li><a href=""><img id="menu" src="images/deportes.png">Deportes</a>
+					<li><a><img id="menu" src="images/deportes.png">Deportes</a>
 						<ul>
 							<?php
 								$i = 0;

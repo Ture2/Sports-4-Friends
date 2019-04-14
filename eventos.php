@@ -73,7 +73,7 @@ var_dump($_SESSION["esAdmin"]);
 				?>
 
 				<fieldset id="errorLogin">
-					<pre >Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
+					<pre id="texto1">Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
 				</fieldset>
 
 				<!--

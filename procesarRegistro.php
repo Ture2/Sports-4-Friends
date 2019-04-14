@@ -82,27 +82,64 @@ if (count($erroresFormulario) === 0) {
 	</fieldset>		
 </div>		
 
+	<section class="forms-section">
+  <div class="forms">
+    <div class="form-wrapper">
+      <button type="button" class="switcher switcher-login">
+        Iniciar Sesi&oacuten
+        <span class="underline"></span>
+      </button>
+      <form action="procesarLogin.php" method="POST" class="form form-login">
+        <fieldset>
+          <div class="input-block">
+            <label for="login-username">Usuario</label>
+            <input id="login-username" type="text" name="username" required>
+          </div>
+          <div class="input-block">
+            <label for="login-password">Contrase&ntildea</label>
+            <input id="login-password" type="password" name="password" required>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn-login" name="login">Iniciar Sesi&oacuten</button>
+        <button formnovalidate formaction="index.php" type="submit" class="btn-login" name="volver">Inicio</button>
+      </form>
+    </div>
 
-
-	<div id="registro">
-		<form action="procesarRegistro.php" method="POST">
-		<fieldset id="campo">
-		<legend id="log">Registro</legend>
-		<p id="reg"><label id="reg">Usuario:</label> <input type="text" name="username" value=""></p>
-		<p id="reg"><label id="reg">Nombre:</label> <input type="text" name="nombre" value=""></p>
-		<p id="reg"><label id="reg">Apellidos:</label> <input type="text" name="apellido" value=""></p>
-		<p id="reg"><label id="reg">Correo:</label> <input type="text" name="correo" value=""></p>
-		<p id="reg"><label id="reg">Teléfono:</label> <input type="text" name="telefono" value=""></p>
-		<p id="reg"><label id="reg">Contraseña:</label> <input type="password" name="password" value=""></p>
-		<p id="reg"><label id="reg">Repetir Contraseña:</label> <input type="password" name="password2" value=""></p>
-		<button id= "index" type="submit" name="registro">Validar</button>
-		<button formaction="index.php" id="index" type="submit" name="volver">Volver</button>
-		</fieldset>
-		</form>
-	</div>
-
-
-
+    <div class="form-wrapper is-active">
+      <button type="button" class="switcher switcher-signup">
+        Registro
+        <span class="underline"></span>
+      </button>
+      <form action="procesarRegistro.php" method="POST" class="form form-signup">
+        <fieldset>
+          <div class="input-block">
+            <label for="signup-username">Usuario</label>
+            <input id="signup-username" type="text" name="username" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-nombre">Nombre</label>
+            <input id="signup-nombre" type="text" name="nombre" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-correo">Correo</label>
+            <input id="signup-correo" type="email" name="correo" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-password">Contrase&ntildea</label>
+            <input id="signup-password" type="password" name="password" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-password-confirm">Confirmar Contrase&ntildea</label>
+            <input id="signup-password-confirm" type="password" name="password2" required>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn-signup" name="registro">Crear Cuenta</button>
+        <button formnovalidate formaction="index.php" type="submit" class="btn-signup" name="volver">Inicio</button>
+      </form>
+    </div>
+</section>
 
 </body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<script src="javascript/LogReg.js"></script>
 </html>
