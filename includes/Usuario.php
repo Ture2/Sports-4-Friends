@@ -91,9 +91,8 @@ class Usuario
             , $conn->real_escape_string($usuario->rol)
             , $usuario->id);
         if ( $conn->query($query) ) {
-            var_dump($conn->affected_rows);
             if ( $conn->affected_rows != 1) {
-                echo "No se ha podido actualizar el evento: " . $usuario->id;
+                echo "No se ha podido actualizar el usuario: " . $usuario->id;
                 exit();
             }
         } else {

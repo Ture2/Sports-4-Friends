@@ -20,6 +20,7 @@ class Equipo{
        			$equipos = array();
        			while ($equipo = $rs->fetch_assoc()) {
        				$aux = new Equipo($deporte, $equipo["NOMBRE"], $equipo["LOGO"], $equipo["DESCRP"]);
+                    //$aux->set_id($equipo["ID_EQUIPO"]);
        				array_push($equipos, $aux);
        			}
        			$rs->free();
@@ -54,6 +55,7 @@ class Equipo{
           $equipo = new Equipo($row["DEPORTE"], $row["NOMBRE_EQUIPO"], $row["LOGO_EQUIPO"], $row["DESCRIPCION_EQUIPO"]);
           $equipo->set_estadisticas($row["PARTIDOS_GANADOS"],$row["PARTIDOS_EMPATADOS"],$row["PARTIDOS_PERDIDOS"],
             $row["MAYOR_RACHA"],$row["ULTIMO_RESULTADO"], $row["POSICION_LIGA"]);
+          $equipo->set_id($row["ID_EQUIPO"]);
         }else {
             echo "Error al consultar la base de datos: (" . $conn->errno . ") " . utf8_encode($conn->error);
         }

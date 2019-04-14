@@ -1,6 +1,26 @@
 <?php 
+	require_once __DIR__.'/includes/config.php';
+	require_once __DIR__.'/includes/Equipo.php';
+	require_once __DIR__.'/includes/Jugador.php';
+	require_once __DIR__.'/includes/Usuario.php';
 	
-	$usuario=$_SESSION['nombre']
+	$nickname=$_SESSION['nombre'];
+	$Nequipo = str_replace('%', ' ', $_POST['equipo']);
+	$equipo =  Equipo::getInfoPorNombre($Nequipo);
+	var_dump($Nequipo);
+	$usuario = Usuario::buscaUsuario($nickname);
+	$fecha=date("Y-m-d");
+    $hora=date("H:i:s");
+	$jugador = Jugador::getJugadorPorNombre($nickname);
+	var_dump($jugador);
+	if($jugador == NULL){
+		$jugador = Jugador::crea($equipo->get_id(), $usuario->id(),'0', $fecha, $hora);
+	}else{
+		$jugador = Jugador::crea($equipo->get_id(), $usuario->id(),'0', $fecha, $hora);
+	}
+	$res = $jugador->unirEquipo($jugador);
+	var_dump($res);
+	header('Location: pantallaEquipo.php?equipo='.$equipo->get_nombre_equipo());
 
  ?>
 
