@@ -10,7 +10,6 @@ if (!isset($_SESSION['esAdmin'])) {
     exit();
 }
 
-
 ?>
 
 
@@ -28,7 +27,7 @@ if (!isset($_SESSION['esAdmin'])) {
 	?>
 	
 	<div id="registro">
-		<form action="procesarEvento.php" method="POST" enctype="multipart/form-data">
+		<form action="procesarEditarEvento.php" method="POST" enctype="multipart/form-data">
 				<fieldset id="campo">
 						<legend id="log">EDITAR EVENTOS</legend>
 
@@ -45,7 +44,7 @@ if (!isset($_SESSION['esAdmin'])) {
 										foreach ($deportes as $key => $valor) { 
 						  					echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
 						  			}?></select></p>
-						  			
+
 							<p id="reg"><label id="reg">ciudad:</label> <input type="text" name="ciudad" value=""></p>
 							<p id="reg"><label id="reg">municipio:</label> <input type="text" name="municipio" value=""></p>
 							<p id="reg"><label id="reg">localizacion:</label> <input type="text" name="localizacion" value=""></p>
