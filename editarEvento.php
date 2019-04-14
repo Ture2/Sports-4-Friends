@@ -1,8 +1,18 @@
 <?php
-	require_once __DIR__.'/includes/config.php';
-	require_once __DIR__.'/includes/Deporte.php';
-	require_once __DIR__.'/includes/Eventos.php';
+
+require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/Deporte.php';
+require_once __DIR__.'/includes/Eventos.php';
+
+
+if (!isset($_SESSION['esAdmin'])) {
+    header('Location: eventos.php');
+    exit();
+}
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -15,25 +25,27 @@
 
 	<?php
 		require("includes/comun/cabecera.php");
-		require("includes/comun/menu.php");
 	?>
 	
 	<div id="registro">
 		<form action="procesarEvento.php" method="POST" enctype="multipart/form-data">
 				<fieldset id="campo">
-						<legend id="log">REGISTRO DEL EVENTO</legend>
+						<legend id="log">EDITAR EVENTOS</legend>
+
 							<p id="reg"><label id="reg">Nombre evento:</label> 
-								<select name="evento" id="evento" required>
-									<?php $evento = Eventos::listaEventos();
-										foreach ($deportes as $valor) { 
+								<select name="evento" id="evento">
+									<?php $evento = Eventos::listarEventos();
+										foreach ($deportes as $key => $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
 						  			}?></select></p>
+
 							<p id="log">Deporte:
-								<select name="deporte" id="deporte" required>
+								<select name="deporte" id="dep" required>
 									<?php $deportes = Deporte::getAll();
-										foreach ($deportes as $valor) { 
+										foreach ($deportes as $key => $valor) { 
 						  					echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
 						  			}?></select></p>
+						  			
 							<p id="reg"><label id="reg">ciudad:</label> <input type="text" name="ciudad" value=""></p>
 							<p id="reg"><label id="reg">municipio:</label> <input type="text" name="municipio" value=""></p>
 							<p id="reg"><label id="reg">localizacion:</label> <input type="text" name="localizacion" value=""></p>
@@ -49,5 +61,7 @@
 	<?php 
 		include("includes/comun/pie.php"); 
 	?>
+
+
 </body>
 </html>

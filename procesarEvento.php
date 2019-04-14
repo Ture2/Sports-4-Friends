@@ -120,6 +120,8 @@ var_dump($_POST['descripcion']);
 var_dump($_FILES['imagen']['name']);
 var_dump($ruta_foto);
 
+
+
 if (count($erroresFormulario) === 0) 
 {
 		$existeEvento = Eventos::crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion,$ruta_foto);
@@ -190,6 +192,7 @@ if (count($erroresFormulario) === 0)
 							<p id="reg"><label id="reg">Hora evento:</label> <input type="text" name="hora_evento" value=""></p>
 							<p id="reg"><label id="reg">descripcion:</label> <input type="text" name="descripcion" value=""></p>
 							<p id="log">Imagen del Equipo: <input type="file" name="imagen"></p>
+							
 							<button id= "index" type="submit" name="registro">Validar</button>
 				</fieldset>
 		</form>
