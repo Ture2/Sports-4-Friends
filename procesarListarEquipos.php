@@ -28,16 +28,22 @@
 	<?php
 		require("includes/comun/cabecera.php");
 	echo "<div id='contenido'>";
-		echo "<form>";
-			if(isset($_SESSION["login"])){
-	    	   echo "<button formaction='crearEquipo.php' class='login-equipos'>Pulsa aquí para crear un equipo</button>";
+			if(!isset($_SESSION["login"])){
+				echo "<div id='errorQuedada'>";
+					echo "<h1 id='h'>NO PUEDES VER ESTA SECCIÓN</h1>";
+				echo "<div id='errorQuedada2'>";
+					echo "<a href='login.php'><button class='login-equipos'>INICIAR SESIÓN</button></a>";
+					echo "<a href='registro.php'><button class='login-equipos'>REGISTRO</button></a>";
+					echo "<a href='index.php'><button class='login-equipos'>VOLVER</button></a>";
+				echo "</div>";
+				echo "</div>";
 	    	   //echo"<button onclick= 'location.href='crearEquipo.php''id='index' type='button' name='editar'>Pulse aqui para crear Equipo</button>";
 	    	   //<button onclick= "location.href='editarPerfil.php'" id="index" type="button" name="editar">Editar</button>
 			}else{
-				echo "<button class='login-equipos' formaction'registro.php'>Si desea crear un equipo pulse aquí para crear una cuenta</button>";
-		echo "</form>";
-		}?>
-			<?php
+				echo "<form>";
+	    	   		echo "<button formaction='crearEquipo.php' class='login-equipos'>Pulsa aquí para crear un equipo</button>";
+	    	   	echo "</form>";
+	    	   	
 			if(!isset($equipos))
 				echo "<p>Actualmente no hay ningun equipo disponible</p>";
 			else{
@@ -62,6 +68,7 @@
 			}
 
 			echo "</div>";
+		}
 			?>
 			
 		</main>

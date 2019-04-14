@@ -58,6 +58,7 @@
 						<form action="procesarSalirEquipo.php" method="POST">
 			    			<input class="login-equipos" type="submit" name ="boton"value="Abandonar Equipo"/>
 			    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
+			    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>
 						</form>
 					<?php 
 						}else 
@@ -65,6 +66,7 @@
 								<form action="procesarUnirEquipo.php" method="POST">
 					    			<input class="login-equipos" type="submit" name="boton2" value="Unirme al Equipo"/>
 					    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
+					    			<input onclick="history.back(-1)" class="login-equipos" type="button" name="boton2" value="Volver"/>
 								</form>
 						<?php 
 						}
@@ -97,6 +99,21 @@
 			  				<td><?php echo $estadisticas["empatados"]; ?></td>
 			  				<td><?php echo $estadisticas["perdidos"]; ?></td>
 			  			</tr>
+			  		</table>
+
+			  		<table id="tabla">
+			  			<tr>
+			  				<th>Jugadores</th>
+			  			</tr>
+			  			<?php
+			  				foreach ($jugadores as $key => $value){
+			  				?>
+			  			<tr>
+			  				<td> <?=$value->get_usuario();?> </td>
+			  			</tr>
+			  			<?php
+			  				}
+			  				?>
 			  		</table>
 			  		<?php
 			  			$jugadores = Jugador::getJugadoresPorEquipo($info);
