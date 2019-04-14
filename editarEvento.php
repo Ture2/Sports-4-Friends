@@ -33,8 +33,8 @@ if (!isset($_SESSION['esAdmin'])) {
 
 							<p id="reg"><label id="reg">Nombre evento:</label> 
 								<select name="evento" id="evento">
-									<?php $evento = Eventos::listarEventos();
-										foreach ($deportes as $key => $valor) { 
+									<?php $eventos = Eventos::listarEventos();
+										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
 						  			}?></select></p>
 
