@@ -7,10 +7,30 @@ $errores = array();
 
 if(isset($_SESSION["login"])){
 
-	$eventos = Eventos::listarEventos($nickname);
+	$equiposPerteneceUsuario = ...($_SESSION['nombre']);
 
-	if(!isset($eventos)){
-		$errores[] = "No hay registros disponibles";
+	if(!isset($equiposPerteneceUsuario)){
+		$errores[] = "No te has unido a ningun equipo";
+	}
+	else
+	{
+
+		$registrosEventos = RegistroEvento::buscaRegistroEventosPorEquipos($equiposPerteneceUsuario);
+
+		if(!isset($registrosEventos))
+		{
+			$errores[] = "Ningun equipo al que te has unido participa en los ventos";
+		}
+		/*
+		else
+		{
+			$arrayEventos = array();
+			foreach ($registrosEventos as $value) 
+			{
+				$arrayEventos[] = Eventos::buscarEvento($value->evento());
+			}
+		}
+		*/
 	}
 }
 else{
@@ -30,29 +50,60 @@ else{
 <body>
 
 	<?php
-		require("../includes/comun/cabecera.php");
-		require("menu.php");
+		require("includes/comun/cabecera.php");
+		require("includes/comun/menu.php");
 	?>
+
+
+	<div id="logo">
+		<img class="logo" src="images/logo.png">
+	</div>   
+	<div id="error">
+		
+		<fieldset id="errorLogin">
+			<legend id="error">ERROR</legend>
+		<?php
+			if ($_SESSION["esAdmin"] == true) {
+			
+				foreach($errores as $error) {
+					echo "<li>$error</li>";
+				}
+				if (count($errores) > 0) {
+					echo '</ul>';
+				}
+			}
+		?>
+		</fieldset>
+	</div>
+
+
 
 
 	<?php
-	if (isset($_SESSION["login"]))
-	{
-		if(empty($errores == 0))
+		if (isset($_SESSION["login"]))
 		{
-			//...
+			if(count($errores) == 0)) 
+			{
+			?>
+					<div id="eventos">
+						<fieldset id="eventos">
+							<div id="evento">
+								<?php foreach ($registrosEventos as $key => $value) {?>
+								<p id="evento"><?=$value->evento();?></p>
+								<p id="evento"><?=$value->equipo();?></p>
+								<p id="evento"><?=$value->p_victorias();?></p>
+								<p id="evento"><?=$value->fecha_creacion();?></p>
+								<?php
+							}
+							?>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+			<?php
+			}
 		}
-		else{
-			//....
-		}
-	}
-	else
-	{
-			//...
-	}
-
-
-	?>
+		?>
 
 	<?php 
 		include("includes/comun/pie.php"); 

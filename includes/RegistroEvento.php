@@ -1,20 +1,68 @@
 <?php
-/*
-----------------------------------------
-METADATA:                               |
-    imp_f (implementado y funcionando)  |
-    ^  (falta por hacer)                |
-----------------------------------------
-CLASE EVENTOS: 
-    1)debe devolver una lista de Reventos   imp
-    2)permite crear un Reventos             ^
-    3)poder eliminar un REventos             imp
-    4)actuliazar eventos                    ^
-    5)permitir editar un evento             ^
-    6)buscar evento                         ^
-*/
+
 class RegistroEvento
 {
+    public static function buscaRegistroEventosPorEquipos($equiposPerteneceUsuario)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $result = false;
+
+        for($i = 0; $i < count($equiposPerteneceUsuario); $i++)
+        {
+            $query = sprintf("SELECT * FROM Registro_eventos RE WHERE equipo = '%s'", $conn->real_escape_string($equiposPerteneceUsuario[i]));
+
+            $rs = $conn->query($query);
+            if ($rs) 
+            {
+                if ( $rs->num_rows == 1) 
+                {
+                    $fila = $rs->fetch_assoc();
+
+                    $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
+
+                    $evento->id_registro = $row['id_registro'];
+
+                    $result[] = $registroEvento;
+                }
+            $rs->free();
+            }
+
+        }
+    }
+
+    public static function buscaRegistroEvento($evento, $equipo)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+
+        $query = sprintf("SELECT * FROM Registro_eventos RE WHERE RE.evento = '%s'  and RE.equipo = '%s'", $conn->real_escape_string($evento),
+                    $conn->real_escape_string($equipo));
+
+        $rs = $conn->query($query);
+        $result = false;
+
+        if ($rs) {
+            if ( $rs->num_rows == 1) {
+                $fila = $rs->fetch_assoc();
+
+                $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
+
+                $evento->id_registro = $row['id_registro'];
+
+                $result = $registroEvento;
+            }
+            $rs->free();
+        } 
+        else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $result;
+
+    }
+
+
     public static function listarRegistroEventos()
     {
         $app = Aplicacion::getSingleton();
@@ -26,7 +74,7 @@ class RegistroEvento
             $result = array();
             while($row = $rs->fetch_assoc())
             {
-                $evento = new RegistroEvento($row['evento'],$row['equipo'],$row['porcentaje_victorias'],$row['fecha_creacion']);
+                $evento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
                 $evento->id_evento = $row['id_registro'];
                 $result[] = $evento;
             }
@@ -39,12 +87,12 @@ class RegistroEvento
         return $result;
     }
 
-    public static function elimnarRegistroEvento($id_registro)
+    public static function eliminarRegistroEvento($id_registro)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        $query=sprintf("DELETE FROM Eventos WHERE nombre_evento='%'"
+        $query=sprintf("DELETE FROM registro_eventos RE WHERE RE.id_registro='%'"
             , $conn->real_escape_string($id_registro));
 
         $eliminar = false;
@@ -56,70 +104,43 @@ class RegistroEvento
         return $eliminar;
     }
 
-    public static function crearRegistroEvento($evento, $deporte, $equipo, $porcentaje_victorias, $fecha_creacion)
+    public static function crearRegistroEvento($evento, $equipo, $p_victorias, $fecha_creacion)
     {
-        $evento = Eventos::buscarEvento($evento);
+        $registro = RegistroEvento::buscaRegistroEvento($evento, $equipo);
         if ($evento) {
             return false;
         }
-        $evento = new RegistroEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $foto_evento);
+        $registroEvento = new RegistroEvento($evento, $equipo, $p_victorias, $fecha_creacion);
 
-        return self::guardarEvento($evento);
+        return self::guardarEvento($registroEvento);
     }
 
-    public static function buscarEvento($nombre_evento)
+    public static function guardarRegistroEvento($registroEvento)
     {
-        $app = Aplicacion::getSingleton();
-        $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Eventos E WHERE E.nombre_evento= '%s'", $conn->real_escape_string($nombre_evento));
-
-        $result = false; 
-
-        if (($rs = $conn->query($query))  && ($rs->num_rows == 1))
-        {   
-            $row = $rs->fetch_assoc();
-            $evento = new Eventos($row['nombre_evento'],$row['deporte'], $row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['foto_evento']);
-            $evento->id_evento = $row['id_evento'];
-            $result[] = $evento;
-            $rs->free();
-        } 
-        else {
-            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
-            exit();
-        }
-        return $result;
-    }
-
-    public static function guardarRegistroEvento($evento)
-    {
-        if ($evento->id_evento == null) {
-             return self::insertarRegistroEvento($evento);
+        if ($registroEvento->id_registro == null) {
+             return self::insertarRegistroEvento($RegistroEvento);
         }
     }
        
 
-    private static function insertarRegistroEvento($evento)
+    private static function insertarRegistroEvento($registroEvento)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO Eventos(nombre_evento, deporte, ciudad, municipio, localizacion, fecha_creacion, fecha_evento, hora_evento, descripcion, foto_evento) VALUES('%s', '%s', '%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')"
-            , $conn->real_escape_string($evento->nombre_evento)
-            , $conn->real_escape_string($evento->deporte)
-            , $conn->real_escape_string($evento->ciudad)
-            , $conn->real_escape_string($evento->municipio)
-            , $conn->real_escape_string($evento->localizacion)
-            , $conn->real_escape_string($evento->fecha_creacion)
-            , $conn->real_escape_string($evento->fecha_evento)
-            , $conn->real_escape_string($evento->hora_evento)
-            , $conn->real_escape_string($evento->descripcion)
-            , $conn->real_escape_string($evento->foto_evento));
-        if ( $conn->query($query) ) {
-            $evento->id = $conn->insert_id;
+        $query=sprintf("INSERT INTO Eventos(evento, equipo, p_victorias, fecha_creacion) VALUES('%s', '%s', '%s', '%s')"
+            , $conn->real_escape_string($registroEvento->evento)
+            , $conn->real_escape_string($registroEvento->equipo)
+            , $conn->real_escape_string($registroEvento->p_victorias)
+            , $conn->real_escape_string($registroEvento->fecha_creacion));
+
+        if ( $conn->query($query) )
+        {
+            $registroEvento->id = $conn->insert_id;
         } else {
             echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
         }
-        return $evento;
+        return $registroEvento;
     }
     
 
@@ -131,23 +152,23 @@ class RegistroEvento
     private $id_registro;
     private $evento;
     private $equipo;
-    private $porcentaje_victorias;
+    private $p_victorias;
     private $fecha_creacion;
    
     
 
     //Constructora
-    private function __construct($evento, $deporte, $equipo, $porcentaje_victorias, $fecha_creacion)
+    private function __construct($evento, $deporte, $equipo, $p_victorias, $fecha_creacion)
     {
         $this->evento= $evento;
         $this->equipo= $equipo;
-        $this->porcentaje_victorias=$porcentaje_victorias;
+        $this->p_victorias=$p_victorias;
         $this->fecha_creacion=$fecha_creacion;
 
          //Funciones para acceder a los atributos de Eventos
          public function evento(){return $this->evento;}
          public function equipo(){return $this->equipo;}
-         public function porcentaje_victorias(){return $this->porcentaje_victorias;}
+         public function p_victorias(){return $this->p_victorias;}
          public function fecha_creacion(){return $this->fecha_creacion;}
 
     }

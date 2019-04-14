@@ -15,6 +15,38 @@ CLASE EVENTOS:
 */
 class Eventos
 {
+
+    public static buscaEvento($nombre_evento)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+
+        $query = sprintf("SELECT * FROM Eventos E WHERE E.nombre_evento = '%s'", $conn->real_escape_string($nombre_evento));
+
+        $rs = $conn->query($query);
+        $result = false;
+
+        if ($rs) {
+            if ( $rs->num_rows == 1) {
+                $fila = $rs->fetch_assoc();
+
+                $evento = new Eventos($row['nombre_evento'],$row['deporte'],$row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['ruta_foto']);
+
+                $evento->id_evento = $row['id_evento'];
+
+                $result = $evento;
+            }
+            $rs->free();
+        } 
+        else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $result;
+
+    }
+
+
     public static function listarEventos()
     {
         $app = Aplicacion::getSingleton();
@@ -50,7 +82,7 @@ class Eventos
     }
 
     //solo el admin
-    public static function elimnarEvento($nombre_evento)
+    public static function eliminarEvento($nombre_evento)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();

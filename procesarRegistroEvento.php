@@ -14,7 +14,6 @@ COMPROBACIONES:
 */
 
 require_once __DIR__.'/includes/config.php';
-require_once __DIR__.'/includes/Usuario.php';
 require_once __DIR__.'/includes/Equipo.php';
 require_once __DIR__.'/includes/Deporte.php';
 require_once __DIR__.'/includes/Evento.php';
@@ -27,55 +26,62 @@ if (! isset($_POST['login']) ) {
 $erroresFormulario = array();
 
 
-//RECUPERAR DEL FORMULARIO UN DATO DE <DATALIST> 
-
-$nombreEvento = isset($_POST['evento']) ? $_POST['evento'] : null;
-if ( empty($nombre) || mb_strlen($nombre) < 5 ) {
+$nombre_evento = isset($_POST['evento']) ? $_POST['evento'] : null;
+if ( empty($nombre_evento) || mb_strlen($nombre_evento) < 5 ) {
 	$erroresFormulario[] = "El nombre del evento tiene que tener una longitud de al menos 5 caracteres.";
 }
 
-$nombreEquipo = isset($_POST['equipo']) ? $_POST['equipo'] : null;
-if ( empty($correo) || mb_strlen($correo) < 2 ) {
-    $erroresFormulario[] = "El correo tiene que tener una longitud de al menos 5 caracteres.";
+$equipo = isset($_POST['equipo']) ? $_POST['equipo'] : null;
+if ( empty($equipo) || mb_strlen($equipo) < 5 ) {
+    $erroresFormulario[] = "El equipo tiene que tener una longitud de al menos 5 caracteres.";
 }
 
-//----------------------------------------------------------------------------------------------------------------
+$evento = Eventos::buscaEvento($nombre_evento);
 
-$nickUsuario = isset($_POST['nickUsuario']) ? $_POST['nickUsuario'] : null;
-
-if ( empty($nombreUsuario) || mb_strlen($nombreUsuario) < 5 ) {
-	$erroresFormulario[] = "El nombre de usuario tiene que tener una longitud de al menos 5 caracteres.";
+if(empty($evento))
+{
+	$erroresFormulario[] = "El evento no existe";
 }
+else
+{
+	$deporte = Deporte::buscaDeporte($evento->deporte);
+
+}
+
+$equipo = Equipo::buscaEquipo($equipo);
+
+if(empty($equipo))
+{
+	$erroresFormulario[] = "El equipo no existe";
+}
+else
+{
+	if($deporte->id() != $equipo->deporte())
+	{
+		$erroresFormulario[] = "Tú equipo no esta autorizado para registrarse en este evento"
+	}
+
+}
+
+
+
 
 if (count($erroresFormulario) === 0) {
 
-	//CONSTRUCTORA $usuario = Usuario::crea($nombreUsuario, $nombre, $correo, $password, 'USER');
+	$fecha_creacion=date("Y-m-d");
+	$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $equipo->get_p_victorias(), $fecha_creacion));
 
-    /*
-    	0) busco si existe el evento, si existe creo un objeto de mi evento
-    		|_>!error
-		
-		1) busco si el equipo existe, si existe creo un objeto de mi equipo
-			|_>!error
-
-    	2) busco si existe un usuario con ese nick y me quedo con su id_usuario,
-    		-con el id_usuario busco si existe un jugador con ese id_usuario donde sea admin
-    		en el equipo que introdujo el usuario.
-    		|_>!error
-    */
-
-
-    /*
-    if (! $usuario ) {
-        $erroresFormulario[] = "El usuario ya existe";
-    } else {
-        $_SESSION['login'] = true;
-        $_SESSION['nombre'] = $nombreUsuario;
-        header('Location: index.php');
-        exit();
-        
+	if(empty($registro))
+	{
+		$erroresFormulario[] = "Error al registrar el equipo en el evento";
+	}
+	else 
+    {       
+            header('Location: misEventos.php');
+            exit();
     }
-    */
+
+  
 }
 
 ?>
@@ -90,8 +96,8 @@ if (count($erroresFormulario) === 0) {
 <body>
 
 	<?php
-		require("../includes/comun/cabecera.php");
-		require("menu.php");
+		require("includes/comun/cabecera.php");
+		require("includes/comun/menu.php");
 	?>
 
 	<div id="logo">
@@ -110,33 +116,29 @@ if (count($erroresFormulario) === 0) {
 		}
 	?>		
 
-	<div id="registro">
+	<div id="contenido">
 		<form action="procesarRegistroEvento.php" method="POST">
-				<fieldset id="campo">
-				<legend id="log">Registra tu Equipo en el evento</legend>
-					Evento:<input list="lEventos" name="evento">
-						<datalist id="lEventos">
-								<option>Url</option>
-								<option>PRU1E</option>
-								<option>PRUE2</option>
-								<option>PRUE3</option>
-								<option>PRUE4</option>
-								<option>PRUE5</option>
-							</datalist>			
-						</input>
-					Equipos:<input list="lEquipos" name="equipo">
-						<datalist id="lEquipos">
-								<option>Url</option>
-								<option>PRU1E</option>
-								<option>PRUE2</option>
-								<option>PRUE3</option>
-								<option>PRUE4</option>
-								<option>PRUE5</option>
+				<fieldset id="evento">
+				<legend id="log">Registra tu equipo en el evento</legend>
+					<p id="log">Evento: <input list="eventos" name="evento">
+						<datalist id="eventos">
+								<?php
+										foreach ($eventos as $valor) { 
+						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
+						  		?>
+							</datalist>		
+						</input></p>
+					<p id="log">Equipos: <input list="equipos" name="equipo">
+						<datalist id="equipos">
+								<?php
+										foreach ($equipos as $valor) { 
+						  					echo '<option value="'.$valor->set_nombre_equipo().'" >'.$valor->set_nombre_equipo().'</option>';
+						  		?>
 						</datalist>	
-							</input>	
+							</input></p>
 
-			 NickUser:<input type="text" name="nickUsuario" value="">
 			<button id= "index" type="submit" name="registro">Validar</button>
+			<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
 		</fieldset>
 	</form>
 	</div>
