@@ -5,13 +5,9 @@ require_once __DIR__.'/includes/RegistroEvento.php';
 //guardamos en un array los posibles errores que puedan darse
 $errores = array();
 
-if(isset($_SESSION["login"]) && isset($_SESSION["nickname"])){
-	
-	/*
-	CONSULTA SQL:
-	todos los equipos donde pertenezca el usuario y ademas este registrado el equipo en un evento
-	*/
-	$eventos = Eventos::listarRegistroEvento($nickname);
+if(isset($_SESSION["login"])){
+
+	$eventos = Eventos::listarEventos($nickname);
 
 	if(!isset($eventos)){
 		$errores[] = "No hay registros disponibles";
