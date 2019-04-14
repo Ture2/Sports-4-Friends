@@ -4,6 +4,7 @@
 	require_once __DIR__.'/includes/Jugador.php';
 
 	$info = Equipo::getInfoPorNombre($_GET['equipo']);
+	$_GET['equipo'] = str_replace(' ', '%', $info->get_nombre_equipo());
 	$estadisticas = $info->get_estadisticas();
 
 ?>
@@ -46,19 +47,24 @@
 						<?php 
 					}else {
 
-						$jugador = Jugador::getJugadorPorNombre($_SESSION['nombre']);
-
-						if($_SESSION["login"] && !is_null($jugador)) { ?>
+						$jugador = Jugador::getJugadorPorNombreDeUnEquipo($_SESSION['nombre'], $info->get_nombre_equipo());
+						$jugadores = Jugador::getJugadoresPorEquipo($info);
+						if(!is_null($jugador)){
+								if($jugador->compruebaJugadorEnEquipo($jugadores, $jugador) == false)
+									$jugador = null;
+							}
+							$jugadores = Jugador::getJugadoresPorEquipo($info);
+						if($_SESSION["login"] && !is_null($jugador) &&  $jugador->compruebaJugadorEnEquipo($jugadores, $jugador) == true) { ?>
 						<form action="procesarSalirEquipo.php" method="POST">
-			    			<input class="login-equipos" type="submit" value="Abandonar Equipo"/>
-			    			<input type="hidden" name="usuario" value=<?php echo $_SESSION['nombre'];?>>
+			    			<input class="login-equipos" type="submit" name ="boton"value="Abandonar Equipo"/>
+			    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
 						</form>
 					<?php 
 						}else 
 							if($_SESSION["login"] && is_null($jugador)){ ?>
-								<form action="procesarUnirmeEquipo.php" method="POST">
-					    			<input class="login-equipos" type="submit" value="Unirme al Equipo"/>
-					    			<input type="hidden" name="usuario" value=<?php echo $_SESSION['nombre'];?>>
+								<form action="procesarUnirEquipo.php" method="POST">
+					    			<input class="login-equipos" type="submit" name="boton2" value="Unirme al Equipo"/>
+					    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
 								</form>
 						<?php 
 						}
@@ -92,6 +98,10 @@
 			  				<td><?php echo $estadisticas["perdidos"]; ?></td>
 			  			</tr>
 			  		</table>
+			  		<?php
+			  			$jugadores = Jugador::getJugadoresPorEquipo($info);
+			  			var_dump($jugadores);
+			  		  ?>
 			  	</div>
 		</div>
 	  	

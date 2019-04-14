@@ -13,22 +13,22 @@
 
 		<?php
 		if (isset($_SESSION["login"])){
-				echo "<div id='eventos'>";
-					echo "<h1 id='h'>Bar Manolo</h1>";
+				echo "<div id='quedadas'>";
+					echo "<h1 id='h1'>Bar Manolo</h1>";
 					echo "<img id='quedada' src='images/bar.jpg'></img>";
-					echo "<pre id='texto'>Tu bar de confianza.</pre>";
+					echo "<pre id='texto1'>Tu bar de confianza.</pre>";
 				echo "</div>";
 
-				echo "<div id='eventos'>";
-					echo "<h1 id='h'>Parque de la plaza</h1>";
+				echo "<div id='quedadas'>";
+					echo "<h1 id='h1'>Parque de la plaza</h1>";
 					echo "<img id='quedada' src='images/parque.jpg'></img>";
-					echo "<pre id='texto'>Parque situado en la calle falsa 123.</pre>";
+					echo "<pre id='texto1'>Parque situado en la calle falsa 123.</pre>";
 				echo "</div>";
 
-				echo "<div id='eventos'>";
-					echo "<h1 id='h'>Estadio Imperial</h1>";
+				echo "<div id='quedadas'>";
+					echo "<h1 id='h1'>Estadio Imperial</h1>";
 					echo "<img id='quedada' src='images/estadio.jpg'></img>";
-					echo "<pre id='texto'>El polideportivo favorito de los deportistas.</pre>";
+					echo "<pre id='texto1'>El polideportivo favorito de los deportistas.</pre>";
 				echo "</div>";
 		}
 		else{
