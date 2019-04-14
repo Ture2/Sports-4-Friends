@@ -1,16 +1,22 @@
 <?php
+
+require_once __DIR__ . '/Aplicacion.php';
+
+
 class Eventos
 {
-    public static function  buscaEvento($nombre_evento)
+    public static function  buscaEvento($nombreEvento)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        $query = sprintf("SELECT * FROM Eventos E WHERE E.nombre_evento = '%s'", $conn->real_escape_string($nombre_evento));
+        echo "hola caracola";
+        $query = sprintf("SELECT * FROM eventos e WHERE e.nombre_evento='%s'", $conn->real_escape_string($nombreEvento));
 
         $rs = $conn->query($query);
-        $result = false;
 
+        $result = false;
+        var_dump($rs);
         if ($rs) {
             if ( $rs->num_rows == 1)
             {
@@ -26,7 +32,7 @@ class Eventos
             $rs->free();
         } 
         else {
-            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            echo "Error al consultar en la BD oeee: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
         }
         return $result;
@@ -82,7 +88,7 @@ class Eventos
 
     public static function crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion,$fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $ruta_foto)
     {
-        $evento = self::buscarEvento($nombre_evento);
+        $evento = self::buscaEvento($nombre_evento);
         if ($evento) {
             return false;
         }
@@ -122,7 +128,7 @@ class Eventos
         if ($evento->id_evento !== null) {
             return self::actualizarEvento($evento);
         }
-        return self::insertarEvenSSto($evento);
+        return self::insertarEvento($evento);
     }
 
     private static function insertarEvento($evento)
