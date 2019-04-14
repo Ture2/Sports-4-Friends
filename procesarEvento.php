@@ -2,8 +2,9 @@
 <?php
 
 require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/Eventos.php';
 require_once __DIR__.'/includes/Deporte.php';
-require_once __DIR__.'includes/Eventos.php';
+
 
 if (!isset($_SESSION['esAdmin'])) {
     header('Location: login.php');

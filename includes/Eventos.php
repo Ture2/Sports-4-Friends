@@ -1,8 +1,6 @@
 <?php
-
 class Eventos
 {
-
     public static function  buscaEvento($nombre_evento)
     {
         $app = Aplicacion::getSingleton();
