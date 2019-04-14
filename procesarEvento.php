@@ -3,6 +3,7 @@
 
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Deporte.php';
+require_once __DIR__.'includes/Eventos.php';
 
 if (!isset($_SESSION['esAdmin'])) {
     header('Location: login.php');
@@ -85,7 +86,7 @@ if (($ruta == !NULL) && ($_FILES['imagen']['size'] <= 200000))
     	}
     	else
     	{
-    		$erroresFormulario[] = "No se ha podido guardar la imagen"
+    		$erroresFormulario[] = "No se ha podido guardar la imagen";
     	}
    	} 
     else 
@@ -120,7 +121,7 @@ var_dump($ruta_foto);
 
 if (count($erroresFormulario) === 0) 
 {
-		$existeEvento = Eventos::crearEvento($nombre_evento,$deporte,$ciduad,$municipio,$localizacion,$fecha_creacion,$fecha_evento,$hora_evento,$descripcion,$fecha_creacion,$ruta_foto);
+		$existeEvento = Eventos::crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion,$ruta_foto);
     
     if (!$existeEvento) 
     {

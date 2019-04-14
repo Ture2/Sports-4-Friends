@@ -46,15 +46,9 @@ class Eventos
         if ($rs = $conn->query($query))
         {   
             $result = array();
-
-            //cargo en mi variable fila cada una de mis tuplas
             while($row = $rs->fetch_assoc())
             {
-                /*
-                1)cargo en el array el objeto (valor) 
-                2)el objecto es una de las tuplas devueltas de la consulta
-                3)se instancia el objeto con el orden de los campos sport4friends.evento
-                */
+              
                 $evento = new Eventos($row['nombre_evento'],$row['deporte'],$row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['ruta_foto']);
 
                 $evento->id_evento = $row['id_evento'];
@@ -104,19 +98,21 @@ class Eventos
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        $query = sprintf("SELECT * FROM Eventos E WHERE E.nombre_evento= '%s'", $conn->real_escape_string($nombre_evento));
+        $query = sprintf("SELECT * FROM Eventos E WHERE E.=nombre_evento '%s'", $conn->real_escape_string($nombre_evento));
 
-        $result = false; 
+        $result = false;
 
         if (($rs = $conn->query($query))  && ($rs->num_rows == 1))
         {   
             $row = $rs->fetch_assoc();
             $evento = new Eventos($row['nombre_evento'],$row['deporte'], $row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['ruta_foto']);
             $evento->id_evento = $row['id_evento'];
+
             $result = $evento;
             $rs->free();
         } 
-        else {
+        else 
+        {
             echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
         }
