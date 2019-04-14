@@ -58,18 +58,6 @@ var_dump($_SESSION["esAdmin"]);
 					echo "<a href='registroEvento.php'><button class='login-equipos'>REGISTRATE</button></a>";
 				}
 
-				//ponerlo en el centro 
-				
-
-			
-				/*
-				recorro todos los eventos disponibles mostrando:
-					-nombre del evento
-					-url de la foto
-					-decripcion del evento
-				que recupero del array de objetos donde tengo mis eventos.
-
-				*/
 				foreach ($eventos as $key => $value) {
 				?>
 				<div id="eventos">

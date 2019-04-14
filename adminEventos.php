@@ -40,10 +40,12 @@ var_dump($_SESSION["esAdmin"]);
 
 	<?php
 		require("includes/comun/cabecera.php");
+		require("include/comun/menu.php");
 	?>
 
 	
 	<?php
+	
 	if ($_SESSION["esAdmin"] == true){
 		if(empty($errores == 0)) 
 		{
@@ -56,7 +58,7 @@ var_dump($_SESSION["esAdmin"]);
 				<div id="eventos">
 					<fieldset id="eventos">
 						<div id="evento">
-							<?php foreach ($eventos as $key => $value) {?>
+							<?php foreach ($eventos as $value) {?>
 							<p id="evento"><?=$value->nombre_evento();?></p>
 							<p id="evento"><?=$value->deporte();?></p>
 							<p id="evento"><?=$value->ciudad();?></p>

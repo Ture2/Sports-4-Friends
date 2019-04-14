@@ -1,34 +1,19 @@
 
 <?php
-/*
-----------------------------------------
-METADATA:                               |
-    imp_f (implementado y funcionando)  |
-    ^  (falta por hacer)                |
-----------------------------------------
-COMPROBACIONES:
-   -errores en un array $erroresFormulario; 			imp
-   -datos del post  									imp
-   -comprobar que los datos no son nulos 				imp
-
-*/
 
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Deporte.php';
-require_once __DIR__.'/includes/Eventos.php';
 
 if (!isset($_SESSION['esAdmin'])) {
     header('Location: login.php');
     exit();
 }
 
-
 $erroresFormulario = array();
-
+ 
 $fecha_creacion=date("Y-m-d");
 
-$ruta = $_FILES['imagen']['name'];
-
+$ruta=$_FILES['imagen']['name'];
 
 $nombre_evento = isset($_POST['nombre_evento']) ? $_POST['nombre_evento'] : null;
 if ( empty($nombre_evento) || mb_strlen($nombre_evento) < 2 ) {
@@ -126,20 +111,9 @@ var_dump($_POST['descripcion']);
 var_dump($_POST['imagen']);
 var_dump($ruta_foto);
 
-
 if (count($erroresFormulario) === 0) 
 {
-		$existeEvento = Eventos::crearEvento($nombre_evento,
-											 $deporte,
-											 $ciduad,
-											 $municipio,
-											 $localizacion,
-											 $fecha_creacion,
-											 $fecha_evento,
-											 $hora_evento,
-											 $descripcion,
-											 $fecha_creacion,
-											 $ruta_foto);
+		$existeEvento = Eventos::crearEvento($nombre_evento,$deporte,$ciduad,$municipio,$localizacion,$fecha_creacion,$fecha_evento,$hora_evento,$descripcion,$fecha_creacion,$ruta_foto);
     
     if (!$existeEvento) 
     {
@@ -152,9 +126,7 @@ if (count($erroresFormulario) === 0)
     }
 } 
 
-
 ?>
-
 
 <html>
 <head>
@@ -164,14 +136,21 @@ if (count($erroresFormulario) === 0)
 </head>
 
 <body>
+
+	<?php 
+		require("includes/comun/cabecera.php");
+		require("includes/comun/menu.php"); 
+	?>
+
 	<div id="logo">
 		<img class="logo" src="images/logo.png">
 	</div>   
 	<div id="error">
+		
 		<fieldset id="errorLogin">
 			<legend id="error">ERROR</legend>
 		<?php
-			if ($_SESSION["esAdmin"] == true) {  //Usuario incorrecto
+			if ($_SESSION["esAdmin"] == true) {
 			
 				foreach($erroresFormulario as $error) {
 					echo "<li>$error</li>";
@@ -201,7 +180,7 @@ if (count($erroresFormulario) === 0)
 							<p id="reg"><label id="reg">Fecha evento:</label> <input type="text" name="fecha_evento" value=""></p>
 							<p id="reg"><label id="reg">Hora evento:</label> <input type="text" name="hora_evento" value=""></p>
 							<p id="reg"><label id="reg">descripcion:</label> <input type="text" name="descripcion" value=""></p>
-							<p id="log"><label id="reg">Imagen del Equipo:</label><input type="file" name="imagen"></p>
+							<p id="log">Imagen del Equipo: <input type="file" name="imagen"></p>
 							<button id= "index" type="submit" name="registro">Validar</button>
 				</fieldset>
 		</form>
@@ -212,12 +191,5 @@ if (count($erroresFormulario) === 0)
 	?>
 
 
-
-
-	<!--TERMINAR EL FORMULARIO EN ALTAEVENTO Y COPIARLO AQUI
-
-	<?php 
-		include("includes/comun/pie.php"); 
-	?>
 </body>
 </html>
