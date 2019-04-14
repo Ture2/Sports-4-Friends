@@ -1,22 +1,9 @@
 <?php
-/*
-----------------------------------------
-METADATA:                               |
-    imp_f (implementado y funcionando)  |
-    ^  (falta por hacer)                |
-----------------------------------------
-CLASE EVENTOS: 
-    1)debe devolver una lista de eventos    imp_f
-    2)permite crear un eventos              imp
-    3)poder eliminar un Eventos             imp
-    4)actuliazar eventos                    imp
-    5)permitir editar un evento             imp
-    6)buscar evento                         imp
-*/
+
 class Eventos
 {
 
-    public static buscaEvento($nombre_evento)
+    public static function  buscaEvento($nombre_evento)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
@@ -27,8 +14,10 @@ class Eventos
         $result = false;
 
         if ($rs) {
-            if ( $rs->num_rows == 1) {
-                $fila = $rs->fetch_assoc();
+            if ( $rs->num_rows == 1)
+            {
+
+                $row = $rs->fetch_assoc();
 
                 $evento = new Eventos($row['nombre_evento'],$row['deporte'],$row['ciudad'],$row['municipio'],$row['localizacion'],$row['fecha_creacion'],$row['fecha_evento'],$row['hora_evento'],$row['descripcion'],$row['ruta_foto']);
 

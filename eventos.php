@@ -2,32 +2,36 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Eventos.php';
 
-//guardamos en un array los posibles errores que puedan darse
+
+if (!isset($_SESSION['esAdmin'])) {
+    header('Location: login.php');
+    exit();
+}
+
+
 $errores = array();
 
-if(isset($_SESSION["login"])){
-	/*
-	1)guardo en un variable el array de listar eventos
-	2)comprueba si la variable esta declarada y no es nula
-	*/
-	$eventos = Eventos::listarEventos();
 
-	if(!isset($eventos)){
-		$errores[] = "No hay registros disponibles";
-	}
+$eventos = Eventos::listarEventos();
+
+if(!isset($eventos)){
+	$errores[] = "No hay registros disponibles";
 }
-else{
+else
+{
 	$errores[] = "No puedes acceder al contenido";
 }
 
 /*
 Depuracion: solo para mostrar informacion de las variables
 
-*/
+
 var_dump($eventos);
 var_dump($_SESSION);
 var_dump($errores);
 var_dump($_SESSION["esAdmin"]);
+*/
+
 
 ?>
 

@@ -79,8 +79,14 @@ if (($ruta == !NULL) && ($_FILES['imagen']['size'] <= 200000))
      
       
      	 // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
-    	move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio.$ruta);
-    	$ruta_foto = "images/eventos/".$ruta;     	
+    	if(move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio.$ruta))
+    	{
+    		$ruta_foto = "images/eventos/".$ruta;     	
+    	}
+    	else
+    	{
+    		$erroresFormulario[] = "No se ha podido guardar la imagen"
+    	}
    	} 
     else 
     {
@@ -100,6 +106,7 @@ else
 //DEPURACION:
 
 var_dump($_FILES);
+var_dump($_POST['nombre_evento']);
 var_dump($_POST['deporte']);
 var_dump($_POST['ciudad']);
 var_dump($_POST['municipio']);
@@ -108,7 +115,7 @@ var_dump($fecha_creacion);
 var_dump($_POST['fecha_evento']);
 var_dump($_POST['hora_evento']);
 var_dump($_POST['descripcion']);
-var_dump($_POST['imagen']);
+var_dump($_FILES['imagen']['name']);
 var_dump($ruta_foto);
 
 if (count($erroresFormulario) === 0) 

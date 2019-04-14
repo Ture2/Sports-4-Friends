@@ -2,32 +2,37 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Eventos.php';
 
-//guardamos en un array los posibles errores que puedan darse
+
+if (!isset($_SESSION['esAdmin'])) {
+    header('Location: eventos.php');
+    exit();
+}
+
+
 $errores = array();
 
-if($_SESSION["esAdmin"] == true){
-	
-	/*
-	CONSULTA SQL:
-	todos los equipos donde pertenezca el usuario y ademas este registrado el equipo en un evento
-	*/
-	$eventos = Eventos::listarEventos();
 
-	if(!isset($eventos)){
-		$errores[] = "No hay registros disponibles";
-	}
+$eventos = Eventos::listarEventos();
+
+if(!isset($eventos))
+{
+	$errores[] = "No hay registros disponibles";
 }
-else{
-		$errores[] = "No puedes acceder al contenido";
+else
+{
+	$errores[] = "No puedes acceder al contenido";
 }
+
+/*
+debuggin
 
 var_dump($eventos);
 var_dump($_SESSION);
 var_dump($errores);
 var_dump($_SESSION["esAdmin"]);
+*/
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +45,6 @@ var_dump($_SESSION["esAdmin"]);
 
 	<?php
 		require("includes/comun/cabecera.php");
-		require("include/comun/menu.php");
 	?>
 
 	

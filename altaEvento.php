@@ -2,13 +2,12 @@
 	require_once __DIR__.'/includes/config.php';
 	require_once __DIR__.'/includes/Deporte.php';
 
-if($_SESSION["esAdmin"] == true){
-
-	$deporte = Deporte::getAll();
-
-else{
-	header('Location: eventos.php');
+if (!isset($_SESSION['esAdmin'])) {
+    header('Location: login.php');
+    exit();
 }
+
+$deporte = Deporte::getAll();
 
 ?>
 
@@ -23,7 +22,6 @@ else{
 
 	<?php
 		require("includes/comun/cabecera.php");
-		//require("includes/comun/menu.php");
 	?>
 	
 	<?php
