@@ -95,6 +95,7 @@ class RegistroEvento
         if ($evento->id_evento == null) {
              return self::insertarRegistroEvento($evento);
         }
+    }
        
 
     private static function insertarRegistroEvento($evento)
@@ -143,13 +144,13 @@ class RegistroEvento
         $this->porcentaje_victorias=$porcentaje_victorias;
         $this->fecha_creacion=$fecha_creacion;
 
-    //Funciones para acceder a los atributos de Eventos
-    public function evento(){return $this->evento;}
-    public function equipo(){return $this->equipo;}
-    public function porcentaje_victorias(){return $this->porcentaje_victorias;}
-    public function fecha_creacion(){return $this->fecha_creacion;}
+         //Funciones para acceder a los atributos de Eventos
+         public function evento(){return $this->evento;}
+         public function equipo(){return $this->equipo;}
+         public function porcentaje_victorias(){return $this->porcentaje_victorias;}
+         public function fecha_creacion(){return $this->fecha_creacion;}
 
-
+    }
 ?>
 
 

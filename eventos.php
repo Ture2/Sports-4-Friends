@@ -48,11 +48,20 @@ var_dump($_SESSION["esAdmin"]);
 		if (isset($_SESSION["login"])){
 
 			if(empty($errores == 0)){
-				echo "<a href='registroEvento.php'><button class='login-equipos'>REGISTRATE</button></a>";
 
-				if(isset($_SESSION["esAdmin"])){
-					echo "<a href='AdminEventos.php'><button class='login-equipos'>MIS EVENTOS</button></a>";
+				if($_SESSION["esAdmin"] == true){
+
+					echo "<a href='adminEventos.php'><button class='login-equipos'>ADMINISTRAR EVENTOS</button></a>";
 				}
+				else{
+					echo "<a href='misEventos.php'><button class='login-equipos'>MIS EVENTOS</button>";
+					echo "<a href='registroEvento.php'><button class='login-equipos'>REGISTRATE</button></a>";
+				}
+
+				//ponerlo en el centro 
+				
+
+			
 				/*
 				recorro todos los eventos disponibles mostrando:
 					-nombre del evento
@@ -65,7 +74,7 @@ var_dump($_SESSION["esAdmin"]);
 				?>
 				<div id="eventos">
 					<h1 id="h"><?=$value->nombre_evento();?></h1>
-					<img id="img_eventos" src="<?=$value->foto_evento();?>"></img>
+					<img id="img_eventos" src="<?=$value->ruta_foto();?>"></img>
 					<pre id=texto><?=$value->descripcion();?></pre>
 				</div>
 				<?php
