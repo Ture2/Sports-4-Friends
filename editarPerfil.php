@@ -37,11 +37,11 @@
 			<div id="datos">
 			<form action="procesarEditarPerfil.php" method="POST">
 				<fieldset id="perfil">
-					<p id="perfil">Usuario:<input type="text" name="username" value=""></p>
-					<p id="perfil">Nombre:<input type="text" name="nombre" value=""></p>
-					<p id="perfil">Correo:<input type="text" name="correo" value=""></p>
-					<p id="perfil">Nueva Contraseña:<input type="password" name="password" value=""></p>
-					<p id="perfil">Repetir Nueva Contraseña:<input type="password" name="password2" value=""></p>
+					<p id="perfil">Usuario: <input type="text" name="username" value=""></p>
+					<p id="perfil">Nombre: <input type="text" name="nombre" value=""></p>
+					<p id="perfil">Correo: <input type="text" name="correo" value=""></p>
+					<p id="perfil">Nueva Contraseña: <input type="password" name="password" value=""></p>
+					<p id="perfil">Repetir Nueva Contraseña: <input type="password" name="password2" value=""></p>
 					<button id= "index" type="submit" name="guardar">Guardar Cambios</button>
 					<button formaction="perfil.php" id="index" type="submit" name="cancelar">Cancelar</button>
 				</fieldset>

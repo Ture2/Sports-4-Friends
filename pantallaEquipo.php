@@ -7,21 +7,31 @@
 	$estadisticas = $info->get_estadisticas();
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	<meta charset="utf-8">
+	<title>Detalles</title>
+</head>
+<body>
+
 	<?php
 		require("includes/comun/cabecera.php");
 	?>
 
 	<div id="contenido">
 
-	  	<p><?php echo '/Sports-4-Friends/images/logo_equipos/'.$info->get_nombre_equipo();?></p>
+	  	<h1 id="h"><?php echo $info->get_nombre_equipo();?></h1>
 
 		  	<div id="team">
 		  		<img id="fut1" src=<?php echo '/Sports-4-Friends/images/logo_equipos/'.$info->get_logo_equipo();?>>
 		  	</div>
 
 		<div>
-			<h2>DESCRIPCIÃ“N</h2>
-			<p><?php echo '/Sports-4-Friends/images/logo_equipos/'.$info->get_descripcion_equipo();?></p>
+			<b><p id="p1">DESCRIPCIÓN</p></b>
+			<p id="p2"><?php echo $info->get_descripcion_equipo();?></p>
 			<div id="botones-equipo">
 				<?php
 
@@ -40,14 +50,14 @@
 
 						if($_SESSION["login"] && !is_null($jugador)) { ?>
 						<form action="procesarSalirEquipo.php" method="POST">
-			    			Si desea abandonar el equipo, pulse aquÃ­: <input type="submit" value="Abandonar Equipo"/>
+			    			<input class="login-equipos" type="submit" value="Abandonar Equipo"/>
 			    			<input type="hidden" name="usuario" value=<?php echo $_SESSION['nombre'];?>>
 						</form>
 					<?php 
 						}else 
 							if($_SESSION["login"] && is_null($jugador)){ ?>
 								<form action="procesarUnirmeEquipo.php" method="POST">
-					    			Si desea unirse al equipo, pulse aquÃ­: <input type="submit" value="Unirme al Equipo"/>
+					    			<input class="login-equipos" type="submit" value="Unirme al Equipo"/>
 					    			<input type="hidden" name="usuario" value=<?php echo $_SESSION['nombre'];?>>
 								</form>
 						<?php 
@@ -56,10 +66,10 @@
 
 			</div>
 			  	<div id="tabla">
-			  		<h2 id="index">ESTADÃ�STICAS</h2>
+			  		<b><p id="p3">ESTADÍSTICAS</p></b>
 			  		<table>
 			  			<tr>
-			  				<th>PosiciÃ³n en la liga</th>
+			  				<th>Posición en la liga</th>
 			  				<td colspan="2"><?php echo $estadisticas["posicion"]; ?></td>
 			  			</tr>
 			  			<tr>
@@ -68,12 +78,12 @@
 			  				<td colspan="2"><?php echo $estadisticas["racha"]; ?></td>
 			  			</tr>
 			  			<tr>
-			  				<th>Ultimo resultado</th>
+			  				<th>Último resultado</th>
 			  				<td colspan="2"><?php echo $estadisticas["ultimo_resultado"]; ?></td>
 			  			</tr>
 			  			<tr>
-			  				<th>PJ</th>
 			  				<th>PG</th>
+			  				<th>PE</th>
 			  				<th>PP</th>
 			  			</tr>
 			  			<tr>
@@ -89,5 +99,8 @@
 
 	<?php
 		require("includes/comun/pie.php");  
-	?>  
+	?>
+
+</body>
+</html>
 

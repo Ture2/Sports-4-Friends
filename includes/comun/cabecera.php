@@ -17,11 +17,11 @@
 		<div id="logoC">
 			<a href="index.php"><img class="logoC" src="images/logo.png"></a>
 		</div>
-		<div id="cab">
+		<!--div id="cab">
 			<?php
-				echo $Error;
+				//echo $Error;
 		  	?>
-		</div>
+		</div-->
 		<?php
 			require("includes/comun/menu.php");
 		?>
