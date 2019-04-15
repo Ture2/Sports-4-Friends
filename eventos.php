@@ -2,13 +2,6 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Eventos.php';
 
-
-if (!isset($_SESSION['esAdmin'])) {
-    header('Location: login.php');
-    exit();
-}
-
-
 $errores = array();
 
 
@@ -21,17 +14,6 @@ else
 {
 	$errores[] = "No puedes acceder al contenido";
 }
-
-/*
-Depuracion: solo para mostrar informacion de las variables
-
-
-var_dump($eventos);
-var_dump($_SESSION);
-var_dump($errores);
-var_dump($_SESSION["esAdmin"]);
-*/
-
 
 ?>
 
@@ -77,13 +59,8 @@ var_dump($_SESSION["esAdmin"]);
 					<pre id="texto1">Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
 				</fieldset>
 
-				<!--
-					INDENTIFICADOR PARA EL CSS 
-					ME GUSTARIA: lista desplegable al pulsar un boton
-						Implementacion con javaScript
-				-->
 				<table>
-					<p class="titulo">LISTA DE LOS EVENTOS DISPONIBLES</p>
+					<p id="p6">LISTA DE LOS EVENTOS DISPONIBLES</p>
 						</thead>
 							<tr>
 								<th>Ciudad</th><th>Municipio</th><th>Nombre del Evento</th><th>Deporte </th>
@@ -124,20 +101,17 @@ var_dump($_SESSION["esAdmin"]);
 			<div id="errorEvento">
 				<h1 id="h"> <?php print $errores['0'];?></h1>
 				<div id="errorEvento2">
-					<a href='login.php'><button class='login-equipos'>INICIAR SESIÓN</button></a>
-					<a href='registro.php'><button class='login-equipos'>REGISTRO</button></a>
-					<a href='index.php'><button class='login-equipos'>VOLVER</button></a>
+					<form>
+						<button formaction='login.php' type='submit' class='login-equipos'>INICIAR SESIÓN</button></a>
+						<button formaction='registro.php' type='submit' class='login-equipos'>REGISTRO</button></a>
+						<button formaction='index.php' type='submit' class='login-equipos'>VOLVER</button></a>
+					</form>
 				</div>
 			</div>
 		<?php
 		}
 		?>
 
-		<!--crear un boton de nos de acceso al formulario -->
-
-	<!--implenmentar el formulario de registro de eventos
-		que redirige a procesarregistroevento con su logica correspondiente
-	-->
 	</div>
 
 	<?php

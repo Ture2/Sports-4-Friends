@@ -25,36 +25,38 @@ if (!isset($_SESSION['esAdmin'])) {
 	<?php
 		require("includes/comun/cabecera.php");
 	?>
-	
-	<div id="registro">
+	<div id="contenido">
+	<div id="datos">
 		<form action="procesarEditarEvento.php" method="POST" enctype="multipart/form-data">
-				<fieldset id="campo">
+				<fieldset id="perfil">
 						<legend id="log">EDITAR EVENTOS</legend>
 
-							<p id="reg"><label id="reg">Nombre evento:</label> 
+							<p id="perfil">Nombre Evento: 
 								<select name="nombre_evento" id="evento" required>
 									<?php $eventos = Eventos::listarEventos();
 										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
 						  			}?></select></p>
 
-							<p id="log">Deporte:
+							<p id="perfil">Deporte: 
 								<select name="deporte" id="dep" required>
 									<?php $deportes = Deporte::getAll();
 										foreach ($deportes as $key => $valor) { 
 						  					echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
 						  			}?></select></p>
 
-							<p id="reg"><label id="reg">ciudad:</label> <input type="text" name="ciudad" value=""></p>
-							<p id="reg"><label id="reg">municipio:</label> <input type="text" name="municipio" value=""></p>
-							<p id="reg"><label id="reg">localizacion:</label> <input type="text" name="localizacion" value=""></p>
-							<p id="reg"><label id="reg">Fecha evento:</label> <input type="text" name="fecha_evento" value=""></p>
-							<p id="reg"><label id="reg">Hora evento:</label> <input type="text" name="hora_evento" value=""></p>
-							<p id="reg"><label id="reg">descripcion:</label> <input type="text" name="descripcion" value=""></p>
-							<p id="log">Imagen del Equipo: <input type="file" name="imagen"></p>
+							<p id="perfil">Ciudad: <input type="text" name="ciudad" value=""></p>
+							<p id="perfil">Municipio: <input type="text" name="municipio" value=""></p>
+							<p id="perfil">Localización: <input type="text" name="localizacion" value=""></p>
+							<p id="perfil">Fecha Evento: <input type="text" name="fecha_evento" value=""></p>
+							<p id="perfil">Hora Evento: <input type="text" name="hora_evento" value=""></p>
+							<p id="perfil">Descripción: <input type="text" name="descripcion" value=""></p>
+							<p id="perfil">Imagen del Equipo: <input type="file" name="imagen"></p>
 							<button id= "index" type="submit" name="registro">Validar</button>
+							<button formnovalidate formaction="adminEventos.php" id="index" type="submit" name="volver">Volver</button>
 				</fieldset>
 		</form>
+	</div>
 	</div>
 
 	<?php 

@@ -42,7 +42,7 @@
 					<li>
 						<?php
 							if($username){
-								echo '<a href=""><img id="menu" src="images/cuenta.png">Hola '.$username.'</a>';
+								echo '<a><img id="menu" src="images/cuenta.png">Hola '.$username.'</a>';
 							}else{
 								echo '<a href="login.php"><img id="menu" src="images/login.png"> Iniciar Sesión</a>';
 							}

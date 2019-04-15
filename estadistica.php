@@ -11,8 +11,6 @@
 		require("includes/comun/cabecera.php");
 	?>
 
-
-	<!-- METER LOS DATOS DE CADA JUGADOR CON LA BASE DE DATOS -->
 	<div id="contenido">
 		<div id="tabla">
 			<p id="p4">FÚTBOL</p>

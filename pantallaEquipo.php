@@ -57,7 +57,7 @@
 							$jugadores = Jugador::getJugadoresPorEquipo($info);
 						if($_SESSION["login"] && !is_null($jugador) &&  $jugador->compruebaJugadorEnEquipo($jugadores, $jugador) == true) { ?>
 						<form action="procesarSalirEquipo.php" method="POST">
-			    			<input class="login-equipos" type="submit" name ="boton"value="Abandonar Equipo"/>
+			    			<input class="login-equipos" type="submit" name ="boton" value="Abandonar Equipo"/>
 			    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
 			    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>
 						</form>
@@ -67,7 +67,7 @@
 								<form action="procesarUnirEquipo.php" method="POST">
 					    			<input class="login-equipos" type="submit" name="boton2" value="Unirme al Equipo"/>
 					    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
-					    			<input onclick="history.back(-1)" class="login-equipos" type="button" name="boton2" value="Volver"/>
+					    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>
 								</form>
 						<?php 
 						}

@@ -60,7 +60,7 @@ var_dump($registrosEventos);
 		require("includes/comun/cabecera.php");
 	?>
 
-
+	<div id="contenido">
 	<?php
 		if (isset($_SESSION["login"]))
 		{
@@ -71,25 +71,26 @@ var_dump($registrosEventos);
 			elseif(count($errores) == 0)
 			{
 			?>
-					<div id="eventos">
-						<fieldset id="eventos">
-							<div id="evento">
+			<form>
+				<input formaction="eventos.php" class="login-equipos" type="submit" name="boton2" value="Volver"/>
+			</form>
+					<div id="evento1">
+						<fieldset id="evento1">
 								<?php foreach ($registrosEventos as $value) {?>
-								<p id="evento"><?=$value->evento();?></p>
-								<p id="evento"><?=$value->equipo();?></p>
-								<p id="evento"><?=$value->p_victorias();?></p>
-								<p id="evento"><?=$value->fecha_creacion();?></p>
+								<h1 id="h"><?=$value->evento();?></h1>
+								<p id="evento">Equipo: <?=$value->equipo();?></p>
+								<p id="evento">Victorias: <?=$value->p_victorias();?></p>
+								<p id="evento">Fecha: <?=$value->fecha_creacion();?></p>
 								<?php
 							}
 							?>
-							</div>
 						</fieldset>
 					</div>
-				</div>
 			<?php
 			}
 		}
 		?>
+	</div>
 
 	<?php 
 		include("includes/comun/pie.php"); 

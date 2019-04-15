@@ -23,15 +23,6 @@ else
 	$errores[] = "No puedes acceder al contenido";
 }
 
-/*
-debuggin
-
-var_dump($eventos);
-var_dump($_SESSION);
-var_dump($errores);
-var_dump($_SESSION["esAdmin"]);
-*/
-
 ?>
 
 <!DOCTYPE html>
@@ -55,25 +46,30 @@ var_dump($_SESSION["esAdmin"]);
 		{
 		?>
 			<div id="contenido">
-				<a href="altaEvento.php">CREAR EVENTO</a>
-				<a href="editarEvento.php">EDITAR EVENTO</a>
-				<a href="eventos.php">VOLVER ATRAS</a>
+				<form>
+					<button formaction='altaEvento.php' type='submit' class='login-equipos'>CREAR EVENTO</button></a>
+					<button formaction='editarEvento.php' type='submit' class='login-equipos'>EDITAR EVENTO</button></a>
+					<button formaction='eventos.php' type='submit' class='login-equipos'>VOLVER</button></a>
+				</form>
 				
-				<div id="eventos">
-					<fieldset id="eventos">
-						<div id="evento">
-							<?php foreach ($eventos as $value) {?>
-							<p id="evento"><?=$value->nombre_evento();?></p>
+				<div id="evento1">
+					
+						<?php foreach ($eventos as $value) {?>
+						<div>
+							<fieldset id="evento1">
+							<h1 id="evento"><?=$value->nombre_evento();?></h1>
 							<p id="evento"><?=$value->deporte();?></p>
 							<p id="evento"><?=$value->ciudad();?></p>
 							<p id="evento"><?=$value->municipio();?></p>
 							<p id="evento"><?=$value->fecha_evento();?></p>
 							<p id="evento"><?=$value->hora_evento();?></p>
+							<p id="evento"><?=$value->descripcion();?></p>
+							</fieldset>
+						</div>
 						<?php
 						}
 						?>
-						</div>
-					</fieldset>
+					
 				</div>
 			</div>
 	<?php

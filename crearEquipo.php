@@ -19,8 +19,8 @@ require_once __DIR__.'/includes/Deporte.php';
 	?>
 
 	<div id="contenido">
-		<div id="crear">
-			<fieldset id="crear">
+		<div id="datos">
+			<fieldset id="perfil">
 				<legend id="log">EQUIPO</legend>
 				<form action="procesarCrearEquipo.php" enctype="multipart/form-data" method="post">
 				<p id="log">Nombre del Equipo: <input type="text" name="name" required></p>

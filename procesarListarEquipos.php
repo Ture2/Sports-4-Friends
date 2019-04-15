@@ -30,11 +30,13 @@
 	echo "<div id='contenido'>";
 			if(!isset($_SESSION["login"])){
 				echo "<div id='errorQuedada'>";
-					echo "<h1 id='h'>NO PUEDES VER ESTA SECCIÓN</h1>";
+					echo "<h1 id='h'>NO PUEDES ACCEDER AL CONTENIDO</h1>";
 				echo "<div id='errorQuedada2'>";
-					echo "<a href='login.php'><button class='login-equipos'>INICIAR SESIÓN</button></a>";
-					echo "<a href='registro.php'><button class='login-equipos'>REGISTRO</button></a>";
-					echo "<a href='index.php'><button class='login-equipos'>VOLVER</button></a>";
+				echo "<form>";
+					echo "<button formaction='login.php' type='submit' class='login-equipos'>INICIAR SESIÓN</button></a>";
+					echo "<button formaction='registro.php' type='submit' class='login-equipos'>REGISTRO</button></a>";
+					echo "<button formaction='index.php' type='submit' class='login-equipos'>VOLVER</button></a>";
+				echo "</form>";
 				echo "</div>";
 				echo "</div>";
 	    	   //echo"<button onclick= 'location.href='crearEquipo.php''id='index' type='button' name='editar'>Pulse aqui para crear Equipo</button>";

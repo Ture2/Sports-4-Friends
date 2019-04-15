@@ -611,65 +611,20 @@ td {
 }
 
 
-/* eventos */
-
-p#evento{
-	font-size: 15px;
-	color: white;
-	margin-left: 5px;
-}
-
-fieldset#eventos{
-	border: 1px solid lightgreen;
-	background-color: darkgreen;
-	text-align: center;
-
-}
-
-button#eventos{
-	background-color: darkgreen;
-	color: white;
-	border: none;
-	margin-top: auto;
-	margin-bottom: auto;
-	padding: 10px;
-	margin: 10px;
-}
-
-
-/* crear evento */
-
-div#event{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 30px;
-}
-
-fieldset#event{
-	border: 1px solid lightgreen;
-	background-color: darkgreen;
-	text-align: center;
-	justify-content: left;
-}
-
-button#event{
-	background-color: green;
-	color: white;
-	border: none;
-	margin-top: auto;
-	margin-bottom: auto;
-	padding: 10px;
-	margin: 10px;
-}
-
-
-/* ESTILO PARA EVENTOS */
+/* EVENTOS */
 
 div#eventos {
 	max-width: 1000px;
 	margin: auto;
 	border: 1px solid black;
+	background-color: green;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+div#evento1 {
+	max-width: 1000px;
+	margin: auto;
 	background-color: green;
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -688,6 +643,18 @@ h1,pre,p#texto{
 	text-transform: uppercase;
 	color:black;
 	font-size: 15px;
+	font-weight: bolder;
+}
+
+p#evento{
+	font-size: 20px;
+	color: white;
+	margin-left: 5px;
+}
+
+h1#evento{
+	text-transform: uppercase;
+	color:gold;
 }
 
 div#errorEvento{
@@ -708,6 +675,12 @@ fieldset#evento{
 	max-width: 1000px;
 	margin: auto;
 	margin-top: 50px;
+}
+
+fieldset#evento1{
+	border: 1px solid lightgreen;
+	background-color: darkgreen;
+	text-align: center;
 }
 
 
@@ -877,6 +850,11 @@ fieldset#quedada{
 
 #p5{
 	color:#eef9fe;
+}
+
+#p6{
+	color:gold;
+	text-align: center;
 }
 
 #h{
