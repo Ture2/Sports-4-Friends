@@ -76,7 +76,7 @@ class Equipo{
                 $equipos = array();
                 while($equipo = $rs->fetch_assoc()){
                     $aux = new Equipo($equipo['DEPORTE'], $equipo['NOMBRE_EQUIPO'], null, null);
-                    $aux->set_id($equipo['ID_DEPORTE']);
+                    $aux->set_id($equipo['DEPORTE']);
                     array_push($equipos, $aux);
                 }
 
