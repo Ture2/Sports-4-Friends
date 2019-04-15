@@ -5,7 +5,7 @@ require_once __DIR__ . '/Aplicacion.php';
 
 class Eventos
 {
-    public static function  buscaEvento($nombreEvento)
+    public static function buscaEvento($nombreEvento)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
@@ -159,7 +159,7 @@ class Eventos
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE Eventos E SET nombre_evento = '%s', deporte='%s', ciudad='%s', municipio='%s', localizacion='%',fecha_creacion='%', fecha_evento='%', hora_evento='%',descripcion='%', ruta_foto='%' WHERE E.id_evento='%i'"
+        $query=sprintf("UPDATE eventos E  SET nombre_evento ='%s', deporte='%s', ciudad='%s', municipio='%s', localizacion='%s',fecha_creacion='%s', fecha_evento='%s', hora_evento='%s',descripcion='%s', ruta_foto='%s' WHERE E.id_evento='%s'"
             , $conn->real_escape_string($evento->nombre_evento)
             , $conn->real_escape_string($evento->deporte)
             , $conn->real_escape_string($evento->ciudad)
@@ -229,6 +229,17 @@ class Eventos
     public function hora_evento(){return $this->hora_evento;}
     public function descripcion(){ return $this->descripcion;}
     public function ruta_foto(){return $this->ruta_foto;}
+
+
+    
+    public function set_deporte($deporte){$this->deporte = $deporte;}
+    public function set_ciudad($ciudad){$this->ciudad = $ciudad;}
+    public function set_municipio($munucipio){$this->municipio = $municipio;}
+    public function set_localizacion($localizacion){$this->localizacion = $localizacion;}
+    public function set_fecha_creacion($fecha_creacion){$this->fecha_creacion = $fecha_creacion;}
+    public function set_fecha_evento($fecha_evento){$this->fecha_evento = $fecha_evento;}
+    public function set_descripcion($descripcion){$this->descripcion = $descripcion;}
+    public function set_ruta_foto($ruta_foto){$this->ruta_foto = $ruta_foto;}
 }
 
 ?>

@@ -124,17 +124,25 @@ var_dump($ruta_foto);
 
 if (count($erroresFormulario) === 0) 
 {
-		$existeEvento = Eventos::crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion,$ruta_foto);
+	$evento = Eventos::buscaEventos($nombre_evento);
+
+	$evento->set_deporte($deporte);
+    $evento->set_ciudad($ciudad);
+    $evento->set_municipio($munucipio);
+    $evento->set_localizacion($localizacion);
+    $evento->set_fecha_creacion($fecha_creacion);
+    $evento->set_fecha_evento($fecha_evento);
+    $evento->set_descripcion($descripcion);
+    $evento->set_ruta_foto($ruta_foto);
     
-    if (!$existeEvento) 
-    {
-        $erroresFormulario[] = "El evento ya existe";
-    } 
-    else 
-    {       
-            header('Location: adminEventos.php');
-            exit();
-    }
+	$evento = Eventos::guardarEvento($evento);
+
+    if ($evento) 	
+    { 
+     header('Location: adminEventos.php');
+     exit();
+    }    
+          
 } 
 
 ?>
@@ -150,7 +158,6 @@ if (count($erroresFormulario) === 0)
 
 	<?php 
 		require("includes/comun/cabecera.php");
-		require("includes/comun/menu.php"); 
 	?>
 
 	<div id="logo">
@@ -180,10 +187,10 @@ if (count($erroresFormulario) === 0)
 						<legend id="log">EDITAR EVENTOS</legend>
 
 							<p id="reg"><label id="reg">Nombre evento:</label> 
-								<select name="evento" id="evento">
-									<?php $evento = Eventos::listarEventos();
-										foreach ($deportes as $key => $valor) { 
-						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
+								<select name="nombre_evento" id="evento">
+									<?php $eventos = Eventos::listarEventos();
+										foreach ($eventos as  $valor) { 
+						  					echo '<option  value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
 						  			}?></select></p>
 
 							<p id="log">Deporte:
