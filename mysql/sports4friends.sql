@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-04-2019 a las 03:44:43
+-- Tiempo de generación: 15-04-2019 a las 05:04:53
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -125,7 +125,7 @@ INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`,
 --
 
 CREATE TABLE `eventos` (
-  `ID_EVENTO` int(10) NOT NULL,
+  `id_evento` int(10) NOT NULL,
   `nombre_evento` varchar(30) CHARACTER SET utf8 NOT NULL,
   `deporte` varchar(30) CHARACTER SET utf8 NOT NULL,
   `ciudad` varchar(30) CHARACTER SET utf8 NOT NULL,
@@ -142,7 +142,7 @@ CREATE TABLE `eventos` (
 -- Volcado de datos para la tabla `eventos`
 --
 
-INSERT INTO `eventos` (`ID_EVENTO`, `nombre_evento`, `deporte`, `ciudad`, `municipio`, `localizacion`, `fecha_creacion`, `fecha_evento`, `hora_evento`, `descripcion`, `ruta_foto`) VALUES
+INSERT INTO `eventos` (`id_evento`, `nombre_evento`, `deporte`, `ciudad`, `municipio`, `localizacion`, `fecha_creacion`, `fecha_evento`, `hora_evento`, `descripcion`, `ruta_foto`) VALUES
 (990001, 'baloncesto 3v3 abril 2019', 'BALONCESTO', 'Madrid', 'Carabanchel', 'Parque Ugenia de Montijo, canchas de detras del metro', '2019-04-09', '2019-05-31', '10:00 - 15:00', 'Partidos de basket en Carabanchel', 'images/eventos/evento1.png'),
 (990002, 'futbol rey de la pista', 'FUTBOL', 'Madrid', 'Usera', 'Parque aluche en las pistas de fútbol', '2019-04-09', '2019-04-27', '09:00 - 18:00', 'Partidos de futbol sala minimo 6 participantes por equipo', 'images/eventos/evento2.jpg'),
 (990003, 'Tenis dobles hierba', 'TENIS', 'Madrid', 'Chamberi', 'Pistas Canal Isabel II', '2019-04-15', '2019-05-04', '10:00 - 19:00', 'Partidos de tenis por parejas en pista de hierba artificial', 'images/eventos/evento3.jpg'),
@@ -150,7 +150,7 @@ INSERT INTO `eventos` (`ID_EVENTO`, `nombre_evento`, `deporte`, `ciudad`, `munic
 (990005, 'balonmano rey del campo', 'BALONMANO', 'Madrid', 'Moncloa', 'Pistas Moncloa XIII', '2019-04-15', '2019-04-29', '14:00 - 20:00', 'Partidos de balonmano, quien llegue antes a 10 goles gana', 'images/eventos/evento5.jpg'),
 (990006, 'balonceto Michael Jordan', 'BALONCESTO', 'Madrid', 'Vallecas', 'Canchas El Pozo', '2019-04-15', '2019-05-10', '10:00 - 18:00', 'Torneo de baloncesto, incripción minimo 5 jugadores', 'images/eventos/evento6.jpg'),
 (990007, 'partido a dos goles', 'FUTBOL', 'Madrid', 'Chamartin', 'Polideportivo Susana Griso', '2019-04-15', '2019-06-29', '13:00 - 21:00', 'Partidos de fútbol sala que quien marque antes dos goles, gana', 'images/eventos/evento7.jpg'),
-(990008, 'futbol torneo I Madrid', 'FUTBOL', 'Madrid', 'Atocha', 'Polideportivo Fernando Martín', '2019-04-15', '2019-05-18', '17:00 - 21:00', 'Torneo que fútbol, incripción minimo 5 jugadores', 'images/eventos/evento8.jpg');
+(990008, 'futbol torneo I Madrid', 'FUTBOL', 'Madrid', 'Atocha', 'Polideportivo Fernando Martín', '2019-04-15', '2019-05-18', '17:00 - 21:00', 'Torneo de fútbol, incripción minimo 5 jugadores', 'images/eventos/evento8.jpg');
 
 -- --------------------------------------------------------
 
@@ -496,7 +496,7 @@ ALTER TABLE `equipos`
 -- Indices de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  ADD PRIMARY KEY (`ID_EVENTO`),
+  ADD PRIMARY KEY (`id_evento`),
   ADD UNIQUE KEY `nombre_evento` (`nombre_evento`),
   ADD KEY `deporte` (`deporte`);
 
@@ -544,7 +544,7 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `ID_EVENTO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=990009;
+  MODIFY `id_evento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=990009;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
