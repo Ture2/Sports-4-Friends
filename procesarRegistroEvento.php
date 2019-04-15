@@ -3,7 +3,8 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Equipo.php';
 require_once __DIR__.'/includes/Deporte.php';
-require_once __DIR__.'/includes/Evento.php';
+require_once __DIR__.'/includes/Eventos.php';
+require_once __DIR__.'/includes/RegistroEvento.php';
 
 if (! isset($_SESSION['login']) ) {
     header('Location: login.php');
@@ -35,11 +36,12 @@ if(empty($evento))
 }
 else
 {
-	$deporte = Deporte::buscaDeporte($evento->deporte);
+
+	$deporte = Deporte::buscaDeporte($evento->deporte());
 
 }
 
-$equipo = Equipo::buscaEquipo($equipo);
+$equipo = Equipo::getInfoPorNombre($equipo);
 
 if(empty($equipo))
 {
@@ -47,31 +49,27 @@ if(empty($equipo))
 }
 else
 {
-	if($deporte->id() != $equipo->deporte())
+	if($evento->deporte() != $equipo->get_deporte())
 	{
 		$erroresFormulario[] = "Tú equipo no esta autorizado para registrarse en este evento";
 	}
-
 }
 
 /*
 Debugging
+
 */
-
+var_dump($_POST['evento']);
+var_dump($_POST['equipo']);
 var_dump($evento);
-var_dump($nombre);
+var_dump($deporte);
 var_dump($equipo);
-var_dump($fecha_creacion));
-var_dump($equipo->get_p_victorias);
+var_dump($fecha_creacion);
+var_dump($erroresFormulario);
 
-
-if (count($erroresFormulario) === 0) 
+if (count($erroresFormulario) == 0)
 {
-
-
-	$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $equipo->get_p_victorias(), $fecha_creacion));
-
-
+	$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $fecha_creacion);
 
 	if(empty($registro))
 	{
@@ -86,6 +84,7 @@ if (count($erroresFormulario) === 0)
 
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
@@ -96,7 +95,6 @@ if (count($erroresFormulario) === 0)
 
 	<?php
 		require("includes/comun/cabecera.php");
-		require("includes/comun/menu.php");
 	?>
 
 	<div id="logo">
@@ -124,7 +122,7 @@ if (count($erroresFormulario) === 0)
 								<?php
 										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
-						  		?>
+						  				}?>
 							</datalist>		
 						</input></p>
 					<p id="log">Equipos: <input list="equipos" name="equipo">
@@ -132,14 +130,14 @@ if (count($erroresFormulario) === 0)
 								<?php
 										foreach ($equipos as $valor) { 
 						  					echo '<option value="'.$valor->set_nombre_equipo().'" >'.$valor->set_nombre_equipo().'</option>';
-						  		?>
+						  				}?>
 						</datalist>	
 							</input></p>
 
-			<button id= "index" type="submit" name="registro">Validar</button>
-			<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
-		</fieldset>
-	</form>
+				<button id= "index" type="submit" name="registro">Validar</button>
+				<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
+				</fieldset>
+		</form>
 	</div>
 
 	<?php 

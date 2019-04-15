@@ -28,7 +28,6 @@ else
 		for($i = 0; $i < count($equiposPerteneceUsuario); $i++)
 		{
 			$comprobar  = RegistroEvento::buscaRegistroEventosEquipo($equiposPerteneceUsuario[$i]);
-			//var_dump($equiposPerteneceUsuario[$i]);
 			if($comprobar)
 			{
 				$registrosEventos[] = $comprobar;
@@ -38,11 +37,6 @@ else
 	}
 }
 
-/*
-var_dump($_SESSION['nombre']);
-var_dump($equiposPerteneceUsuario);
-var_dump($registrosEventos);
-*/
 
 ?>
 

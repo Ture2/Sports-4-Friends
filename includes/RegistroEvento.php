@@ -11,14 +11,14 @@ class RegistroEvento
         $conn = $app->conexionBd();
         $result = false;
 
-        $query = sprintf("SELECT * FROM Registros_eventos RE WHERE RE.equipo = '%s'", $conn->real_escape_string($equipo));
+        $query = sprintf("SELECT * FROM registros_eventos RE WHERE RE.equipo = '%s'", $conn->real_escape_string($equipo));
         $rs = $conn->query($query);
         if ($rs) 
         {
             if ( $rs->num_rows == 1) 
             {
                 $row = $rs->fetch_assoc();
-                $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
+                $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['fecha_creacion']);
                 $registroEvento->id_registro = $row['id_registro'];
                 $result = $registroEvento;
             }
@@ -32,8 +32,9 @@ class RegistroEvento
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        $query = sprintf("SELECT * FROM registro_eventos RE WHERE RE.evento = '%s'  and RE.equipo = '%s'", $conn->real_escape_string($evento),
-                    $conn->real_escape_string($equipo));
+        $query = sprintf("SELECT * FROM registros_eventos RE WHERE RE.evento = '%s'  and RE.equipo = '%s'"
+            , $conn->real_escape_string($evento),
+            $conn->real_escape_string($equipo));
 
         $rs = $conn->query($query);
         $result = false;
@@ -42,10 +43,8 @@ class RegistroEvento
             if ( $rs->num_rows == 1) {
                 $fila = $rs->fetch_assoc();
 
-                $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
-
+                $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['fecha_creacion']);
                 $evento->id_registro = $row['id_registro'];
-
                 $result = $registroEvento;
             }
             $rs->free();
@@ -70,7 +69,7 @@ class RegistroEvento
             $result = array();
             while($row = $rs->fetch_assoc())
             {
-                $evento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
+                $evento = new RegistroEvento($row['evento'],$row['equipo'],$row['fecha_creacion']);
                 $evento->id_evento = $row['id_registro'];
                 $result[] = $evento;
             }
@@ -100,13 +99,13 @@ class RegistroEvento
         return $eliminar;
     }
 
-    public static function crearRegistroEvento($evento, $equipo, $p_victorias, $fecha_creacion)
+    public static function crearRegistroEvento($evento, $equipo, $fecha_creacion)
     {
         $registro = RegistroEvento::buscaRegistroEvento($evento, $equipo);
         if ($evento) {
             return false;
         }
-        $registroEvento = new RegistroEvento($evento, $equipo, $p_victorias, $fecha_creacion);
+        $registroEvento = new RegistroEvento($evento, $equipo, $fecha_creacion);
 
         return self::guardarEvento($registroEvento);
     }
@@ -123,10 +122,9 @@ class RegistroEvento
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO Eventos(evento, equipo, p_victorias, fecha_creacion) VALUES('%s', '%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO eventos (evento, equipo, fecha_creacion) VALUES('%s', '%s', '%s')"
             , $conn->real_escape_string($registroEvento->evento)
             , $conn->real_escape_string($registroEvento->equipo)
-            , $conn->real_escape_string($registroEvento->p_victorias)
             , $conn->real_escape_string($registroEvento->fecha_creacion));
 
         if ( $conn->query($query) )
@@ -154,17 +152,15 @@ class RegistroEvento
     
 
     //Constructora
-    private function __construct($evento, $equipo, $p_victorias, $fecha_creacion)
+    private function __construct($evento, $equipo, $fecha_creacion)
     {
         $this->evento= $evento;
         $this->equipo= $equipo;
-        $this->p_victorias=$p_victorias;
         $this->fecha_creacion=$fecha_creacion;
     }
          //Funciones para acceder a los atributos de Eventos
          public function evento(){return $this->evento;}
          public function equipo(){return $this->equipo;}
-         public function p_victorias(){return $this->p_victorias;}
          public function fecha_creacion(){return $this->fecha_creacion;}
 }
 ?>

@@ -10,13 +10,11 @@ class Eventos
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        echo "hola caracola";
         $query = sprintf("SELECT * FROM eventos e WHERE e.nombre_evento='%s'", $conn->real_escape_string($nombreEvento));
 
         $rs = $conn->query($query);
 
         $result = false;
-        var_dump($rs);
         if ($rs) {
             if ( $rs->num_rows == 1)
             {
