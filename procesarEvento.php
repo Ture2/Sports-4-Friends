@@ -77,7 +77,7 @@ if (($ruta == !NULL) && ($_FILES['imagen']['size'] <= 200000))
    			C:\xampp\htdocs\Sports-4-Friends\imgbd
    			cambiar luego al servidor remoto /dev/html/....
   		 	*/
-   		$directorio = $_SERVER['DOCUMENT_ROOT'].'/eventos/Sports-4-Friends/images/eventos/';
+   		$directorio = $_SERVER['DOCUMENT_ROOT'].'/Sports-4-Friends/images/eventos/';
      
       
      	 // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
