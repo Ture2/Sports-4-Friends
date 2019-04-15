@@ -10,6 +10,7 @@ exit();
 
 	$eventos = Eventos::listarEventos();
 	$equipos = Equipo::getAllEquipos();
+	
 ?>
 
 <!DOCTYPE html>
@@ -51,8 +52,10 @@ exit();
 		</fieldset>
 	</form>
 	</div>
+
 	<?php 
 		include("includes/comun/pie.php"); 
 	?>
+
 </body>
 </html>
