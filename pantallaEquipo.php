@@ -2,6 +2,7 @@
 	require_once __DIR__.'/includes/config.php';
 	require_once __DIR__.'/includes/Equipo.php';
 	require_once __DIR__.'/includes/Jugador.php';
+	require_once __DIR__.'/includes/Usuario.php';
 
 	$info = Equipo::getInfoPorNombre($_GET['equipo']);
 	$_GET['equipo'] = str_replace(' ', '%', $info->get_nombre_equipo());
@@ -106,19 +107,17 @@
 			  				<th>Jugadores</th>
 			  			</tr>
 			  			<?php
+			  				$jugadores = Jugador::getJugadoresPorEquipo($info);
 			  				foreach ($jugadores as $key => $value){
+			  					$usuario = Usuario::buscaUsuarioPorId($value->get_usuario());
 			  				?>
 			  			<tr>
-			  				<td> <?=$value->get_usuario();?> </td>
+			  				<td> <?php echo $usuario->nombreUsuario(); ?> </td>
 			  			</tr>
 			  			<?php
 			  				}
 			  				?>
 			  		</table>
-			  		<?php
-			  			$jugadores = Jugador::getJugadoresPorEquipo($info);
-			  			var_dump($jugadores);
-			  		  ?>
 			  	</div>
 		</div>
 	  	

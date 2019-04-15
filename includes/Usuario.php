@@ -102,6 +102,28 @@ class Usuario
         
         return $usuario;
     }
+
+    public static function buscaUsuarioPorId($idusuario){
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("SELECT * FROM USUARIOS WHERE ID_USUARIO = '%s'",
+                    $conn->real_escape_string($idusuario));
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            if ( $rs->num_rows == 1) {
+                $fila = $rs->fetch_assoc();
+                $user = new Usuario($fila['NICKNAME'], $fila['NOMBRE'], $fila['CORREO'], $fila['PASSWORD'], $fila['ROL_USUARIO']);
+                $user->id = $fila['ID_USUARIO'];
+                $result = $user;
+            }
+            $rs->free();
+        } else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $result;
+    }
     
     private $id;
 
