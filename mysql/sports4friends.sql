@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-04-2019 a las 05:04:53
+-- Tiempo de generación: 15-04-2019 a las 12:45:24
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -399,7 +399,6 @@ CREATE TABLE `registros_eventos` (
   `id_registro` int(10) NOT NULL,
   `evento` varchar(30) CHARACTER SET utf8 NOT NULL,
   `equipo` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `p_victorias` int(11) NOT NULL,
   `fecha_creacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -407,9 +406,9 @@ CREATE TABLE `registros_eventos` (
 -- Volcado de datos para la tabla `registros_eventos`
 --
 
-INSERT INTO `registros_eventos` (`id_registro`, `evento`, `equipo`, `p_victorias`, `fecha_creacion`) VALUES
-(770001, 'baloncesto 3v3 abril 2019', 'BULL', 10, '2019-04-09'),
-(770002, 'balonmano rey del campo', 'VALENCIA', 4, '2019-04-15');
+INSERT INTO `registros_eventos` (`id_registro`, `evento`, `equipo`, `fecha_creacion`) VALUES
+(770001, 'baloncesto 3v3 abril 2019', 'BULL', '2019-04-09'),
+(770002, 'balonmano rey del campo', 'VALENCIA', '2019-04-15');
 
 -- --------------------------------------------------------
 
