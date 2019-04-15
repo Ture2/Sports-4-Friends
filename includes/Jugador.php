@@ -101,7 +101,6 @@ class Jugador{
       
         $jugador = new Jugador($equi, $usu, $rol, $fe,$hor);
         
-        
         return $jugador;
     }
     

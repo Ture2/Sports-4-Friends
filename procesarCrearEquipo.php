@@ -20,7 +20,7 @@ require_once __DIR__.'/includes/Usuario.php';
     $res=$dep->id();
     
     
-	if (($nombre_img == !NULL) && ($_FILES['ruta_foto']['size'] <= 200000)) 
+	if (($nombre_img == !NULL) && ($_FILES['imagen']['size'] <= 200000)) 
 	{
    		//indicamos los formatos que permitimos subir a nuestro servidor
    		if (($_FILES["imagen"]["type"] == "image/gif")
@@ -30,7 +30,7 @@ require_once __DIR__.'/includes/Usuario.php';
    		{
       // Ruta donde se guardarán las imágenes que subamos
    		    //C:\xampp\htdocs\Sports-4-Friends\imgbd
-      $directorio = $_SERVER['DOCUMENT_ROOT'].'eventos/Sports-4-Friends/images/logo_equipos/';
+      $directorio = $_SERVER['DOCUMENT_ROOT'].'/Sports-4-Friends/images/logo_equipos/';
      
       
       // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
@@ -73,8 +73,8 @@ $usu= Usuario::buscaUsuario($nickUsuario);
     $id_equipo=$ret->get_id();
     $jugador=Jugador::crea($id_equipo,$usu->id(),"1",$fecha,$hora);
     
- Jugador::guardaJugador($jugador);
- 
+ //Jugador::guardaJugador($jugador);
+ $jugador->unirEquipo($jugador);
   
  
 

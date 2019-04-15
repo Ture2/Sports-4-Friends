@@ -131,10 +131,10 @@ class Equipo{
     
     public static function crea($deporte, $nombre, $imagen, $desc)
     {
-        $equipo = self::buscaEquipo($nombre);
-        if ($equipo) {
+        /*$equipo = self::buscaEquipo($nombre);
+        if ($equipo != NULL) {
             return false;// el equipo ya existe
-        }
+        }*/
         $equipo = new Equipo($deporte, $nombre, $imagen, $desc);
         return self::guarda($equipo);
     }
