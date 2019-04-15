@@ -1,24 +1,11 @@
-
 <?php
-/*
-----------------------------------------
-METADATA:                               |
-    imp_f (implementado y funcionando)  |
-    ^  (falta por hacer)                |
-----------------------------------------
-COMPROBACIONES:
-   -errores en un array $erroresFormulario; 			imp
-   -datos del post  nickUsuario/evento/deporte			imp
-   -comprobar que los datos no son nulos 				imp
-
-*/
 
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Equipo.php';
 require_once __DIR__.'/includes/Deporte.php';
 require_once __DIR__.'/includes/Evento.php';
 
-if (! isset($_POST['login']) ) {
+if (! isset($_SESSION['login']) ) {
     header('Location: login.php');
     exit();
 }
@@ -58,18 +45,17 @@ else
 {
 	if($deporte->id() != $equipo->deporte())
 	{
-		$erroresFormulario[] = "Tú equipo no esta autorizado para registrarse en este evento"
+		$erroresFormulario[] = "Tú equipo no esta autorizado para registrarse en este evento";
 	}
 
 }
-
-
-
 
 if (count($erroresFormulario) === 0) {
 
 	$fecha_creacion=date("Y-m-d");
 	$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $equipo->get_p_victorias(), $fecha_creacion));
+
+
 
 	if(empty($registro))
 	{
@@ -79,13 +65,10 @@ if (count($erroresFormulario) === 0) {
     {       
             header('Location: misEventos.php');
             exit();
-    }
-
-  
+    }  
 }
 
 ?>
-
 
 <html>
 <head>
@@ -119,7 +102,7 @@ if (count($erroresFormulario) === 0) {
 	<div id="contenido">
 		<form action="procesarRegistroEvento.php" method="POST">
 				<fieldset id="evento">
-				<legend id="log">Registra tu equipo en el evento</legend>
+				<legend id="log">REGISTRA TU EQUIPO EN UN EVENTO</legend>
 					<p id="log">Evento: <input list="eventos" name="evento">
 						<datalist id="eventos">
 								<?php
