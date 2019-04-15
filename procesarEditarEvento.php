@@ -77,7 +77,7 @@ if (($ruta == !NULL) && ($_FILES['imagen']['size'] <= 200000))
    			C:\xampp\htdocs\Sports-4-Friends\imgbd
    			cambiar luego al servidor remoto /dev/html/....
   		 	*/
-   		$directorio = $_SERVER['DOCUMENT_ROOT'].'/eventos/Sports-4-Friends/images/eventos/';
+   		$directorio = $_SERVER['DOCUMENT_ROOT'].'/Sports-4-Friends/images/eventos/';
      
       
      	 // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
@@ -124,16 +124,19 @@ var_dump($ruta_foto);
 
 if (count($erroresFormulario) === 0) 
 {
-	$evento = Eventos::buscaEventos($nombre_evento);
-
-	$evento->set_deporte($deporte);
-    $evento->set_ciudad($ciudad);
-    $evento->set_municipio($munucipio);
-    $evento->set_localizacion($localizacion);
-    $evento->set_fecha_creacion($fecha_creacion);
-    $evento->set_fecha_evento($fecha_evento);
-    $evento->set_descripcion($descripcion);
-    $evento->set_ruta_foto($ruta_foto);
+	$evento = Eventos::buscaEvento($nombre_evento);
+	if($evento)
+	{
+		$evento->set_deporte($deporte);
+	    $evento->set_ciudad($ciudad);
+	    $evento->set_municipio($municipio);
+	    $evento->set_localizacion($localizacion);
+	    $evento->set_fecha_creacion($fecha_creacion);
+	    $evento->set_fecha_evento($fecha_evento);
+	    $evento->set_descripcion($descripcion);
+	    $evento->set_ruta_foto($ruta_foto);
+	}
+	
     
 	$evento = Eventos::guardarEvento($evento);
 
@@ -187,7 +190,7 @@ if (count($erroresFormulario) === 0)
 						<legend id="log">EDITAR EVENTOS</legend>
 
 							<p id="reg"><label id="reg">Nombre evento:</label> 
-								<select name="nombre_evento" id="evento">
+								<select name="nombre_evento" id="evento" required>
 									<?php $eventos = Eventos::listarEventos();
 										foreach ($eventos as  $valor) { 
 						  					echo '<option  value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
@@ -196,7 +199,7 @@ if (count($erroresFormulario) === 0)
 							<p id="log">Deporte:
 								<select name="deporte" id="dep" required>
 									<?php $deportes = Deporte::getAll();
-										foreach ($deportes as $key => $valor) { 
+										foreach ($deportes as $valor) { 
 						  					echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
 						  			}?></select></p>
 

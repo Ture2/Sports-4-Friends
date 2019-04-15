@@ -234,7 +234,7 @@ class Eventos
     
     public function set_deporte($deporte){$this->deporte = $deporte;}
     public function set_ciudad($ciudad){$this->ciudad = $ciudad;}
-    public function set_municipio($munucipio){$this->municipio = $municipio;}
+    public function set_municipio($municipio){$this->municipio = $municipio;}
     public function set_localizacion($localizacion){$this->localizacion = $localizacion;}
     public function set_fecha_creacion($fecha_creacion){$this->fecha_creacion = $fecha_creacion;}
     public function set_fecha_evento($fecha_evento){$this->fecha_evento = $fecha_evento;}

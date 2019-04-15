@@ -32,7 +32,7 @@ if (!isset($_SESSION['esAdmin'])) {
 						<legend id="log">EDITAR EVENTOS</legend>
 
 							<p id="reg"><label id="reg">Nombre evento:</label> 
-								<select name="evento" id="evento">
+								<select name="nombre_evento" id="evento" required>
 									<?php $eventos = Eventos::listarEventos();
 										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
