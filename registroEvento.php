@@ -3,14 +3,14 @@
 	require_once __DIR__.'/includes/Eventos.php';
 	require_once __DIR__.'/includes/Equipos.php';
 
-if (! isset($_POST['login']) ) {
+if (!isset($_POST['login']) ) {
 header('Location: login.php');
 exit();
 }
 
 	$eventos = Eventos::listarEventos();
 	$equipos = Equipo::getAllEquipos();
-	
+
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +30,8 @@ exit();
 		<form action="procesarRegistroEvento.php" method="POST">
 				<fieldset id="evento">
 				<legend id="log">Registra tu equipo en el evento</legend>
-					<p id="log">Evento: <input list="eventos" name="evento">
-						<datalist id="eventos">
+					<p id="log">Evento: <input list="even" name="evento">
+						<datalist id="even">
 								<?php
 										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
@@ -50,7 +50,7 @@ exit();
 			<button id= "index" type="submit" name="registro">Validar</button>
 			<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
 		</fieldset>
-	</form>
+		</form>
 	</div>
 
 	<?php 

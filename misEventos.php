@@ -34,6 +34,7 @@ else
 		}
 	}
 }
+var_dump($_SESSION['nombre']);
 var_dump($equiposPerteneceUsuario);
 var_dump($registrosEventos);
 
@@ -54,29 +55,33 @@ var_dump($registrosEventos);
 		require("includes/comun/cabecera.php");
 	?>
 
-
-	<div id="logo">
-		<img class="logo" src="images/logo.png">
-	</div>   
-	<div id="error">
-		
-		<fieldset id="errorLogin">
-			<legend id="error">ERROR</legend>
 		<?php
-			if ($_SESSION["esAdmin"] == true) {
+		if(count($errores) > 0)
+		{
+		?>
+			<div id="logo">
+			<img class="logo" src="images/logo.png">
+			</div>   
+			<div id="error">
 			
-				foreach($errores as $error) {
+			<fieldset id="errorLogin">
+			<legend id="error">ERROR</legend>
+				<?php
+				foreach($errores as $error) 
+				{
 					echo "<li>$error</li>";
 				}
-				if (count($errores) > 0) {
+				if (count($errores) > 0) 
+				{
 					echo '</ul>';
 				}
-			}
+				?>
+
+			</fieldset>
+			</div>
+		<?php
+		}
 		?>
-		</fieldset>
-	</div>
-
-
 
 
 	<?php
