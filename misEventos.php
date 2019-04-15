@@ -1,41 +1,42 @@
 <?php
+
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/RegistroEvento.php';
+require_once __DIR__.'/includes/Jugador.php';
 
-//guardamos en un array los posibles errores que puedan darse
+
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+    exit();
+}
+
+
 $errores = array();
 
-if(isset($_SESSION["login"])){
+$equiposPerteneceUsuario =Jugador::listaEquiposPorJugador($_SESSION['nombre']);
 
-	$equiposPerteneceUsuario = ...($_SESSION['nombre']);
-
-	if(!isset($equiposPerteneceUsuario)){
-		$errores[] = "No te has unido a ningun equipo";
-	}
-	else
+if(empty($equiposPerteneceUsuario))
+{
+		$errores[] = "No estas apuntado a ningun equipo";
+}
+else
+{
+	if(count($equiposPerteneceUsuario) > 0)
 	{
-
-		$registrosEventos = RegistroEvento::buscaRegistroEventosPorEquipos($equiposPerteneceUsuario);
-
-		if(!isset($registrosEventos))
-		{
-			$errores[] = "Ningun equipo al que te has unido participa en los ventos";
-		}
-		/*
-		else
-		{
-			$arrayEventos = array();
-			foreach ($registrosEventos as $value) 
+		$registrosEventos = array();
+		foreach ($equiposPerteneceUsuario as $value) {
+			$comprobar  = RegistroEvento::buscaRegistroEventosEquipo($value);
+			if($comprobar)
 			{
-				$arrayEventos[] = Eventos::buscarEvento($value->evento());
+				$registrosEventos[] = $comprobar;
 			}
+			
 		}
-		*/
 	}
 }
-else{
-	$errores[] = "No puedes acceder al contenido";
-}
+var_dump($equiposPerteneceUsuario);
+var_dump($registrosEventos);
+
 
 ?>
 
@@ -51,7 +52,6 @@ else{
 
 	<?php
 		require("includes/comun/cabecera.php");
-		require("includes/comun/menu.php");
 	?>
 
 
@@ -82,13 +82,13 @@ else{
 	<?php
 		if (isset($_SESSION["login"]))
 		{
-			if(count($errores) == 0)) 
+			if(count($errores) == 0)
 			{
 			?>
 					<div id="eventos">
 						<fieldset id="eventos">
 							<div id="evento">
-								<?php foreach ($registrosEventos as $key => $value) {?>
+								<?php foreach ($registrosEventos as $value) {?>
 								<p id="evento"><?=$value->evento();?></p>
 								<p id="evento"><?=$value->equipo();?></p>
 								<p id="evento"><?=$value->p_victorias();?></p>

@@ -3,6 +3,11 @@
 	require_once __DIR__.'/includes/Eventos.php';
 	require_once __DIR__.'/includes/Equipos.php';
 
+if (! isset($_POST['login']) ) {
+header('Location: login.php');
+exit();
+}
+
 	$eventos = Eventos::listarEventos();
 	$equipos = Equipo::getAllEquipos();
 ?>

@@ -1,34 +1,29 @@
 <?php
 
+
+require_once __DIR__ . '/Aplicacion.php';
+
 class RegistroEvento
 {
-    public static function buscaRegistroEventosPorEquipos($equiposPerteneceUsuario)
+    public static function buscaRegistroEventosEquipo($equipo)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $result = false;
 
-        for($i = 0; $i < count($equiposPerteneceUsuario); $i++)
+        $query = sprintf("SELECT * FROM Registro_eventos RE WHERE RE.equipo = '%s'", $conn->real_escape_string($equipo));
+        $rs = $conn->query($query);
+        if ($rs) 
         {
-            $query = sprintf("SELECT * FROM Registro_eventos RE WHERE equipo = '%s'", $conn->real_escape_string($equiposPerteneceUsuario[i]));
-
-            $rs = $conn->query($query);
-            if ($rs) 
-            {
-                if ( $rs->num_rows == 1) 
-                {
-                    $fila = $rs->fetch_assoc();
-
-                    $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
-
-                    $evento->id_registro = $row['id_registro'];
-
-                    $result[] = $registroEvento;
-                }
+        if ( $rs->num_rows == 1) 
+        {
+            $fila = $rs->fetch_assoc();
+            $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
+            $evento->id_registro = $row['id_registro'];
+            $result[] = $registroEvento;
+            }
             $rs->free();
             }
-
-        }
     }
 
     public static function buscaRegistroEvento($evento, $equipo)
@@ -164,14 +159,13 @@ class RegistroEvento
         $this->equipo= $equipo;
         $this->p_victorias=$p_victorias;
         $this->fecha_creacion=$fecha_creacion;
-
+    }
          //Funciones para acceder a los atributos de Eventos
          public function evento(){return $this->evento;}
          public function equipo(){return $this->equipo;}
          public function p_victorias(){return $this->p_victorias;}
          public function fecha_creacion(){return $this->fecha_creacion;}
-
-    }
+}
 ?>
 
 
