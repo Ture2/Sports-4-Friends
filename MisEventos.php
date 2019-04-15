@@ -24,8 +24,11 @@ else
 	if(count($equiposPerteneceUsuario) > 0)
 	{
 		$registrosEventos = array();
-		foreach ($equiposPerteneceUsuario as $value) {
-			$comprobar  = RegistroEvento::buscaRegistroEventosEquipo($value);
+
+		for($i = 0; $i < count($equiposPerteneceUsuario); $i++)
+		{
+			$comprobar  = RegistroEvento::buscaRegistroEventosEquipo($equiposPerteneceUsuario[$i]);
+			//var_dump($equiposPerteneceUsuario[$i]);
 			if($comprobar)
 			{
 				$registrosEventos[] = $comprobar;
@@ -34,10 +37,12 @@ else
 		}
 	}
 }
+
+/*
 var_dump($_SESSION['nombre']);
 var_dump($equiposPerteneceUsuario);
 var_dump($registrosEventos);
-
+*/
 
 ?>
 
@@ -55,39 +60,15 @@ var_dump($registrosEventos);
 		require("includes/comun/cabecera.php");
 	?>
 
-		<?php
-		if(count($errores) > 0)
-		{
-		?>
-			<div id="logo">
-			<img class="logo" src="images/logo.png">
-			</div>   
-			<div id="error">
-			
-			<fieldset id="errorLogin">
-			<legend id="error">ERROR</legend>
-				<?php
-				foreach($errores as $error) 
-				{
-					echo "<li>$error</li>";
-				}
-				if (count($errores) > 0) 
-				{
-					echo '</ul>';
-				}
-				?>
-
-			</fieldset>
-			</div>
-		<?php
-		}
-		?>
-
 
 	<?php
 		if (isset($_SESSION["login"]))
 		{
-			if(count($errores) == 0)
+			if(empty($registrosEventos))
+			{
+				echo "TÚ/S NO TIENEN NINGUN EVENTO/S DISPONIBLE/S";
+			}
+			elseif(count($errores) == 0)
 			{
 			?>
 					<div id="eventos">

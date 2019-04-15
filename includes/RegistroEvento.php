@@ -11,19 +11,20 @@ class RegistroEvento
         $conn = $app->conexionBd();
         $result = false;
 
-        $query = sprintf("SELECT * FROM Registro_eventos RE WHERE RE.equipo = '%s'", $conn->real_escape_string($equipo));
+        $query = sprintf("SELECT * FROM Registros_eventos RE WHERE RE.equipo = '%s'", $conn->real_escape_string($equipo));
         $rs = $conn->query($query);
         if ($rs) 
         {
-        if ( $rs->num_rows == 1) 
-        {
-            $fila = $rs->fetch_assoc();
-            $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
-            $evento->id_registro = $row['id_registro'];
-            $result[] = $registroEvento;
+            if ( $rs->num_rows == 1) 
+            {
+                $row = $rs->fetch_assoc();
+                $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['p_victorias'],$row['fecha_creacion']);
+                $registroEvento->id_registro = $row['id_registro'];
+                $result = $registroEvento;
             }
             $rs->free();
-            }
+        }
+        return $result;
     }
 
     public static function buscaRegistroEvento($evento, $equipo)
@@ -31,7 +32,7 @@ class RegistroEvento
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        $query = sprintf("SELECT * FROM Registro_eventos RE WHERE RE.evento = '%s'  and RE.equipo = '%s'", $conn->real_escape_string($evento),
+        $query = sprintf("SELECT * FROM registro_eventos RE WHERE RE.evento = '%s'  and RE.equipo = '%s'", $conn->real_escape_string($evento),
                     $conn->real_escape_string($equipo));
 
         $rs = $conn->query($query);
@@ -153,7 +154,7 @@ class RegistroEvento
     
 
     //Constructora
-    private function __construct($evento, $deporte, $equipo, $p_victorias, $fecha_creacion)
+    private function __construct($evento, $equipo, $p_victorias, $fecha_creacion)
     {
         $this->evento= $evento;
         $this->equipo= $equipo;
