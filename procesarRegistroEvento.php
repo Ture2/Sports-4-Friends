@@ -12,14 +12,18 @@ if (! isset($_SESSION['login']) ) {
 
 $erroresFormulario = array();
 
+$fecha_creacion=date("Y-m-d");
 
 $nombre_evento = isset($_POST['evento']) ? $_POST['evento'] : null;
-if ( empty($nombre_evento) || mb_strlen($nombre_evento) < 5 ) {
+
+if ( empty($nombre_evento) || mb_strlen($nombre_evento) < 5 )
+{
 	$erroresFormulario[] = "El nombre del evento tiene que tener una longitud de al menos 5 caracteres.";
 }
 
 $equipo = isset($_POST['equipo']) ? $_POST['equipo'] : null;
-if ( empty($equipo) || mb_strlen($equipo) < 5 ) {
+if ( empty($equipo) || mb_strlen($equipo) < 5 )
+{
     $erroresFormulario[] = "El equipo tiene que tener una longitud de al menos 5 caracteres.";
 }
 
@@ -50,9 +54,21 @@ else
 
 }
 
-if (count($erroresFormulario) === 0) {
+/*
+Debugging
+*/
 
-	$fecha_creacion=date("Y-m-d");
+var_dump($evento);
+var_dump($nombre);
+var_dump($equipo);
+var_dump($fecha_creacion));
+var_dump($equipo->get_p_victorias);
+
+
+if (count($erroresFormulario) === 0) 
+{
+
+
 	$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $equipo->get_p_victorias(), $fecha_creacion));
 
 
@@ -62,10 +78,10 @@ if (count($erroresFormulario) === 0) {
 		$erroresFormulario[] = "Error al registrar el equipo en el evento";
 	}
 	else 
-    {       
-            header('Location: misEventos.php');
-            exit();
-    }  
+	{     
+	    header('Location: misEventos.php');
+	    exit();
+	}  
 }
 
 ?>

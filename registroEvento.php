@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Eventos.php';
 require_once __DIR__.'/includes/Equipo.php';
@@ -10,8 +11,8 @@ if (!isset($_SESSION['login']) ) {
 	exit();
 }
 
-	$eventos = Eventos::listarEventos();
-	$equipos = Equipo::getAllEquipos();
+$eventos = Eventos::listarEventos();
+$equipos = Equipo::getAllEquipos();
 
 ?>
 
