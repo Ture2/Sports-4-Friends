@@ -1,10 +1,8 @@
-<!DOCTYPE html>
 
 <?php
 
-session_start();
-
-require'../Data/DAOs/DAOsImp/DAOUsuariosImp.php';
+require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/Usuario.php';
 
 if (! isset($_POST['registro']) ) {
 	header('Location: registro.php');
@@ -25,22 +23,10 @@ if ( empty($nombre) || mb_strlen($nombre) < 2 ) {
 	$erroresFormulario[] = "El nombre tiene que tener una longitud de al menos 5 caracteres.";
 }
 
-$apellido = isset($_POST['apellido']) ? $_POST['apellido'] : null;
-if ( empty($apellido) || mb_strlen($apellido) < 2 ) {
-    $erroresFormulario[] = "El apellido tiene que tener una longitud de al menos 2 caracteres.";
-}
-
 $correo = isset($_POST['correo']) ? $_POST['correo'] : null;
 if ( empty($correo) || mb_strlen($correo) < 2 ) {
     $erroresFormulario[] = "El correo tiene que tener una longitud de al menos 5 caracteres.";
 }
-
-$telefono = isset($_POST['telefono']) ? $_POST['telefono'] : null;
-if ( empty($telefono) || mb_strlen($telefono) < 2 ) {
-    $erroresFormulario[] = "El telefono tiene que tener una longitud de al menos 5 caracteres.";
-}
-
-
 
 $password = isset($_POST['password']) ? $_POST['password'] : null;
 if ( empty($password) || mb_strlen($password) < 3 ) {
@@ -48,73 +34,21 @@ if ( empty($password) || mb_strlen($password) < 3 ) {
 }
 $password2 = isset($_POST['password2']) ? $_POST['password2'] : null;
 if ( empty($password2) || strcmp($password, $password2) !== 0 ) {
-	$erroresFormulario[] = "Los passwords deben coincidir";
+	$erroresFormulario[] = "Los passwords deben coincidir.";
 }
 
 if (count($erroresFormulario) === 0) {
-	//$conn = new \mysqli('localhost', 'root', '', 'ejercicio3');
-	
-	$conn= new DAOUsuariosImp();
-	/*if ( $conn->connect_errno ) {
-		echo "Error de conexión a la BD: (" . $this->conn->connect_errno . ") " . utf8_encode($this->conn->connect_error);
-		exit();
-	}
-	if ( ! $conn->set_charset("utf8mb4")) {
-		echo "Error al configurar la codificación de la BD: (" . $this->conn->errno . ") " . utf8_encode($this->conn->error);
-		exit();
-	}*/
-	
-	
-	
-	//$query=sprintf("SELECT * FROM Usuarios U WHERE U.nombreUsuario = '%s'", $conn->real_escape_string($nombreUsuario));
-	
-	//$rs = $conn->query($query);
-	
-	$rs=$conn->get($nombreUsuario);
-	
-	if ($rs) {
-		if ( $rs->num_rows > 0 ) {
-			$erroresFormulario[] = "El usuario ya existe";
-			$rs->free();
-		} else {
-		    
-			/*$query=sprintf("INSERT INTO Usuarios(nombreUsuario, nombre, password, rol) VALUES('%s', '%s', '%s', '%s')"
-					, $conn->getConexion()->real_escape_string($nombreUsuario)
-					, $conn->getConexion()->real_escape_string($nombre)
-					, password_hash($password, PASSWORD_DEFAULT)
-					, 'user');*/
-		    
-		    $usuario=new Usuario($nombreUsuario,$nombre,$apellido,$correo,$telefono,$password);
-		    
-		   // $reg=$conn->set($usuario);
-			
-		    if ($conn->set($usuario)) {
-		     $_SESSION['login'] = true;
-		     $_SESSION['nombre'] = $nombreUsuario;
-		     header('Location: login.php');
-		     exit();
-		     } else {
-		     echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->geerror);
-		     exit();
-		     }
-		    
-			/*if ( $conn->query($query) ) {
-				$_SESSION['login'] = true;
-				$_SESSION['nombre'] = $nombreUsuario;
-				header('Location: index.php');
-				exit();
-			} else {
-				echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
-				exit();
-			}*/
-		
-		
-		}		
-	} else {
-		echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
-		exit();
-	}
-	$rs->free();
+	$usuario = Usuario::crea($nombreUsuario, $nombre, $correo, $password, 'USER');
+    
+    if (! $usuario ) {
+        $erroresFormulario[] = "El usuario ya existe.";
+    } else {
+        $_SESSION['login'] = true;
+        $_SESSION['nombre'] = $nombreUsuario;
+        header('Location: index.php');
+        exit();
+        
+    }
 }
 
 ?>
@@ -122,16 +56,18 @@ if (count($erroresFormulario) === 0) {
 
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="estilo.css" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
 	<title></title>
 </head>
 <body>
 
 	<div id="logo">
-		<img class="logo" src="logo.png">
+		<img class="logo" src="images/logo.png">
 	</div>
-
+<div id="error">
+	<fieldset id="errorReg">
+		<legend id="error">ERROR</legend>
 	<?php
 		if (count($erroresFormulario) > 0) {
 			echo '<ul class="errores">';
@@ -142,29 +78,68 @@ if (count($erroresFormulario) === 0) {
 		if (count($erroresFormulario) > 0) {
 			echo '</ul>';
 		}
-	?>		
-		
+	?>
+	</fieldset>		
+</div>		
 
+	<section class="forms-section">
+  <div class="forms">
+    <div class="form-wrapper">
+      <button type="button" class="switcher switcher-login">
+        Iniciar Sesi&oacuten
+        <span class="underline"></span>
+      </button>
+      <form action="procesarLogin.php" method="POST" class="form form-login">
+        <fieldset>
+          <div class="input-block">
+            <label for="login-username">Usuario</label>
+            <input id="login-username" type="text" name="username" required>
+          </div>
+          <div class="input-block">
+            <label for="login-password">Contrase&ntildea</label>
+            <input id="login-password" type="password" name="password" required>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn-login" name="login">Iniciar Sesi&oacuten</button>
+        <button formnovalidate formaction="index.php" type="submit" class="btn-login" name="volver">Inicio</button>
+      </form>
+    </div>
 
-
-	<div id="registro">
-		<form action="procesarRegistro.php" method="POST">
-		<fieldset id="campo">
-		<legend id="log">Registro</legend>
-		<p id="reg"><label id="reg">Usuario:</label> <input type="text" name="username" value=""></p>
-		<p id="reg"><label id="reg">Nombre:</label> <input type="text" name="nombre" value=""></p>
-		<p id="reg"><label id="reg">Apellidos:</label> <input type="text" name="apellido" value=""></p>
-		<p id="reg"><label id="reg">Correo:</label> <input type="text" name="correo" value=""></p>
-		<p id="reg"><label id="reg">Teléfono:</label> <input type="text" name="telefono" value=""></p>
-		<p id="reg"><label id="reg">Contraseña:</label> <input type="password" name="password" value=""></p>
-		<p id="reg"><label id="reg">Repetir Contraseña:</label> <input type="password" name="password2" value=""></p>
-		<button id= "index" type="submit" name="registro">Validar</button>
-		</fieldset>
-		</form>
-	</div>
-
-
-
+    <div class="form-wrapper is-active">
+      <button type="button" class="switcher switcher-signup">
+        Registro
+        <span class="underline"></span>
+      </button>
+      <form action="procesarRegistro.php" method="POST" class="form form-signup">
+        <fieldset>
+          <div class="input-block">
+            <label for="signup-username">Usuario</label>
+            <input id="signup-username" type="text" name="username" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-nombre">Nombre</label>
+            <input id="signup-nombre" type="text" name="nombre" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-correo">Correo</label>
+            <input id="signup-correo" type="email" name="correo" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-password">Contrase&ntildea</label>
+            <input id="signup-password" type="password" name="password" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-password-confirm">Confirmar Contrase&ntildea</label>
+            <input id="signup-password-confirm" type="password" name="password2" required>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn-signup" name="registro">Crear Cuenta</button>
+        <button formnovalidate formaction="index.php" type="submit" class="btn-signup" name="volver">Inicio</button>
+      </form>
+    </div>
+</section>
 
 </body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<script src="javascript/LogReg.js"></script>
 </html>

@@ -1,3 +1,10 @@
+<?php
+
+    require_once __DIR__.'/includes/config.php';
+
+    
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +16,7 @@
 
 	<?php 
 	require("includes/comun/cabecera.php");
-	require("menu.php");
-	//require("contenido.php");
-	
-	
-		
+
 	?>
 
 	<div id="contenido">

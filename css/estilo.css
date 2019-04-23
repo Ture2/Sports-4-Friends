@@ -1,20 +1,129 @@
 body {
-	background-color: #32FF00;
-}
+	height: 100%;
+	background-image: url("../images/sport.png");
+	background-color: black;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 
-div#contenedor {
-	width: 900px;
-	margin: auto;
-	border: 1px solid black;
-	background-color: #aaaaaa;
-	margin-top: 30px;
 }
 
 *{
-	/*margin:0px;*/
 	padding:0px;
 }
 
+
+/* popup */
+
+#mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9000;
+  background-color: #000;
+  display: none;
+}
+
+#boxes .window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 440px;
+  height: 200px;
+  display: none;
+  z-index: 9999;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+#boxes #dialog {
+  width: 750px;
+  height: 300px;
+  padding: 10px;
+  background-color: darkgreen;
+  font-family: 'Segoe UI Light', sans-serif;
+  font-size: 20pt;
+}
+
+#popupfoot {
+  font-size: 16pt;
+  position: absolute;
+  margin-bottom: 15px;
+  bottom: 10px;
+  width: 500px;
+  left: 115px;
+}
+
+a#popup{
+    padding: 10px;
+    font-size: 15px;
+    position: relative;
+    background-color: #3b4465;
+    color:#eef9fe;
+    box-shadow: inset 0 0 1px 0px black;
+    text-decoration: none;
+    border:2px solid gold;
+    font-weight: bolder;
+}
+
+a#popup:hover{
+	background-color: gold;
+	color:#3b4465;
+	border:2px solid #3b4465;
+	font-weight: bolder;
+}
+
+#pop{
+	font-size: 15pt;
+	color:gold;
+	padding-top: 20px;
+}
+
+/* error */
+
+#error{
+	margin-top: 20px;
+	float: center;
+	text-align: center;
+	font-size: 15pt;
+}
+
+fieldset#errorLogin {
+	border: 3px solid red;
+	width: 20em;
+	padding: 15px;
+	margin: 0 auto;
+	background-color: lightblue;
+	border-radius: 10px;
+	text-align: left;
+}
+
+fieldset#errorReg {
+	border: 1px solid red;
+	width: 35em;
+	margin: 0 auto;
+	background-color: lightblue;
+	border-radius: 10px;
+	text-align: left;
+	padding-left: 20px;
+
+}
+
+legend#error {
+	color: #fff;
+	background: red;
+	border: 1px black;
+	padding: 2px 6px;
+	border-radius: 10px;
+}
+
+div#cab{
+	float:right;
+	font-size: 25px;
+	color:lightblue;
+	margin-right: 250px;
+}
 
 /* portada */
 
@@ -64,9 +173,10 @@ button#index {
 }
 
 fieldset#campo {
-	border: 1px solid darkgreen;
+	border: 3px solid darkgreen;
 	width: 15em;
 	margin: 0 auto;
+	background-color: lightblue;
 }
 
 legend#log {
@@ -74,6 +184,7 @@ legend#log {
 	background: darkgreen;
 	border: 1px darkgreen;
 	padding: 2px 6px;
+	border-radius: 10px;
 }
 
 p#log {
@@ -90,17 +201,17 @@ p#log {
 	text-align: center;
 }
 
-legend#log {
-	background: darkgreen;
-	border: 1px darkgreen;
-	padding: 2px 6px;
-	text-align: center;
-} 
+fieldset#campoReg {
+	border: 3px solid darkgreen;
+	width: 20em;
+	margin: 0 auto;
+	background-color: lightblue;
+}
 
 label#reg {
 	width: 4em;
 	text-align: left;
-	margin-right: 0.5em;
+	margin-right: 20em;
 	display: inline-block;
 }
 
@@ -115,6 +226,8 @@ div#cabecera {
 	padding: 30px;
 	height: 100px;
 	background-color: darkgreen;
+	z-index: 1;
+	position: relative;
 }
 
 img.logoC{
@@ -125,17 +238,22 @@ img.logoC{
 div#logoC{
 	text-align: center;
 	margin: -25px auto;
-
 }
 	
 
 /* menu de navegacion */
 
+img#menu{
+	width: 15px;
+	height: 15px;
+	margin-right: 5px;
+}
 
 div#barra {
 	margin: auto;
+	margin-top: 21px;
 	padding: 0px;
-	width: 500px;
+	width: 700px;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -179,18 +297,26 @@ ul, ol {
 	top: 0px;
 }
 
+.nav li a:target{
+	background-color: gold;
+}
+
 
 /* contenido */
 
 div#contenido {
+	margin-top: 35px;
 	padding: 10px;
 	height: 600px;
-	background-color: green;
+	background-color: #3b4465;
+	overflow: auto;
 }
 
-div#saludo {
-	text-align: center;
-	padding-top: 100px; 
+img.logoIndex {
+	width: 1000px;
+	height: 500px;
+	display: block;
+	margin: auto;
 }
 
 div#adios {
@@ -198,23 +324,10 @@ div#adios {
 	padding-top: 100px;
 }
 
-div#cal {
-	float: right;
-}
+#out{
+	color:gold;
+	font-size:75px;
 
-div#noticia {
-	position: absolute;
-	margin-left: 200px;
-	margin-top: 10px;
-}
-
-fieldset#not {
-	border: 1px solid lightgreen;
-	width: 15em;
-	margin: 0 auto;
-	background-color: darkgreen;
-	text-align: center;
-	padding-bottom: 200px;
 }
 
 p {
@@ -224,6 +337,101 @@ p {
 
 u {
 	color: white;
+}
+
+/* Slideshow contenedor */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  margin-top: 50px;
+  background-color: transparent;
+  z-index: 0;
+  border:1px solid gold;
+}
+
+/* botones pasar pagina */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: gold;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* posicion boton */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* texto */
+.text {
+  color: black;
+  background-color: transparent;
+  font-size: 30px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* (1/3) */
+.numbertext {
+  color: gold;
+  font-size: 20px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+/* indicadores */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  border:1px solid gold;
+}
+
+#dot{
+	text-align: center;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* animacion */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+  z-index: 0;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
 }
 
 /* equipos */
@@ -278,56 +486,24 @@ img#fut {
 }
 
 
-/* pantalla */
-
-div#tabla {
-	float: right;
-	margin-right: 300px;
-}
-
-img#fut1 {
-	width: 300px;
-	height: 300px;
-}
-
-table {
-	width: 100%;
-	border: 1px solid lightgreen;
-	align-content: center;
-}
-
-th {
-	padding: 15px;
-	height: 50px;
-	text-align: center;
-	background-color: red;
-	color:white;
-}
-
-td {
-	padding: 15px;
-	text-align: center;
-	background-color: #32FF00;
-	vertical-align: middle;
-}
-
-
 /* crear equipo */
 
 #crear{
- 	float: center;
  	text-align: center;
+ 	float:center;
  }
 
 div#crear {
 	margin: 0 auto; 
 	position: absolute;
 	margin-left: 600px;
-	margin-top: 100px;
 }
 
 fieldset#crear {
 	padding: 10px;
+	width: 50em;
+	border:3px solid darkgreen;
+	background-color: lightblue;
 }
 
 
@@ -360,6 +536,338 @@ fieldset#unir {
 }
 
 
+/* perfil */
+
+div#datos{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin:auto;
+	max-width: 1000px;
+}
+
+p#perfil{
+	color:darkgreen;
+}
+
+fieldset#avatar{
+	border: 3px solid darkgreen;
+	background-color: lightblue;
+	text-align: center;
+	max-width: 1000px;
+	margin-top: 30px;
+}
+
+fieldset#perfil{
+	border: 3px solid darkgreen;
+	background-color: lightblue;
+	color:darkgreen;
+	text-align: left;
+	max-width: 1000px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 20px;
+}
+
+input{
+	border:1px solid darkgreen;
+}
+
+
+/* estadisticas */
+
+div#tabla {
+	float: center;
+}
+
+img#fut1 {
+	width: 300px;
+	height: 300px;
+}
+
+table {
+	width: 100%;
+	border: 1px solid gold;
+	align-content: center;
+	margin-bottom: 50px;
+}
+
+th {
+	padding: 15px;
+	height: 50px;
+	text-align: center;
+	background-color: darkblue;
+	color:white;
+	font-weight: bolder;
+}
+
+td {
+	padding: 15px;
+	text-align: center;
+	background-color: lightblue;
+	color:#3b4465;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+
+/* EVENTOS */
+
+div#eventos {
+	max-width: 1000px;
+	margin: auto;
+	border: 1px solid black;
+	background-color: green;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+div#evento1 {
+	max-width: 1000px;
+	margin: auto;
+	background-color: green;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+img#img_eventos{
+	width: 250px;
+	height: 250px;
+	display: block;
+	background-color: transparent;
+	margin: auto;
+}
+
+h1,pre,p#texto{
+	text-align: center;
+	text-transform: uppercase;
+	color:black;
+	font-size: 15px;
+	font-weight: bolder;
+}
+
+p#evento{
+	font-size: 20px;
+	color: white;
+	margin-left: 5px;
+}
+
+h1#evento{
+	text-transform: uppercase;
+	color:gold;
+}
+
+div#errorEvento{
+	max-width: 1000px;
+	border: 1px solid black;
+	margin-top: 30px;
+	margin: auto;
+}
+
+div#errorEvento2{
+	margin-left: 200px;
+}
+
+fieldset#evento{
+	border:3px solid darkgreen;
+	background-color: lightblue;
+	text-align: center;
+	max-width: 1000px;
+	margin: auto;
+	margin-top: 50px;
+}
+
+fieldset#evento1{
+	border: 1px solid lightgreen;
+	background-color: darkgreen;
+	text-align: center;
+}
+
+
+/* Quedadas */
+
+div#quedadas {
+	max-width: 1000px;
+	margin: auto;
+	border: 1px solid black;
+	background-color: #eef9fe;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+img#quedada{
+	width: 250px;
+	height: 250px;
+	display: block;
+	background-color: transparent;
+	margin: auto;
+	border:2px solid gold;
+}
+
+pre#texto1{
+	text-align: center;
+	text-transform: uppercase;
+	color:black;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+div#errorQuedada{
+	max-width: 1000px;
+	border: 1px solid black;
+	margin-top: 30px;
+	margin: auto;
+}
+
+div#errorQuedada2{
+	margin-left: 200px;
+}
+
+fieldset#quedada{
+	border:3px solid darkgreen;
+	background-color: lightblue;
+	text-align: center;
+	max-width: 1000px;
+	margin: auto;
+	margin-top: 50px;
+}
+
+
+/* Procesar listar equipos */
+
+.login-equipos{
+	margin-top: 30px;
+    margin-bottom: 15px;
+    padding: 15px;
+    text-align: left;
+    font-size: 15px;
+    color:#3b4465;
+    font-weight: bold;
+    position: relative;
+    right: -100px;
+    background-color: #eef9fe;
+    box-shadow: inset 0 0 1px 0px black;
+    border:3px solid gold;
+}
+
+.login-equipos:hover{
+	background-color: gold;
+}
+
+.login-equipos > a{
+	font-size: 15px;
+    text-decoration-line: none;
+}
+
+.teams_container{
+	display: grid;
+	grid-template-rows: 80px 400px;
+	grid-template-areas: 
+	"titulo titulo"
+	"teambox teambox";
+    text-align: center;
+    /*grid-template-columns: 480px 480px;*/
+    background-color: #fff;
+}
+
+.titulo{
+	grid-area: titulo;
+	font-size: 40px; 
+	text-align: center;
+	color: blue;
+}
+
+.box{
+	align-self: start;
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    grid-template-areas: "title title"
+ 	"logo texto"
+ 	"logo texto";
+    margin-bottom: 25px;
+    border:1px solid black;
+}
+
+.box-equipo{
+	grid-area: title;
+	text-align: center;
+	color: green;
+}
+.box-logo{
+	padding-left: 15px;
+	position: relative;
+    float: left;
+    width: 200px;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.box-texto{
+	grid-area: texto;
+	font-size: 20px;
+	color: green;
+}
+
+.box-texto2{
+	font-size: 20px;
+	color: green;
+}
+
+.box-desc{
+	font-size: 15px;
+	color: black;
+}
+
+
+/* pantalla equipo */
+
+#p1{
+	color:black;
+	margin-left: 400px;
+	text-decoration: underline;
+	text-decoration-color: black;
+}
+
+#p2{
+	color:#eef9fe;
+	margin-left: 400px;
+}
+
+#p3{
+	color:black;
+	margin-left: 750px;
+	text-decoration: underline;
+	text-decoration-color: black;
+}
+
+#p4{
+	color:gold;
+	margin-left: 50px;
+}
+
+#p5{
+	color:#eef9fe;
+}
+
+#p6{
+	color:gold;
+	text-align: center;
+}
+
+#h{
+	color:gold;
+	font-size: 50px;
+}
+
+#h1{
+	color:#3b4465;
+	font-size: 50px;
+}
+
+
 /* pie */
 
 div#pie {
@@ -367,6 +875,8 @@ div#pie {
 	padding: 20px;
 	height: 50px;
 	background-color: darkgreen;
+	position: relative;
+	z-index: 1;
 }
 
 img#icon {

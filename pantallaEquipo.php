@@ -1,65 +1,132 @@
+<?php
+	require_once __DIR__.'/includes/config.php';
+	require_once __DIR__.'/includes/Equipo.php';
+	require_once __DIR__.'/includes/Jugador.php';
+	require_once __DIR__.'/includes/Usuario.php';
+
+	$info = Equipo::getInfoPorNombre($_GET['equipo']);
+	$_GET['equipo'] = str_replace(' ', '%', $info->get_nombre_equipo());
+	$estadisticas = $info->get_estadisticas();
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="estilo.css"/>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
-	<title>Información del Equipo</title>
+	<title>Detalles</title>
 </head>
 <body>
 
 	<?php
-		require("cabecera.php");
-		require("menu.php");
+		require("includes/comun/cabecera.php");
 	?>
 
-	  <div id="contenido">
+	<div id="contenido">
 
-	  	<u><p>EQUIPO 1</p></u>
+	  	<h1 id="h"><?php echo $info->get_nombre_equipo();?></h1>
 
 		  	<div id="team">
-		  		<img id="fut1" src="fut.png">
+		  		<img id="fut1" src=<?php echo '/Sports-4-Friends/images/logo_equipos/'.$info->get_logo_equipo();?>>
 		  	</div>
 
-	  	<button id="index">ESTADISTICAS</button>
+		<div>
+			<b><p id="p1">DESCRIPCIÓN</p></b>
+			<p id="p2"><?php echo $info->get_descripcion_equipo();?></p>
+			<div id="botones-equipo">
+				<?php
 
-	  	<div id="tabla">
-	  		<table>
-	  			<tr>
-	  				<th>Jugador</th>
-	  				<th>Posición</th>
-	  				<th>PJ</th>
-	  				<th>PG</th>
-	  				<th>PP</th>
-	  			</tr>
-	  			<tr>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  			</tr>
-	  			<tr>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  			</tr>
-	  			<tr>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  				<td>-</td>
-	  			</tr>
-	  		</table>
-	  	</div>
+				/*Fase sin acabar puesto que necesitamos saber si un jugador estÃ¡ ya dentro de un equipo
+				(hay que modificar la base de datos) y tambien si se ha logueado. Esto es importante para
+				decidir que botÃ³n mostrar*/
+
+					if(!isset($_SESSION["login"])){ ?>
+						<form action="procesarLogin.php" method="POST">
+			    				Desea unirse a este equipo, pulse la siguiente casilla: <input type="submit" value="Sign Up"/>
+						</form>
+						<?php 
+					}else {
+
+						$jugador = Jugador::getJugadorPorNombreDeUnEquipo($_SESSION['nombre'], $info->get_nombre_equipo());
+						$jugadores = Jugador::getJugadoresPorEquipo($info);
+						if(!is_null($jugador)){
+								if($jugador->compruebaJugadorEnEquipo($jugadores, $jugador) == false)
+									$jugador = null;
+							}
+							$jugadores = Jugador::getJugadoresPorEquipo($info);
+						if($_SESSION["login"] && !is_null($jugador) &&  $jugador->compruebaJugadorEnEquipo($jugadores, $jugador) == true) { ?>
+						<form action="procesarSalirEquipo.php" method="POST">
+			    			<input class="login-equipos" type="submit" name ="boton" value="Abandonar Equipo"/>
+			    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
+			    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>
+						</form>
+					<?php 
+						}else 
+							if($_SESSION["login"] && is_null($jugador)){ ?>
+								<form action="procesarUnirEquipo.php" method="POST">
+					    			<input class="login-equipos" type="submit" name="boton2" value="Unirme al Equipo"/>
+					    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
+					    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>
+								</form>
+						<?php 
+						}
+					}?>
+
+			</div>
+			  	<div id="tabla">
+			  		<b><p id="p3">ESTADÍSTICAS</p></b>
+			  		<table>
+			  			<tr>
+			  				<th>Posición en la liga</th>
+			  				<td colspan="2"><?php echo $estadisticas["posicion"]; ?></td>
+			  			</tr>
+			  			<tr>
+
+			  				<th>Mayor racha de partidos ganados</th>
+			  				<td colspan="2"><?php echo $estadisticas["racha"]; ?></td>
+			  			</tr>
+			  			<tr>
+			  				<th>Último resultado</th>
+			  				<td colspan="2"><?php echo $estadisticas["ultimo_resultado"]; ?></td>
+			  			</tr>
+			  			<tr>
+			  				<th>PG</th>
+			  				<th>PE</th>
+			  				<th>PP</th>
+			  			</tr>
+			  			<tr>
+			  				<td><?php echo $estadisticas["ganados"]; ?></td>
+			  				<td><?php echo $estadisticas["empatados"]; ?></td>
+			  				<td><?php echo $estadisticas["perdidos"]; ?></td>
+			  			</tr>
+			  		</table>
+
+			  		<table id="tabla">
+			  			<tr>
+			  				<th>Jugadores</th>
+			  			</tr>
+			  			<?php
+			  				$jugadores = Jugador::getJugadoresPorEquipo($info);
+			  				foreach ($jugadores as $key => $value){
+			  					$usuario = Usuario::buscaUsuarioPorId($value->get_usuario());
+			  				?>
+			  			<tr>
+			  				<td> <?php echo $usuario->nombreUsuario(); ?> </td>
+			  			</tr>
+			  			<?php
+			  				}
+			  				?>
+			  		</table>
+			  	</div>
+		</div>
 	  	
-	  </div>
+	</div>
 
 	<?php
-		require("pie.php");	
-	?>  
+		require("includes/comun/pie.php");  
+	?>
 
 </body>
 </html>
+

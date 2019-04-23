@@ -1,9 +1,17 @@
 <?php 
-	session_start(); 
+	header('Refresh: 3; URL=http://localhost/Sports-4-Friends/index.php');
+	require_once __DIR__.'/includes/config.php';
 
-	unset($_SESSION);
+	//Doble seguridad: unset + destroy
+	unset($_SESSION["login"]);
+	unset($_SESSION["esAdmin"]);
 
-	session_destroy(); 
+	//pruebagit
+	unset($_SESSION["nombre"]);
+
+	session_destroy();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +26,12 @@
 
 	<?php 
 		require("includes/comun/cabecera.php");
-		require("menu.php"); 
 	?>
 
 	<div id="contenido">
 		<div id="adios">
-			<h1>Hasta pronto!</h1>
+			<h1 id="out">Cerrando Sesión</h1>
+			<h2 id="p5">Será redireccionado automáticamente.</h2>
 		</div>
 	</div>
 
