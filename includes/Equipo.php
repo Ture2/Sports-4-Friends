@@ -11,7 +11,7 @@ class Equipo{
     {
        $app = Aplicacion::getSingleton();
        $conn = $app->conexionBd();
-       $query = sprintf("SELECT e.NOMBRE_EQUIPO AS NOMBRE, e.LOGO_EQUIPO AS LOGO, e.DESCRIPCION_EQUIPO AS DESCRP FROM EQUIPOS e JOIN DEPORTES d ON d.ID_DEPORTE = e.DEPORTE AND d.NOMBRE_DEPORTE = '%s'", $deporte);
+       $query = sprintf("SELECT e.nombre_equipo AS nombre, e.logo_equipo AS logo, e.descripcion_equipo AS descrp FROM equipos e JOIN deportes d ON d.id_deporte  = e.deporte AND d.nombre_deporte = '%s'", $deporte);
        $rs =$conn->query($query); 
        if ( $rs ) {
        		if($rs->num_rows == 0)
@@ -19,7 +19,7 @@ class Equipo{
        		else {
        			$equipos = array();
        			while ($equipo = $rs->fetch_assoc()) {
-       				$aux = new Equipo($deporte, $equipo["NOMBRE"], $equipo["LOGO"], $equipo["DESCRP"]);
+       				$aux = new Equipo($deporte, $equipo["nombre"], $equipo["logo"], $equipo["descrp"]);
                     //$aux->set_id($equipo["ID_EQUIPO"]);
        				array_push($equipos, $aux);
        			}
@@ -36,7 +36,7 @@ class Equipo{
     public static function setLogoEquipo($ruta){
     	$app = Aplicacion::getSingleton();
        	$conn = $app->conexionBd();
-       	$query = sprintf("UPDATE EQUIPOS SET EQUIPOS = %s", $ruta);
+       	$query = sprintf("UPDATE equipos SET equipos = %s", $ruta);
        	if ( !$conn->query($query) ) {
             echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
@@ -47,15 +47,15 @@ class Equipo{
     public static function getInfoPorNombre($nombre_equipo){
       $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM EQUIPOS WHERE NOMBRE_EQUIPO = '%s'", $nombre_equipo);
+        $query = sprintf("SELECT * FROM equipos WHERE nombre_equipo = '%s'", $nombre_equipo);
         $rs = $conn->query($query);
         $equipo = null;
         if( $rs ){
           $row = $rs->fetch_assoc();
-          $equipo = new Equipo($row["DEPORTE"], $row["NOMBRE_EQUIPO"], $row["LOGO_EQUIPO"], $row["DESCRIPCION_EQUIPO"]);
-          $equipo->set_estadisticas($row["PARTIDOS_GANADOS"],$row["PARTIDOS_EMPATADOS"],$row["PARTIDOS_PERDIDOS"],
-            $row["MAYOR_RACHA"],$row["ULTIMO_RESULTADO"], $row["POSICION_LIGA"]);
-          $equipo->set_id($row["ID_EQUIPO"]);
+          $equipo = new Equipo($row["deporte"], $row["nombre_equipo"], $row["logo_equipo"], $row["descripcion_equipo"]);
+          $equipo->set_estadisticas($row["partidos_ganados"],$row["partidos_empatados"],$row["partidos_perdidos"],
+            $row["mayor_racha"],$row["ultimo_resultado"], $row["posicion_liga"]);
+          $equipo->set_id($row["id_equipo"]);
         }else {
             echo "Error al consultar la base de datos: (" . $conn->errno . ") " . utf8_encode($conn->error);
         }
@@ -67,7 +67,7 @@ class Equipo{
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = "SELECT * FROM EQUIPOS";
+        $query = "SELECT * FROM equipos";
         $rs = $conn->query($query);
         if ($rs) {
             if ( $rs->num_rows == 0)
@@ -75,8 +75,8 @@ class Equipo{
             else {
                 $equipos = array();
                 while($equipo = $rs->fetch_assoc()){
-                    $aux = new Equipo($equipo['DEPORTE'], $equipo['NOMBRE_EQUIPO'], null, null);
-                    $aux->set_id($equipo['DEPORTE']);
+                    $aux = new Equipo($equipo['deporte'], $equipo['nombre_equipo'], null, null);
+                    $aux->set_id($equipo['deporte']);
                     array_push($equipos, $aux);
                 }
 
@@ -103,7 +103,7 @@ class Equipo{
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM equipos E WHERE E.NOMBRE_EQUIPO = '%s'", $conn->real_escape_string($nombreEquipo));
+        $query = sprintf("SELECT * FROM equipos e WHERE e.nombre_equipo = '%s'", $conn->real_escape_string($nombreEquipo));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
@@ -111,9 +111,9 @@ class Equipo{
                 $fila = $rs->fetch_assoc();
                 //var_dump($rs);
                 //$user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
-                $user = new Usuario($fila['NICKNAME'], $fila['NOMBRE'], $fila['CORREO'], $fila['PASSWORD'], $fila['ROL_USUARIO']);
+                $user = new Usuario($fila['nickname'], $fila['nombre'], $fila['correo'], $fila['password'], $fila['rol_usuario']);
                 var_dump($user);
-                $user->id = $fila['ID_USUARIO'];
+                $user->id = $fila['id_usuario'];
                 $result = $user;
             }
             $rs->free();
@@ -154,7 +154,7 @@ class Equipo{
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE Usuarios U SET nombreUsuario = '%s', nombre='%s', password='%s', rol='%s' WHERE U.id=%i"
+        $query=sprintf("UPDATE usuarios u SET nombreUsuario = '%s', nombre='%s', password='%s', rol='%s' WHERE u.id=%i"
             , $conn->real_escape_string($usuario->nickname)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->password)
@@ -182,7 +182,7 @@ class Equipo{
         $conn = $app->conexionBd();
         $fecha=date("Y-m-d");
         $hora=date("H:i:s");
-        $query=sprintf("INSERT INTO equipos(DEPORTE, NOMBRE_EQUIPO,FECHA_CEQUIPO,HORA_CEQUIPO,LOGO_EQUIPO, DESCRIPCION_EQUIPO) VALUES('%s', '%s', '%s','%s' ,'%s','%s')"
+        $query=sprintf("INSERT INTO equipos(deporte, nombre_equipo, fecha_cequipo, hora_cequipo, logo_equipo, descripcion_equipo) VALUES('%s', '%s', '%s','%s' ,'%s','%s')"
             , $conn->real_escape_string($equipo->deporte)
             , $conn->real_escape_string($equipo->nombre_equipo)
             ,$conn->real_escape_string($fecha)

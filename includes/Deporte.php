@@ -10,7 +10,7 @@ class Deporte
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM deportes D WHERE D.NOMBRE_DEPORTE = '%s'", $conn->real_escape_string($nombreDeporte));
+        $query = sprintf("SELECT * FROM deportes d WHERE d.nombre_deporte = '%s'", $conn->real_escape_string($nombreDeporte));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
@@ -18,8 +18,9 @@ class Deporte
                 $fila = $rs->fetch_assoc();
                 //var_dump($rs);
                 //$user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
-                $deporte = new Deporte($fila['NOMBRE_DEPORTE'], $fila['NUMERO_MAXIMO_JUGADORES'], $fila['DURACION_MIN'], $fila['FECHA_CDEPORTE'], $fila['HORA_CDEPORTE']);
-                $deporte->id = $fila['ID_DEPORTE'];
+                $deporte = new Deporte($fila['nombre_deporte'], $fila['numero_maximo_jugadores'], $fila['duracion_min'], $fila['fecha_cdeporte'], $fila['hora_cdeporte']);
+                var_dump($deporte);
+                $deporte->id = $fila['id_deporte'];
                 $result = $deporte;
             }
             $rs->free();
@@ -55,7 +56,7 @@ class Deporte
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO Usuarios(NICKNAME, NOMBRE, CORREO, PASSWORD, ROL_USUARIO) VALUES('%s', '%s', '%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO usuarios(nickname, nombre, correo, password, rol_usuario) VALUES('%s', '%s', '%s', '%s', '%s')"
             , $conn->real_escape_string($usuario->nickname)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->mail)
@@ -75,7 +76,7 @@ class Deporte
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE Usuarios U SET nombreUsuario = '%s', nombre='%s', password='%s', rol='%s' WHERE U.id=%i"
+        $query=sprintf("UPDATE usuarios u SET nombreUsuario = '%s', nombre='%s', password='%s', rol='%s' WHERE u.id=%i"
             , $conn->real_escape_string($usuario->nickname)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->password)
@@ -98,7 +99,7 @@ class Deporte
     public static function getAll(){
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = "SELECT * FROM DEPORTES";
+        $query = "SELECT * FROM deportes";
         $rs = $conn->query($query);
         if ($rs) {
             if ( $rs->num_rows == 0)
@@ -106,8 +107,8 @@ class Deporte
             else {
                 $deportes = array();
                 while($deporte = $rs->fetch_assoc()){
-                    $aux = new Deporte($deporte['NOMBRE_DEPORTE'], $deporte['NUMERO_MAXIMO_JUGADORES'], $deporte['DURACION_MIN'],$deporte['FECHA_CDEPORTE'],$deporte['HORA_CDEPORTE']);
-                    $aux->set_id($deporte['ID_DEPORTE']);
+                    $aux = new Deporte($deporte['nombre_deporte'], $deporte['numero_maximo_jugadores'], $deporte['duracion_min'],$deporte['fecha_cdeporte'],$deporte['hora_cdeporte']);
+                    $aux->set_id($deporte['id_deporte']);
                     array_push($deportes, $aux);
                 }
 
