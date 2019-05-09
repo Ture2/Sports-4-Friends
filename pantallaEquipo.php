@@ -67,7 +67,7 @@
 					
 						<?php 
 						  // si el jugador es lider el equipo, tiene la posibilidad de eliminarlo  
-						  
+						  // prueba commint and push
 						if($jugador->compruebaLider($nickname, $nombreEquipo )  ){ ?>
 							<form action="procesarEliminarEquipo.php" method="POST">
 			    			<input class="login-equipos" type="submit" name ="boton" value="eliminar"/>
