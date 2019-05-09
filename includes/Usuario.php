@@ -17,7 +17,7 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM USUARIOS WHERE NICKNAME = '%s'",
+        $query = sprintf("SELECT * FROM usuarios WHERE nickname = '%s'",
                     $conn->real_escape_string($nombreUsuario));
         $rs = $conn->query($query);
         $result = false;
@@ -25,8 +25,8 @@ class Usuario
             if ( $rs->num_rows == 1) {
                 $fila = $rs->fetch_assoc();
                 //$user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
-                $user = new Usuario($fila['NICKNAME'], $fila['NOMBRE'], $fila['CORREO'], $fila['PASSWORD'], $fila['ROL_USUARIO']);
-                $user->id = $fila['ID_USUARIO'];
+                $user = new Usuario($fila['nickname'], $fila['nombre'], $fila['correo'], $fila['password'], $fila['rol_usuario']);
+                $user->id = $fila['id_usuario'];
                 $result = $user;
             }
             $rs->free();
@@ -64,7 +64,7 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO Usuarios(NICKNAME, NOMBRE, CORREO, PASSWORD, ROL_USUARIO) VALUES('%s', '%s', '%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO usuarios(nickname, nombre, correo, password, rol_usuario) VALUES('%s', '%s', '%s', '%s', '%s')"
             , $conn->real_escape_string($usuario->nickname)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->mail)
@@ -83,7 +83,7 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE USUARIOS SET NICKNAME = '%s', NOMBRE = '%s', CORREO = '%s', PASSWORD = '%s', ROL_USUARIO = '%s' WHERE ID_USUARIO = '%s' "
+        $query=sprintf("UPDATE usuarios SET nickname = '%s', nombre = '%s', correo = '%s', password = '%s', rol_usuario = '%s' WHERE id_usuario = '%s' "
             , $conn->real_escape_string($usuario->nickname)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->mail)
@@ -106,15 +106,15 @@ class Usuario
     public static function buscaUsuarioPorId($idusuario){
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM USUARIOS WHERE ID_USUARIO = '%s'",
+        $query = sprintf("SELECT * FROM usuarios WHERE id_usuario = '%s'",
                     $conn->real_escape_string($idusuario));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
             if ( $rs->num_rows == 1) {
                 $fila = $rs->fetch_assoc();
-                $user = new Usuario($fila['NICKNAME'], $fila['NOMBRE'], $fila['CORREO'], $fila['PASSWORD'], $fila['ROL_USUARIO']);
-                $user->id = $fila['ID_USUARIO'];
+                $user = new Usuario($fila['nickname'], $fila['nombre'], $fila['correo'], $fila['password'], $fila['rol_usuario']);
+                $user->id = $fila['id_usuario'];
                 $result = $user;
             }
             $rs->free();

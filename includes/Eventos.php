@@ -10,11 +10,13 @@ class Eventos
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
+        echo "hola caracola";
         $query = sprintf("SELECT * FROM eventos e WHERE e.nombre_evento='%s'", $conn->real_escape_string($nombreEvento));
 
         $rs = $conn->query($query);
 
         $result = false;
+        var_dump($rs);
         if ($rs) {
             if ( $rs->num_rows == 1)
             {
@@ -43,7 +45,7 @@ class Eventos
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        $query = sprintf("SELECT * FROM Eventos");
+        $query = sprintf("SELECT * FROM eventos");
         $result = false; 
         if ($rs = $conn->query($query))
         {   
@@ -72,7 +74,7 @@ class Eventos
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        $query=sprintf("DELETE FROM Eventos WHERE nombre_evento='%'"
+        $query=sprintf("DELETE FROM eventos WHERE nombre_evento='%'"
             , $conn->real_escape_string($nombre_evento));
 
         $eliminar = false;
@@ -100,7 +102,7 @@ class Eventos
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
 
-        $query = sprintf("SELECT * FROM Eventos E WHERE E.=nombre_evento '%s'", $conn->real_escape_string($nombre_evento));
+        $query = sprintf("SELECT * FROM eventos e WHERE e.=nombre_evento '%s'", $conn->real_escape_string($nombre_evento));
 
         $result = false;
 
@@ -133,7 +135,7 @@ class Eventos
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO Eventos(nombre_evento, deporte, ciudad, municipio, localizacion, fecha_creacion, fecha_evento, hora_evento, descripcion, ruta_foto) VALUES('%s', '%s', '%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO eventos(nombre_evento, deporte, ciudad, municipio, localizacion, fecha_creacion, fecha_evento, hora_evento, descripcion, ruta_foto) VALUES('%s', '%s', '%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')"
             , $conn->real_escape_string($evento->nombre_evento)
             , $conn->real_escape_string($evento->deporte)
             , $conn->real_escape_string($evento->ciudad)
@@ -157,7 +159,7 @@ class Eventos
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE eventos E  SET nombre_evento ='%s', deporte='%s', ciudad='%s', municipio='%s', localizacion='%s',fecha_creacion='%s', fecha_evento='%s', hora_evento='%s',descripcion='%s', ruta_foto='%s' WHERE E.id_evento='%s'"
+        $query=sprintf("UPDATE eventos e  SET nombre_evento ='%s', deporte='%s', ciudad='%s', municipio='%s', localizacion='%s',fecha_creacion='%s', fecha_evento='%s', hora_evento='%s',descripcion='%s', ruta_foto='%s' WHERE e.id_evento='%s'"
             , $conn->real_escape_string($evento->nombre_evento)
             , $conn->real_escape_string($evento->deporte)
             , $conn->real_escape_string($evento->ciudad)
