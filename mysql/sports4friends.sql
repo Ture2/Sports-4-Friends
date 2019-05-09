@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2019 a las 19:42:07
+-- Tiempo de generación: 09-05-2019 a las 13:48:03
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -117,6 +117,33 @@ INSERT INTO `equipos` (`id_equipo`, `deporte`, `nombre_equipo`, `fecha_cequipo`,
 (550038, 880005, 'CAMPEONAS', '2019-04-14', '18:44:19', 7, 0, 3, 4, '6-0,6-3(P)', 0, 'campeonas.jpg', 'Ganamos con estilo,garra y corazón'),
 (550039, 880005, 'BLANCO NEGRO', '2019-04-14', '18:44:19', 2, 0, 2, 1, '7-6,6-3(G)', 0, 'blanco&negro.jpg', 'Somos éxito, vamos!'),
 (550040, 880005, 'BANANA-SHOT', '2019-04-14', '18:44:19', 4, 0, 1, 3, '6-0,6-3(G)', 0, 'banana_shot.jpg', 'Nadal aprendió de nosotros como hay que hacer un banana-shot');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadisticas_futbol`
+--
+
+CREATE TABLE `estadisticas_futbol` (
+  `id_esfutbol` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `goles` int(4) NOT NULL DEFAULT '0',
+  `asistencias` int(4) NOT NULL DEFAULT '0',
+  `tarjeta_a` int(4) NOT NULL DEFAULT '0',
+  `tarjeta_r` int(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_futbol`
+--
+
+INSERT INTO `estadisticas_futbol` (`id_esfutbol`, `es_usuario`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `goles`, `asistencias`, `tarjeta_a`, `tarjeta_r`) VALUES
+(110001, 2, 13, 5, 2, 6, 5, 2, 3, 0),
+(110002, 2, 7, 2, 1, 4, 6, 1, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -492,6 +519,13 @@ ALTER TABLE `equipos`
   ADD KEY `DEPORTE` (`deporte`);
 
 --
+-- Indices de la tabla `estadisticas_futbol`
+--
+ALTER TABLE `estadisticas_futbol`
+  ADD PRIMARY KEY (`id_esfutbol`),
+  ADD KEY `es_usuario` (`es_usuario`);
+
+--
 -- Indices de la tabla `eventos`
 --
 ALTER TABLE `eventos`
@@ -540,6 +574,12 @@ ALTER TABLE `equipos`
   MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550041;
 
 --
+-- AUTO_INCREMENT de la tabla `estadisticas_futbol`
+--
+ALTER TABLE `estadisticas_futbol`
+  MODIFY `id_esfutbol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110003;
+
+--
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
@@ -571,26 +611,32 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`ID_DEPORTE`) ON DELETE CASCADE;
+  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`id_deporte`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_futbol`
+--
+ALTER TABLE `estadisticas_futbol`
+  ADD CONSTRAINT `estadisticas_futbol_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`NOMBRE_DEPORTE`) ON DELETE CASCADE;
+  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`nombre_deporte`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`ID_USUARIO`) ON DELETE CASCADE,
-  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`ID_EQUIPO`) ON DELETE CASCADE;
+  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE,
+  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `registros_eventos`
 --
 ALTER TABLE `registros_eventos`
-  ADD CONSTRAINT `registros_eventos_ibfk_1` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`NOMBRE_EQUIPO`) ON DELETE CASCADE,
+  ADD CONSTRAINT `registros_eventos_ibfk_1` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`nombre_equipo`) ON DELETE CASCADE,
   ADD CONSTRAINT `registros_eventos_ibfk_2` FOREIGN KEY (`evento`) REFERENCES `eventos` (`nombre_evento`) ON DELETE CASCADE;
 COMMIT;
 

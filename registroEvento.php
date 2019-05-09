@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Eventos.php';
-require_once __DIR__.'/includes/Equipo.php';
+require_once __DIR__.'/includes/Jugador.php';
 
 
 
@@ -11,8 +11,10 @@ if (!isset($_SESSION['login']) ) {
 	exit();
 }
 
+
+
 $eventos = Eventos::listarEventos();
-$equipos = Equipo::getAllEquipos();
+$equipos = Jugador::listaEquiposPorJugador($_SESSION['nombre']);
 
 ?>
 
@@ -44,8 +46,8 @@ $equipos = Equipo::getAllEquipos();
 					<p id="log">Equipos: <input list="equipos" name="equipo">
 						<datalist id="equipos">
 								<?php
-										foreach ($equipos as $valor) { 
-						  					echo '<option value="'.$valor->get_nombre_equipo().'" >'.$valor->get_nombre_equipo().'</option>';
+										foreach ($equipos as $valor) {
+						  					echo '<option value="'.$valor.'" >'.$valor.'</option>';
 						  				}?>
 						</datalist>	
 							</input></p>
