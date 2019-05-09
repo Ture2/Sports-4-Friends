@@ -50,6 +50,7 @@
 						<?php 
 					}else {
 
+					    
 						$jugador = Jugador::getJugadorPorNombreDeUnEquipo($_SESSION['nombre'], $info->get_nombre_equipo());
 						$jugadores = Jugador::getJugadoresPorEquipo($info);
 						if(!is_null($jugador)){
