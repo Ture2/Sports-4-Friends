@@ -5,8 +5,10 @@
 	require_once __DIR__.'/includes/Usuario.php';
 
 	$info = Equipo::getInfoPorNombre($_GET['equipo']);
+	$nombreEquipo=$_GET['equipo'];
 	$_GET['equipo'] = str_replace(' ', '%', $info->get_nombre_equipo());
 	$estadisticas = $info->get_estadisticas();
+	$nickname=$_SESSION['nombre'];
 
 ?>
 
@@ -32,14 +34,14 @@
 		  	</div>
 
 		<div>
-			<b><p id="p1">DESCRIPCIÓN</p></b>
+			<b><p id="p1">DESCRIPCIÃ“N</p></b>
 			<p id="p2"><?php echo $info->get_descripcion_equipo();?></p>
 			<div id="botones-equipo">
 				<?php
 
-				/*Fase sin acabar puesto que necesitamos saber si un jugador estÃ¡ ya dentro de un equipo
+				/*Fase sin acabar puesto que necesitamos saber si un jugador estÃƒÂ¡ ya dentro de un equipo
 				(hay que modificar la base de datos) y tambien si se ha logueado. Esto es importante para
-				decidir que botÃ³n mostrar*/
+				decidir que botÃƒÂ³n mostrar*/
 
 					if(!isset($_SESSION["login"])){ ?>
 						<form action="procesarLogin.php" method="POST">
@@ -61,6 +63,20 @@
 			    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
 			    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>
 						</form>
+					
+						<?php 
+						  // si el jugador es lider el equipo, tiene la posibilidad de eliminarlo  
+						if($jugador->compruebaLider($nickname, $nombreEquipo )  ){ ?>
+							<form action="procesarEliminarEquipo.php" method="POST">
+			    			<input class="login-equipos" type="submit" name ="boton" value="eliminar"/>
+			    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
+			    	
+						</form>
+								
+						
+						
+						<?php }?>
+						
 					<?php 
 						}else 
 							if($_SESSION["login"] && is_null($jugador)){ ?>
@@ -75,10 +91,10 @@
 
 			</div>
 			  	<div id="tabla">
-			  		<b><p id="p3">ESTADÍSTICAS</p></b>
+			  		<b><p id="p3">ESTADÃ�STICAS</p></b>
 			  		<table>
 			  			<tr>
-			  				<th>Posición en la liga</th>
+			  				<th>PosiciÃ³n en la liga</th>
 			  				<td colspan="2"><?php echo $estadisticas["posicion"]; ?></td>
 			  			</tr>
 			  			<tr>
@@ -87,7 +103,7 @@
 			  				<td colspan="2"><?php echo $estadisticas["racha"]; ?></td>
 			  			</tr>
 			  			<tr>
-			  				<th>Último resultado</th>
+			  				<th>Ãšltimo resultado</th>
 			  				<td colspan="2"><?php echo $estadisticas["ultimo_resultado"]; ?></td>
 			  			</tr>
 			  			<tr>

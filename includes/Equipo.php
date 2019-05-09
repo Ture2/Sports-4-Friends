@@ -198,7 +198,58 @@ class Equipo{
         return $equipo;
     }
     
-
+    //lista los equipos donde el jugador es lider
+    public static function listaEquiposPorJugadorYlider($id_jugador){
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        //$jugador = Jugador::getJugadorPorNombre($nombreJ);
+        
+        $query = sprintf("SELECT * FROM JUGADORES j JOIN EQUIPOS e ON j.equipo = e.ID_EQUIPO WHERE   j.ROL_JUGADOR='1' AND  j.USUARIO = '%s' ", $conn->real_escape_string($id_jugador));
+        //$query = sprintf("SELECT * FROM deportes D WHERE D.NOMBRE_DEPORTE = '%s'", $conn->real_escape_string($nombreDeporte));
+        
+        $rs =$conn->query($query);
+        
+        if ( $rs ) {
+            if($rs->num_rows == 0)
+                $equipos = null;
+                else {
+                    $equipos = array();
+                    while ($equipo = $rs->fetch_assoc()) {
+                        $aux = new Equipo($equipo["deporte"],$equipo["nombre_equipo"],$equipo["logo_equipo"],$equipo["descripcion_equipo"]);
+                        $aux->set_id($equipo["id_equipo"]);
+                        array_push($equipos, $aux);
+                    }
+                    $rs->free();
+                }
+        } else {
+            echo "Error al consultar la base de datos: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $equipos;
+        
+    }
+    
+    //Elimina un equipo de la bd
+    public static function eliminaEquipo($id_equipo){
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $ok = true;
+        $query=sprintf("DELETE FROM equipos WHERE id_equipo = '%s'"
+            , $id_equipo);
+        if ( $conn->query($query) ) {
+            if ( $conn->affected_rows == 1) {
+                $ok = true;
+            }
+        } else {
+            echo "Error al eliminar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $ok;
+    }
+    
+    
+    
+    
 
     /*TAO Region*/
     private $id;//autoincrement

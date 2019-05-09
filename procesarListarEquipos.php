@@ -44,6 +44,8 @@
 			}else{
 				echo "<form>";
 	    	   		echo "<button formaction='crearEquipo.php' class='login-equipos'>Pulsa aquí para crear un equipo</button>";
+	    	   		echo "<button formaction='procesarListarMisEquipos.php' class='login-equipos'>Mis equipos</button>";
+	    	   	      
 	    	   	echo "</form>";
 	    	   	
 			if(!isset($equipos))
