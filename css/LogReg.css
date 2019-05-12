@@ -21,6 +21,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background-image: linear-gradient(#AAD19F, #6F9564);
 }
 
 .section-title {

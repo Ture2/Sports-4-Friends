@@ -20,7 +20,6 @@
 	<title></title>
 </head>
 <body>
-		<div id="barra">
 			<nav>
 				<ul class="nav">
 					<li><a href="index.php"><img id="menu" src="images/inicio.png">Inicio</a></li>
@@ -65,6 +64,5 @@
 					  ?>		
 				</ul>
 			</nav>
-		</div>
 </body>
 </html>
