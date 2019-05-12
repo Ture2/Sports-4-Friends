@@ -7,7 +7,7 @@
 </head>
 <body>
 	<main class = "backgroundIndexColor">
-		<section style = "border-bottom: 0.5em solid #98B88E">
+		<section>
 				<div class ="section-content-1">
 					<div class = "copy-wrapper">
 						<h2 class = "indexHead-1">¿Quienes somos?</h2>
@@ -26,6 +26,7 @@
 			
 		</section>
 		<section id = "text-center">
+			<div id = "section">
 				<div class ="section-content-2">
 					<a href="procesarListarEquipo.php" class="unit-link">
 					<div class = "copy-wrapper">
@@ -42,7 +43,7 @@
 					<div class = "copy-wrapper">
 						<h2 class = "indexHead-2">Eventos</h2>
 						<figure class="indexImage">
-							<img src = "/Sports-4-Friends/images/presentacion/tennisWP.jpg">	
+							<img src = "/Sports-4-Friends/images/presentacion/eventWP.jpg">	
 						</figure>
 							<h4 class = "indexText-2">Un nuevo concepto en el cual tú y tus amigos podreis crear un nuevo equipo con el que enfrentarte a los diferentes campeones de tu distrito. Además en caso de no contar con nadie podrás solicitar añadirte en aquellos que anden buscando el rebulsivo que necesitan.</h4>
 					</div>
@@ -53,14 +54,13 @@
 					<div class = "copy-wrapper">
 						<h2 class = "indexHead-2">Quedadas</h2>
 						<figure class="indexImage">
-							<img src = "/Sports-4-Friends/images/presentacion/tennisWP.jpg">	
+							<img src = "/Sports-4-Friends/images/presentacion/meetingWP.jpg">	
 						</figure>
 							<h4 class = "indexText-2">Un nuevo concepto en el cual tú y tus amigos podreis crear un nuevo equipo con el que enfrentarte a los diferentes campeones de tu distrito. Además en caso de no contar con nadie podrás solicitar añadirte en aquellos que anden buscando el rebulsivo que necesitan.</h4>
 					</div>
 					</a>
 				</div>
-			
-												
+			</div>							
 		</section>
 	</main>
 </body>

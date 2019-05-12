@@ -57,7 +57,7 @@
 				?>
 					<div class="box">
 						<p class="box-equipo"><?php echo $equipo->get_nombre_equipo();?></p>
-						<div>
+						<div class ="box-img">
 						<a href="pantallaEquipo.php?equipo=<?php echo $equipo->get_nombre_equipo();?>"><img class ="box-logo" src=<?php echo '/Sports-4-Friends/images/logo_equipos/'.$equipo->get_logo_equipo();?>></a>
 						</div>
 						<div class = "box-texto">

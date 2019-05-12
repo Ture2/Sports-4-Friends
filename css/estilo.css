@@ -225,7 +225,7 @@ p#reg {
 div#cabecera {
 	padding: 3em;
 	height: 21.8em;
-	background-color: #9BBF90;
+	background-color: #7B9872;
 	z-index: 1;
 	position: relative;
 }
@@ -309,10 +309,9 @@ nav{
 /* contenido */
 
 div#contenido {
-	margin-top: 35px;
-	padding: 10px;
-	height: 600px;
-	background-color: #3b4465;
+	padding-top: 2.5em;
+	height: auto;
+	background-image: linear-gradient(#AAD19F, #7B9872);
 	overflow: auto;
 }
 
@@ -770,15 +769,15 @@ fieldset#quedada{
 	"titulo titulo"
 	"teambox teambox";
     text-align: center;
-    /*grid-template-columns: 480px 480px;*/
-    background-color: #fff;
+    background-color: #95B78B;
 }
 
 .titulo{
 	grid-area: titulo;
-	font-size: 40px; 
 	text-align: center;
-	color: blue;
+	color: #4E413C;
+	font-size: 5em; 
+	font-family: italic garamond; 
 }
 
 .box{
@@ -789,14 +788,14 @@ fieldset#quedada{
     grid-template-areas: "title title"
  	"logo texto"
  	"logo texto";
-    margin-bottom: 25px;
+ 	margin-top: 15em;
     border:1px solid black;
 }
 
 .box-equipo{
 	grid-area: title;
 	text-align: center;
-	color: green;
+	color: #594D35;
 }
 .box-logo{
 	padding-left: 15px;
@@ -810,6 +809,9 @@ fieldset#quedada{
 }
 
 .box-texto{
+	text-align: center;
+	width: 30em;
+	height: auto;
 	grid-area: texto;
 	font-size: 20px;
 	color: green;
@@ -825,6 +827,10 @@ fieldset#quedada{
 	color: black;
 }
 
+.box-img{
+	margin-left: 4em;	
+	padding-bottom: 2em;
+}
 
 /* pantalla equipo */
 
@@ -877,7 +883,7 @@ fieldset#quedada{
 div#pie {
 	padding: 20px;
 	height: 50px;
-	background-color: #6F9564;
+	background-color: #7B9872;
 	position: relative;
 	z-index: 1;
 }
@@ -895,7 +901,7 @@ div#icon {
 
 a#pie {
 	text-align: center;
-	background-color: #32FF00;
+	background-color: #7B9872;
 	border: none;
 
 }
@@ -905,7 +911,7 @@ a#pie {
 
 
 main.backgroundIndexColor{
-	background-image: linear-gradient(#AAD19F, #6F9564);
+	background-image: linear-gradient(#AAD19F, #7B9872);
 	/*background-color: #1AD12B; */
 	border: 0em solid #fff;
     height: 100%;
@@ -915,17 +921,16 @@ main.backgroundIndexColor{
 }
 
 div.section-content-1{
+	background-color:#95B78B;
 	margin-left: auto;
     margin-right: auto;
     padding-bottom: 6em;
-    width: 1200px;
 }
 
 div.section-content-2{
 	display: inline-block;
-	margin-left: 3em;
-    margin-right: 3em;
-    width: 692px;
+	padding-right: 5em;
+	width: 692px;
 }
 
 div.copy-wrapper{
@@ -985,5 +990,12 @@ figure.indexImage > img{
 }
 
 #text-center{
+
 	text-align: center;
+}
+
+#section{
+	margin: auto;
+	background-color:#95B78B;
+    padding-bottom: 6em;
 }
