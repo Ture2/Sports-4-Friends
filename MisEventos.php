@@ -13,28 +13,12 @@ if (!isset($_SESSION['login'])) {
 
 $errores = array();
 
-$equiposPerteneceUsuario =Jugador::listaEquiposPorJugador($_SESSION['nombre']);
+$equiposPerteneceUsuario = RegistroEvento::registrosEventosUsuario($_SESSION['nombre']);
 
 if(empty($equiposPerteneceUsuario))
 {
-		$errores[] = "No estas apuntado a ningun equipo";
-}
-else
-{
-	if(count($equiposPerteneceUsuario) > 0)
-	{
-		$registrosEventos = array();
+		$errores[] = "No estas apuntado a ningun evento";
 
-		for($i = 0; $i < count($equiposPerteneceUsuario); $i++)
-		{
-			$comprobar  = RegistroEvento::buscaRegistroEventosEquipo($equiposPerteneceUsuario[$i]);
-			if($comprobar)
-			{
-				$registrosEventos[] = $comprobar;
-			}
-			
-		}
-	}
 }
 
 
@@ -58,9 +42,15 @@ else
 	<?php
 		if (isset($_SESSION["login"]))
 		{
-			if(empty($registrosEventos))
+			if(empty($equiposPerteneceUsuario))
 			{
-				echo "TÚ/S NO TIENEN NINGUN EVENTO/S DISPONIBLE/S";
+				?>
+				<fieldset id="errorLogin">
+					<pre id="texto1">NO TIENES NINGUN EVENTO DISPONIBLE 
+						Volver a <a href="eventos.php">Eventos</a>
+					</pre>
+				</fieldset>
+			<?php
 			}
 			elseif(count($errores) == 0)
 			{

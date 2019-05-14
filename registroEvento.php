@@ -12,9 +12,15 @@ if (!isset($_SESSION['login']) ) {
 }
 
 
+$errores = array();
 
 $eventos = Eventos::listarEventos();
-$equipos = Jugador::listaEquiposPorJugador($_SESSION['nombre']);
+$equipos = Jugador::listaEquiposPorJugador($_SESSION["nombre"]);
+
+if(empty($equipos))
+{
+	$errores = "No estan en ningun equipo";
+}
 
 ?>
 
@@ -46,8 +52,17 @@ $equipos = Jugador::listaEquiposPorJugador($_SESSION['nombre']);
 					<p id="log">Equipos: <input list="equipos" name="equipo">
 						<datalist id="equipos">
 								<?php
-										foreach ($equipos as $valor) {
+										if(!empty($equipos))
+										{
+											foreach ($equipos as $valor) {
 						  					echo '<option value="'.$valor.'" >'.$valor.'</option>';
+						  					}
+						  				}
+										else
+										{
+											echo $errores;
+
+									
 						  				}?>
 						</datalist>	
 							</input></p>
