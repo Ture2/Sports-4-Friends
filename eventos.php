@@ -31,15 +31,12 @@ else
 	<div id= "contenido">
 
 		<?php
-		if (isset($_SESSION["login"])){
+		if (isset($_SESSION["login"]))
+		{	
+			echo "<a href='adminEventos.php'><button class='login-equipos'>ADMINISTRAR EVENTOS</button></a>";
+		}
+		else{
 
-			if(empty($errores == 0)){
-
-				if($_SESSION["esAdmin"] == true){
-
-					echo "<a href='adminEventos.php'><button class='login-equipos'>ADMINISTRAR EVENTOS</button></a>";
-				}
-				else{
 					echo "<a href='misEventos.php'><button class='login-equipos'>MIS EVENTOS</button>";
 					echo "<a href='registroEvento.php'><button class='login-equipos'>REGISTRATE</button></a>";
 				}
