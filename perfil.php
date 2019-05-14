@@ -26,10 +26,20 @@
 				 	$usuario = Usuario::buscaUsuario($nickname);
 			  ?>
 			<fieldset id="avatar">
+				<?php
+					if($usuario->compruebaFoto($usuario)){
+				  ?>
+				<img class ="box-logo" src=<?php echo 'images/foto_usuarios/'.$usuario->getImagenUsuario();?>>
+				<?php
+					}else{
+				  ?>
 				<img class="logoC" src="images/user.png">
-				<div>
+				<?php
+					}
+				  ?>
+				<!--<div>
 					<input type="file" name="imagen">
-				</div>
+				</div>-->
 			</fieldset>
 			</div>
 			<div id="datos">

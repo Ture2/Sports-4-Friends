@@ -124,7 +124,36 @@ class Usuario
         }
         return $result;
     }
-    
+
+    //Pasas la ruta de la foto por parametro
+    public static function guardaFotoUsuario($ruta){
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("UPDATE usuarios SET foto_usuario = '%s'", $ruta);
+        if ( !$conn->query($query) ) {
+            echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            return false;
+        }
+        return true;
+    }
+
+    public static function compruebaFoto($usuario){
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $foto = strtolower($usuario->nombreUsuario()) . ".jpg";
+        $query = sprintf("SELECT * FROM usuarios WHERE foto_usuario = '%s'",
+                    $conn->real_escape_string($foto));
+        $rs = $conn->query($query);
+        if($rs){
+            $fila = $rs->fetch_assoc();
+            if($fila['foto_usuario'] != NULL){
+                $usuario->setImagenUsuario($fila['foto_usuario']);
+                return true;
+            }
+        }
+        return false;
+    }
+
     private $id;
 
     private $nickname;
@@ -136,6 +165,8 @@ class Usuario
     private $mail;
 
     private $rol;
+
+    private $foto_usuario;
 
     private function __construct($nombreUsuario, $nombre, $mail, $password, $rol)
     {
@@ -171,6 +202,10 @@ class Usuario
         return $this->nickname;
     }
 
+    public function getImagenUsuario(){
+        return $this->foto_usuario;
+    }
+
     public function setNickname($nickname){
         $this->nickname = $nickname;
     }
@@ -181,6 +216,10 @@ class Usuario
 
     public function setMail($mail){
         $this->mail = $mail;
+    }
+
+    public function setImagenUsuario($imagen){
+        $this->foto_usuario = $imagen;
     }
 
     public function compruebaPassword($password)
