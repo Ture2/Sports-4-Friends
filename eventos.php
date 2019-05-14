@@ -31,12 +31,15 @@ else
 	<div id= "contenido">
 
 		<?php
-		if (isset($_SESSION["login"]))
-		{	
-			echo "<a href='adminEventos.php'><button class='login-equipos'>ADMINISTRAR EVENTOS</button></a>";
-		}
-		else{
+		if (isset($_SESSION["login"])){
 
+			if(empty($errores == 0)){
+
+				if(isset($_SESSION["esAdmin"]) && $_SESSION["esAdmin"] == true){
+
+					echo "<a href='adminEventos.php'><button class='login-equipos'>ADMINISTRAR EVENTOS</button></a>";
+				}
+				else{
 					echo "<a href='misEventos.php'><button class='login-equipos'>MIS EVENTOS</button>";
 					echo "<a href='registroEvento.php'><button class='login-equipos'>REGISTRATE</button></a>";
 				}
@@ -56,36 +59,7 @@ else
 					<pre id="texto1">Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
 				</fieldset>
 
-				<table>
-					<p id="p6">LISTA DE LOS EVENTOS DISPONIBLES</p>
-						</thead>
-							<tr>
-								<th>Ciudad</th><th>Municipio</th><th>Nombre del Evento</th><th>Deporte </th>
-								<th>Fecha evento</th><th>Hora Evento </th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-								/*
-								1)Recorremos todo el array.
-								2)Accedemos a nuestro objeto (valor) y a los metodos
-								3)Mostramos lo que nos retorna los metodos
-								*/
-								foreach ($eventos as $key => $value) {
-								?>
-									<tr>
-										<td> <?=$value->ciudad(); ?> </td>
-										<td> <?=$value->Municipio(); ?> </td>
-										<td> <?=$value->nombre_evento(); ?> </td>
-										<td> <?=$value->deporte(); ?> </td>
-										<td> <?=$value->fecha_evento(); ?> </td>
-										<td> <?=$value->hora_evento(); ?> </td>
-									</tr>
-								<?php
-								}
-							?>
-						</tbody>
-				</table>
+				
 		<?php
 			}	
 			else
@@ -114,5 +88,6 @@ else
 	<?php
 	require("includes/comun/pie.php");
 	?>	
+	
 </body>
 </html>
