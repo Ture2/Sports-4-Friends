@@ -10,7 +10,7 @@
 		<section>
 				<div class ="section-content-1">
 					<div class = "copy-wrapper">
-						<h2 class = "indexHead-1">¿Quienes somos?</h2>
+						<h2 class = "indexHead-1">Quienes somos</h2>
 						<h4 class = "indexText-1">Sports 4 Friends es una red social donde personas de una misma región puede compartir su interes por un mismo deporte, dando una experiencia nueva en la sociabilización deportiva</h4>
 					</div>
 				</div>
@@ -19,7 +19,7 @@
 		<section>
 				<div class ="section-content-1">
 					<div class = "copy-wrapper">
-						<h2 class = "indexHead-1">¿Qué ofrecemos?</h2>
+						<h2 class = "indexHead-1">Qué ofrecemos</h2>
 						<h4 class = "indexText-1">Una gama de diferentes opciones para compartir los gustos deportivos.</h4>
 					</div>
 				</div>
