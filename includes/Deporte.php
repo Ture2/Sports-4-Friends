@@ -6,6 +6,7 @@ class Deporte
 {
 
 
+
     public static function buscaDeporte($nombreDeporte)
     {
         $app = Aplicacion::getSingleton();
@@ -122,6 +123,32 @@ class Deporte
         return $deportes;
     }
     
+
+
+    public static function buscaDeportePorId($id_deporte)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("SELECT * FROM deportes d WHERE d.id_deporte = '%s'", $conn->real_escape_string($id_deporte));
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            if ( $rs->num_rows == 1) {
+                $fila = $rs->fetch_assoc();
+                //var_dump($rs);
+                //$user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
+                $deporte = new Deporte($fila['nombre_deporte'], $fila['numero_maximo_jugadores'], $fila['duracion_min'], $fila['fecha_cdeporte'], $fila['hora_cdeporte']);
+                var_dump($deporte);
+                $deporte->id = $fila['id_deporte'];
+                $result = $deporte;
+            }
+            $rs->free();
+        } else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $result;
+    }
     
     /*TAO Region*/
     private $id;

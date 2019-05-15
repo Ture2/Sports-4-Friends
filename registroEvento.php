@@ -37,20 +37,22 @@ if(empty($equipos))
 		require("includes/comun/cabecera.php");
 	?>
 	
-	<div id="contenido">
-		<form action="procesarRegistroEvento.php" method="POST">
-			<fieldset id="evento">
-				<legend id="log">Registra tu equipo en el evento</legend>
-					<p id="log">Evento: <input list="even" name="evento">
-						<datalist id="even">
-								<?php
+	</div id="contenido">	
+
+				<form action="procesarRegistroEvento.php" method="POST">
+					<fieldset id="evento">
+						<legend id="log">Registra tu equipo en el evento</legend>
+							<p id="log">Evento: 
+								<select id="even">
+									<?php
 										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
-						  				}?>
-							</datalist>			
-						</input></p>
-					<p id="log">Equipos: <input list="equipos" name="equipo">
-						<datalist id="equipos">
+						  			}?>
+								</select>			
+							</input></p>
+
+					<p id="log">Equipos: 
+						<select id="equipos">
 								<?php
 										if(!empty($equipos))
 										{
@@ -61,17 +63,15 @@ if(empty($equipos))
 										else
 										{
 											echo $errores;
-
-									
-						  				}?>
-						</datalist>	
+						  		}?>
+						</select>	
 							</input></p>
 								
-				<button id= "index" type="submit" name="registro">Validar</button>
-				<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
-			</fieldset>
-		</form>
-	</div>
+						<button id= "index" type="submit" name="registro">Validar</button>
+						<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
+					</fieldset>
+				</form>
+			</div>
 
 	<?php 
 		include("includes/comun/pie.php"); 
