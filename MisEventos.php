@@ -13,14 +13,15 @@ if (!isset($_SESSION['login'])) {
 
 $errores = array();
 
-$equiposPerteneceUsuario = RegistroEvento::registrosEventosUsuario($_SESSION['nombre']);
+$registrosEventos = RegistroEvento::registrosEventosUsuario($_SESSION['nombre']);
 
-if(empty($equiposPerteneceUsuario))
+if(count($registrosEventos) == 0)
 {
 		$errores[] = "No estas apuntado a ningun evento";
 
 }
 
+var_dump($registrosEventos);
 
 ?>
 
@@ -39,31 +40,30 @@ if(empty($equiposPerteneceUsuario))
 	?>
 
 	<div id="contenido">
+
+
 	<?php
 		if (isset($_SESSION["login"]))
 		{
-			if(empty($equiposPerteneceUsuario))
+			if(empty($registrosEventos))
 			{
 				?>
-				<fieldset id="errorLogin">
 					<pre id="texto1">NO TIENES NINGUN EVENTO DISPONIBLE 
-						Volver a <a href="eventos.php">Eventos</a>
 					</pre>
-				</fieldset>
+
 			<?php
 			}
-			elseif(count($errores) == 0)
-			{
-			?>
-			<form>
-				<input formaction="eventos.php" class="login-equipos" type="submit" name="boton2" value="Volver"/>
-			</form>
+			elseif (count($errores) == 0) { ?>
+
+					<form>
+						<input formaction="eventos.php" class="login-equipos" type="submit" name="boton2" value="Volver"/>
+					</form>
+
 					<div id="evento1">
 						<fieldset id="evento1">
 								<?php foreach ($registrosEventos as $value) {?>
 								<h1 id="h"><?=$value->evento();?></h1>
 								<p id="evento">Equipo: <?=$value->equipo();?></p>
-								<p id="evento">Victorias: <?=$value->p_victorias();?></p>
 								<p id="evento">Fecha: <?=$value->fecha_creacion();?></p>
 								<?php
 							}
@@ -74,6 +74,7 @@ if(empty($equiposPerteneceUsuario))
 			}
 		}
 		?>
+
 	</div>
 
 	<?php 
