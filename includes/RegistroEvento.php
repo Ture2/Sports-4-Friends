@@ -143,8 +143,9 @@ class RegistroEvento
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT RE.evento, E.NOMBRE_EQUIPO, RE.fecha_creacion FROM `usuarios` U join `jugadores` J on  U.ID_USUARIO = J.usuario  join `equipos` E on  J.equipo = E.id_equipo join `registros_eventos` RE on RE.equipo = E.nombre_equipo WHERE U.nickname = '%s'"
+        $query = sprintf("SELECT RE.id_registro, RE.evento, RE.equipo, RE.fecha_creacion FROM `usuarios` U join `jugadores` J on  U.ID_USUARIO = J.usuario  join `equipos` E on  J.equipo = E.id_equipo join `registros_eventos` RE on RE.equipo = E.nombre_equipo WHERE U.nickname = '%s'"
             , $conn->real_escape_string($nickname));
+
 
         $result = false; 
         if ($rs = $conn->query($query))
@@ -173,7 +174,6 @@ class RegistroEvento
     private $id_registro;
     private $evento;
     private $equipo;
-    private $p_victorias;
     private $fecha_creacion;
    
     
@@ -181,9 +181,9 @@ class RegistroEvento
     //Constructora
     private function __construct($evento, $equipo, $fecha_creacion)
     {
-        $this->evento= $evento;
-        $this->equipo= $equipo;
-        $this->fecha_creacion=$fecha_creacion;
+        $this->evento = $evento;
+        $this->equipo = $equipo;
+        $this->fecha_creacion = $fecha_creacion;
     }
          //Funciones para acceder a los atributos de Eventos
          public function evento(){return $this->evento;}

@@ -259,8 +259,7 @@ nav{
     list-style: none;
     margin: auto;
     padding: 0px;
-    display: flex; 
-    justify-content: center;
+    width: 1450px;
     font-size: 2.5em;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -788,8 +787,11 @@ fieldset#quedada{
 
 .titulo{
 	grid-area: titulo;
+	text-align: center;
+	color: #4E413C;
+	font-size: 5em; 
+	font-family: italic garamond; 
 }
-
 
 .box{
 	align-self: start;
@@ -799,15 +801,14 @@ fieldset#quedada{
     grid-template-areas: "title title"
  	"logo texto"
  	"logo texto";
-    background-color: #F8FFF8;
+ 	margin-top: 15em;
+    border:1px solid black;
 }
 
 .box-equipo{
 	grid-area: title;
-    font-family: arial;
-    font-size: 3.5em;
-    text-align: center;
-    color: #9F6D20;
+	text-align: center;
+	color: #594D35;
 }
 .box-logo{
 	padding-left: 15px;
@@ -830,15 +831,13 @@ fieldset#quedada{
 }
 
 .box-texto2{
-	font-size: 1.4em;
-	font-style: arial;
-	color: #DAA052;
+	font-size: 20px;
+	color: green;
 }
 
 .box-desc{
-	font-size: 1.8em;
-	text-align: center;
-	color: #9F6D20;
+	font-size: 15px;
+	color: black;
 }
 
 .box-img{

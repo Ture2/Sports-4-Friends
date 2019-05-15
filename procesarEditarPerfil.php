@@ -11,39 +11,6 @@
 	$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : null;
 	$correo = isset($_POST['correo']) ? $_POST['correo'] : null;
 	$password = isset($_POST['password']) ? $_POST['password'] : null;
-
-	$nombre_img = $_FILES['imagen']['name'];
-	$tipo = $_FILES['imagen']['type'];
-	$tamano = $_FILES['imagen']['size'];
-	if (($nombre_img == !NULL) && ($_FILES['imagen']['size'] <= 200000)) 
-	{
-   		//indicamos los formatos que permitimos subir a nuestro servidor
-   		if (($_FILES["imagen"]["type"] == "image/gif")
-   			|| ($_FILES["imagen"]["type"] == "image/jpeg")
-   			|| ($_FILES["imagen"]["type"] == "image/jpg")
-   			|| ($_FILES["imagen"]["type"] == "image/png"))
-   		{
-      // Ruta donde se guardarán las imágenes que subamos
-   		    //C:\xampp\htdocs\Sports-4-Friends\imgbd
-      $directorio = __DIR__.'/images/foto_usuarios/';
-     
-      
-      // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
-      move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio.$nombre_img);     	
-   	}else{
-       //si no cumple con el formato
-       echo "No se puede subir una imagen con ese formato ";
-    }
-}else{
-   //si existe la variable pero se pasa del tamaño permitido
-   if($nombre_img == !NULL) echo "La imagen es demasiado grande "; 
-}
-
-
-
-
-
-
 	if ( empty($password) || mb_strlen($password) < 3 ) {
 		$erroresFormulario[] = "El password tiene que tener una longitud de al menos 5 caracteres.";
 	}
@@ -53,19 +20,20 @@
 	}
 
 
+
+
 	if (count($erroresFormulario) === 0) {
 		$usuario->setNickname($username);
 		$usuario->setNombre($nombre);
 		$usuario->setMail($correo);
 		$usuario->cambiaPassword($password);
-		$usuario->setImagenUsuario($nombre_img);
 		$usuario = Usuario::guarda($usuario);
-		$usuario->guardaFotoUsuario($nombre_img);
 	    if (! $usuario ) {
 	        $erroresFormulario[] = "El usuario ya existe.";
 	    } else {
 	        $_SESSION['login'] = true;
 	        $_SESSION['nombre'] = $username;
+	        var_dump( $_SESSION['nombre']);
 	        header('Location: perfil.php');
 	        exit();
 	    }
@@ -110,7 +78,7 @@
 				</div>
 			</fieldset>
 			</div>
-			<form action="procesarEditarPerfil.php"  enctype="multipart/form-data" method="post">
+			<form action="procesarEditarPerfil.php" method="POST">
 				<fieldset id="perfil">
 					<p id="perfil">Usuario:<input type="text" name="username" value=""></p>
 					<p id="perfil">Nombre:<input type="text" name="nombre" value=""></p>
