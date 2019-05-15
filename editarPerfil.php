@@ -27,15 +27,16 @@
 				//comprobamos que hay un usuario logueado
 				if(isset($_SESSION['login'])){
 			  ?>
-			<fieldset id="avatar">
-				<img class="logoC" src="images/user.png">
-				<div>
-					<input type="file" name="imagen">
-				</div>
-			</fieldset>
-			</div>
+			
 			<div id="datos">
-			<form action="procesarEditarPerfil.php" method="POST">
+			<form action="procesarEditarPerfil.php" enctype="multipart/form-data" method="post">
+				<fieldset id="avatar">
+					<img class="logoC" src="images/user.png">
+					<div>
+						<input type="file" name="imagen">
+					</div>
+				</fieldset>
+			</div>
 				<fieldset id="perfil">
 					<p id="perfil">Usuario: <input type="text" name="username" value=""></p>
 					<p id="perfil">Nombre: <input type="text" name="nombre" value=""></p>
