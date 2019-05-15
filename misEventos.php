@@ -22,6 +22,7 @@ if(count($registrosEventos) == 0)
 }
 
 var_dump($registrosEventos);
+var_dump($errores);
 
 ?>
 
