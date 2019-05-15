@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2019 a las 13:57:34
+-- Tiempo de generación: 15-05-2019 a las 15:15:02
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -121,6 +121,92 @@ INSERT INTO `equipos` (`id_equipo`, `deporte`, `nombre_equipo`, `fecha_cequipo`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `estadisticas_baloncesto`
+--
+
+CREATE TABLE `estadisticas_baloncesto` (
+  `id_esbaloncesto` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `es_equipo` int(10) NOT NULL,
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `puntos_anotados` int(4) NOT NULL DEFAULT '0',
+  `asistencias` int(4) NOT NULL DEFAULT '0',
+  `tapones` int(4) NOT NULL DEFAULT '0',
+  `faltas_personales` int(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_baloncesto`
+--
+
+INSERT INTO `estadisticas_baloncesto` (`id_esbaloncesto`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `puntos_anotados`, `asistencias`, `tapones`, `faltas_personales`) VALUES
+(220001, 4, 550002, 10, 9, 0, 1, 40, 15, 15, 9),
+(220002, 2, 550016, 6, 4, 0, 2, 60, 16, 25, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadisticas_balonmano`
+--
+
+CREATE TABLE `estadisticas_balonmano` (
+  `id_esbalonmano` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `es_equipo` int(10) NOT NULL,
+  `pj_usuario` int(4) NOT NULL,
+  `pg_usuario` int(4) NOT NULL,
+  `pe_usuario` int(4) NOT NULL,
+  `pp_usuario` int(4) NOT NULL,
+  `goles` int(4) NOT NULL,
+  `asistencias` int(4) NOT NULL,
+  `tapones` int(4) NOT NULL,
+  `faltas` int(4) NOT NULL,
+  `tarjeta_a` int(4) NOT NULL,
+  `tarjeta_r` int(4) NOT NULL,
+  `expulsion_dos_min` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_balonmano`
+--
+
+INSERT INTO `estadisticas_balonmano` (`id_esbalonmano`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `goles`, `asistencias`, `tapones`, `faltas`, `tarjeta_a`, `tarjeta_r`, `expulsion_dos_min`) VALUES
+(660001, 2, 550029, 4, 1, 0, 3, 8, 4, 10, 15, 5, 1, 3),
+(660002, 5, 550004, 6, 4, 0, 2, 5, 10, 8, 5, 3, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadisticas_beisbol`
+--
+
+CREATE TABLE `estadisticas_beisbol` (
+  `id_esbeisbol` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `es_equipo` int(10) NOT NULL,
+  `pj_usuario` int(4) NOT NULL,
+  `pg_usuario` int(4) NOT NULL,
+  `pe_usuario` int(4) NOT NULL,
+  `pp_usuario` int(4) NOT NULL,
+  `strike` int(4) NOT NULL,
+  `homerun` int(4) NOT NULL,
+  `eliminaciones` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_beisbol`
+--
+
+INSERT INTO `estadisticas_beisbol` (`id_esbeisbol`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `strike`, `homerun`, `eliminaciones`) VALUES
+(440001, 4, 550023, 8, 1, 0, 7, 20, 1, 10),
+(440002, 6, 550003, 4, 3, 0, 1, 15, 3, 7);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `estadisticas_futbol`
 --
 
@@ -145,6 +231,36 @@ CREATE TABLE `estadisticas_futbol` (
 INSERT INTO `estadisticas_futbol` (`id_esfutbol`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `goles`, `asistencias`, `tarjeta_a`, `tarjeta_r`) VALUES
 (110001, 2, 550001, 13, 5, 2, 6, 5, 2, 3, 0),
 (110002, 2, 550006, 7, 2, 1, 4, 6, 1, 4, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadisticas_tenis`
+--
+
+CREATE TABLE `estadisticas_tenis` (
+  `id_estenis` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `es_equipo` int(10) NOT NULL,
+  `pj_usuario` int(4) NOT NULL,
+  `pg_usuario` int(4) NOT NULL,
+  `pe_usuario` int(4) NOT NULL,
+  `pp_usuario` int(4) NOT NULL,
+  `puntos_usuario` int(5) NOT NULL,
+  `sets` int(4) NOT NULL,
+  `juegos` int(4) NOT NULL,
+  `aces` int(4) NOT NULL,
+  `dobles_faltas` int(4) NOT NULL,
+  `errores_no_forzados` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_tenis`
+--
+
+INSERT INTO `estadisticas_tenis` (`id_estenis`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `puntos_usuario`, `sets`, `juegos`, `aces`, `dobles_faltas`, `errores_no_forzados`) VALUES
+(880001, 3, 550033, 8, 6, 0, 2, 150, 12, 35, 25, 10, 40),
+(880002, 4, 550034, 6, 2, 0, 4, 100, 4, 22, 10, 15, 60);
 
 -- --------------------------------------------------------
 
@@ -520,10 +636,38 @@ ALTER TABLE `equipos`
   ADD KEY `DEPORTE` (`deporte`);
 
 --
+-- Indices de la tabla `estadisticas_baloncesto`
+--
+ALTER TABLE `estadisticas_baloncesto`
+  ADD PRIMARY KEY (`id_esbaloncesto`),
+  ADD KEY `es_usuario` (`es_usuario`);
+
+--
+-- Indices de la tabla `estadisticas_balonmano`
+--
+ALTER TABLE `estadisticas_balonmano`
+  ADD PRIMARY KEY (`id_esbalonmano`),
+  ADD KEY `es_usuario` (`es_usuario`);
+
+--
+-- Indices de la tabla `estadisticas_beisbol`
+--
+ALTER TABLE `estadisticas_beisbol`
+  ADD PRIMARY KEY (`id_esbeisbol`),
+  ADD KEY `es_usuario` (`es_usuario`);
+
+--
 -- Indices de la tabla `estadisticas_futbol`
 --
 ALTER TABLE `estadisticas_futbol`
   ADD PRIMARY KEY (`id_esfutbol`),
+  ADD KEY `es_usuario` (`es_usuario`);
+
+--
+-- Indices de la tabla `estadisticas_tenis`
+--
+ALTER TABLE `estadisticas_tenis`
+  ADD PRIMARY KEY (`id_estenis`),
   ADD KEY `es_usuario` (`es_usuario`);
 
 --
@@ -575,10 +719,34 @@ ALTER TABLE `equipos`
   MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550041;
 
 --
+-- AUTO_INCREMENT de la tabla `estadisticas_baloncesto`
+--
+ALTER TABLE `estadisticas_baloncesto`
+  MODIFY `id_esbaloncesto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220003;
+
+--
+-- AUTO_INCREMENT de la tabla `estadisticas_balonmano`
+--
+ALTER TABLE `estadisticas_balonmano`
+  MODIFY `id_esbalonmano` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=660003;
+
+--
+-- AUTO_INCREMENT de la tabla `estadisticas_beisbol`
+--
+ALTER TABLE `estadisticas_beisbol`
+  MODIFY `id_esbeisbol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=440003;
+
+--
 -- AUTO_INCREMENT de la tabla `estadisticas_futbol`
 --
 ALTER TABLE `estadisticas_futbol`
   MODIFY `id_esfutbol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110003;
+
+--
+-- AUTO_INCREMENT de la tabla `estadisticas_tenis`
+--
+ALTER TABLE `estadisticas_tenis`
+  MODIFY `id_estenis` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=880003;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
@@ -615,10 +783,34 @@ ALTER TABLE `equipos`
   ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`id_deporte`) ON DELETE CASCADE;
 
 --
+-- Filtros para la tabla `estadisticas_baloncesto`
+--
+ALTER TABLE `estadisticas_baloncesto`
+  ADD CONSTRAINT `estadisticas_baloncesto_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_balonmano`
+--
+ALTER TABLE `estadisticas_balonmano`
+  ADD CONSTRAINT `estadisticas_balonmano_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_beisbol`
+--
+ALTER TABLE `estadisticas_beisbol`
+  ADD CONSTRAINT `estadisticas_beisbol_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
 -- Filtros para la tabla `estadisticas_futbol`
 --
 ALTER TABLE `estadisticas_futbol`
   ADD CONSTRAINT `estadisticas_futbol_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_tenis`
+--
+ALTER TABLE `estadisticas_tenis`
+  ADD CONSTRAINT `estadisticas_tenis_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `eventos`
