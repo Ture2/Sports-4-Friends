@@ -124,7 +124,7 @@ class Jugador{
         return $jugador;
     }
     
-    //Funcion que devuelve true o false dependiendo de si el usuario es el creador de la quedada
+    //Funcion que devuelve true o false dependiendo de si el usuario es lider de un equipo o no
     public function compruebaLider($nickname, $equipo){
         $resultado = false;
         if($nickname != NULL && $equipo != NULL){
