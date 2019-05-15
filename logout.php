@@ -1,5 +1,5 @@
 <?php 
-	header('Refresh: 3; URL=http://localhost/Sports-4-Friends/index.php');
+	header('Refresh: 3; URL=index.php');
 	require_once __DIR__.'/includes/config.php';
 
 	//Doble seguridad: unset + destroy
@@ -8,10 +8,8 @@
 
 	//pruebagit
 	unset($_SESSION["nombre"]);
-
 	session_destroy();
-
-
+	
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +36,6 @@
 	<?php  
 		include("includes/comun/pie.php"); 
 	?>
-
 </body>
 </html>
+

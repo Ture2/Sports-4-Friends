@@ -11,46 +11,77 @@ if (! isset($_SESSION['login']) ) {
     exit();
 }
 
-
-//al hacer un post de una etiqueta select:
-
-
 $erroresFormulario = array();
 
-if (isset($_SESSION["esAdmin"]) && $_SESSION["esAdmin"] == true )
+$fecha_creacion=date("Y-m-d");
+
+$nombre_evento = isset($_POST['evento']) ? $_POST['evento'] : null;
+
+if ( empty($nombre_evento) || mb_strlen($nombre_evento) < 5 )
 {
+	$erroresFormulario[] = "El nombre del evento tiene que tener una longitud de al menos 5 caracteres.";
+}
 
-	$fecha_creacion=date("Y-m-d");
+$equipo = isset($_POST['equipo']) ? $_POST['equipo'] : null;
+if ( empty($equipo) || mb_strlen($equipo) < 5 )
+{
+    $erroresFormulario[] = "El equipo tiene que tener una longitud de al menos 5 caracteres.";
+}
 
-	$nombre_evento = isset($_POST['evento']) ? $_POST['evento'] : null;
+$evento = Eventos::buscaEvento($nombre_evento);
 
-	if ( empty($nombre_evento) || mb_strlen($nombre_evento) < 5 )
-	{
-		$erroresFormulario[] = "El nombre del evento tiene que tener una longitud de al menos 5 caracteres.";
-	}
-
-	$equipo = isset($_POST['equipo']) ? $_POST['equipo'] : null;
-	if ( empty($equipo) || mb_strlen($equipo) < 5 )
-	{
-	    $erroresFormulario[] = "El equipo tiene que tener una longitud de al menos 5 caracteres.";
-	}
-
+if(empty($evento))
+{
+	$erroresFormulario[] = "El evento no existe";
 }
 else
 {
-	$erroresFormulario = "NO eres el administrador del equipo.";
+
+	$deporte = Deporte::buscaDeporte($evento->deporte());
+
 }
 
+$equipo = Equipo::getInfoPorNombre($equipo);
+
+if(empty($equipo))
+{
+	$erroresFormulario[] = "El equipo no existe";
+}
+else
+{
+	if($evento->deporte() != $equipo->get_deporte())
+	{
+		$erroresFormulario[] = "Tú equipo no esta autorizado para registrarse en este evento";
+	}
+}
+
+/*
+Debugging
+
+*/
+var_dump($_POST['evento']);
+var_dump($_POST['equipo']);
+var_dump($evento);
+var_dump($deporte);
+var_dump($equipo);
+var_dump($fecha_creacion);
+var_dump($erroresFormulario);
 
 if (count($erroresFormulario) == 0)
 {
-	$eventos = Eventos::listarEventos();
-	$equipos = Jugador::listaEquiposPorJugador($_SESSION["nombre"]);
-
 	$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $fecha_creacion);
+
+	if(empty($registro))
+	{
+		$erroresFormulario[] = "Error al registrar el equipo en el evento";
+	}
+	else 
+	{     
+	    header('Location: misEventos.php');
+	    exit();
+	}  
 }
 
-var_dump($erroresFormulario);
 ?>
 
 <!DOCTYPE html>
@@ -66,71 +97,51 @@ var_dump($erroresFormulario);
 		require("includes/comun/cabecera.php");
 	?>
 
+	<div id="logo">
+		<img class="logo" src="images/logo.png">
+	</div>
 
 	<?php
-	if (isset($_SESSION["admin"]))
-	{
-		?>
-			<div id="contenido">
+		if (count($erroresFormulario) > 0) {
+			echo '<ul class="errores">';
+		}
+		foreach($erroresFormulario as $error) {
+			echo "<li>$error</li>";
+		}
+		if (count($erroresFormulario) > 0) {
+			echo '</ul>';
+		}
+	?>		
+
+	<div id="contenido">
 		<form action="procesarRegistroEvento.php" method="POST">
-			<fieldset id="evento">
-				<legend id="log">Registra tu equipo en el evento</legend>
-					<p id="log">Evento: <input list="even" name="evento">
-						<datalist id="even">
+				<fieldset id="evento">
+				<legend id="log">REGISTRA TU EQUIPO EN UN EVENTO</legend>
+					<p id="log">Evento: <input list="eventos" name="evento">
+						<datalist id="eventos">
 								<?php
 										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
 						  				}?>
-							</datalist>			
+							</datalist>		
 						</input></p>
 					<p id="log">Equipos: <input list="equipos" name="equipo">
 						<datalist id="equipos">
 								<?php
-										if(!empty($equipos))
-										{
-											foreach ($equipos as $valor) {
-						  					echo '<option value="'.$valor.'" >'.$valor.'</option>';
-						  					}
-						  				}
-										else
-										{
-											echo $errores;
-
-									
+										foreach ($equipos as $valor) { 
+						  					echo '<option value="'.$valor->set_nombre_equipo().'" >'.$valor->set_nombre_equipo().'</option>';
 						  				}?>
 						</datalist>	
 							</input></p>
-								
+
 				<button id= "index" type="submit" name="registro">Validar</button>
 				<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
-			</fieldset>
+				</fieldset>
 		</form>
 	</div>
 
-	<?php
-	}
-	else
-	{
-
-		?>
-		<div id="contenido">	
-
-				<?php 
-				for ($i = 0; $i < count($erroresFormulario); $i++) {?>
-				<p>	<?php echo $erroresFormulario; ?> </p>
-				<?php
-				}
-				?>
-				<a href="Eventos.php">Volver a eventos</a>
-		</div>
-	<?php
-	}
-	?>
-	
-	
 	<?php 
 		include("includes/comun/pie.php"); 
 	?>
-
 </body>
 </html>
