@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2019 a las 13:48:03
+-- Tiempo de generación: 15-05-2019 a las 13:57:34
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -127,6 +127,7 @@ INSERT INTO `equipos` (`id_equipo`, `deporte`, `nombre_equipo`, `fecha_cequipo`,
 CREATE TABLE `estadisticas_futbol` (
   `id_esfutbol` int(10) NOT NULL,
   `es_usuario` int(10) NOT NULL,
+  `es_equipo` int(10) NOT NULL,
   `pj_usuario` int(4) NOT NULL DEFAULT '0',
   `pg_usuario` int(4) NOT NULL DEFAULT '0',
   `pe_usuario` int(4) NOT NULL DEFAULT '0',
@@ -141,9 +142,9 @@ CREATE TABLE `estadisticas_futbol` (
 -- Volcado de datos para la tabla `estadisticas_futbol`
 --
 
-INSERT INTO `estadisticas_futbol` (`id_esfutbol`, `es_usuario`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `goles`, `asistencias`, `tarjeta_a`, `tarjeta_r`) VALUES
-(110001, 2, 13, 5, 2, 6, 5, 2, 3, 0),
-(110002, 2, 7, 2, 1, 4, 6, 1, 4, 0);
+INSERT INTO `estadisticas_futbol` (`id_esfutbol`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `goles`, `asistencias`, `tarjeta_a`, `tarjeta_r`) VALUES
+(110001, 2, 550001, 13, 5, 2, 6, 5, 2, 3, 0),
+(110002, 2, 550006, 7, 2, 1, 4, 6, 1, 4, 0);
 
 -- --------------------------------------------------------
 
