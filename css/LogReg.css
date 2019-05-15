@@ -21,7 +21,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center; 
-	background-image: linear-gradient(#AAD19F, #7B9872);
+	background-image: linear-gradient(#78DE58, #58DE9D);
 }
 
 .section-title {
@@ -35,7 +35,7 @@ body {
 	align-items: flex-start;
 	margin-top: 30px;
 	margin-bottom: 3em;
-	background-color: #9FC3D1;
+	background-color: #2192d585;
 	border-radius: 30px;
 }
 
@@ -71,12 +71,12 @@ body {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
-	padding: 0;
+	padding: 0.5em;
 	text-transform: uppercase;
 	font-family: inherit;
-	font-size: 20px;
+	font-size: 2em;
 	letter-spacing: .5px;
-	color: #999;
+	color: #FFF;
 	background-color: transparent;
 	border: none;
 	outline: none;
@@ -86,14 +86,14 @@ body {
 
 .form-wrapper.is-active .switcher-login {
 	padding-top: 1.5em;
-	color: #1A1614;
+	color: #FFF;
 	font-size: 1.5em;
 	transform: translateX(90px);
 }
 
 .form-wrapper.is-active .switcher-signup {
 	padding-top: 1.5em;
-	color: #1A1614;
+	color: #FFF;
 	font-size: 1.5em;
 	transform: translateX(-90px);
 }
