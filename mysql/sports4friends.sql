@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2019 a las 15:23:48
+-- Tiempo de generación: 15-05-2019 a las 18:30:10
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -230,7 +230,13 @@ CREATE TABLE `estadisticas_futbol` (
 
 INSERT INTO `estadisticas_futbol` (`id_esfutbol`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `goles`, `asistencias`, `tarjeta_a`, `tarjeta_r`) VALUES
 (110001, 2, 550001, 13, 5, 2, 6, 5, 2, 3, 0),
-(110002, 2, 550006, 7, 2, 1, 4, 6, 1, 4, 0);
+(110002, 2, 550006, 7, 2, 1, 4, 6, 1, 4, 0),
+(110003, 3, 550001, 13, 5, 2, 6, 1, 3, 1, 1),
+(110004, 10, 550001, 12, 5, 1, 6, 0, 6, 4, 0),
+(110005, 4, 550009, 13, 2, 2, 9, 2, 1, 2, 0),
+(110006, 9, 550009, 11, 1, 1, 9, 2, 1, 4, 1),
+(110007, 10, 550009, 13, 2, 2, 9, 1, 0, 2, 0),
+(110008, 11, 550009, 12, 2, 2, 7, 0, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -259,8 +265,8 @@ CREATE TABLE `estadisticas_tenis` (
 --
 
 INSERT INTO `estadisticas_tenis` (`id_estenis`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `puntos_usuario`, `sets`, `juegos`, `aces`, `dobles_faltas`, `errores_no_forzados`) VALUES
-(880001, 3, 550033, 8, 6, 0, 2, 150, 12, 35, 25, 10, 40),
-(880002, 4, 550034, 6, 2, 0, 4, 100, 4, 22, 10, 15, 60);
+(1000001, 3, 550033, 8, 6, 0, 2, 150, 12, 35, 25, 10, 40),
+(1000002, 4, 550034, 6, 2, 0, 4, 100, 4, 22, 10, 15, 60);
 
 -- --------------------------------------------------------
 
@@ -295,6 +301,33 @@ INSERT INTO `eventos` (`id_evento`, `nombre_evento`, `deporte`, `ciudad`, `munic
 (990006, 'balonceto Michael Jordan', 'BALONCESTO', 'Madrid', 'Vallecas', 'Canchas El Pozo', '2019-04-15', '2019-05-10', '10:00 - 18:00', 'Torneo de baloncesto, incripción minimo 5 jugadores', 'images/eventos/evento6.jpg'),
 (990007, 'partido a dos goles', 'FUTBOL', 'Madrid', 'Chamartin', 'Polideportivo Susana Griso', '2019-04-15', '2019-06-29', '13:00 - 21:00', 'Partidos de fútbol sala que quien marque antes dos goles, gana', 'images/eventos/evento7.jpg'),
 (990008, 'futbol torneo I Madrid', 'FUTBOL', 'Madrid', 'Atocha', 'Polideportivo Fernando Martín', '2019-04-15', '2019-05-18', '17:00 - 21:00', 'Torneo de fútbol, incripción minimo 5 jugadores', 'images/eventos/evento8.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `invitados`
+--
+
+CREATE TABLE `invitados` (
+  `id_invitado` int(10) NOT NULL,
+  `quedada` int(10) NOT NULL,
+  `usuario` int(10) NOT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `invitados`
+--
+
+INSERT INTO `invitados` (`id_invitado`, `quedada`, `usuario`, `fecha_creacion`) VALUES
+(1100001, 1200009, 7, '2019-05-12 16:03:10'),
+(1100002, 1200010, 2, '2019-05-12 17:58:03'),
+(1100003, 1200010, 7, '2019-05-13 19:00:45'),
+(1100006, 1200011, 2, '2019-05-14 14:19:32'),
+(1100007, 1200011, 11, '2019-05-14 14:23:41'),
+(1100008, 1200009, 11, '2019-05-14 14:23:53'),
+(1100009, 1200010, 11, '2019-05-14 15:09:05'),
+(1100010, 1200012, 11, '2019-05-14 15:14:31');
 
 -- --------------------------------------------------------
 
@@ -536,6 +569,36 @@ INSERT INTO `jugadores` (`id_jugador`, `equipo`, `usuario`, `rol_jugador`, `fech
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `quedadas`
+--
+
+CREATE TABLE `quedadas` (
+  `id_quedada` int(10) NOT NULL,
+  `nombre_quedada` varchar(30) NOT NULL,
+  `creador` int(10) NOT NULL,
+  `ciudad` varchar(100) NOT NULL,
+  `localizacion` varchar(50) NOT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_quedada` date NOT NULL,
+  `hora_quedada` time NOT NULL,
+  `descripcion` varchar(200) NOT NULL,
+  `ruta_foto` varchar(100) NOT NULL,
+  `aforo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `quedadas`
+--
+
+INSERT INTO `quedadas` (`id_quedada`, `nombre_quedada`, `creador`, `ciudad`, `localizacion`, `fecha_creacion`, `fecha_quedada`, `hora_quedada`, `descripcion`, `ruta_foto`, `aforo`) VALUES
+(1200009, 'quedada 9', 7, 'Alicante', 'sss', '2019-05-12 16:03:02', '2019-08-08', '11:45:00', 'assasa', 'images/quedadas/MirageOS-290x195.png', 7),
+(1200010, 'quedada 10', 2, 'Madrid', 'parque de don quijote', '2019-05-12 17:58:03', '2019-08-08', '14:45:00', 'sss', 'images/quedadas/Cobisa_sin-raza2011.jpg', 3),
+(1200011, 'quedada 11', 2, 'Huesca', 'sasaffff', '2019-05-14 14:19:32', '2019-08-08', '11:45:00', 'saaas', 'images/quedadas/piscina.jpg', 3),
+(1200012, 'Clasico en el bar manolo', 11, 'Guipuzcoa', 'Calle de pontevedra nº 19', '2019-05-14 15:14:31', '2019-08-15', '13:45:00', 'quedda para ver el futbol', 'images/quedadas/menino1.jpg', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `registros_eventos`
 --
 
@@ -679,12 +742,27 @@ ALTER TABLE `eventos`
   ADD KEY `deporte` (`deporte`);
 
 --
+-- Indices de la tabla `invitados`
+--
+ALTER TABLE `invitados`
+  ADD PRIMARY KEY (`id_invitado`),
+  ADD KEY `quedada` (`quedada`),
+  ADD KEY `usuario` (`usuario`);
+
+--
 -- Indices de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
   ADD PRIMARY KEY (`id_jugador`),
   ADD KEY `USUARIO` (`usuario`),
   ADD KEY `EQUIPO` (`equipo`);
+
+--
+-- Indices de la tabla `quedadas`
+--
+ALTER TABLE `quedadas`
+  ADD PRIMARY KEY (`id_quedada`),
+  ADD KEY `creador` (`creador`);
 
 --
 -- Indices de la tabla `registros_eventos`
@@ -740,13 +818,13 @@ ALTER TABLE `estadisticas_beisbol`
 -- AUTO_INCREMENT de la tabla `estadisticas_futbol`
 --
 ALTER TABLE `estadisticas_futbol`
-  MODIFY `id_esfutbol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110003;
+  MODIFY `id_esfutbol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110009;
 
 --
 -- AUTO_INCREMENT de la tabla `estadisticas_tenis`
 --
 ALTER TABLE `estadisticas_tenis`
-  MODIFY `id_estenis` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=880003;
+  MODIFY `id_estenis` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000001;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
@@ -819,11 +897,24 @@ ALTER TABLE `eventos`
   ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`nombre_deporte`) ON DELETE CASCADE;
 
 --
+-- Filtros para la tabla `invitados`
+--
+ALTER TABLE `invitados`
+  ADD CONSTRAINT `invitados_ibfk_1` FOREIGN KEY (`quedada`) REFERENCES `quedadas` (`id_quedada`),
+  ADD CONSTRAINT `invitados_ibfk_2` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id_usuario`);
+
+--
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
   ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE,
   ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `quedadas`
+--
+ALTER TABLE `quedadas`
+  ADD CONSTRAINT `quedadas_ibfk_1` FOREIGN KEY (`creador`) REFERENCES `usuarios` (`id_usuario`);
 
 --
 -- Filtros para la tabla `registros_eventos`
