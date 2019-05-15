@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2019 a las 18:30:10
+-- Tiempo de generación: 15-05-2019 a las 19:57:21
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -236,7 +236,16 @@ INSERT INTO `estadisticas_futbol` (`id_esfutbol`, `es_usuario`, `es_equipo`, `pj
 (110005, 4, 550009, 13, 2, 2, 9, 2, 1, 2, 0),
 (110006, 9, 550009, 11, 1, 1, 9, 2, 1, 4, 1),
 (110007, 10, 550009, 13, 2, 2, 9, 1, 0, 2, 0),
-(110008, 11, 550009, 12, 2, 2, 7, 0, 2, 1, 0);
+(110008, 11, 550009, 12, 2, 2, 7, 0, 2, 1, 0),
+(110009, 8, 550005, 7, 2, 4, 1, 2, 5, 2, 1),
+(110010, 9, 550005, 7, 2, 4, 1, 2, 1, 2, 0),
+(110011, 11, 550005, 6, 2, 3, 1, 2, 0, 3, 0),
+(110012, 12, 550006, 7, 2, 1, 4, 3, 2, 0, 0),
+(110013, 15, 550006, 7, 2, 1, 4, 1, 1, 2, 0),
+(110014, 12, 550010, 16, 7, 8, 1, 0, 1, 1, 0),
+(110015, 13, 550010, 16, 7, 8, 1, 4, 2, 0, 1),
+(110016, 14, 550010, 16, 7, 8, 1, 3, 1, 0, 0),
+(110017, 14, 550001, 13, 5, 2, 6, 2, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -818,7 +827,7 @@ ALTER TABLE `estadisticas_beisbol`
 -- AUTO_INCREMENT de la tabla `estadisticas_futbol`
 --
 ALTER TABLE `estadisticas_futbol`
-  MODIFY `id_esfutbol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110009;
+  MODIFY `id_esfutbol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110018;
 
 --
 -- AUTO_INCREMENT de la tabla `estadisticas_tenis`
