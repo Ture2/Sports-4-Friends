@@ -814,28 +814,25 @@ fieldset#quedada{
 }
 
 .teams_container{
-	display: grid;
-	grid-template-rows: 80px 400px;
-	grid-template-areas: 
-	"titulo titulo"
-	"teambox teambox";
-    text-align: center;
-    background-color: #95B78B;
+	justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .titulo{
-	grid-area: titulo;
+	flex-basis: 100%;
+    text-align: center;
+    margin: 1em;
+    font-family: arial;
+    font-size: 4em;
 }
 
 
 .box{
-	align-self: start;
-    display: grid;
-    grid-column-gap: 10px;
-    grid-row-gap: 15px;
-    grid-template-areas: "title title"
- 	"logo texto"
- 	"logo texto";
+	margin: 1em;
+    flex-basis: 30%;
+    display: inline-block;
+    max-width: 50em;
     background-color: #F8FFF8;
 }
 
@@ -847,23 +844,22 @@ fieldset#quedada{
     color: #9F6D20;
 }
 .box-logo{
-	padding-left: 15px;
 	position: relative;
     float: left;
-    width: 200px;
-    height: 200px;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: 15em;
+    height: 15em;
 }
 
 .box-texto{
 	text-align: center;
-	width: 30em;
-	height: auto;
-	grid-area: texto;
-	font-size: 20px;
-	color: green;
+    height: auto;
+    font-size: 1.3em;
+}
+.box-texto {
+    float: left;
+    text-align: center;
+    width: 15em;
+    font-size: 1.3em;
 }
 
 .box-texto2{
@@ -874,13 +870,15 @@ fieldset#quedada{
 
 .box-desc{
 	font-size: 1.8em;
+	font-family: arial; 
 	text-align: center;
 	color: #9F6D20;
 }
 
 .box-img{
-	margin-left: 4em;	
-	padding-bottom: 2em;
+	float: left;
+    margin-left: 4em;
+    padding-bottom: 2em;
 }
 
 /* pantalla equipo */
