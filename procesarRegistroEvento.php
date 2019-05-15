@@ -31,9 +31,8 @@ if ( empty($equipo))
 }
 
 
-if(count($erroresFormulario) == 0 )
+if(count($erroresFormulario) == 0)
 {
-
 	$tuplaEvento = Evento::buscaEvento($nombre_evento);
 
 	$existeJugador = Jugador::getJugadorPorNombreDeUnEquipo($nickname, $equipo);
@@ -50,9 +49,8 @@ if(count($erroresFormulario) == 0 )
 			//ahora si existe un evento con este equipo
 			$existeEquipoEnRegistroEvento = RegistroEvento::buscaRegistroEventosEquipo($equipo);
 
-			if ($existeEquipoEnRegistroEvento ! null)
+			if ($existeEquipoEnRegistroEvento  == null)
 			{
-
 				$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $fecha_creacion);
 			}
 			else
