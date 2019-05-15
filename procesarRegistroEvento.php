@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/Jugador';
 require_once __DIR__.'/includes/Equipo.php';
 require_once __DIR__.'/includes/Deporte.php';
 require_once __DIR__.'/includes/Eventos.php';
@@ -11,76 +12,66 @@ if (! isset($_SESSION['login']) ) {
     exit();
 }
 
+
 $erroresFormulario = array();
 
 $fecha_creacion=date("Y-m-d");
 
 $nombre_evento = isset($_POST['evento']) ? $_POST['evento'] : null;
 
-if ( empty($nombre_evento) || mb_strlen($nombre_evento) < 5 )
+if ( empty($nombre_evento))
 {
-	$erroresFormulario[] = "El nombre del evento tiene que tener una longitud de al menos 5 caracteres.";
+	$erroresFormulario[] = "Error al procesar el nombre del evento";
 }
 
 $equipo = isset($_POST['equipo']) ? $_POST['equipo'] : null;
-if ( empty($equipo) || mb_strlen($equipo) < 5 )
+if ( empty($equipo))
 {
-    $erroresFormulario[] = "El equipo tiene que tener una longitud de al menos 5 caracteres.";
+	    $erroresFormulario[] = "Error al procesar el nombre del equipo";
 }
 
-$evento = Eventos::buscaEvento($nombre_evento);
 
-if(empty($evento))
-{
-	$erroresFormulario[] = "El evento no existe";
-}
-else
+if(count($erroresFormulario) == 0 )
 {
 
-	$deporte = Deporte::buscaDeporte($evento->deporte());
+	$tuplaEvento = Evento::buscaEvento($nombre_evento);
 
-}
+	$existeJugador = Jugador::getJugadorPorNombreDeUnEquipo($nickname, $equipo);
 
-$equipo = Equipo::getInfoPorNombre($equipo);
-
-if(empty($equipo))
-{
-	$erroresFormulario[] = "El equipo no existe";
-}
-else
-{
-	if($evento->deporte() != $equipo->get_deporte())
+	if ($existeJugador ! null)
 	{
-		$erroresFormulario[] = "Tú equipo no esta autorizado para registrarse en este evento";
+		$tuplaEquipo = Equipo::getInfoPorNombre($equipo);
+		$tuplaDeporte = Deporte::buscaDeportePorId($tuplaEquipo->get_deporte());
+
+		//si el deporte es el mismo 
+		if ($tuplaEvento->deporte() === $ $tuplaDeporte->nombreDeporte())
+		{
+
+			//ahora si existe un evento con este equipo
+			$existeEquipoEnRegistroEvento = RegistroEvento::buscaRegistroEventosEquipo($equipo);
+
+			if ($existeEquipoEnRegistroEvento ! null)
+			{
+
+				$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $fecha_creacion);
+			}
+			else
+			{
+				$erroresFormulario ="El equipo ya esta registrado"
+			}
+		}
+		else
+		{
+			$erroresFormulario[] = "Tu equipo no puede inscribirse en el evento"
+		}
+
+	}
+	else
+	{
+		$erroresFormulario[] = "El usuario no pertenece a ningún equipo";
 	}
 }
 
-/*
-Debugging
-
-*/
-var_dump($_POST['evento']);
-var_dump($_POST['equipo']);
-var_dump($evento);
-var_dump($deporte);
-var_dump($equipo);
-var_dump($fecha_creacion);
-var_dump($erroresFormulario);
-
-if (count($erroresFormulario) == 0)
-{
-	$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $fecha_creacion);
-
-	if(empty($registro))
-	{
-		$erroresFormulario[] = "Error al registrar el equipo en el evento";
-	}
-	else 
-	{     
-	    header('Location: misEventos.php');
-	    exit();
-	}  
-}
 
 ?>
 
@@ -97,51 +88,84 @@ if (count($erroresFormulario) == 0)
 		require("includes/comun/cabecera.php");
 	?>
 
-	<div id="logo">
-		<img class="logo" src="images/logo.png">
-	</div>
 
 	<?php
-		if (count($erroresFormulario) > 0) {
-			echo '<ul class="errores">';
-		}
-		foreach($erroresFormulario as $error) {
-			echo "<li>$error</li>";
-		}
-		if (count($erroresFormulario) > 0) {
-			echo '</ul>';
-		}
-	?>		
+	if (isset($_SESSION["login"]))
+	{
+		if (count($erroresFormulario) >= 0)
+		{
+			?>
 
-	<div id="contenido">
-		<form action="procesarRegistroEvento.php" method="POST">
-				<fieldset id="evento">
-				<legend id="log">REGISTRA TU EQUIPO EN UN EVENTO</legend>
-					<p id="log">Evento: <input list="eventos" name="evento">
-						<datalist id="eventos">
-								<?php
+			<div id="contenido">
+
+				<div id="error">
+					<fieldset id="errorReg">
+						<legend id="error">ERROR</legend>
+							<?php
+								if (count($erroresFormulario) > 0) {
+									echo '<ul class="errores">';
+								}
+								foreach($erroresFormulario as $error) {
+									echo "<li>$error</li>";
+								}
+								if (count($erroresFormulario) > 0) {
+									echo '</ul>';
+								}
+							?>
+					</fieldset>		
+				</div>	
+
+				<form action="procesarRegistroEvento.php" method="POST">
+					<fieldset id="evento">
+						<legend id="log">Registra tu equipo en el evento</legend>
+							<p id="log">Evento: 
+								<select id="even">
+									<?php
 										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
-						  				}?>
-							</datalist>		
-						</input></p>
-					<p id="log">Equipos: <input list="equipos" name="equipo">
-						<datalist id="equipos">
-								<?php
-										foreach ($equipos as $valor) { 
-						  					echo '<option value="'.$valor->set_nombre_equipo().'" >'.$valor->set_nombre_equipo().'</option>';
-						  				}?>
-						</datalist>	
+						  			}?>
+								</select>			
 							</input></p>
 
-				<button id= "index" type="submit" name="registro">Validar</button>
-				<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
-				</fieldset>
-		</form>
-	</div>
+					<p id="log">Equipos: 
+						<select id="equipos">
+								<?php
+										if(!empty($equipos))
+										{
+											foreach ($equipos as $valor) {
+						  					echo '<option value="'.$valor.'" >'.$valor.'</option>';
+						  					}
+						  				}
+										else
+										{
+											echo $errores;
+						  		}?>
+						</select>	
+							</input></p>
+								
+						<button id= "index" type="submit" name="registro">Validar</button>
+						<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
+					</fieldset>
+				</form>
+			</div>
 
+
+
+		<?php
+		}
+		else
+		{
+			echo '<p> TE HAS REGISTRADO EN EL EVENTO:';
+			echo  $tuplaEvento->evento();
+			echo  $tuplaEvento->equipo();
+			echo  $tuplaEvento->fecha_creacion();
+		}
+	}
+	?>
+	
 	<?php 
 		include("includes/comun/pie.php"); 
 	?>
+
 </body>
 </html>
