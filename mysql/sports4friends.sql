@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2019 a las 15:15:02
+-- Tiempo de generación: 15-05-2019 a las 15:23:48
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -155,18 +155,18 @@ INSERT INTO `estadisticas_baloncesto` (`id_esbaloncesto`, `es_usuario`, `es_equi
 CREATE TABLE `estadisticas_balonmano` (
   `id_esbalonmano` int(10) NOT NULL,
   `es_usuario` int(10) NOT NULL,
-  `es_equipo` int(10) NOT NULL,
-  `pj_usuario` int(4) NOT NULL,
-  `pg_usuario` int(4) NOT NULL,
-  `pe_usuario` int(4) NOT NULL,
-  `pp_usuario` int(4) NOT NULL,
-  `goles` int(4) NOT NULL,
-  `asistencias` int(4) NOT NULL,
-  `tapones` int(4) NOT NULL,
-  `faltas` int(4) NOT NULL,
-  `tarjeta_a` int(4) NOT NULL,
-  `tarjeta_r` int(4) NOT NULL,
-  `expulsion_dos_min` int(4) NOT NULL
+  `es_equipo` int(10) NOT NULL DEFAULT '0',
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `goles` int(4) NOT NULL DEFAULT '0',
+  `asistencias` int(4) NOT NULL DEFAULT '0',
+  `tapones` int(4) NOT NULL DEFAULT '0',
+  `faltas` int(4) NOT NULL DEFAULT '0',
+  `tarjeta_a` int(4) NOT NULL DEFAULT '0',
+  `tarjeta_r` int(4) NOT NULL DEFAULT '0',
+  `expulsion_dos_min` int(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -187,13 +187,13 @@ CREATE TABLE `estadisticas_beisbol` (
   `id_esbeisbol` int(10) NOT NULL,
   `es_usuario` int(10) NOT NULL,
   `es_equipo` int(10) NOT NULL,
-  `pj_usuario` int(4) NOT NULL,
-  `pg_usuario` int(4) NOT NULL,
-  `pe_usuario` int(4) NOT NULL,
-  `pp_usuario` int(4) NOT NULL,
-  `strike` int(4) NOT NULL,
-  `homerun` int(4) NOT NULL,
-  `eliminaciones` int(4) NOT NULL
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `strike` int(4) NOT NULL DEFAULT '0',
+  `homerun` int(4) NOT NULL DEFAULT '0',
+  `eliminaciones` int(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -242,16 +242,16 @@ CREATE TABLE `estadisticas_tenis` (
   `id_estenis` int(10) NOT NULL,
   `es_usuario` int(10) NOT NULL,
   `es_equipo` int(10) NOT NULL,
-  `pj_usuario` int(4) NOT NULL,
-  `pg_usuario` int(4) NOT NULL,
-  `pe_usuario` int(4) NOT NULL,
-  `pp_usuario` int(4) NOT NULL,
-  `puntos_usuario` int(5) NOT NULL,
-  `sets` int(4) NOT NULL,
-  `juegos` int(4) NOT NULL,
-  `aces` int(4) NOT NULL,
-  `dobles_faltas` int(4) NOT NULL,
-  `errores_no_forzados` int(4) NOT NULL
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `puntos_usuario` int(5) NOT NULL DEFAULT '0',
+  `sets` int(4) NOT NULL DEFAULT '0',
+  `juegos` int(4) NOT NULL DEFAULT '0',
+  `aces` int(4) NOT NULL DEFAULT '0',
+  `dobles_faltas` int(4) NOT NULL DEFAULT '0',
+  `errores_no_forzados` int(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
