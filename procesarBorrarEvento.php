@@ -23,14 +23,15 @@ if (empty($evento))
 
 $eliminarEvento = Eventos::eliminaEvento($evento);
 
+var_dump($eliminarEvento);
 
 if($eliminarEvento)
 {
-	$arrayDdata = "Se ha eliminado el evento correctamente";
+	$arrayData[] = "Se ha eliminado el evento correctamente";
 }
 else
 {
-	$arrayData = "No se ha podido eliminar el evento"
+	$arrayData[] = "No se ha podido eliminar el evento";
 }
 
 ?>
@@ -55,8 +56,8 @@ else
 	
 		<div id="contenido">	
 
-			<button formaction='adminEventos.php' type='submit' class='login-equipos'>VOLVER</button></a>
-
+			<button> <a href="adminEventos.php"  class='login-equipos' >VOLVER </a> </button>
+ 
 			<div id="error">
 					<fieldset id="errorReg">
 						<legend id="error"></legend>
