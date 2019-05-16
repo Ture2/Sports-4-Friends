@@ -52,32 +52,6 @@
 		    	   	</div>
 	    	   	</div>
 
-	    	   	<div id="crearEquipoForm">
-	    	 		<div id="datos">
-						<fieldset id="perfil">
-						<legend id="log">EQUIPO</legend>
-							<form action="procesarCrearEquipo.php" enctype="multipart/form-data" method="post">
-							<p id="log">Nombre del Equipo: <input type="text" name="name" style="width: 24em;height: 3em;" required></p>
-							<p id="log">Deporte:
-							<select name="deporte" id="dep" style="width: 24em; height: 3em;" required>
-								<?php
-
-								$deportes = Deporte::getAll();
-									
-									foreach ($deportes as $valor) { 
-										//echo $valor. " ";
-									  	echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
-									  }  
-								?>
-							</select></p>
-							<p id="log">Imagen del Equipo: <input type="file" name="imagen"></p>
-							<p id="log">Descripcion (max 50): <textarea type="text" name="desc" maxlength="50"></textarea></p>
-							<button id="index" type="submit" name="crear">CREAR</button>
-							<button onclick="history.back()" id="index" type="submit" name="volver">VOLVER</button>
-							</form>
-						</fieldset>
-					</div>
-				</div>
 	    	<?php
 			if(!isset($equipos))
 				echo "<p>Actualmente no hay ningun equipo disponible</p>";
@@ -108,9 +82,36 @@
 
 			echo "</div>";
 		}
+			if(isset($equipos)){
 			?>
-			
+			<div id="crearEquipoForm">
+	    	 		<div id="datos">
+						<fieldset id="perfil">
+						<legend id="log">EQUIPO</legend>
+							<form action="procesarCrearEquipo.php" enctype="multipart/form-data" method="post">
+							<p id="log">Nombre del Equipo: <input type="text" name="name" style="width: 24em;height: 3em;" required></p>
+							<p id="log">Deporte:
+							<select name="deporte" id="dep" style="width: 24em; height: 3em;" required>
+								<?php
 
+								$deportes = Deporte::getAll();
+									
+									foreach ($deportes as $valor) { 
+										//echo $valor. " ";
+									  	echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
+									  }  
+								?>
+							</select></p>
+							<p id="log">Imagen del Equipo: <input type="file" name="imagen"></p>
+							<p id="log">Descripcion (max 50): <textarea type="text" name="desc" maxlength="50"></textarea></p>
+							<button id="index" type="submit" name="crear">CREAR</button>
+							<button onclick="history.back()" id="index" type="submit" name="volver">VOLVER</button>
+							</form>
+						</fieldset>
+					</div>
+				</div>
+				<?php
+			}?>
 		</main>
 		<?php
 		require("includes/comun/pie.php");  

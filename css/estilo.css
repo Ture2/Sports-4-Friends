@@ -589,7 +589,7 @@ fieldset#perfil{
     height: 35em;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: -100em;
+    margin-top: -100em;	
 }
 
 input{
@@ -599,13 +599,9 @@ input{
 
 /* estadisticas */
 
-div#tabla {
-	float: center;
-}
-
 img#fut1 {
-	width: 300px;
-	height: 300px;
+	width: 25em;
+	height: 25em;
 }
 
 table {
@@ -915,22 +911,23 @@ div#crearEquipoForm{
 /* pantalla equipo */
 
 #p1{
-	color:black;
-	margin-left: 400px;
-	text-decoration: underline;
-	text-decoration-color: black;
+	color: black;
+    /* margin-left: 400px; */
+    font-size: 3.5em;
+    font-family: arial;
+    text-align: center;
 }
 
 #p2{
-	color:#eef9fe;
-	margin-left: 400px;
+	color: #eef9fe;
+    margin-left: 453px;
+    max-width: 22em; 
 }
 
 #p3{
+	text-align: center;
 	color:black;
-	margin-left: 750px;
 	text-decoration: underline;
-	text-decoration-color: black;
 }
 
 #p4{
@@ -950,9 +947,9 @@ div#crearEquipoForm{
 }
 
 #h{
-	font-family: arial;
-	color:#fff;
-	font-size: 6em;
+	color: #FFF;
+    font-family: arial;
+    font-size: 6em;
 }
 
 #h1{
@@ -968,7 +965,7 @@ div#pie {
 	height: 50px;
 	background-color: #58DE9D;
 	position: relative;
-	z-index: 1;
+	z-index: 0;
 }
 
 img#icon {
@@ -1090,4 +1087,95 @@ hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+/*Vista equipo*/
+
+
+.titulo-equipo{
+	flex-basis: 100%;
+    text-align: center;
+    margin: 1em;
+}
+
+#elem1{
+	flex-basis: 100%;
+	margin-left: 10em;
+    margin-top: 30px;
+    background-color: #befdb9;
+    margin-bottom: 5em;
+    border: 0.8em solid rgba(182, 255, 232, 1);
+    padding: 10px 10px 0 10px;
+    left: 10%;
+
+}
+#container-eventos2{
+    flex-wrap: wrap;
+    float: left;
+    padding: 10px;
+    width: 25%;
+}
+
+#botones-equipo{
+	display: inline-flex;
+	margin-left: 5em;
+	margin-bottom: 7.7em;
+}
+
+.tab {
+ 	float: left;
+    border: 1px solid #ccc;
+    width: 100%;
+    background-color: #befdb9;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: #e02d2d;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 2.5em;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ab2121;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+	color: #FFF;
+  background-color: #ab2121;
+}
+
+/* Style the tab content */
+.tabcontent {
+		padding: 0 18px;
+	  background-color: white;
+	  display: none;
+	  overflow: hidden;
+	  text-align: center;
+}
+
+.tablinks{
+	background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+.active, .tabcontent:hover {
+  background-color: #ccc; 
 }
