@@ -62,7 +62,7 @@ if(count($erroresFormulario) == 0)
 				if($registro)
 				{
 				
-					$erroresFormulario[] = "El equipo ya esta registro en este evento";
+					$erroresFormulario[] = "El equipo ya esta registrado en este evento";
 				}
 				else
 				{
@@ -71,7 +71,7 @@ if(count($erroresFormulario) == 0)
 			}
 			else
 			{
-				$erroresFormulario[] = "Solo puede registrarse en un evento el administrador del equipo";
+				$erroresFormulario[] = "Solo el administrador del equipo puede registrarse en el evento";
 			}
 
 		}
