@@ -126,10 +126,10 @@ class Usuario
     }
 
     //Pasas la ruta de la foto por parametro
-    public static function guardaFotoUsuario($ruta){
+    public static function guardaFotoUsuario($ruta, $idusuario){
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("UPDATE usuarios SET foto_usuario = '%s'", $ruta);
+        $query = sprintf("UPDATE usuarios SET foto_usuario = '%s' WHERE id_usuario = '%s'", $ruta, $idusuario);
         if ( !$conn->query($query) ) {
             echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             return false;
@@ -141,8 +141,8 @@ class Usuario
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $foto = strtolower($usuario->nombreUsuario()) . ".jpg";
-        $query = sprintf("SELECT * FROM usuarios WHERE foto_usuario = '%s'",
-                    $conn->real_escape_string($foto));
+        $query = sprintf("SELECT * FROM usuarios WHERE foto_usuario = '%s' AND id_usuario = '%s'",
+                    $conn->real_escape_string($foto), $usuario->id());
         $rs = $conn->query($query);
         if($rs){
             $fila = $rs->fetch_assoc();

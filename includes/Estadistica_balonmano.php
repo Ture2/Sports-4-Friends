@@ -32,7 +32,7 @@ class Estadistica_balonmano extends Estadistica
     public static function listaEstadisticas($idusuario){
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM estadisticas_balonmano es JOIN equipos e ON es.es_equipo = e.id_equipo WHERE es.es_usuario = '%s'", $conn->real_escape_string($idusuario));
+        $query = sprintf("SELECT * FROM estadisticas_balonmano es JOIN equipos e ON es.es_equipo = e.nombre_equipo WHERE es.es_usuario = '%s'", $conn->real_escape_string($idusuario));
        $rs =$conn->query($query);
        if ( $rs ) {
             if($rs->num_rows == 0)

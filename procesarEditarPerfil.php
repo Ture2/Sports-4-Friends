@@ -54,18 +54,28 @@
 
 
 	if (count($erroresFormulario) === 0) {
-		$usuario->setNickname($username);
-		$usuario->setNombre($nombre);
-		$usuario->setMail($correo);
+		if(!empty($username)){
+			$usuario->setNickname($username);
+		}
+		if(!empty($nombre)){
+			$usuario->setNombre($nombre);
+		}
+		if(!empty($correo)){
+			$usuario->setMail($correo);
+		}
 		$usuario->cambiaPassword($password);
-		$usuario->setImagenUsuario($nombre_img);
+		if(!empty($nombre_img)){
+			$usuario->setImagenUsuario($nombre_img);
+			$usuario->guardaFotoUsuario($nombre_img, $usuario->id());
+		}
 		$usuario = Usuario::guarda($usuario);
-		$usuario->guardaFotoUsuario($nombre_img);
 	    if (! $usuario ) {
 	        $erroresFormulario[] = "El usuario ya existe.";
 	    } else {
 	        $_SESSION['login'] = true;
-	        $_SESSION['nombre'] = $username;
+	        if(!empty($username)){
+				$_SESSION['nombre'] = $username;	
+			}
 	        header('Location: perfil.php');
 	        exit();
 	    }
