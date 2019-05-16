@@ -82,7 +82,7 @@
 
 			echo "</div>";
 		}
-			if(isset($equipos)){
+			if(isset($_SESSION["login"])){
 			?>
 			<div id="crearEquipoForm">
 	    	 		<div id="datos">
