@@ -592,6 +592,20 @@ fieldset#perfil{
     margin-top: -100em;	
 }
 
+fieldset#perfil2{
+	border-color: #4a32068a;
+    border-radius: 4%;
+    border-style: dotted;
+    border-width: 0.3em;
+    background-color: #fff793;
+    color: #FFF;
+    font-family: arial;
+    text-align: left;
+    height: 35em;
+    margin-top: 12em;
+    margin-bottom:16em;
+}
+
 input{
 	border:1px solid darkgreen;
 }
