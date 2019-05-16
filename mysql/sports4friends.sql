@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2019 a las 18:21:01
+-- Tiempo de generación: 16-05-2019 a las 19:21:53
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -521,7 +521,11 @@ CREATE TABLE `invitados` (
 
 INSERT INTO `invitados` (`id_invitado`, `quedada`, `usuario`, `fecha_creacion`) VALUES
 (1100001, 1200001, 7, '2019-05-16 15:54:13'),
-(1100002, 1200002, 2, '2019-05-16 16:11:13');
+(1100002, 1200002, 2, '2019-05-16 16:11:13'),
+(1100003, 1200003, 11, '2019-05-16 16:35:40'),
+(1100004, 1200004, 5, '2019-05-16 16:46:45'),
+(1100005, 1200005, 6, '2019-05-16 17:04:25'),
+(1100006, 1200006, 4, '2019-05-16 17:20:02');
 
 -- --------------------------------------------------------
 
@@ -786,7 +790,11 @@ CREATE TABLE `quedadas` (
 
 INSERT INTO `quedadas` (`id_quedada`, `nombre_quedada`, `creador`, `ciudad`, `localizacion`, `fecha_creacion`, `fecha_quedada`, `hora_quedada`, `descripcion`, `ruta_foto`, `aforo`) VALUES
 (1200001, 'Clásico Bar Manolo', 7, 'Madrid', 'Calle Bravo Murillo 146, Metro: Cuatro Caminos L1,L2,L6', '2019-05-16 15:54:13', '2019-05-20', '18:30:00', 'Si quieres vivir el clásico con la mejor compañia y los mejores bocatas vente al Bar Manolo.', 'images/quedadas/bar_manolo.jpg', 60),
-(1200002, 'Mundial Fútbol Femenino 2019', 2, 'Madrid', 'Plaza de Neptuno, Metro: Banco de España (L2), Atocha (L1)', '2019-05-16 16:11:13', '2019-06-22', '20:00:00', 'Ven con tus amigos a la pantalla gigante de Plaza de Neptuno y en concreto a nuestro aforo reservado  para ver el Mundial de Fúbol Femenino que juegan España vs EEUU. ', 'images/quedadas/neptuno.jpg', 300);
+(1200002, 'Mundial Fútbol Femenino 2019', 2, 'Madrid', 'Plaza de Neptuno, Metro: Banco de España (L2), Atocha (L1)', '2019-05-16 16:11:13', '2019-06-22', '20:00:00', 'Ven con tus amigos a la pantalla gigante de Plaza de Neptuno y en concreto a nuestro aforo reservado  para ver el Mundial de Fúbol Femenino que juegan España vs EEUU. ', 'images/quedadas/neptuno.jpg', 300),
+(1200003, 'Final Champions League 2019', 11, 'Madrid', 'Avenida de Arcentales, Metro: Las Musas, Estadio Metropolitano (L7)', '2019-05-16 16:35:40', '2019-06-01', '21:00:00', 'Si nos has podido conseguir entradas para ver la Final de Champions entre el Liverpool - Tottenham ,  que se juega en el Wanda Metropolitano, vente a nuestro aforo reservado para verlo en pantalla gigante al aire libre.', 'images/quedadas/wanda.jpg', 500),
+(1200004, 'Final Four Euroliga 2019', 5, 'Madrid', 'Avenida Felipe II Metro: O´donnell (L6), Goya (L2,L4)', '2019-05-16 16:46:45', '2019-05-25', '18:00:00', 'Vive en la plaza del basket en el aforo reservado para ver en pantalla gigante la final a cuatro de la mejor competición de europa del basket.', 'images/quedadas/felipe_ii.jpg', 150),
+(1200005, 'Triatlón Casa de Campo', 6, 'Madrid', 'Paseo del Embarcadero, Metro: Lago(L10)', '2019-05-16 17:04:25', '2019-06-29', '08:00:00', 'Que mejor plan que animar a los mejores triatletas del mundo entre ellos los españoles Javier Gómez Noya y  Mario Mola, en nuestra zona Triatlón Sports4Friends situada en la Casa de Campo.  ', 'images/quedadas/casa_campo.jpg', 100),
+(1200006, 'Toledo Piraguas ', 4, 'Toledo', 'Paseo del Barco Pasaje, Bus: 567 (Cogerlo Intercambiador Plaza Eliptica, Madrid)', '2019-05-16 17:20:02', '2019-07-07', '09:00:00', 'Vivir piraguismo manchego en el Rio Tajo es algo único e irrepetible, ven y verás. ', 'images/quedadas/toledo.jpg', 120);
 
 -- --------------------------------------------------------
 
