@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2019 a las 22:41:05
+-- Tiempo de generación: 17-05-2019 a las 00:36:14
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -864,7 +864,7 @@ CREATE TABLE `registros_eventos` (
 --
 
 INSERT INTO `registros_eventos` (`id_registro`, `evento`, `equipo`, `fecha_creacion`) VALUES
-(770001, 'baloncesto 3v3 abril 2019', 'BULL', '2019-04-09'),
+(770001, 'baloncesto 3v3 abril 2019', 'REAL MADRID', '2019-04-09'),
 (770002, 'balonmano rey del campo', 'VALENCIA', '2019-04-15');
 
 -- --------------------------------------------------------
