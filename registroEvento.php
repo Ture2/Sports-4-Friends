@@ -43,16 +43,16 @@ if(empty($equipos))
 					<fieldset id="evento">
 						<legend id="log">Registra tu equipo en el evento</legend>
 							<p id="log">Evento: 
-								<select id="even">
+								<select name="evento">
 									<?php
 										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
 						  			}?>
 								</select>			
-							</input></p>
+							</p>
 
 					<p id="log">Equipos: 
-						<select id="equipos">
+						<select name="equipo">
 								<?php
 										if(!empty($equipos))
 										{

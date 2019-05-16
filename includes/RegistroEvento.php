@@ -9,7 +9,7 @@ class RegistroEvento
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $result = false;
+        $result = null;
 
         $query = sprintf("SELECT * FROM registros_eventos RE WHERE RE.equipo = '%s'", $conn->real_escape_string($equipo));
         $rs = $conn->query($query);
@@ -41,10 +41,10 @@ class RegistroEvento
 
         if ($rs) {
             if ( $rs->num_rows == 1) {
-                $fila = $rs->fetch_assoc();
+                $row = $rs->fetch_assoc();
 
                 $registroEvento = new RegistroEvento($row['evento'],$row['equipo'],$row['fecha_creacion']);
-                $evento->id_registro = $row['id_registro'];
+                $registroEvento->id_registro = $row['id_registro'];
                 $result = $registroEvento;
             }
             $rs->free();
@@ -102,18 +102,19 @@ class RegistroEvento
     public static function crearRegistroEvento($evento, $equipo, $fecha_creacion)
     {
         $registro = RegistroEvento::buscaRegistroEvento($evento, $equipo);
-        if ($evento) {
-            return false;
+        var_dump($registro);
+        if ($registro) {
+            return true;
         }
         $registroEvento = new RegistroEvento($evento, $equipo, $fecha_creacion);
 
-        return self::guardarEvento($registroEvento);
+        return self::guardarRegistroEvento($registroEvento);
     }
 
     public static function guardarRegistroEvento($registroEvento)
     {
         if ($registroEvento->id_registro == null) {
-             return self::insertarRegistroEvento($RegistroEvento);
+             return self::insertarRegistroEvento($registroEvento);
         }
     }
        
@@ -122,14 +123,14 @@ class RegistroEvento
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO eventos (evento, equipo, fecha_creacion) VALUES('%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO registros_eventos (evento, equipo, fecha_creacion) VALUES('%s', '%s', '%s')"
             , $conn->real_escape_string($registroEvento->evento)
             , $conn->real_escape_string($registroEvento->equipo)
             , $conn->real_escape_string($registroEvento->fecha_creacion));
 
         if ( $conn->query($query) )
         {
-            $registroEvento->id = $conn->insert_id;
+            $registroEvento->id_registro = $conn->insert_id;
         } else {
             echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
@@ -173,7 +174,6 @@ class RegistroEvento
     private $id_registro;
     private $evento;
     private $equipo;
-    private $p_victorias;
     private $fecha_creacion;
    
     

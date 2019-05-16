@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__.'/includes/config.php';
-require_once __DIR__.'/includes/Jugador';
+require_once __DIR__.'/includes/Jugador.php';
 require_once __DIR__.'/includes/Equipo.php';
 require_once __DIR__.'/includes/Deporte.php';
 require_once __DIR__.'/includes/Eventos.php';
@@ -32,37 +32,52 @@ if ( empty($equipo))
 	    $erroresFormulario[] = "Error al procesar el nombre del equipo";
 }
 
+$eventos = Eventos::listarEventos();
+$equipos = Jugador::listaEquiposPorJugador($_SESSION["nombre"]);
 
 if(count($erroresFormulario) == 0)
 {
-	$tuplaEvento = Evento::buscaEvento($nombre_evento);
+	$tuplaEvento = Eventos::buscaEvento($nombre_evento);
 
-	$existeJugador = Jugador::getJugadorPorNombreDeUnEquipo($nickname, $equipo);
+	$existeJugador = Jugador::getJugadorPorNombreDeUnEquipo($_SESSION["nombre"], $equipo);
 
-	if ($existeJugador ! null)
+
+	if ($existeJugador != null)
 	{
 		$tuplaEquipo = Equipo::getInfoPorNombre($equipo);
 		$tuplaDeporte = Deporte::buscaDeportePorId($tuplaEquipo->get_deporte());
 
 		//si el deporte es el mismo 
-		if ($tuplaEvento->deporte() === $ $tuplaDeporte->nombreDeporte())
+		$deporteEvento = $tuplaEvento->deporte();
+		$deporte =$tuplaDeporte->nombreDeporte();
+		$rolJugador = $existeJugador->get_rol_jugador();
+
+		if (strcasecmp($deporteEvento, $deporte) == 0)
 		{
-
-			//ahora si existe un evento con este equipo
-			$existeEquipoEnRegistroEvento = RegistroEvento::buscaRegistroEventosEquipo($equipo);
-
-			if ($existeEquipoEnRegistroEvento  == null)
+			if($rolJugador == 1)
 			{
 				$registro = RegistroEvento::crearRegistroEvento($nombre_evento, $equipo, $fecha_creacion);
+				var_dump($registro);
+
+				if($registro)
+				{
+				
+					$erroresFormulario[] = "El equipo ya esta registro en este evento";
+				}
+				else
+				{
+					$registroEvento = RegistroEvento::buscaRegistroEvento($nombre_evento, $equipo);
+				}
 			}
 			else
 			{
-				$erroresFormulario ="El equipo ya esta registrado"
+				$erroresFormulario[] = "Solo puede registrarse en un evento el administrador del equipo";
 			}
+
 		}
 		else
 		{
-			$erroresFormulario[] = "Tu equipo no puede inscribirse en el evento"
+			$erroresFormulario[] = "Tu equipo no puede inscribirse en este evento";
 		}
 
 	}
@@ -73,6 +88,8 @@ if(count($erroresFormulario) == 0)
 }
 
 
+
+var_dump($erroresFormulario);
 ?>
 
 <!DOCTYPE html>
@@ -91,8 +108,8 @@ if(count($erroresFormulario) == 0)
 
 	<?php
 	if (isset($_SESSION["login"]))
-	{
-		if (count($erroresFormulario) >= 0)
+	{	
+		if (count($erroresFormulario) > 0)
 		{
 			?>
 
@@ -102,16 +119,12 @@ if(count($erroresFormulario) == 0)
 					<fieldset id="errorReg">
 						<legend id="error">ERROR</legend>
 							<?php
-								if (count($erroresFormulario) > 0) {
-									echo '<ul class="errores">';
-								}
-								foreach($erroresFormulario as $error) {
-									echo "<li>$error</li>";
-								}
-								if (count($erroresFormulario) > 0) {
-									echo '</ul>';
+								foreach ($erroresFormulario as $value) { ?>
+									<p> <?= $value ?> </p>
+							<?php
 								}
 							?>
+
 					</fieldset>		
 				</div>	
 
@@ -119,7 +132,7 @@ if(count($erroresFormulario) == 0)
 					<fieldset id="evento">
 						<legend id="log">Registra tu equipo en el evento</legend>
 							<p id="log">Evento: 
-								<select id="even">
+								<select name="evento">
 									<?php
 										foreach ($eventos as $valor) { 
 						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
@@ -128,7 +141,7 @@ if(count($erroresFormulario) == 0)
 							</input></p>
 
 					<p id="log">Equipos: 
-						<select id="equipos">
+						<select name="equipo">
 								<?php
 										if(!empty($equipos))
 										{
@@ -155,10 +168,18 @@ if(count($erroresFormulario) == 0)
 		}
 		else
 		{
-			echo '<p> TE HAS REGISTRADO EN EL EVENTO:';
-			echo '<p> Evento:"'.$tuplaEvento->evento()'</p>';
-			echo '<p> Evento:"'.$tuplaEvento->equipo() '</p>';
-			echo '<p> Evento:"'.$tuplaEvento->fecha_creacion() '</p>';
+		?>
+			<div id="error">
+					<fieldset id="errorReg">
+						<legend  >TU EQUIPO SE HA REGISTRO CON EXITO</legend>
+							<p><?= $registroEvento->evento();?></p>
+							<p><?= $registroEvento->equipo();?></p>
+							<p><?= $registroEvento->fecha_creacion();?></p>
+						</br></br>
+							<button><a href="misEventos.php">VUELVE A MIS EVENTOS</a></button>
+					</fieldset>		
+				</div>	
+		<?php	
 		}
 	}
 	?>
