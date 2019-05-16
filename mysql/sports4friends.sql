@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2019 a las 17:24:12
+-- Tiempo de generación: 16-05-2019 a las 18:21:01
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -520,14 +520,8 @@ CREATE TABLE `invitados` (
 --
 
 INSERT INTO `invitados` (`id_invitado`, `quedada`, `usuario`, `fecha_creacion`) VALUES
-(1100001, 1200009, 7, '2019-05-12 16:03:10'),
-(1100002, 1200010, 2, '2019-05-12 17:58:03'),
-(1100003, 1200010, 7, '2019-05-13 19:00:45'),
-(1100006, 1200011, 2, '2019-05-14 14:19:32'),
-(1100007, 1200011, 11, '2019-05-14 14:23:41'),
-(1100008, 1200009, 11, '2019-05-14 14:23:53'),
-(1100009, 1200010, 11, '2019-05-14 15:09:05'),
-(1100010, 1200012, 11, '2019-05-14 15:14:31');
+(1100001, 1200001, 7, '2019-05-16 15:54:13'),
+(1100002, 1200002, 2, '2019-05-16 16:11:13');
 
 -- --------------------------------------------------------
 
@@ -777,11 +771,11 @@ CREATE TABLE `quedadas` (
   `nombre_quedada` varchar(30) NOT NULL,
   `creador` int(10) NOT NULL,
   `ciudad` varchar(100) NOT NULL,
-  `localizacion` varchar(50) NOT NULL,
+  `localizacion` varchar(200) NOT NULL,
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fecha_quedada` date NOT NULL,
   `hora_quedada` time NOT NULL,
-  `descripcion` varchar(200) NOT NULL,
+  `descripcion` varchar(400) NOT NULL,
   `ruta_foto` varchar(100) NOT NULL,
   `aforo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -791,10 +785,8 @@ CREATE TABLE `quedadas` (
 --
 
 INSERT INTO `quedadas` (`id_quedada`, `nombre_quedada`, `creador`, `ciudad`, `localizacion`, `fecha_creacion`, `fecha_quedada`, `hora_quedada`, `descripcion`, `ruta_foto`, `aforo`) VALUES
-(1200009, 'quedada 9', 7, 'Alicante', 'sss', '2019-05-12 16:03:02', '2019-08-08', '11:45:00', 'assasa', 'images/quedadas/MirageOS-290x195.png', 7),
-(1200010, 'quedada 10', 2, 'Madrid', 'parque de don quijote', '2019-05-12 17:58:03', '2019-08-08', '14:45:00', 'sss', 'images/quedadas/Cobisa_sin-raza2011.jpg', 3),
-(1200011, 'quedada 11', 2, 'Huesca', 'sasaffff', '2019-05-14 14:19:32', '2019-08-08', '11:45:00', 'saaas', 'images/quedadas/piscina.jpg', 3),
-(1200012, 'Clasico en el bar manolo', 11, 'Guipuzcoa', 'Calle de pontevedra nº 19', '2019-05-14 15:14:31', '2019-08-15', '13:45:00', 'quedda para ver el futbol', 'images/quedadas/menino1.jpg', 3);
+(1200001, 'Clásico Bar Manolo', 7, 'Madrid', 'Calle Bravo Murillo 146, Metro: Cuatro Caminos L1,L2,L6', '2019-05-16 15:54:13', '2019-05-20', '18:30:00', 'Si quieres vivir el clásico con la mejor compañia y los mejores bocatas vente al Bar Manolo.', 'images/quedadas/bar_manolo.jpg', 60),
+(1200002, 'Mundial Fútbol Femenino 2019', 2, 'Madrid', 'Plaza de Neptuno, Metro: Banco de España (L2), Atocha (L1)', '2019-05-16 16:11:13', '2019-06-22', '20:00:00', 'Ven con tus amigos a la pantalla gigante de Plaza de Neptuno y en concreto a nuestro aforo reservado  para ver el Mundial de Fúbol Femenino que juegan España vs EEUU. ', 'images/quedadas/neptuno.jpg', 300);
 
 -- --------------------------------------------------------
 
