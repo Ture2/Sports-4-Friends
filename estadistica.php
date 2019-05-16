@@ -54,7 +54,7 @@
 		  						echo '<tr>';
 			  						//$equipo = Equipo::getInfoPorNombre($key);
 									$ObjestadisticaF = json_decode($key);
-			  						echo '<td>'.$ObjestadisticaF->id_estadistica.'</td>';
+			  						echo '<td>'.$ObjestadisticaF->equipo.'</td>';
 			  						echo '<td>'.$ObjestadisticaF->partidosj.'</td>';
 			  						echo '<td>'.$ObjestadisticaF->partidosg.'</td>';
 			  						echo '<td>'.$ObjestadisticaF->partidose.'</td>';
@@ -92,7 +92,7 @@
 		  						echo '<tr>';
 			  						//$equipo = Equipo::getInfoPorNombre($key);
 									$ObjestadisticaF = json_decode($key);
-			  						echo '<td>'.$ObjestadisticaF->id_estadistica.'</td>';
+			  						echo '<td>'.$ObjestadisticaF->equipo.'</td>';
 			  						echo '<td>'.$ObjestadisticaF->partidosj.'</td>';
 			  						echo '<td>'.$ObjestadisticaF->partidosg.'</td>';
 			  						echo '<td>'.$ObjestadisticaF->partidose.'</td>';
@@ -129,7 +129,7 @@
 		  					echo '<tr>';
 			  					//$equipo = Equipo::getInfoPorNombre($key);
 								$ObjestadisticaF = json_decode($key);
-			  					echo '<td>'.$ObjestadisticaF->id_estadistica.'</td>';
+			  					echo '<td>'.$ObjestadisticaF->equipo.'</td>';
 			  					echo '<td>'.$ObjestadisticaF->partidosj.'</td>';
 			  					echo '<td>'.$ObjestadisticaF->partidosg.'</td>';
 			  					echo '<td>'.$ObjestadisticaF->partidose.'</td>';
@@ -169,7 +169,7 @@
 		  					echo '<tr>';
 			  					//$equipo = Equipo::getInfoPorNombre($key);
 								$ObjestadisticaF = json_decode($key);
-			  					echo '<td>'.$ObjestadisticaF->id_estadistica.'</td>';
+			  					echo '<td>'.$ObjestadisticaF->equipo.'</td>';
 			  					echo '<td>'.$ObjestadisticaF->partidosj.'</td>';
 			  					echo '<td>'.$ObjestadisticaF->partidosg.'</td>';
 			  					echo '<td>'.$ObjestadisticaF->partidose.'</td>';
