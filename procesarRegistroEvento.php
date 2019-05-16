@@ -9,6 +9,8 @@ require_once __DIR__.'/includes/RegistroEvento.php';
 
 if (! isset($_SESSION['login']) ) {
     header('Location: login.php');
+
+
     exit();
 }
 
@@ -154,9 +156,9 @@ if(count($erroresFormulario) == 0)
 		else
 		{
 			echo '<p> TE HAS REGISTRADO EN EL EVENTO:';
-			echo  $tuplaEvento->evento();
-			echo  $tuplaEvento->equipo();
-			echo  $tuplaEvento->fecha_creacion();
+			echo '<p> Evento:"'.$tuplaEvento->evento()'</p>';
+			echo '<p> Evento:"'.$tuplaEvento->equipo() '</p>';
+			echo '<p> Evento:"'.$tuplaEvento->fecha_creacion() '</p>';
 		}
 	}
 	?>
