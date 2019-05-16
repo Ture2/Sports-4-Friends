@@ -13,9 +13,9 @@ if (!isset($_SESSION['esAdmin'])) {
 
 $erroresFormulario = array();
  
-$fecha_creacion=date("Y-m-d");
+$fecha_creacion = date("Y-m-d");
 
-$ruta=$_FILES['imagen']['name'];
+$ruta = $_FILES['imagen']['name'];
 
 $nombre_evento = isset($_POST['nombre_evento']) ? $_POST['nombre_evento'] : null;
 if ( empty($nombre_evento) || mb_strlen($nombre_evento) < 2 ) {
@@ -63,11 +63,12 @@ if ( empty($descripcion) || mb_strlen($descripcion) < 5 ) {
 	$erroresFormulario[] = "La descripción tiene que tener una longitud de al menos 5 caracteres.";
 }
 
-  
-if (($ruta == !NULL) && ($_FILES['imagen']['size'] <= 200000)) 
+
+if (($ruta == !NULL) && ($_FILES['imagen']['size'] <= 800000)) 
 {
    	//formatos permitidos
    	if (($_FILES["imagen"]["type"] == "image/gif")
+
    		|| ($_FILES["imagen"]["type"] == "image/jpeg")
    		|| ($_FILES["imagen"]["type"] == "image/jpg")
    		|| ($_FILES["imagen"]["type"] == "image/png"))
@@ -81,33 +82,25 @@ if (($ruta == !NULL) && ($_FILES['imagen']['size'] <= 200000))
      
       
      	 // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
-    	if(move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio.$ruta))
-    	{
-    		$ruta_foto = "images/eventos/".$ruta;     	
-    	}
-    	else
-    	{
-    		$erroresFormulario[] = "No se ha podido guardar la imagen";
-    	}
-   	} 
-    else 
+    	move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio.$ruta)
+   
+   }
+    else
     {
-       //si no cumple con el formato
+    	//si no cumple con el formato
        $erroresFormulario[] =  "No se puede subir una imagen con ese formato ";
     }
-}
+} 
 else 
 {
-   	//si existe la variable pero se pasa del tamaño permitido
- 	if($ruta == !NULL)
- 	{
-   			$erroresFormulario[] =  "foto no valida"; 
-   	}
+       	$erroresFormulario[] = "No se ha podido guardar la imagen";
 }
+
+
 
 if (count($erroresFormulario) === 0) 
 {
-		$existeEvento = Eventos::crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion,$ruta_foto);
+		$existeEvento = Eventos::crearEvento($nombre_evento, $deporte, $ciudad, $municipio, $localizacion, $fecha_creacion, $fecha_evento, $hora_evento, $descripcion, $ruta_foto);
     
     if (!$existeEvento) 
     {
@@ -115,11 +108,13 @@ if (count($erroresFormulario) === 0)
     } 
     else 
     {       
-            header('Location: adminEventos.php');
-            exit();
+         header('Location: adminEventos.php');
+         exit();
     }
 } 
 
+
+var_dump($erroresFormulario);
 ?>
 
 <html>
@@ -156,18 +151,20 @@ if (count($erroresFormulario) === 0)
 		<form action="procesarEvento.php" method="POST" enctype="multipart/form-data">
 				<fieldset id="perfil">
 						<legend id="log">REGISTRO DEL EVENTO</legend>
-							<p id="perfil">Nombre Evento: <input type="text" name="nombre_evento" value=""></p>
+							<p id="perfil">Nombre Evento: <input type="text" name="nombre_evento"  required value=""></p>
 							<p id="perfil">Deporte:
 								<select name="deporte" id="dep" required>
 									<?php $deportes = Deporte::getAll();
 										foreach ($deportes as $valor) { 
 						  					echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
 						  			}?></select></p>
-							<p id="perfil">Ciudad: <input type="text" name="ciudad" value=""></p>
+							<p id="perfil">Ciudad: <input type="text" name="ciudad"  required value=""></p>
 							<p id="perfil">Municipio: <input type="text" name="municipio" value=""></p>
-							<p id="perfil">Localización: <input type="text" name="localizacion" value=""></p>
-							<p id="perfil">Fecha Evento: <input type="text" name="fecha_evento" value=""></p>
-							<p id="perfil">Hora Evento: <input type="text" name="hora_evento" value=""></p>
+							<p id="perfil">Localización: <input type="text" name="localizacion"  required value=""></p>
+							<p id="perfil">Fecha Evento: <input type="date" name="fecha_evento" value="2019-08-08"min="2018-03-25"
+                                  max="2020-05-25" step="1"></p>
+                                  
+								<p id="perfil">Hora Evento: <input type="time" name="hora_evento" value="11:45:00" max="22:30:00" min="10:00:00" step="1"></p>
 							<p id="perfil">Descripción: <input type="text" name="descripcion" value=""></p>
 							<p id="perfil">Imagen del Equipo: <input type="file" name="imagen"></p>
 							<button id= "index" type="submit" name="registro">Validar</button>

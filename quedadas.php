@@ -55,7 +55,7 @@ $errores = array();
 				<div id="quedadas">
 					<h1 id="h"><?=$value->nombre_quedada();?></h1>
 					<img id="quedada" src="<?=$value->ruta_foto();?>"></img>
-					<pre id=texto><?=  "DESCRIPCION: ".$value->descripcion();?></pre>
+					<pre id=texto><?=  "Localizacion: ".$value->localizacion();?></pre>
 					<pre id=texto><?= "CREADOR: " .$creador->nicknameUsuario()?></pre>
 					<pre id=texto><?=$value->ciudad();?></pre>
 					<pre id=texto><?=$value->fecha_quedada();?></pre>
