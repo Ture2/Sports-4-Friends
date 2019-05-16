@@ -94,37 +94,26 @@ class Equipo{
 
     
     
-    ////JJ
-    
-    /*
-     * Devuelve false si el usuario no se encuentra, en caso contrario devuelve el equipo
-     */
-    public static function buscaEquipo($nombreEquipo)
+  
+    //busca usuario por id usuario  
+    public static function buscaEquipoPorID($id_equipo)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM equipos e WHERE e.nombre_equipo = '%s'", $conn->real_escape_string($nombreEquipo));
+        $query = sprintf("SELECT * FROM equipos WHERE id_equipo = '%s'", $id_equipo);
         $rs = $conn->query($query);
-        $result = false;
-        if ($rs) {
-            if ( $rs->num_rows == 1) {
-                $fila = $rs->fetch_assoc();
-                //var_dump($rs);
-                //$user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
-                $user = new Usuario($fila['nickname'], $fila['nombre'], $fila['correo'], $fila['password'], $fila['rol_usuario']);
-                var_dump($user);
-                $user->id = $fila['id_usuario'];
-                $result = $user;
-            }
-            $rs->free();
-        } else {
-            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
-            exit();
+        $equipo = null;
+        if( $rs ){
+            $row = $rs->fetch_assoc();
+            $equipo = new Equipo($row["deporte"], $row["nombre_equipo"], $row["logo_equipo"], $row["descripcion_equipo"]);
+            $equipo->set_estadisticas($row["partidos_ganados"],$row["partidos_empatados"],$row["partidos_perdidos"],
+                $row["mayor_racha"],$row["ultimo_resultado"], $row["posicion_liga"]);
+            $equipo->set_id($row["id_equipo"]);
+        }else {
+            echo "Error al consultar la base de datos: (" . $conn->errno . ") " . utf8_encode($conn->error);
         }
-        return $result;
+        return $equipo;
     }
-    
-    
     
     
     

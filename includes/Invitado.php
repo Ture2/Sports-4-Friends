@@ -123,7 +123,7 @@ class Invitado{
         if($invitado != NULL){
             $invitadoInsertado = self::inserta($invitado);
         }else{
-            echo "Error necesitas tener un jugador creado";
+            echo "Error necesitas tener un invitado";
         }
         return $invitadoInsertado;
     }
