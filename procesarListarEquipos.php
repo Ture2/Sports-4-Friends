@@ -20,6 +20,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	<script src="javascript/crearEquipoForm.js"></script>
 	<meta charset="utf-8">
 	<title>Equipos</title>
 </head>
@@ -41,13 +42,43 @@
 				echo "</div>";
 	    	   //echo"<button onclick= 'location.href='crearEquipo.php''id='index' type='button' name='editar'>Pulse aqui para crear Equipo</button>";
 	    	   //<button onclick= "location.href='editarPerfil.php'" id="index" type="button" name="editar">Editar</button>
-			}else{
-				echo "<form>";
-	    	   		echo "<button formaction='crearEquipo.php' class='login-equipos'>Pulsa aquí para crear un equipo</button>";
-	    	   		echo "<button formaction='procesarListarMisEquipos.php' class='login-equipos'>Mis equipos</button>";
-	    	   	      
-	    	   	echo "</form>";
-	    	   	
+			}else{ ?>
+				<div id = 'container-equipos'>
+					<div class = 'botones-eventos'>
+			    	   	<button  id="botonCrearEquipo" onclick ="openForm()"class = 'login-equipos'>Pulsa aquí para crear un equipo</button>
+			    	   	<button  id="botonCerrarFormulario" onclick ="closeForm()" class = 'login-equipos'>Cerrar
+			    	   	</button>
+			    	   	<a href='procesarListarMisEquipos.php'><button  class = 'login-equipos'>Mis equipos</button></a>
+		    	   	</div>
+	    	   	</div>
+
+	    	   	<div id="crearEquipoForm">
+	    	 		<div id="datos">
+						<fieldset id="perfil">
+						<legend id="log">EQUIPO</legend>
+							<form action="procesarCrearEquipo.php" enctype="multipart/form-data" method="post">
+							<p id="log">Nombre del Equipo: <input type="text" name="name" style="width: 24em;height: 3em;" required></p>
+							<p id="log">Deporte:
+							<select name="deporte" id="dep" style="width: 24em; height: 3em;" required>
+								<?php
+
+								$deportes = Deporte::getAll();
+									
+									foreach ($deportes as $valor) { 
+										//echo $valor. " ";
+									  	echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
+									  }  
+								?>
+							</select></p>
+							<p id="log">Imagen del Equipo: <input type="file" name="imagen"></p>
+							<p id="log">Descripcion (max 50): <textarea type="text" name="desc" maxlength="50"></textarea></p>
+							<button id="index" type="submit" name="crear">CREAR</button>
+							<button onclick="history.back()" id="index" type="submit" name="volver">VOLVER</button>
+							</form>
+						</fieldset>
+					</div>
+				</div>
+	    	<?php
 			if(!isset($equipos))
 				echo "<p>Actualmente no hay ningun equipo disponible</p>";
 			else{
@@ -79,6 +110,7 @@
 		}
 			?>
 			
+
 		</main>
 		<?php
 		require("includes/comun/pie.php");  

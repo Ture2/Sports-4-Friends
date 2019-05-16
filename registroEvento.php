@@ -37,41 +37,41 @@ if(empty($equipos))
 		require("includes/comun/cabecera.php");
 	?>
 	
-	</div id="contenido">	
+	<div id="contenido">	
 
-				<form action="procesarRegistroEvento.php" method="POST">
-					<fieldset id="evento">
-						<legend id="log">Registra tu equipo en el evento</legend>
-							<p id="log">Evento: 
-								<select name="evento">
-									<?php
-										foreach ($eventos as $valor) { 
-						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
-						  			}?>
-								</select>			
-							</p>
+		<form action="procesarRegistroEvento.php" method="POST">
+			<fieldset id="evento">
+				<legend id="log">Registra tu equipo en el evento</legend>
+					<p id="log">Evento: 
+						<select name="evento">
+							<?php
+								foreach ($eventos as $valor) { 
+				  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
+				  			}?>
+						</select>			
+					</p>
 
-					<p id="log">Equipos: 
-						<select name="equipo">
-								<?php
-										if(!empty($equipos))
-										{
-											foreach ($equipos as $valor) {
-						  					echo '<option value="'.$valor.'" >'.$valor.'</option>';
-						  					}
-						  				}
-										else
-										{
-											echo $errores;
-						  		}?>
-						</select>	
-							</input></p>
-								
-						<button id= "index" type="submit" name="registro">Validar</button>
-						<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
-					</fieldset>
-				</form>
-			</div>
+			<p id="log">Equipos: 
+				<select name="equipo">
+						<?php
+								if(!empty($equipos))
+								{
+									foreach ($equipos as $valor) {
+				  					echo '<option value="'.$valor.'" >'.$valor.'</option>';
+				  					}
+				  				}
+								else
+								{
+									echo $errores;
+				  		}?>
+				</select>	
+					</input></p>
+						
+				<button id= "index" type="submit" name="registro">Validar</button>
+				<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
+			</fieldset>
+		</form>
+	</div>
 
 	<?php 
 		include("includes/comun/pie.php"); 

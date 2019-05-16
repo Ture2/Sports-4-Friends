@@ -52,10 +52,13 @@
 	    	   //echo"<button onclick= 'location.href='crearEquipo.php''id='index' type='button' name='editar'>Pulse aqui para crear Equipo</button>";
 	    	   //<button onclick= "location.href='editarPerfil.php'" id="index" type="button" name="editar">Editar</button>
 			}else{
-				echo "<form>";
-	    	   		echo "<button formaction='crearEquipo.php' class='login-equipos'>Pulsa aquí para crear un equipo</button>";
-	    	   	echo "</form>";
-	    	   	
+				?>
+				<div id="container-equipos">
+					<div id='botones-eventos'>
+						<a href='crearEquipo.php'><button  class ='login-equipos'>Pulsa aqui para crear un equipo</button></a>
+			    	</div>
+		    	</div>
+	    	   	<?php
 			if(!isset($equipos))
 				echo "<p>Actualmente no hay ningun equipo disponible</p>";
 			else{

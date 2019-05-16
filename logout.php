@@ -1,5 +1,5 @@
 <?php 
-	header('Refresh: 3; URL=index.php');
+	header('Refresh: 300; URL=index.php');
 	require_once __DIR__.'/includes/config.php';
 
 	//Doble seguridad: unset + destroy

@@ -88,7 +88,7 @@ $errores = array();
 		
 			<div id="errorQuedada">
 				<h1 id="h"> <?php print $errores['0'];?></h1>
-				<div id="errorEvento2">
+				<div id="errorQuedada2">
 					<form>
 						<button formaction='login.php' type='submit' class='login-equipos'>INICIAR SESIÓN</button></a>
 						<button formaction='registro.php' type='submit' class='login-equipos'>REGISTRO</button></a>

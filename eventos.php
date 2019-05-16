@@ -29,7 +29,6 @@ else
 	?>	
 
 	<div id= "contenido">
-		<div id="contenido-eventos">
 
 			<?php
 			if (isset($_SESSION["login"])){
@@ -67,7 +66,6 @@ else
 						<!-- Aquí iria la tabla -->	
 						<p> EYYYYYYYYYYYYYY</p>
 					</div>
-		</div>
 		<fieldset id="errorLogin">
 			<pre id="texto1">Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
 		</fieldset>
@@ -82,9 +80,9 @@ else
 			}
 			else{
 			?>
-				<div id="errorEvento">
+				<div id="errorQuedada">
 					<h1 id="h"> <?php print $errores['0'];?></h1>
-					<div id="errorEvento2">
+					<div id="errorQuedada2">
 						<form>
 							<button formaction='login.php' type='submit' class='login-equipos'>INICIAR SESIÓN</button></a>
 							<button formaction='registro.php' type='submit' class='login-equipos'>REGISTRO</button></a>

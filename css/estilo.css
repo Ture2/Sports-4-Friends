@@ -154,12 +154,14 @@ u#reg {
 }
 
 button#index {
-	background-color: darkgreen;
-	color: white;
-	border: none;
-	margin-top: auto;
-	margin-bottom: auto;
-	padding: 10px;
+	background-color: #a26c12;
+    color: white;
+    border: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 0.5em;
+    width: 10em;
+    font-size: 1.7em;
 }
 
 
@@ -180,15 +182,18 @@ fieldset#campo {
 }
 
 legend#log {
-	color: #fff;
-	background: darkgreen;
-	border: 1px darkgreen;
+	background: #a26c12;
+	text-decoration-color: #FFF;
+	font-size: 2em;
+	border: 1px #4a32068a;
 	padding: 2px 6px;
 	border-radius: 10px;
 }
 
 p#log {
-	color: darkgreen;
+	color: #8e5c0a;
+	font-size: 3.5em;
+	font-family: arial;
 }
 
 
@@ -325,13 +330,16 @@ img.logoIndex {
 
 div#adios {
 	text-align: center;
-	padding-top: 100px;
+    height: 60em;
+    width: auto;
+    padding-top: 100px;
 }
 
 #out{
-	color:gold;
-	font-size:75px;
-
+	color: #ffffff;
+    font-size: 8em;
+    margin-top: 2em;
+    font-family: arial;
 }
 
 p {
@@ -569,14 +577,19 @@ fieldset#avatar{
 }
 
 fieldset#perfil{
-	border: 3px solid darkgreen;
-	background-color: lightblue;
-	color:darkgreen;
-	text-align: left;
-	max-width: 1000px;
-	padding-left: 20px;
-	padding-right: 20px;
-	margin-top: 20px;
+	border-color: #4a32068a;
+    border-radius: 4%;
+    border-style: dotted;
+    border-width: 0.3em;
+    background-color: #fff793;
+    color: #FFF;
+    font-family: arial;
+    text-align: left;
+    width: 100em;
+    height: 35em;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: -100em;
 }
 
 input{
@@ -762,14 +775,16 @@ pre#texto1{
 }
 
 div#errorQuedada{
-	max-width: 1000px;
+	max-width: 100em;
 	border: 1px solid black;
 	margin-top: 30px;
 	margin: auto;
 }
 
 div#errorQuedada2{
-	margin-left: 200px;
+	display: flex;
+    justify-content: center;
+    margin-bottom: 20em;
 }
 
 fieldset#quedada{
@@ -833,7 +848,7 @@ fieldset#quedada{
     flex-basis: 30%;
     display: inline-block;
     max-width: 50em;
-    background-color: #F8FFF8;
+    background-color: #a6ffb1;
 }
 
 .box-equipo{
@@ -844,10 +859,11 @@ fieldset#quedada{
     color: #9F6D20;
 }
 .box-logo{
-	position: relative;
+	border-radius: 50%;
+    position: relative;
     float: left;
-    width: 15em;
-    height: 15em;
+    width: 19em;
+    height: 19em;
 }
 
 .box-texto{
@@ -864,8 +880,8 @@ fieldset#quedada{
 
 .box-texto2{
 	font-size: 1.4em;
-	font-style: arial;
-	color: #DAA052;
+    font-family: arial;
+    color: #a26c12;
 }
 
 .box-desc{
@@ -877,10 +893,25 @@ fieldset#quedada{
 
 .box-img{
 	float: left;
-    margin-left: 4em;
     padding-bottom: 2em;
 }
 
+div#container-equipos{
+	position: relative;
+    display: block;
+    margin-top: 4em;
+    margin-left: 6em;
+}
+
+div#crearEquipoForm{
+	display: flex;
+    z-index: 1;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
 /* pantalla equipo */
 
 #p1{
@@ -908,7 +939,9 @@ fieldset#quedada{
 }
 
 #p5{
-	color:#eef9fe;
+	color:#ffffff;
+	font-family: arial;
+	font-size: 3.8em;
 }
 
 #p6{
@@ -917,8 +950,9 @@ fieldset#quedada{
 }
 
 #h{
-	color:gold;
-	font-size: 50px;
+	font-family: arial;
+	color:#fff;
+	font-size: 6em;
 }
 
 #h1{
