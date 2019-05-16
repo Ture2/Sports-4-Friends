@@ -49,7 +49,9 @@ else
 				<form>
 					<button formaction='altaEvento.php' type='submit' class='login-equipos'>CREAR EVENTO</button></a>
 					<button formaction='editarEvento.php' type='submit' class='login-equipos'>EDITAR EVENTO</button></a>
+					<button formaction='borrarEvento.php' type='submit' class='login-equipos'>BORRAR EVENTO</button></a>
 					<button formaction='eventos.php' type='submit' class='login-equipos'>VOLVER</button></a>
+
 				</form>
 				
 				<div id="evento1">

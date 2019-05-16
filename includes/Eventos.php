@@ -184,6 +184,27 @@ class Eventos
         return $evento;
     }
 
+
+     public static function eliminaEvento($evento){
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $ok = false;
+        $query=sprintf("DELETE FROM eventos WHERE nombre_evento = '%s'"
+           , $conn->real_escape_string($evento));
+
+        if ( $conn->query($query) ) {
+            if ( $conn->affected_rows == 1) {
+                $ok = true;
+            }
+        } 
+        else
+        {
+            echo "Error al eliminar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $ok;
+    }
+
     //************************************************************************
     //                   IMPLEMENTACION DE LA CLASE EVENTOS
     //************************************************************************
