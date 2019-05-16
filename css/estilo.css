@@ -1179,3 +1179,9 @@ hr {
 .active, .tabcontent:hover {
   background-color: #ccc; 
 }
+
+#h10{
+	color: #FFF;
+    font-family: arial;
+    font-size: 2.5em;
+}
