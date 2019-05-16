@@ -18,11 +18,6 @@ $errores = array();
 
 
 
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -53,10 +48,8 @@ $errores = array();
 				foreach ($quedadas as  $value) {
 				// vamos a hacerlo todo con id de queadadas
 				  $creador=Usuario::buscaUsuarioPorId($value->creador());  
+				  $num_invitados=Quedada::numeroInvitados($value);
 				  
-				  $num_invitados=Invitado::getInvitadosPorQuedada($value);
-				  
-				  $num_invitados=count($num_invitados);
 				  
 				  ?>
 				<div id="quedadas">
@@ -66,6 +59,7 @@ $errores = array();
 					<pre id=texto><?= "CREADOR: " .$creador->nicknameUsuario()?></pre>
 					<pre id=texto><?=$value->ciudad();?></pre>
 					<pre id=texto><?=$value->fecha_quedada();?></pre>
+					<pre id=texto><?="AFORO: ".$value->get_aforo_quedada();?></pre>
 					<pre id=texto><?="NUMERO DE ASISTENTES: ".$num_invitados?></pre>
 					<pre id=texto><?="HORA DE QUEADADA ".$value->hora_quedada();?></pre>
 					<div>

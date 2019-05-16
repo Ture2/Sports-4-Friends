@@ -37,9 +37,6 @@
 				<?php
 					}
 				  ?>
-				<!--<div>
-					<input type="file" name="imagen">
-				</div>-->
 			</fieldset>
 			</div>
 			<div id="datos">

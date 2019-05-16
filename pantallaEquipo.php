@@ -71,7 +71,7 @@
 						if($jugador->compruebaLider($nickname, $nombreEquipo )  ){ ?>
 							<form action="procesarEliminarEquipo.php" method="POST">
 			    			<input class="login-equipos" type="submit" name ="boton" value="eliminar"/>
-			    			<input type="hidden" name="equipo" value=<?php echo $_GET['equipo'];?>>
+			    			<input type="hidden" name="equipo" value=<?php echo $info->get_id();?>>
 			    	
 						</form>
 								

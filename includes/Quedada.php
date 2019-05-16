@@ -32,7 +32,7 @@ class Quedada
             $rs->free();
         } 
         else {
-            echo "Error al consultar en la BD oeee: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            echo "Error al consultar en la BD" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
         }
         return $result;
@@ -65,7 +65,7 @@ class Quedada
             $rs->free();
         }
         else {
-            echo "Error al consultar en la BD oeee: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            echo "Error al consultar en la BD " . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
         }
         return $result;
@@ -107,7 +107,7 @@ class Quedada
 
     
     
-    //$nombre_quedada, $id_creador,$ciudad,  $localizacion, $fecha_quedada, $hora_quedada, $descripcion,$ruta_foto,$aforo);
+   //crea una quedada
     public static function crearQuedada($nombre_quedada, $creador, $ciudad, $localizacion,$fecha_quedada, $hora_quedada, $descripcion, $ruta_foto,$aforo)
     {
         $quedada = self::buscaQuedada($nombre_quedada);
@@ -120,9 +120,44 @@ class Quedada
     }
     
     
-    
-    public static function numeroInvitados(){
+    //devuvlve el numero de invitados que hay en una determianda quedada
+    public static function numeroInvitados($quedada){
         
+        
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $id_quedada=$quedada->id_quedada();
+        $num_invitados=null;
+
+        
+        $query = sprintf("SELECT  nombre_quedada, COUNT(*) AS num  FROM quedadas JOIN  
+            invitados  WHERE  quedadas.id_quedada=invitados.quedada and   
+        quedadas.id_quedada='%s'", $conn->real_escape_string($id_quedada));
+    
+        if ($rs = $conn->query($query))
+        {
+            
+           $row = $rs->fetch_assoc();
+           $num_invitados=$row['num'];     
+                
+            $rs->free();
+        }
+        else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $num_invitados;
+        
+        
+        
+    }
+    
+    public static function aforoCompleto($quedada){
+        
+        $aforo=$quedada->get_aforo_quedada();
+        $invitados=$quedada->numeroInvitados($quedada);
+        
+        return $aforo<=$invitados;
         
     }
     
@@ -161,36 +196,28 @@ class Quedada
         return $quedada;
     }
     
-    private static function actualizarQuedada($evento)
-    {
+   
+    //Elimina una queadada de la bd
+    public static function eliminaQuedada($id_quedada){
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE eventos e  SET nombre_evento ='%s', deporte='%s', ciudad='%s', municipio='%s', localizacion='%s',fecha_creacion='%s', fecha_evento='%s', hora_evento='%s',descripcion='%s', ruta_foto='%s' WHERE e.id_evento='%s'"
-            , $conn->real_escape_string($evento->nombre_evento)
-            , $conn->real_escape_string($evento->deporte)
-            , $conn->real_escape_string($evento->ciudad)
-            , $conn->real_escape_string($evento->municipio)
-            , $conn->real_escape_string($evento->localizacion)
-            , $conn->real_escape_string($evento->fecha_creacion)
-            , $conn->real_escape_string($evento->fecha_evento)
-            , $conn->real_escape_string($evento->hora_evento)
-            , $conn->real_escape_string($evento->descripcion)
-            , $conn->real_escape_string($evento->ruta_foto)
-            , $evento->id_evento);
-
+        $ok = true;
+        $query=sprintf("DELETE FROM quedadas WHERE id_quedada = '%s'"
+            , $id_quedada);
         if ( $conn->query($query) ) {
-            if ( $conn->affected_rows != 1) {
-                echo "No se ha podido actualizar el evento: " . $evento->id_evento;
-                exit();
+            if ( $conn->affected_rows == 1) {
+                $ok = true;
             }
         } else {
-            echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            echo "Error al eliminar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
         }
-        return $evento;
+        return $ok;
     }
-
   
+    
+    
+    
 
     //atribburos
     private $id_quedada;
@@ -233,6 +260,7 @@ class Quedada
     public function hora_quedada(){return $this->hora_quedada;}
     public function descripcion(){ return $this->descripcion;}
     public function ruta_foto(){return $this->ruta_foto;}
+    public function get_aforo_quedada(){return $this->aforo;}
 
 
     

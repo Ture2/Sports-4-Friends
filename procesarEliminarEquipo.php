@@ -16,7 +16,7 @@ require_once __DIR__.'/includes/Usuario.php';
     $errores= array();
     //nececitamos que todos lo jugadores de este equipo abandonen
     
-    $equipo=Equipo::getInfoPorNombre($nombreEquipo);
+    $equipo=Equipo::buscaEquipoPorID($nombreEquipo);
     
     $id=$equipo->get_id();
     
@@ -27,7 +27,7 @@ require_once __DIR__.'/includes/Usuario.php';
         
         $abandona=Jugador::salirEquipo($jugador, $equipo);
         if(!$abandona){
-            $errores="Ha abido algun error a la hora de eliminar un jugador";
+            $errores[]="Ha abido algun error a la hora de eliminar un jugador";
         }
         
     }
@@ -35,12 +35,59 @@ require_once __DIR__.'/includes/Usuario.php';
     $eliminar=Equipo::eliminaEquipo($id);
     
     if(!$eliminar){
-        $errores="error al eliminar el equipo de la bd";
+        $errores[]="error al eliminar el equipo de la bd";
     }
     
-    
-    header('Location: index.php');
+    if(count($errores)==0)
+        header('Location: index.php');
 
 
 
 ?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	<meta charset="utf-8">
+	<title>ERROR EQUIPOS</title>
+</head>
+<body>
+
+	<?php
+		require("includes/comun/cabecera.php");
+	?>
+
+	<div id="contenido">
+		
+		<?php
+		if (isset($_SESSION["login"]))
+		{
+			if(count($errores)!=0)
+			{
+				?>
+				<fieldset id="errorLogin">
+					<pre id="texto1">Ha habido algun problema interno en la bd vuelva al inicio para empezar 
+						Volver a <a href="index.php">INICIO</a>
+					</pre>
+				</fieldset>
+			<?php
+			}
+		}
+		?>
+				
+		
+		
+		
+		
+	</div>
+	
+	<?php
+		require("includes/comun/pie.php");  
+	?>	
+
+</body>
+</html>
+
+

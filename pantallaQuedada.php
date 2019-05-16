@@ -48,13 +48,13 @@
 							<?php 
 						  // si el usuario es el creador de la quedada la puede eliminar
 						if($invitado->compruebaCreador($invitado, $info )  ){ ?>
-							<form action="procesarEliminarEquipo.php" method="POST">
+							<form action="procesarEliminarQuedada.php" method="POST">
 			    			<input class="login-equipos" type="submit" name ="boton" value="eliminar"/>
-			    			<input type="hidden" name="equipo" value=<?php echo $info->id_quedada();?>>
+			    			<input type="hidden" name="id_quedada" value=<?php echo $info->id_quedada();?>>
 			    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>	
 						</form>
 						
-						<?php } else{// resto de jugadores
+						<?php } else{// resto de jugadores solo podran abandonar quedada
 						     ?>
 						
 						<form action="procesarAbandonarQuedada.php" method="POST">
@@ -67,23 +67,32 @@
 						}
 						
 						?>		
-					
-					
-					
-						
-						
-						
-						
+										
 						
 					<?php 
-						}else 
-							if($_SESSION["login"] && is_null($invitado)){ ?>
+						}else {
+						    
+						    $lleno=Quedada::aforoCompleto($info);
+							if($_SESSION["login"] && is_null($invitado)&& !$lleno){ ?>
 								<form action="procesarApuntarseAquedada.php" method="POST">
 					    			<input class="login-equipos" type="submit" name="boton2" value="Apuntarse a quedada"/>
 					    			<input type="hidden" name="id_quedada" value=<?php echo $info->id_quedada();?>>
 					    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>
 								</form>
 						<?php 
+						}
+						
+						
+					if($lleno){
+						?>  
+						 <fieldset id="errorLogin">
+					<pre id="texto1">Aforo completo, busca otra quedada y unete 
+						Volver a <a href="quedadas.php">Quedadas</a>
+					</pre>
+				</fieldset>
+					
+					<?php 
+						}
 						}
 					?>
 
