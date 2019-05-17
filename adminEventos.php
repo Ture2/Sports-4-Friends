@@ -46,32 +46,35 @@ else
 		{
 		?>
 			<div id="contenido">
+				<div id="container-proximosEventos">
+					<div id="botones-eventos">
 				<form>
 					<button formaction='altaEvento.php' type='submit' class='login-equipos'>CREAR EVENTO</button></a>
 					<button formaction='editarEvento.php' type='submit' class='login-equipos'>EDITAR EVENTO</button></a>
+					<button formaction='borrarEvento.php' type='submit' class='login-equipos'>BORRAR EVENTO</button></a>
 					<button formaction='eventos.php' type='submit' class='login-equipos'>VOLVER</button></a>
 				</form>
+			</div><!--botones-->
+		</div><!--container-->
 				
-				<div id="evento1">
-					
+				<div id="container-eventos">
 						<?php foreach ($eventos as $value) {?>
-						<div>
+						<div id="eventos">
 							<fieldset id="evento1">
 							<h1 id="evento"><?=$value->nombre_evento();?></h1>
-							<p id="evento"><?=$value->deporte();?></p>
-							<p id="evento"><?=$value->ciudad();?></p>
-							<p id="evento"><?=$value->municipio();?></p>
-							<p id="evento"><?=$value->fecha_evento();?></p>
-							<p id="evento"><?=$value->hora_evento();?></p>
+							<p id="evento"><?= "Deporte: ".$value->deporte();?></p>
+							<p id="evento"><?="Ciudad: ".$value->ciudad();?></p>
+							<p id="evento"><?="Municipio: ".$value->municipio();?></p>
+							<p id="evento"><?="Fecha: ".$value->fecha_evento();?></p>
+							<p id="evento"><?="Hora: ".$value->hora_evento();?></p>
 							<p id="evento"><?=$value->descripcion();?></p>
 							</fieldset>
-						</div>
+						</div><!--eventos-->
 						<?php
 						}
 						?>
-					
-				</div>
-			</div>
+				</div><!--container-->
+			</div><!--contenido-->
 	<?php
 		}
 	}

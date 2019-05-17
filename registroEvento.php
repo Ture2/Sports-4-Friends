@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/Eventos.php';
-require_once __DIR__.'/includes/Equipo.php';
+require_once __DIR__.'/includes/Jugador.php';
 
 
 
@@ -11,8 +11,16 @@ if (!isset($_SESSION['login']) ) {
 	exit();
 }
 
+
+$errores = array();
+
 $eventos = Eventos::listarEventos();
-$equipos = Equipo::getAllEquipos();
+$equipos = Jugador::listaEquiposPorJugador($_SESSION["nombre"]);
+
+if(empty($equipos))
+{
+	$errores = "No estan en ningun equipo";
+}
 
 ?>
 
@@ -29,27 +37,36 @@ $equipos = Equipo::getAllEquipos();
 		require("includes/comun/cabecera.php");
 	?>
 	
-	<div id="contenido">
+	<div id="contenido">	
+
 		<form action="procesarRegistroEvento.php" method="POST">
 			<fieldset id="evento">
-				<legend id="log">Registra tu equipo en el evento</legend>
-					<p id="log">Evento: <input list="even" name="evento">
-						<datalist id="even">
-								<?php
-										foreach ($eventos as $valor) { 
-						  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
-						  				}?>
-							</datalist>			
-						</input></p>
-					<p id="log">Equipos: <input list="equipos" name="equipo">
-						<datalist id="equipos">
-								<?php
-										foreach ($equipos as $valor) { 
-						  					echo '<option value="'.$valor->get_nombre_equipo().'" >'.$valor->get_nombre_equipo().'</option>';
-						  				}?>
-						</datalist>	
-							</input></p>
-								
+				<legend id="evento">Registra tu equipo en el evento</legend>
+					<p id="log">Evento: 
+						<select name="evento">
+							<?php
+								foreach ($eventos as $valor) { 
+				  					echo '<option value="'.$valor->nombre_evento().'" >'.$valor->nombre_evento().'</option>';
+				  			}?>
+						</select>			
+					</p>
+
+			<p id="log">Equipos: 
+				<select name="equipo">
+						<?php
+								if(!empty($equipos))
+								{
+									foreach ($equipos as $valor) {
+				  					echo '<option value="'.$valor.'" >'.$valor.'</option>';
+				  					}
+				  				}
+								else
+								{
+									echo $errores;
+				  		}?>
+				</select>	
+					</input></p>
+						
 				<button id= "index" type="submit" name="registro">Validar</button>
 				<button formaction="eventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
 			</fieldset>

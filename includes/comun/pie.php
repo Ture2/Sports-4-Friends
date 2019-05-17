@@ -11,8 +11,6 @@
 			<img id="icon" src="images/facebook.png">
 			<img id="icon" src="images/twitter.png">
 			<img id="icon" src="images/instagram.png">
-			<a id="pie">Contacto</a>
-			
 		</div>
 	</div>
 </body>

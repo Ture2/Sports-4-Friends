@@ -13,33 +13,9 @@ if (!isset($_SESSION['login'])) {
 
 $errores = array();
 
-$equiposPerteneceUsuario =Jugador::listaEquiposPorJugador($_SESSION['nombre']);
-
-if(empty($equiposPerteneceUsuario))
-{
-		$errores[] = "No estas apuntado a ningun equipo";
-}
-else
-{
-	if(count($equiposPerteneceUsuario) > 0)
-	{
-		$registrosEventos = array();
-
-		for($i = 0; $i < count($equiposPerteneceUsuario); $i++)
-		{
-			$comprobar  = RegistroEvento::buscaRegistroEventosEquipo($equiposPerteneceUsuario[$i]);
-			if($comprobar)
-			{
-				$registrosEventos[] = $comprobar;
-			}
-			
-		}
-	}
-}
-
+$registrosEventos = RegistroEvento::registrosEventosUsuario($_SESSION['nombre']);
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -60,9 +36,26 @@ else
 		{
 			if(empty($registrosEventos))
 			{
-				echo "TÚ/S NO TIENEN NINGUN EVENTO/S DISPONIBLE/S";
+	?>
+			
+
+		<main class = "backgroundIndexColor">
+			<section id="text-center">
+				<div class ="section-content-1">
+					<div class = "copy-wrapper">
+						<fieldset id="errorLogin">
+							<pre id="texto1">NO TIENES NING&UacuteN EVENTO DISPONIBLE</pre>
+							<pre id="texto1">Volver a <a href="eventos.php">Eventos</a></pre>
+						</fieldset>
+					</div>
+				</div>
+			</section>
+		</main>
+
+			<?php
 			}
-			elseif(count($errores) == 0)
+
+			else
 			{
 			?>
 			<form>
@@ -73,7 +66,6 @@ else
 								<?php foreach ($registrosEventos as $value) {?>
 								<h1 id="h"><?=$value->evento();?></h1>
 								<p id="evento">Equipo: <?=$value->equipo();?></p>
-								<p id="evento">Victorias: <?=$value->p_victorias();?></p>
 								<p id="evento">Fecha: <?=$value->fecha_creacion();?></p>
 								<?php
 							}

@@ -13,72 +13,59 @@ body {
 }
 
 
-/* popup */
+/* tablas equipos*/
 
-#mask {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 9000;
-  background-color: #000;
-  display: none;
+#table{
+	display: table;
+	margin: 0 auto;
+	margin-bottom: 25px;
 }
 
-#boxes .window {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 440px;
-  height: 200px;
-  display: none;
-  z-index: 9999;
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
+#table1{
+	display: table;
+	margin-top: 50px;
 }
 
-#boxes #dialog {
-  width: 750px;
-  height: 300px;
-  padding: 10px;
-  background-color: darkgreen;
-  font-family: 'Segoe UI Light', sans-serif;
-  font-size: 20pt;
+#fila{
+	display: table-row;
 }
 
-#popupfoot {
-  font-size: 16pt;
-  position: absolute;
-  margin-bottom: 15px;
-  bottom: 10px;
-  width: 500px;
-  left: 115px;
+#header{
+	display: table-cell;
+	text-align: center;
+	margin: 0 auto;
+	width: 200em;
+	font-size: 2em;
+	color: #befdb9;
+	border-bottom: solid 2px #befdb9;
+	border-radius: 1em;
+	background-color: #ab2121;
 }
 
-a#popup{
-    padding: 10px;
-    font-size: 15px;
-    position: relative;
-    background-color: #3b4465;
-    color:#eef9fe;
-    box-shadow: inset 0 0 1px 0px black;
-    text-decoration: none;
-    border:2px solid gold;
-    font-weight: bolder;
+#celda{
+	display: table-cell;
+	text-align: center;
+	margin: 0 auto;
+	width: 100em;
+	font-size: 1.5em;
+	color: #ab2121;
+	border: solid 2px #ab2121;
+	border-radius: 1em;
+	background-color: #befdb9;
 }
 
-a#popup:hover{
-	background-color: gold;
-	color:#3b4465;
-	border:2px solid #3b4465;
-	font-weight: bolder;
+div #containElem{
+	float: left;
+	flex-basis: 100%;
+	
+    margin-top: 30px;
+    background-color: #397c94;
+    margin-bottom: 5em;
+    border: 0.8em solid rgba(182, 255, 232, 1);
+    padding: 10px 10px 0 10px;
+    left: 10%;
 }
 
-#pop{
-	font-size: 15pt;
-	color:gold;
-	padding-top: 20px;
-}
 
 /* error */
 
@@ -93,10 +80,11 @@ fieldset#errorLogin {
 	border: 3px solid red;
 	width: 20em;
 	padding: 15px;
-	margin: 0 auto;
 	background-color: lightblue;
 	border-radius: 10px;
 	text-align: left;
+	margin:0 auto;
+	float:center;
 }
 
 fieldset#errorReg {
@@ -154,12 +142,14 @@ u#reg {
 }
 
 button#index {
-	background-color: darkgreen;
-	color: white;
-	border: none;
-	margin-top: auto;
-	margin-bottom: auto;
-	padding: 10px;
+	background-color: #a26c12;
+    color: white;
+    border: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 0.5em;
+    width: 10em;
+    font-size: 1.7em;
 }
 
 
@@ -180,15 +170,18 @@ fieldset#campo {
 }
 
 legend#log {
-	color: #fff;
-	background: darkgreen;
-	border: 1px darkgreen;
+	background: #a26c12;
+	text-decoration-color: #FFF;
+	font-size: 2em;
+	border: 1px #4a32068a;
 	padding: 2px 6px;
 	border-radius: 10px;
 }
 
 p#log {
-	color: darkgreen;
+	color: #8e5c0a;
+	font-size: 3.5em;
+	font-family: arial;
 }
 
 
@@ -223,50 +216,53 @@ p#reg {
 /* cabecera */
 
 div#cabecera {
-	padding: 30px;
-	height: 100px;
-	background-color: darkgreen;
+	padding: 3em;
+	height: 21.8em;
+	background-image: linear-gradient( #5AA642, #78DE58);
 	z-index: 1;
 	position: relative;
 }
 
 img.logoC{
-	width: 150px;
-	height: 150px;
+	margin-top: 1em;
+	width: 20em;
+	height: 20em;
 }
 
 div#logoC{
-	text-align: center;
-	margin: -25px auto;
+	text-align: center;	
 }
 	
 
 /* menu de navegacion */
 
 img#menu{
-	width: 15px;
-	height: 15px;
-	margin-right: 5px;
-}
-
-div#barra {
-	margin: auto;
-	margin-top: 21px;
-	padding: 0px;
-	width: 700px;
-	font-family: Arial, Helvetica, sans-serif;
+	width: 0.65em;
+	height: 0.65em;
+	margin-right: 0.4em;
 }
 
 ul, ol {
+	display: inline-block;
 	list-style: none;
 }
-			
+nav{
+    list-style: none;
+    margin: auto;
+    padding: 0px;
+    display: flex; 
+    justify-content: center;
+    font-size: 2.5em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+	
 .nav > li {
+	display: inline;
 	float: left;
 }
 			
 .nav li a {
-	background-color: darkgreen;
+	background-color:  #53c59b8f;
 	color: #fff;
 	text-decoration: none;
 	padding: 10px 12px;
@@ -275,7 +271,7 @@ ul, ol {
 			
 .nav li a:hover {
 	background-color: lightgreen;
-	color: darkgreen;
+	color: #9BC090;
 }
 			
 .nav li ul {
@@ -305,10 +301,9 @@ ul, ol {
 /* contenido */
 
 div#contenido {
-	margin-top: 35px;
-	padding: 10px;
-	height: 600px;
-	background-color: #3b4465;
+	padding-top: 2.5em;
+	height: auto;
+	background-image: linear-gradient(#78DE58, #58DE9D);
 	overflow: auto;
 }
 
@@ -321,13 +316,16 @@ img.logoIndex {
 
 div#adios {
 	text-align: center;
-	padding-top: 100px;
+    height: 60em;
+    width: auto;
+    padding-top: 100px;
 }
 
 #out{
-	color:gold;
-	font-size:75px;
-
+	color: #ffffff;
+    font-size: 8em;
+    margin-top: 2em;
+    font-family: arial;
 }
 
 p {
@@ -339,100 +337,12 @@ u {
 	color: white;
 }
 
-/* Slideshow contenedor */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-  margin-top: 50px;
-  background-color: transparent;
-  z-index: 0;
-  border:1px solid gold;
+div#contenido-eventos{
+	margin-top: 4em;
+	display: table;
+    content:"";
 }
 
-/* botones pasar pagina */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: gold;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-/* posicion boton */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* texto */
-.text {
-  color: black;
-  background-color: transparent;
-  font-size: 30px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* (1/3) */
-.numbertext {
-  color: gold;
-  font-size: 20px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-  z-index: 0;
-}
-
-/* indicadores */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-  border:1px solid gold;
-}
-
-#dot{
-	text-align: center;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* animacion */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-  z-index: 0;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
 
 /* equipos */
 
@@ -551,7 +461,7 @@ p#perfil{
 }
 
 fieldset#avatar{
-	border: 3px solid darkgreen;
+	border: 3px solid #9BC090;
 	background-color: lightblue;
 	text-align: center;
 	max-width: 1000px;
@@ -559,67 +469,96 @@ fieldset#avatar{
 }
 
 fieldset#perfil{
-	border: 3px solid darkgreen;
-	background-color: lightblue;
-	color:darkgreen;
-	text-align: left;
-	max-width: 1000px;
-	padding-left: 20px;
-	padding-right: 20px;
-	margin-top: 20px;
+	border-color: #4a32068a;
+    border-radius: 4%;
+    border-style: dotted;
+    border-width: 0.3em;
+    background-color: #fff793;
+    color: #FFF;
+    font-family: arial;
+    text-align: left;
+    width: 100em;
+    height: 35em;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: -100em;	
+}
+
+fieldset#perfil2{
+	border-color: #4a32068a;
+    border-radius: 4%;
+    border-style: dotted;
+    border-width: 0.3em;
+    background-color: #fff793;
+    color: #FFF;
+    font-family: arial;
+    text-align: left;
+    height: 35em;
+    margin-top: 12em;
+    margin-bottom:16em;
 }
 
 input{
-	border:1px solid darkgreen;
+	border:1px solid #4a32068a;
 }
 
 
 /* estadisticas */
 
-div#tabla {
-	float: center;
-}
-
 img#fut1 {
-	width: 300px;
-	height: 300px;
-}
-
-table {
-	width: 100%;
-	border: 1px solid gold;
-	align-content: center;
-	margin-bottom: 50px;
-}
-
-th {
-	padding: 15px;
-	height: 50px;
-	text-align: center;
-	background-color: darkblue;
-	color:white;
-	font-weight: bolder;
-}
-
-td {
-	padding: 15px;
-	text-align: center;
-	background-color: lightblue;
-	color:#3b4465;
-	font-weight: bold;
-	vertical-align: middle;
+	width: 25em;
+	height: 25em;
 }
 
 
 /* EVENTOS */
 
+div#container-eventos{
+	display: flex;
+    flex-wrap: wrap;
+    float: left;
+    width: 70%;
+    padding: 10px;
+}
+
+div#container-proximosEventos{
+	float: left;
+    width: 25%;
+    padding: 10px;
+}
+
 div#eventos {
-	max-width: 1000px;
+	flex-basis: 100%;
+	max-width: 40em;
 	margin: auto;
-	border: 1px solid black;
-	background-color: green;
+	background-color: #0157016e;
 	margin-top: 30px;
 	margin-bottom: 30px;
+	border: 0.8em solid rgba(182, 255, 232, 1);
+  	padding: 10px 10px 0 10px;
+  	left: 10%;   
+   	background-clip: padding-box;
+	-webkit-box-shadow: 0 1.3em 1em -6px #777;
+    -moz-box-shadow: 0 1.3em 1em -6px #777;
+    box-shadow: 0 1.3em 1em -6px #777;
+    -webkit-transition:all 1.2s ease; /* Safari y Chrome */
+	-moz-transition:all 1.2s ease; /* Firefox */
+	-o-transition:all 1.2s ease; /* IE 9 */
+	-ms-transition:all 1.2s ease; /* Opera */
+	width:100%;
+}
+
+div#eventos:hover{
+	-webkit-transform:scale(1.15);
+	-moz-transform:scale(1.15);
+	-ms-transform:scale(1.15);
+	-o-transform:scale(1.15);
+	transform:scale(1.15);
+}
+
+div#botones-eventos{
+	margin-top: 2em;
+    text-align: center;
 }
 
 div#evento1 {
@@ -668,13 +607,25 @@ div#errorEvento2{
 	margin-left: 200px;
 }
 
+legend#evento{
+	background: #a26c12;
+	text-decoration-color: #FFF;
+	font-size: 2em;
+	border: 1px #4a32068a;
+	padding: 2px 6px;
+	border-radius: 10px;
+	color: #fff;
+}
+
 fieldset#evento{
-	border:3px solid darkgreen;
-	background-color: lightblue;
+	border:3px solid #4a32068a;
+	background-color: #fff793;
 	text-align: center;
 	max-width: 1000px;
 	margin: auto;
 	margin-top: 50px;
+	border-style: dotted;
+	border-radius: 4%;
 }
 
 fieldset#evento1{
@@ -687,12 +638,24 @@ fieldset#evento1{
 /* Quedadas */
 
 div#quedadas {
-	max-width: 1000px;
+	flex-basis: 100%;
+	max-width: 50em;
 	margin: auto;
-	border: 1px solid black;
-	background-color: #eef9fe;
+	background-color: #0157016e;
 	margin-top: 30px;
 	margin-bottom: 30px;
+	border: 0.8em solid rgba(182, 255, 232, 1);
+  	padding: 10px 10px 0 10px;
+  	left: 10%;   
+   	background-clip: padding-box;
+	-webkit-box-shadow: 0 1.3em 1em -6px #777;
+    -moz-box-shadow: 0 1.3em 1em -6px #777;
+    box-shadow: 0 1.3em 1em -6px #777;
+    -webkit-transition:all 1.2s ease; /* Safari y Chrome */
+	-moz-transition:all 1.2s ease; /* Firefox */
+	-o-transition:all 1.2s ease; /* IE 9 */
+	-ms-transition:all 1.2s ease; /* Opera */
+	width:100%;
 }
 
 img#quedada{
@@ -709,45 +672,87 @@ pre#texto1{
 	text-transform: uppercase;
 	color:black;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 1.25em;
 }
 
 div#errorQuedada{
-	max-width: 1000px;
+	max-width: 100em;
 	border: 1px solid black;
 	margin-top: 30px;
 	margin: auto;
 }
 
 div#errorQuedada2{
-	margin-left: 200px;
+	display: flex;
+    justify-content: center;
+    margin-bottom: 20em;
 }
 
 fieldset#quedada{
-	border:3px solid darkgreen;
-	background-color: lightblue;
-	text-align: center;
-	max-width: 1000px;
-	margin: auto;
-	margin-top: 50px;
+	border-color: #4a32068a;
+    border-radius: 4%;
+    border-style: dotted;
+    border-width: 0.3em;
+    background-color: #fff793;
+    color: #FFF;
+    font-family: arial;
+    text-align: left;
+    margin-top: 5em;
+    margin-bottom:5em;
+    padding-right: 1em;
+    padding-left: 1em;
 }
 
+h1#quedada{
+	color: #FFF;
+    font-family: arial;
+    font-size: 2.5em;
+}
 
+fieldset#perfil2{
+	border-color: #4a32068a;
+    border-radius: 4%;
+    border-style: dotted;
+    border-width: 0.3em;
+    background-color: #fff793;
+    color: #FFF;
+    font-family: arial;
+    text-align: left;
+    height: 35em;
+    margin-top: 12em;
+    margin-bottom:16em;
+}
+
+div#container-quedadas{
+	display: flex;
+    flex-wrap: wrap;
+    float: left;
+    width: 100%;
+}
+
+div#container-crearQuedada{
+    width: 100%;
+    padding: 1em;
+}
+
+div#container-asistentes{
+    flex-wrap: wrap;
+    float: left;
+    padding: 10px;
+    width: 25%;
+}
 /* Procesar listar equipos */
 
 .login-equipos{
-	margin-top: 30px;
-    margin-bottom: 15px;
     padding: 15px;
     text-align: left;
-    font-size: 15px;
-    color:#3b4465;
+    font-size: 1.8em;
+    color: #3b4465;
     font-weight: bold;
     position: relative;
-    right: -100px;
     background-color: #eef9fe;
     box-shadow: inset 0 0 1px 0px black;
-    border:3px solid gold;
+    border: 0.1em solid gold;
 }
 
 .login-equipos:hover{
@@ -760,96 +765,123 @@ fieldset#quedada{
 }
 
 .teams_container{
-	display: grid;
-	grid-template-rows: 80px 400px;
-	grid-template-areas: 
-	"titulo titulo"
-	"teambox teambox";
-    text-align: center;
-    /*grid-template-columns: 480px 480px;*/
-    background-color: #fff;
+	justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .titulo{
-	grid-area: titulo;
-	font-size: 40px; 
-	text-align: center;
-	color: blue;
+	flex-basis: 100%;
+    text-align: center;
+    margin: 1em;
+    font-family: arial;
+    font-size: 4em;
 }
 
+
 .box{
-	align-self: start;
-    display: grid;
-    grid-column-gap: 10px;
-    grid-row-gap: 15px;
-    grid-template-areas: "title title"
- 	"logo texto"
- 	"logo texto";
-    margin-bottom: 25px;
-    border:1px solid black;
+	margin: 1em;
+    flex-basis: 30%;
+    display: inline-block;
+    max-width: 50em;
+    background-color: #a6ffb1;
 }
 
 .box-equipo{
 	grid-area: title;
-	text-align: center;
-	color: green;
+    font-family: arial;
+    font-size: 3.5em;
+    text-align: center;
+    color: #9F6D20;
 }
 .box-logo{
-	padding-left: 15px;
-	position: relative;
+	border-radius: 50%;
+    position: relative;
     float: left;
-    width: 200px;
-    height: 200px;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: 19em;
+    height: 19em;
 }
 
 .box-texto{
-	grid-area: texto;
-	font-size: 20px;
-	color: green;
+	text-align: center;
+    height: auto;
+    font-size: 1.3em;
+}
+.box-texto {
+    float: left;
+    text-align: center;
+    width: 15em;
+    font-size: 1.3em;
 }
 
 .box-texto2{
-	font-size: 20px;
-	color: green;
+	font-size: 1.4em;
+    font-family: arial;
+    color: #a26c12;
 }
 
 .box-desc{
-	font-size: 15px;
-	color: black;
+	font-size: 1.8em;
+	font-family: arial; 
+	text-align: center;
+	color: #9F6D20;
 }
 
+.box-img{
+	float: left;
+    padding-bottom: 2em;
+}
 
+div#container-equipos{
+	position: relative;
+    display: block;
+    margin-top: 4em;
+    margin-left: 6em;
+}
+
+div#crearEquipoForm{
+	display: flex;
+    z-index: 1;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
 /* pantalla equipo */
 
 #p1{
-	color:black;
-	margin-left: 400px;
-	text-decoration: underline;
-	text-decoration-color: black;
+	color: #ab2121;
+    /* margin-left: 400px; */
+    font-size: 3.5em;
+    font-family: arial;
+    text-align: center;
 }
 
 #p2{
-	color:#eef9fe;
-	margin-left: 400px;
+	color: #000000;
+    margin-left: 453px;
+    max-width: 22em; 
 }
 
 #p3{
-	color:black;
-	margin-left: 750px;
-	text-decoration: underline;
-	text-decoration-color: black;
+	text-align: center;
+    color: #020202;
+    font-family: arial;
+    font-size: 3.5em;
+    text-decoration: underline;
 }
 
 #p4{
 	color:gold;
 	margin-left: 50px;
+	text-decoration: underline gold;
 }
 
 #p5{
-	color:#eef9fe;
+	color:#ffffff;
+	font-family: arial;
+	font-size: 3.8em;
 }
 
 #p6{
@@ -858,8 +890,9 @@ fieldset#quedada{
 }
 
 #h{
-	color:gold;
-	font-size: 50px;
+	color: #FFF;
+    font-family: arial;
+    font-size: 5em;
 }
 
 #h1{
@@ -871,28 +904,243 @@ fieldset#quedada{
 /* pie */
 
 div#pie {
-	margin-top: 25px;
 	padding: 20px;
-	height: 50px;
-	background-color: darkgreen;
+	height: 14em;
+	background-color: #58DE9D;
 	position: relative;
-	z-index: 1;
+	z-index: 0;
 }
 
 img#icon {
-	width: 50px;
-	height: 50px;
+	width: 8em;
+	height: 8em;
 	padding-right: 15px;
 }
 
 div#icon {
-	float: center;
-	text-align: center;
+	display: flex;
+    justify-content: center;
 }
 
 a#pie {
+
 	text-align: center;
-	background-color: #32FF00;
+	background-color: #7B9872;
 	border: none;
 
+}
+
+
+/*Contenido*/
+
+main.backgroundIndexColor{
+	background-image: linear-gradient(#78DE58, #58DE9D);
+	/*background-color: #1AD12B; */
+	border: 0em solid #fff;
+    height: 100%;
+    width: 100%;
+    padding-top: 3.0em;
+    padding-bottom: 3.0em;
+}
+
+div.section-content-1{
+	background-color:#53c5818f;
+	margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 6em;
+}
+
+div.section-content-2{
+	display: inline-block;
+	padding-right: 5em;
+	width: 692px;
+}
+
+div.copy-wrapper{
+	text-align: center;
+	display: block;
+}
+.indexHead-1{
+	padding-top: 1.5em;
+    font-size: 6em;
+    line-height: 1.14286;
+    font-weight: 600;
+    letter-spacing: .007em;
+    color: #FFF;
+    text-transform: uppercase;
+    font-family: arial;
+}
+
+.indexHead-2{
+	font-size: 5em;
+    line-height: 1.14286;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #FFF;
+    font-family: arial;
+}
+
+.indexText-1{
+	color: #FFF;
+    margin: auto;
+    padding-bottom: 1.5em;
+    font-size: 4em;
+    max-width: 23em;
+    letter-spacing: .01em;
+    font-family: arial;
+    font-weight: 500;
+}
+
+
+.indexText-2{
+	color: #FFF;
+	margin: auto;
+	font-size: 2em;
+    max-width: 26em;
+    letter-spacing: .01em;
+    font-family: arial;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+figure.indexImage > img{
+	width: 80%;
+	height: auto;
+	margin: auto;
+}
+
+.unit-link{
+	text-decoration: none;
+}
+
+#text-center{
+	background-image: linear-gradient(#53c5818f, #58DE9D);
+	text-align: center;
+}
+
+#section{
+	display: inline-flex;
+	align-content: center;
+	margin: auto;
+    padding-bottom: 6em;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+/*Vista equipo*/
+
+
+.titulo-equipo{
+	flex-basis: 100%;
+    text-align: center;
+    margin: 1em;
+}
+
+#elem1{
+	flex-basis: 100%;
+	margin-left: 10em;
+    margin-top: 30px;
+    background-color: #befdb9;
+    margin-bottom: 5em;
+    border: 0.8em solid rgba(182, 255, 232, 1);
+    padding: 10px 10px 0 10px;
+    left: 10%;
+
+}
+#container-eventos2{
+    flex-wrap: wrap;
+    float: left;
+    padding: 10px;
+    width: 25%;
+}
+
+#botones-equipo{
+	display: inline-flex;
+	margin-left: 5em;
+	margin-bottom: 7.7em;
+}
+
+.tab {
+ 	float: left;
+    border: 1px solid #ccc;
+    width: 100%;
+    background-color: #befdb9;
+    margin-left: 3em;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: #e02d2d;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 2.5em;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	color: #befdb9;
+  background-color: #ab2121;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+	color: #FFF;
+  background-color: #ab2121;
+}
+
+/* Style the tab content */
+.tabcontent {
+	padding: 0 18px;
+	background-color: #ab2121;
+	display: none;
+	overflow: hidden;
+	text-align: center;
+}
+
+.tablinks{
+	background-color: #862626;
+    color: #fff;
+    cursor: pointer;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    font-size: 3em;
+    font-family: arial;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
+.active, .tablinks:hover {
+  background-color: #ccc;
+}
+
+#h10{
+	color: #FFF;
+    font-family: arial;
+    font-size: 2.5em;
+}
+
+#p-tabs{
+	font-size: 2.4em;
+	font-family: arial;
+    color: white;
+}
+
+#p-result{
+	font-family: arial;
+	color: #ab2121;
 }

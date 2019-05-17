@@ -1,5 +1,5 @@
 <?php 
-	header('Refresh: 3; URL=http://localhost/Sports-4-Friends/index.php');
+	header('Refresh: 3; URL=index.php');
 	require_once __DIR__.'/includes/config.php';
 
 	//Doble seguridad: unset + destroy
@@ -8,10 +8,8 @@
 
 	//pruebagit
 	unset($_SESSION["nombre"]);
-
 	session_destroy();
-
-
+	
 ?>
 
 <!DOCTYPE html>
@@ -30,14 +28,14 @@
 
 	<div id="contenido">
 		<div id="adios">
-			<h1 id="out">Cerrando Sesión</h1>
-			<h2 id="p5">Será redireccionado automáticamente.</h2>
+			<h1 id="out">Cerrando Sesi&oacuten</h1>
+			<h2 id="p5">Ser&aacute redireccionado autom&aacuteticamente.</h2>
 		</div>
 	</div>
 
 	<?php  
 		include("includes/comun/pie.php"); 
 	?>
-
 </body>
 </html>
+

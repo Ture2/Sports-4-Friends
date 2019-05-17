@@ -20,7 +20,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: center; 
+	background-image: linear-gradient(#78DE58, #58DE9D);
 }
 
 .section-title {
@@ -33,7 +34,8 @@ body {
 	display: flex;
 	align-items: flex-start;
 	margin-top: 30px;
-	background-color: #3b4465;
+	margin-bottom: 3em;
+	background-color: #2192d585;
 	border-radius: 30px;
 }
 
@@ -69,12 +71,12 @@ body {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
-	padding: 0;
+	padding: 0.5em;
 	text-transform: uppercase;
 	font-family: inherit;
-	font-size: 20px;
+	font-size: 2em;
 	letter-spacing: .5px;
-	color: #999;
+	color: #FFF;
 	background-color: transparent;
 	border: none;
 	outline: none;
@@ -83,12 +85,16 @@ body {
 }
 
 .form-wrapper.is-active .switcher-login {
-	color: #fff;
+	padding-top: 1.5em;
+	color: #FFF;
+	font-size: 1.5em;
 	transform: translateX(90px);
 }
 
 .form-wrapper.is-active .switcher-signup {
-	color: #fff;
+	padding-top: 1.5em;
+	color: #FFF;
+	font-size: 1.5em;
 	transform: translateX(-90px);
 }
 
@@ -115,14 +121,17 @@ body {
 }
 
 .switcher-login .underline::before {
+	padding-top: 1.5em;
 	transform: translateX(101%);
 }
 
 .switcher-signup .underline::before {
+	padding-top: 1.5em;
 	transform: translateX(-101%);
 }
 
 .form-wrapper.is-active .underline::before {
+	
 	transform: translateX(0);
 }
 
@@ -245,7 +254,7 @@ body {
 .input-block label {
 	font-weight: bold;
 	font-size: 18px;
-  	color: darkgreen;
+  	color: #4E413C;
 }
 
 .input-block input {
@@ -258,7 +267,7 @@ body {
 	line-height: 40px;
 	color: #3b4465;
   	background: #eef9fe;
-  	border: 1px solid darkgreen;
+  	border: 1px solid #4E413C;
   	border-radius: 2px;
 }
 
@@ -282,20 +291,26 @@ body {
 
 .btn-login {
 	color: white;
-	background: darkgreen;
+	background: #4E413C;
+	border-color: #4E413C;
+	padding: 0.6em;
 	transform: translateX(-30%);
 }
 
 .btn-signup {
-	color: darkgreen;
-	background: white;
-	box-shadow: inset 0 0 0 2px darkgreen;
+	color: white;
+	background: #4E413C;
+	border-color: #4E413C;
+	padding: 0.6em;
+	box-shadow: inset 0 0 0 2px #;
 	transform: translateX(30%);
 }
 
 img.logo {
-	width: 350px;
-	height: 350px;
+	width: 30%;
+	height: 30%;
+	padding-bottom:3em;
+	padding-top: 3em;
 	display: block;
 	margin: auto;
 }

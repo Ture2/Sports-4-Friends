@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-04-2019 a las 05:04:53
+-- Tiempo de generación: 17-05-2019 a las 00:36:14
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -31,19 +31,19 @@ USE `sports4friends`;
 --
 
 CREATE TABLE `deportes` (
-  `ID_DEPORTE` int(10) NOT NULL,
-  `NOMBRE_DEPORTE` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `NUMERO_MAXIMO_JUGADORES` int(3) DEFAULT NULL,
-  `DURACION_MIN` int(5) DEFAULT NULL,
-  `FECHA_CDEPORTE` date NOT NULL,
-  `HORA_CDEPORTE` time NOT NULL
+  `id_deporte` int(10) NOT NULL,
+  `nombre_deporte` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `numero_maximo_jugadores` int(3) DEFAULT NULL,
+  `duracion_min` int(5) DEFAULT NULL,
+  `fecha_cdeporte` date NOT NULL,
+  `hora_cdeporte` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `deportes`
 --
 
-INSERT INTO `deportes` (`ID_DEPORTE`, `NOMBRE_DEPORTE`, `NUMERO_MAXIMO_JUGADORES`, `DURACION_MIN`, `FECHA_CDEPORTE`, `HORA_CDEPORTE`) VALUES
+INSERT INTO `deportes` (`id_deporte`, `nombre_deporte`, `numero_maximo_jugadores`, `duracion_min`, `fecha_cdeporte`, `hora_cdeporte`) VALUES
 (880001, 'FUTBOL', 20, 90, '2019-04-03', '01:13:26'),
 (880002, 'BALONCESTO', 10, 40, '2019-04-03', '01:13:26'),
 (880003, 'BEISBOL', 10, 60, '2019-04-03', '01:13:26'),
@@ -57,26 +57,26 @@ INSERT INTO `deportes` (`ID_DEPORTE`, `NOMBRE_DEPORTE`, `NUMERO_MAXIMO_JUGADORES
 --
 
 CREATE TABLE `equipos` (
-  `ID_EQUIPO` int(10) NOT NULL,
-  `DEPORTE` int(10) NOT NULL,
-  `NOMBRE_EQUIPO` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `FECHA_CEQUIPO` date NOT NULL,
-  `HORA_CEQUIPO` time NOT NULL,
-  `PARTIDOS_GANADOS` int(4) NOT NULL DEFAULT '0',
-  `PARTIDOS_EMPATADOS` int(4) NOT NULL DEFAULT '0',
-  `PARTIDOS_PERDIDOS` int(4) NOT NULL DEFAULT '0',
-  `MAYOR_RACHA` int(2) NOT NULL DEFAULT '0',
-  `ULTIMO_RESULTADO` varchar(15) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'NO HAY',
-  `POSICION_LIGA` int(2) NOT NULL DEFAULT '0',
-  `LOGO_EQUIPO` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `DESCRIPCION_EQUIPO` varchar(200) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL
+  `id_equipo` int(10) NOT NULL,
+  `deporte` int(10) NOT NULL,
+  `nombre_equipo` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `fecha_cequipo` date NOT NULL,
+  `hora_cequipo` time NOT NULL,
+  `partidos_ganados` int(4) NOT NULL DEFAULT '0',
+  `partidos_empatados` int(4) NOT NULL DEFAULT '0',
+  `partidos_perdidos` int(4) NOT NULL DEFAULT '0',
+  `mayor_racha` int(2) NOT NULL DEFAULT '0',
+  `ultimo_resultado` varchar(15) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'NO HAY',
+  `posicion_liga` int(2) NOT NULL DEFAULT '0',
+  `logo_equipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `descripcion_equipo` varchar(200) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `equipos`
 --
 
-INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`, `HORA_CEQUIPO`, `PARTIDOS_GANADOS`, `PARTIDOS_EMPATADOS`, `PARTIDOS_PERDIDOS`, `MAYOR_RACHA`, `ULTIMO_RESULTADO`, `POSICION_LIGA`, `LOGO_EQUIPO`, `DESCRIPCION_EQUIPO`) VALUES
+INSERT INTO `equipos` (`id_equipo`, `deporte`, `nombre_equipo`, `fecha_cequipo`, `hora_cequipo`, `partidos_ganados`, `partidos_empatados`, `partidos_perdidos`, `mayor_racha`, `ultimo_resultado`, `posicion_liga`, `logo_equipo`, `descripcion_equipo`) VALUES
 (550001, 880001, 'BULL', '2019-04-03', '01:50:02', 5, 2, 6, 2, '3-1(G)', 0, 'bull_logo.jpg', 'Somos los diablos rojos del fútbol, letales como nadie.'),
 (550002, 880002, 'REAL MADRID', '2019-04-03', '01:50:02', 9, 0, 1, 8, '60-35(G)', 0, 'real_madrid.jpg', 'El equipo rey de reyes del barrio.'),
 (550003, 880003, 'SALOU', '2019-04-03', '01:50:02', 3, 0, 1, 2, '8-5(G)', 0, 'salou.jpg', 'Bateamos con estilo y las cogemos cada pelota al vuelo.'),
@@ -121,6 +121,356 @@ INSERT INTO `equipos` (`ID_EQUIPO`, `DEPORTE`, `NOMBRE_EQUIPO`, `FECHA_CEQUIPO`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `estadisticas_baloncesto`
+--
+
+CREATE TABLE `estadisticas_baloncesto` (
+  `id_esbaloncesto` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `es_equipo` varchar(30) NOT NULL,
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `puntos_anotados` int(4) NOT NULL DEFAULT '0',
+  `asistencias` int(4) NOT NULL DEFAULT '0',
+  `tapones` int(4) NOT NULL DEFAULT '0',
+  `faltas_personales` int(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_baloncesto`
+--
+
+INSERT INTO `estadisticas_baloncesto` (`id_esbaloncesto`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `puntos_anotados`, `asistencias`, `tapones`, `faltas_personales`) VALUES
+(220001, 4, 'REAL MADRID', 10, 9, 0, 1, 40, 15, 15, 9),
+(220002, 2, 'RUBIN BASKET', 6, 4, 0, 2, 60, 16, 25, 11),
+(220003, 5, 'REAL MADRID', 10, 9, 0, 2, 35, 15, 11, 10),
+(220004, 9, 'REAL MADRID', 10, 9, 0, 2, 70, 12, 35, 15),
+(220005, 11, 'REAL MADRID', 10, 9, 0, 2, 20, 20, 12, 12),
+(220006, 13, 'REAL MADRID', 10, 9, 0, 2, 30, 5, 20, 8),
+(220007, 10, 'BASKETLEGA', 7, 5, 0, 2, 60, 10, 15, 5),
+(220008, 12, 'BASKETLEGA', 7, 5, 0, 2, 50, 15, 12, 2),
+(220009, 14, 'BASKETLEGA', 7, 5, 0, 2, 44, 5, 10, 8),
+(220010, 20, 'BASKETLEGA', 7, 5, 0, 2, 15, 8, 3, 1),
+(220011, 22, 'BASKETLEGA', 7, 5, 0, 2, 22, 10, 1, 7),
+(220012, 15, 'ADECORON', 7, 2, 0, 5, 22, 10, 1, 5),
+(220013, 17, 'ADECORON', 7, 2, 0, 5, 77, 3, 20, 11),
+(220014, 19, 'ADECORON', 7, 2, 0, 5, 10, 2, 5, 2),
+(220015, 21, 'ADECORON', 7, 2, 0, 5, 15, 12, 10, 5),
+(220016, 23, 'ADECORON', 7, 2, 0, 5, 8, 14, 2, 1),
+(220017, 24, 'OLIMPICACOS', 6, 4, 0, 2, 25, 10, 16, 5),
+(220018, 26, 'OLIMPICACOS', 6, 4, 0, 2, 40, 8, 14, 1),
+(220019, 28, 'OLIMPICACOS', 6, 4, 0, 2, 21, 9, 5, 4),
+(220020, 30, 'OLIMPICACOS', 6, 4, 0, 2, 24, 12, 2, 6),
+(220021, 32, 'OLIMPICACOS', 6, 4, 0, 2, 15, 5, 1, 2),
+(220022, 25, 'CSKA USERA', 8, 7, 0, 1, 20, 5, 5, 1),
+(220023, 27, 'CSKA USERA', 8, 7, 0, 1, 45, 5, 5, 5),
+(220024, 29, 'CSKA USERA', 8, 7, 0, 1, 32, 14, 1, 3),
+(220025, 31, 'CSKA USERA', 8, 7, 0, 1, 15, 20, 12, 2),
+(220026, 33, 'CSKA USERA', 8, 7, 0, 1, 10, 10, 12, 7),
+(220027, 34, 'RUBIN BASKET', 6, 4, 0, 2, 25, 2, 15, 5),
+(220028, 36, 'RUBIN BASKET', 6, 4, 0, 2, 25, 10, 12, 5),
+(220029, 38, 'RUBIN BASKET', 6, 4, 0, 2, 15, 10, 5, 5),
+(220030, 40, 'RUBIN BASKET', 6, 4, 0, 2, 50, 5, 1, 5),
+(220031, 16, 'NBDR', 10, 10, 0, 0, 60, 12, 30, 2),
+(220032, 18, 'NBDR', 10, 10, 0, 0, 50, 15, 15, 5),
+(220033, 20, 'NBDR', 10, 10, 0, 0, 45, 15, 5, 4),
+(220034, 8, 'NBDR', 10, 10, 0, 0, 35, 8, 16, 8),
+(220035, 7, 'NBDR', 10, 10, 0, 0, 37, 22, 14, 2),
+(220036, 11, 'ESTUDIANTES  DTM', 10, 4, 0, 6, 30, 2, 15, 5),
+(220037, 13, 'ESTUDIANTES  DTM', 10, 4, 0, 6, 25, 5, 5, 1),
+(220038, 37, 'ESTUDIANTES  DTM', 10, 4, 0, 6, 25, 10, 4, 1),
+(220039, 39, 'ESTUDIANTES  DTM', 10, 4, 0, 6, 15, 6, 5, 2),
+(220040, 14, 'ESTUDIANTES  DTM', 10, 4, 0, 6, 8, 12, 2, 8);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadisticas_balonmano`
+--
+
+CREATE TABLE `estadisticas_balonmano` (
+  `id_esbalonmano` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `es_equipo` varchar(30) NOT NULL DEFAULT '0',
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `goles` int(4) NOT NULL DEFAULT '0',
+  `asistencias` int(4) NOT NULL DEFAULT '0',
+  `tapones` int(4) NOT NULL DEFAULT '0',
+  `faltas` int(4) NOT NULL DEFAULT '0',
+  `tarjeta_a` int(4) NOT NULL DEFAULT '0',
+  `tarjeta_r` int(4) NOT NULL DEFAULT '0',
+  `expulsion_dos_min` int(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_balonmano`
+--
+
+INSERT INTO `estadisticas_balonmano` (`id_esbalonmano`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `goles`, `asistencias`, `tapones`, `faltas`, `tarjeta_a`, `tarjeta_r`, `expulsion_dos_min`) VALUES
+(660001, 2, 'CEE CAMPAMENTO', 4, 1, 0, 3, 8, 4, 10, 15, 5, 1, 3),
+(660002, 5, 'VALENCIA', 6, 4, 0, 2, 5, 10, 8, 5, 3, 0, 1),
+(660003, 8, 'VALENCIA', 6, 4, 0, 2, 2, 5, 50, 1, 2, 1, 0),
+(660004, 10, 'VALENCIA', 6, 4, 0, 2, 10, 10, 2, 10, 2, 0, 2),
+(660005, 13, 'VALENCIA', 6, 4, 0, 2, 15, 2, 5, 12, 5, 0, 3),
+(660006, 16, 'VALENCIA', 6, 4, 0, 2, 5, 5, 4, 15, 2, 0, 5),
+(660007, 18, 'VALENCIA', 6, 4, 0, 2, 8, 8, 6, 5, 4, 0, 2),
+(660008, 19, 'VALENCIA', 6, 4, 0, 2, 5, 6, 5, 6, 5, 0, 1),
+(660009, 3, 'CEE CAMPAMENTO', 4, 1, 0, 3, 1, 1, 68, 1, 1, 0, 1),
+(660010, 11, 'CEE CAMPAMENTO', 4, 1, 0, 3, 8, 8, 5, 5, 1, 1, 5),
+(660011, 12, 'CEE CAMPAMENTO', 4, 1, 0, 3, 10, 2, 4, 10, 1, 0, 4),
+(660012, 14, 'CEE CAMPAMENTO', 4, 1, 0, 3, 14, 3, 2, 12, 1, 0, 5),
+(660013, 15, 'CEE CAMPAMENTO', 4, 1, 0, 3, 5, 5, 3, 5, 1, 0, 6),
+(660014, 17, 'CEE CAMPAMENTO', 4, 1, 0, 3, 2, 2, 10, 6, 1, 0, 4),
+(660015, 20, 'HAND CARABANCHEL', 8, 3, 1, 4, 1, 1, 66, 1, 1, 0, 2),
+(660016, 21, 'HAND CARABANCHEL', 8, 3, 1, 4, 15, 10, 10, 12, 1, 0, 1),
+(660017, 22, 'HAND CARABANCHEL', 8, 3, 1, 4, 22, 5, 5, 2, 1, 0, 2),
+(660018, 23, 'HAND CARABANCHEL', 8, 3, 1, 4, 5, 12, 4, 2, 1, 0, 0),
+(660019, 24, 'HAND CARABANCHEL', 8, 3, 1, 4, 8, 5, 8, 10, 2, 0, 2),
+(660020, 25, 'HAND CARABANCHEL', 8, 3, 1, 4, 4, 4, 6, 2, 1, 0, 0),
+(660021, 26, 'HAND CARABANCHEL', 8, 3, 1, 4, 11, 10, 8, 7, 2, 0, 2),
+(660022, 27, 'BC USERA', 7, 7, 0, 0, 0, 6, 77, 2, 1, 0, 0),
+(660023, 28, 'BC USERA', 7, 7, 0, 0, 22, 10, 10, 5, 1, 0, 5),
+(660024, 29, 'BC USERA', 7, 7, 0, 0, 25, 12, 22, 6, 2, 0, 2),
+(660025, 30, 'BC USERA', 7, 7, 0, 0, 10, 5, 15, 7, 3, 1, 4),
+(660026, 31, 'BC USERA', 7, 7, 0, 0, 5, 22, 5, 5, 0, 0, 2),
+(660027, 32, 'BC USERA', 7, 7, 0, 0, 6, 11, 14, 2, 1, 0, 1),
+(660028, 33, 'BC USERA', 7, 7, 0, 0, 7, 5, 5, 6, 1, 0, 0),
+(660029, 34, 'RAYO FARO', 7, 4, 1, 2, 0, 0, 84, 1, 1, 0, 0),
+(660030, 35, 'RAYO FARO', 7, 4, 1, 2, 20, 2, 15, 2, 2, 1, 2),
+(660031, 36, 'RAYO FARO', 7, 4, 1, 2, 10, 3, 2, 5, 2, 0, 2),
+(660032, 37, 'RAYO FARO', 7, 4, 1, 2, 5, 5, 12, 6, 2, 0, 3),
+(660033, 38, 'RAYO FARO', 7, 4, 1, 2, 2, 15, 15, 10, 2, 0, 1),
+(660034, 39, 'RAYO FARO', 7, 4, 1, 2, 2, 10, 15, 12, 1, 0, 0),
+(660035, 40, 'RAYO FARO', 7, 4, 1, 2, 7, 7, 2, 15, 2, 0, 0),
+(660036, 18, 'HANDBALL MADRID', 4, 2, 0, 2, 1, 1, 75, 1, 1, 0, 0),
+(660037, 20, 'HANDBALL MADRID', 4, 2, 0, 2, 10, 5, 5, 12, 2, 0, 5),
+(660038, 9, 'HANDBALL MADRID', 4, 2, 0, 2, 12, 5, 19, 22, 5, 0, 6),
+(660039, 37, 'HANDBALL MADRID', 4, 2, 0, 2, 6, 5, 2, 12, 2, 0, 2),
+(660040, 30, 'HANDBALL MADRID', 4, 2, 0, 2, 12, 5, 5, 10, 2, 0, 0),
+(660041, 31, 'HANDBALL MADRID', 4, 2, 0, 2, 12, 6, 6, 2, 2, 0, 0),
+(660042, 13, 'HANDBALL MADRID', 4, 2, 0, 2, 5, 3, 2, 1, 1, 0, 0),
+(660043, 23, 'GVB HAND', 7, 5, 0, 2, 12, 2, 12, 2, 1, 1, 0),
+(660044, 39, 'GVB HAND', 7, 5, 0, 2, 25, 2, 12, 5, 1, 0, 0),
+(660045, 40, 'GVB HAND', 7, 5, 0, 2, 10, 5, 23, 6, 1, 0, 2),
+(660046, 18, 'GVB HAND', 7, 5, 0, 2, 5, 12, 5, 2, 1, 0, 4),
+(660047, 19, 'GVB HAND', 7, 5, 0, 2, 0, 0, 86, 5, 1, 0, 0),
+(660048, 20, 'GVB HAND', 7, 5, 0, 2, 6, 15, 2, 4, 2, 0, 5),
+(660049, 21, 'GVB HAND', 7, 5, 0, 2, 3, 15, 1, 12, 3, 1, 6),
+(660050, 22, 'ATLETI PIRULI', 8, 2, 0, 6, 6, 10, 10, 1, 1, 0, 0),
+(660051, 24, 'ATLETI PIRULI', 8, 2, 0, 6, 5, 5, 5, 2, 2, 0, 0),
+(660052, 26, 'ATLETI PIRULI', 8, 2, 0, 6, 5, 2, 6, 10, 3, 2, 10),
+(660053, 28, 'ATLETI PIRULI', 8, 2, 0, 6, 10, 3, 8, 2, 0, 0, 2),
+(660054, 30, 'ATLETI PIRULI', 8, 2, 0, 6, 22, 6, 4, 5, 0, 0, 5),
+(660055, 4, 'ATLETI PIRULI', 8, 2, 0, 6, 2, 5, 5, 6, 0, 0, 1),
+(660056, 7, 'ATLETI PIRULI', 8, 2, 0, 6, 0, 1, 87, 5, 1, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadisticas_beisbol`
+--
+
+CREATE TABLE `estadisticas_beisbol` (
+  `id_esbeisbol` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `es_equipo` varchar(30) NOT NULL,
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `strike` int(4) NOT NULL DEFAULT '0',
+  `homerun` int(4) NOT NULL DEFAULT '0',
+  `eliminaciones` int(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_beisbol`
+--
+
+INSERT INTO `estadisticas_beisbol` (`id_esbeisbol`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `strike`, `homerun`, `eliminaciones`) VALUES
+(440001, 4, 'CB HORTALEZA', 8, 1, 0, 7, 20, 1, 10),
+(440002, 6, 'SALOU', 4, 3, 0, 1, 15, 3, 7),
+(440003, 36, 'CB HORTALEZA', 8, 1, 0, 7, 12, 1, 5),
+(440004, 37, 'CB HORTALEZA', 8, 1, 0, 7, 10, 0, 4),
+(440005, 38, 'CB HORTALEZA', 8, 1, 0, 7, 5, 0, 8),
+(440006, 39, 'CB HORTALEZA', 8, 1, 0, 7, 1, 4, 3),
+(440007, 40, 'CB HORTALEZA', 8, 1, 0, 7, 0, 0, 0),
+(440008, 7, 'SALOU', 4, 3, 0, 1, 15, 1, 5),
+(440009, 8, 'SALOU', 4, 3, 0, 1, 8, 4, 6),
+(440010, 9, 'SALOU', 4, 3, 0, 1, 11, 3, 8),
+(440011, 10, 'SALOU', 4, 3, 0, 1, 0, 0, 0),
+(440012, 11, 'SALOU', 4, 3, 0, 1, 15, 5, 11),
+(440013, 12, 'BATE PACIFICO', 8, 6, 0, 2, 12, 3, 10),
+(440014, 13, 'BATE PACIFICO', 8, 6, 0, 2, 8, 2, 5),
+(440015, 14, 'BATE PACIFICO', 8, 6, 0, 2, 0, 0, 0),
+(440016, 15, 'BATE PACIFICO', 8, 6, 0, 2, 7, 1, 8),
+(440017, 16, 'BATE PACIFICO', 8, 6, 0, 2, 5, 0, 2),
+(440018, 17, 'BATE PACIFICO', 8, 6, 0, 2, 2, 1, 3),
+(440019, 18, 'GUANTE VALLECANO', 7, 2, 0, 5, 12, 2, 7),
+(440020, 19, 'GUANTE VALLECANO', 7, 2, 0, 5, 15, 1, 5),
+(440021, 20, 'GUANTE VALLECANO', 7, 2, 0, 5, 12, 0, 12),
+(440022, 21, 'GUANTE VALLECANO', 7, 2, 0, 5, 17, 0, 8),
+(440023, 22, 'GUANTE VALLECANO', 7, 2, 0, 5, 16, 2, 5),
+(440024, 23, 'GUANTE VALLECANO', 7, 2, 0, 5, 0, 0, 0),
+(440025, 24, 'LAZADORESONE', 6, 5, 0, 1, 14, 4, 3),
+(440026, 25, 'LAZADORESONE', 6, 5, 0, 1, 13, 2, 4),
+(440027, 26, 'LAZADORESONE', 6, 5, 0, 1, 10, 2, 6),
+(440028, 27, 'LAZADORESONE', 6, 5, 0, 1, 0, 0, 0),
+(440029, 28, 'LAZADORESONE', 6, 5, 0, 1, 10, 1, 5),
+(440030, 29, 'LAZADORESONE', 6, 5, 0, 1, 7, 0, 7),
+(440031, 30, 'ATL BARAJAS', 6, 4, 0, 2, 7, 0, 10),
+(440032, 31, 'ATL BARAJAS', 6, 4, 0, 2, 6, 0, 10),
+(440033, 32, 'ATL BARAJAS', 6, 4, 0, 2, 11, 5, 5),
+(440034, 33, 'ATL BARAJAS', 6, 4, 0, 2, 15, 3, 3),
+(440035, 34, 'ATL BARAJAS', 6, 4, 0, 2, 0, 0, 0),
+(440036, 35, 'ATL BARAJAS', 6, 4, 0, 2, 12, 2, 4),
+(440037, 13, 'CBS ARAVACA', 10, 7, 0, 3, 15, 5, 11),
+(440038, 22, 'CBS ARAVACA', 10, 7, 0, 3, 12, 2, 7),
+(440039, 27, 'CBS ARAVACA', 10, 7, 0, 3, 10, 3, 5),
+(440040, 10, 'CBS ARAVACA', 10, 7, 0, 3, 5, 5, 6),
+(440041, 19, 'CBS ARAVACA', 10, 7, 0, 3, 6, 1, 7),
+(440042, 33, 'CBS ARAVACA', 10, 7, 0, 3, 0, 0, 0),
+(440043, 28, 'RED MAXBALL', 4, 3, 0, 1, 12, 2, 10),
+(440044, 29, 'RED MAXBALL', 4, 3, 0, 1, 3, 2, 7),
+(440045, 14, 'RED MAXBALL', 4, 3, 0, 1, 5, 2, 5),
+(440046, 18, 'RED MAXBALL', 4, 3, 0, 1, 4, 1, 6),
+(440047, 20, 'RED MAXBALL', 4, 3, 0, 1, 0, 0, 0),
+(440048, 21, 'RED MAXBALL', 4, 3, 0, 1, 4, 5, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadisticas_futbol`
+--
+
+CREATE TABLE `estadisticas_futbol` (
+  `id_esfutbol` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `es_equipo` varchar(30) NOT NULL,
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `goles` int(4) NOT NULL DEFAULT '0',
+  `asistencias` int(4) NOT NULL DEFAULT '0',
+  `tarjeta_a` int(4) NOT NULL DEFAULT '0',
+  `tarjeta_r` int(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_futbol`
+--
+
+INSERT INTO `estadisticas_futbol` (`id_esfutbol`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `goles`, `asistencias`, `tarjeta_a`, `tarjeta_r`) VALUES
+(110001, 2, 'BULL', 13, 5, 2, 6, 5, 2, 3, 0),
+(110002, 2, 'FLORIDA CDF', 7, 2, 1, 4, 6, 1, 4, 0),
+(110003, 3, 'BULL', 13, 5, 2, 6, 1, 3, 1, 1),
+(110004, 10, 'BULL', 12, 5, 1, 6, 0, 6, 4, 0),
+(110005, 4, 'AC MILANAS', 13, 2, 2, 9, 2, 1, 2, 0),
+(110006, 9, 'AC MILANAS', 11, 1, 1, 9, 2, 1, 4, 1),
+(110007, 10, 'AC MILANAS', 13, 2, 2, 9, 1, 0, 2, 0),
+(110008, 11, 'AC MILANAS', 12, 2, 2, 7, 0, 2, 1, 0),
+(110009, 8, 'LOS CHACHOS FC', 7, 2, 4, 1, 2, 5, 2, 1),
+(110010, 9, 'LOS CHACHOS FC', 7, 2, 4, 1, 2, 1, 2, 0),
+(110011, 11, 'LOS CHACHOS FC', 6, 2, 3, 1, 2, 0, 3, 0),
+(110012, 12, 'FLORIDA CDF', 7, 2, 1, 4, 3, 2, 0, 0),
+(110013, 15, 'FLORIDA CDF', 7, 2, 1, 4, 1, 1, 2, 0),
+(110014, 12, 'RAYO MONCLOA', 16, 7, 8, 1, 0, 1, 1, 0),
+(110015, 13, 'RAYO MONCLOA', 16, 7, 8, 1, 4, 2, 0, 1),
+(110016, 14, 'RAYO MONCLOA', 16, 7, 8, 1, 3, 1, 0, 0),
+(110017, 14, 'BULL', 13, 5, 2, 6, 2, 2, 1, 0),
+(110018, 13, 'ASTON BIRRAS', 9, 6, 2, 1, 3, 2, 3, 1),
+(110019, 18, 'ASTON BIRRAS', 9, 6, 2, 1, 1, 0, 3, 0),
+(110020, 16, 'MESSIRIANOS FC', 24, 18, 2, 4, 6, 2, 2, 0),
+(110021, 17, 'MESSIRIANOS FC', 24, 18, 2, 4, 6, 1, 1, 0),
+(110022, 19, 'MESSIRIANOS FC', 24, 18, 2, 4, 2, 5, 2, 1),
+(110023, 20, 'MESSIRIANOS FC', 24, 18, 2, 4, 0, 1, 2, 0),
+(110024, 21, 'MESSIRIANOS FC', 24, 18, 2, 4, 1, 6, 0, 0),
+(110025, 26, 'MESSIRIANOS FC', 24, 18, 2, 4, 8, 1, 0, 0),
+(110026, 34, 'MESSIRIANOS FC', 24, 18, 2, 4, 5, 1, 1, 0),
+(110027, 22, 'LOS CHACHOS FC', 7, 2, 4, 1, 1, 1, 1, 0),
+(110028, 28, 'BULL', 13, 5, 2, 6, 3, 2, 2, 0),
+(110029, 33, 'BULL', 13, 5, 2, 6, 6, 0, 0, 0),
+(110030, 40, 'BULL', 13, 5, 2, 6, 2, 1, 1, 0),
+(110031, 22, 'ASTON BIRRAS', 9, 6, 2, 1, 2, 1, 2, 0),
+(110032, 23, 'ASTON BIRRAS', 9, 6, 2, 1, 1, 1, 2, 0),
+(110033, 25, 'ASTON BIRRAS', 9, 6, 2, 1, 0, 3, 0, 0),
+(110034, 35, 'ASTON BIRRAS', 9, 6, 2, 1, 0, 0, 0, 0),
+(110035, 36, 'ASTON BIRRAS', 9, 6, 2, 1, 3, 6, 1, 0),
+(110036, 22, 'RAYO MONCLOA', 16, 7, 8, 1, 0, 0, 2, 0),
+(110037, 23, 'RAYO MONCLOA', 16, 7, 8, 1, 2, 2, 1, 0),
+(110038, 24, 'RAYO MONCLOA', 16, 7, 8, 1, 4, 2, 2, 0),
+(110039, 25, 'RAYO MONCLOA', 16, 7, 8, 1, 9, 1, 3, 0),
+(110040, 24, 'LOS CHACHOS FC', 7, 2, 4, 1, 2, 1, 1, 0),
+(110041, 32, 'LOS CHACHOS FC', 7, 2, 4, 1, 0, 0, 0, 0),
+(110042, 39, 'LOS CHACHOS FC', 7, 2, 4, 1, 3, 3, 0, 0),
+(110043, 26, 'REAL ALUCHE', 7, 4, 2, 1, 0, 0, 0, 0),
+(110044, 29, 'REAL ALUCHE', 7, 4, 2, 1, 3, 1, 1, 0),
+(110045, 30, 'REAL ALUCHE', 7, 4, 2, 1, 2, 5, 2, 1),
+(110046, 32, 'REAL ALUCHE', 7, 4, 2, 1, 5, 3, 3, 0),
+(110047, 33, 'REAL ALUCHE', 7, 4, 2, 1, 1, 5, 0, 0),
+(110048, 37, 'REAL ALUCHE', 7, 4, 2, 1, 0, 1, 0, 0),
+(110049, 40, 'REAL ALUCHE', 7, 4, 2, 1, 0, 2, 1, 0),
+(110050, 27, 'FLORIDA CDF', 7, 2, 1, 4, 0, 0, 1, 0),
+(110051, 29, 'FLORIDA CDF', 7, 2, 1, 4, 2, 2, 0, 0),
+(110052, 37, 'FLORIDA CDF', 7, 2, 1, 4, 4, 1, 0, 0),
+(110053, 38, 'FLORIDA CDF', 7, 2, 1, 4, 2, 2, 0, 0),
+(110054, 30, 'AC MILANAS', 13, 2, 2, 9, 0, 0, 1, 0),
+(110055, 31, 'AC MILANAS', 13, 2, 2, 9, 2, 2, 2, 0),
+(110056, 34, 'AC MILANAS', 13, 2, 2, 9, 3, 3, 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadisticas_tenis`
+--
+
+CREATE TABLE `estadisticas_tenis` (
+  `id_estenis` int(10) NOT NULL,
+  `es_usuario` int(10) NOT NULL,
+  `es_equipo` varchar(30) NOT NULL,
+  `pj_usuario` int(4) NOT NULL DEFAULT '0',
+  `pg_usuario` int(4) NOT NULL DEFAULT '0',
+  `pe_usuario` int(4) NOT NULL DEFAULT '0',
+  `pp_usuario` int(4) NOT NULL DEFAULT '0',
+  `puntos_usuario` int(5) NOT NULL DEFAULT '0',
+  `sets` int(4) NOT NULL DEFAULT '0',
+  `juegos` int(4) NOT NULL DEFAULT '0',
+  `aces` int(4) NOT NULL DEFAULT '0',
+  `dobles_faltas` int(4) NOT NULL DEFAULT '0',
+  `errores_no_forzados` int(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadisticas_tenis`
+--
+
+INSERT INTO `estadisticas_tenis` (`id_estenis`, `es_usuario`, `es_equipo`, `pj_usuario`, `pg_usuario`, `pe_usuario`, `pp_usuario`, `puntos_usuario`, `sets`, `juegos`, `aces`, `dobles_faltas`, `errores_no_forzados`) VALUES
+(1000001, 3, 'DUO DINÁMICO', 8, 6, 0, 2, 150, 12, 35, 25, 10, 40),
+(1000002, 4, 'LOS CHUNGUITOS', 6, 2, 0, 4, 100, 4, 22, 10, 15, 60),
+(1000003, 3, 'DUO DINÁMICO', 8, 6, 0, 2, 121, 12, 35, 15, 5, 22),
+(1000004, 4, 'LOS CHUNGUITOS', 6, 2, 0, 4, 89, 4, 22, 22, 12, 35),
+(1000005, 5, 'ANDYLUCAS', 8, 8, 0, 0, 250, 16, 55, 35, 10, 20),
+(1000006, 13, 'ANDYLUCAS', 8, 8, 0, 0, 224, 16, 55, 20, 12, 24),
+(1000007, 6, 'DOS TRÉBOLES', 5, 3, 0, 2, 51, 11, 40, 15, 10, 62),
+(1000008, 17, 'DOS TRÉBOLES', 5, 3, 0, 2, 42, 11, 40, 10, 15, 55),
+(1000009, 7, 'LIMÓNSAL', 5, 1, 0, 4, 60, 5, 41, 20, 10, 50),
+(1000010, 40, 'LIMÓNSAL', 5, 1, 0, 4, 65, 5, 41, 25, 15, 55),
+(1000011, 8, 'CAMPEONAS', 10, 7, 0, 3, 165, 24, 60, 60, 2, 40),
+(1000012, 23, 'CAMPEONAS', 10, 7, 0, 3, 130, 24, 60, 5, 5, 40),
+(1000013, 9, 'BLANCO NEGRO', 4, 2, 0, 2, 70, 7, 45, 22, 1, 20),
+(1000014, 10, 'BLANCO NEGRO', 4, 2, 0, 2, 72, 7, 45, 10, 10, 46),
+(1000015, 10, 'BANANA-SHOT', 5, 4, 0, 1, 95, 11, 50, 8, 5, 10),
+(1000016, 32, 'BANANA-SHOT', 5, 4, 0, 1, 90, 11, 50, 9, 8, 22);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `eventos`
 --
 
@@ -155,23 +505,98 @@ INSERT INTO `eventos` (`id_evento`, `nombre_evento`, `deporte`, `ciudad`, `munic
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `invitados`
+--
+
+CREATE TABLE `invitados` (
+  `id_invitado` int(10) NOT NULL,
+  `quedada` int(10) NOT NULL,
+  `usuario` int(10) NOT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `invitados`
+--
+
+INSERT INTO `invitados` (`id_invitado`, `quedada`, `usuario`, `fecha_creacion`) VALUES
+(1100001, 1200001, 7, '2019-05-16 15:54:13'),
+(1100002, 1200002, 2, '2019-05-16 16:11:13'),
+(1100003, 1200003, 11, '2019-05-16 16:35:40'),
+(1100004, 1200004, 5, '2019-05-16 16:46:45'),
+(1100005, 1200005, 6, '2019-05-16 17:04:25'),
+(1100006, 1200006, 4, '2019-05-16 17:20:02'),
+(1100007, 1200001, 18, '2019-05-16 20:22:02'),
+(1100008, 1200001, 22, '2019-05-16 20:23:12'),
+(1100009, 1200001, 40, '2019-05-16 20:24:22'),
+(1100010, 1200001, 3, '2019-05-16 20:25:32'),
+(1100011, 1200001, 33, '2019-05-16 20:26:14'),
+(1100012, 1200001, 32, '2019-05-16 20:27:01'),
+(1100013, 1200001, 17, '2019-05-16 20:28:45'),
+(1100014, 1200001, 19, '2019-05-16 20:29:42'),
+(1100015, 1200002, 3, '2019-05-16 20:30:02'),
+(1100016, 1200002, 10, '2019-05-16 20:33:14'),
+(1100017, 1200002, 12, '2019-05-16 20:33:55'),
+(1100018, 1200002, 22, '2019-05-16 20:35:12'),
+(1100019, 1200002, 23, '2019-05-16 20:35:33'),
+(1100020, 1200002, 24, '2019-05-16 20:40:12'),
+(1100021, 1200002, 26, '2019-05-16 20:41:45'),
+(1100022, 1200002, 28, '2019-05-16 20:42:02'),
+(1100023, 1200002, 37, '2019-05-16 20:42:32'),
+(1100024, 1200003, 12, '2019-05-16 20:43:24'),
+(1100025, 1200003, 13, '2019-05-16 20:44:11'),
+(1100026, 1200003, 17, '2019-05-16 20:44:56'),
+(1100027, 1200003, 20, '2019-05-16 20:45:12'),
+(1100028, 1200003, 30, '2019-05-16 20:45:23'),
+(1100029, 1200003, 40, '2019-05-16 20:46:24'),
+(1100030, 1200003, 35, '2019-05-16 20:44:12'),
+(1100031, 1200003, 29, '2019-05-16 20:45:13'),
+(1100032, 1200004, 6, '2019-05-16 20:46:22'),
+(1100033, 1200004, 3, '2019-05-16 20:47:44'),
+(1100034, 1200004, 2, '2019-05-16 20:48:25'),
+(1100035, 1200004, 11, '2019-05-16 20:49:32'),
+(1100036, 1200004, 15, '2019-05-16 20:52:00'),
+(1100037, 1200004, 16, '2019-05-16 20:53:11'),
+(1100038, 1200004, 19, '2019-05-16 20:54:17'),
+(1100039, 1200004, 24, '2019-05-16 20:55:18'),
+(1100040, 1200005, 7, '2019-05-16 20:56:19'),
+(1100041, 1200005, 8, '2019-05-16 20:57:20'),
+(1100042, 1200005, 9, '2019-05-16 20:58:12'),
+(1100043, 1200005, 10, '2019-05-16 20:59:45'),
+(1100044, 1200005, 12, '2019-05-16 21:02:15'),
+(1100045, 1200005, 16, '2019-05-16 21:05:17'),
+(1100046, 1200005, 35, '2019-05-16 21:06:54'),
+(1100047, 1200006, 5, '2019-05-16 21:10:45'),
+(1100048, 1200006, 10, '2019-05-16 21:15:54'),
+(1100049, 1200006, 14, '2019-05-16 21:17:45'),
+(1100050, 1200006, 18, '2019-05-16 21:19:17'),
+(1100051, 1200006, 22, '2019-05-16 21:22:14'),
+(1100052, 1200006, 32, '2019-05-16 21:23:01'),
+(1100053, 1200006, 33, '2019-05-16 21:42:32'),
+(1100054, 1200006, 39, '2019-05-16 21:42:44'),
+(1100055, 1200006, 27, '2019-05-16 21:42:55'),
+(1100056, 1200006, 26, '2019-05-16 21:45:55');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `jugadores`
 --
 
 CREATE TABLE `jugadores` (
-  `ID_JUGADOR` int(10) NOT NULL,
-  `EQUIPO` int(10) NOT NULL,
-  `USUARIO` int(10) NOT NULL,
-  `ROL_JUGADOR` tinyint(1) NOT NULL DEFAULT '0',
-  `FECHA_PJUGADOR` date NOT NULL,
-  `HORA_PJUGADOR` time NOT NULL
+  `id_jugador` int(10) NOT NULL,
+  `equipo` int(10) NOT NULL,
+  `usuario` int(10) NOT NULL,
+  `rol_jugador` tinyint(1) NOT NULL DEFAULT '0',
+  `fecha_pjugador` date NOT NULL,
+  `hora_pjugador` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `jugadores`
 --
 
-INSERT INTO `jugadores` (`ID_JUGADOR`, `EQUIPO`, `USUARIO`, `ROL_JUGADOR`, `FECHA_PJUGADOR`, `HORA_PJUGADOR`) VALUES
+INSERT INTO `jugadores` (`id_jugador`, `equipo`, `usuario`, `rol_jugador`, `fecha_pjugador`, `hora_pjugador`) VALUES
 (330001, 550001, 2, 1, '2019-04-09', '00:17:23'),
 (330002, 550001, 3, 0, '2019-04-09', '00:17:23'),
 (330003, 550002, 4, 1, '2019-04-09', '00:17:23'),
@@ -392,6 +817,38 @@ INSERT INTO `jugadores` (`ID_JUGADOR`, `EQUIPO`, `USUARIO`, `ROL_JUGADOR`, `FECH
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `quedadas`
+--
+
+CREATE TABLE `quedadas` (
+  `id_quedada` int(10) NOT NULL,
+  `nombre_quedada` varchar(30) NOT NULL,
+  `creador` int(10) NOT NULL,
+  `ciudad` varchar(100) NOT NULL,
+  `localizacion` varchar(200) NOT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_quedada` date NOT NULL,
+  `hora_quedada` time NOT NULL,
+  `descripcion` varchar(400) NOT NULL,
+  `ruta_foto` varchar(100) NOT NULL,
+  `aforo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `quedadas`
+--
+
+INSERT INTO `quedadas` (`id_quedada`, `nombre_quedada`, `creador`, `ciudad`, `localizacion`, `fecha_creacion`, `fecha_quedada`, `hora_quedada`, `descripcion`, `ruta_foto`, `aforo`) VALUES
+(1200001, 'Clásico Bar Manolo', 7, 'Madrid', 'Calle Bravo Murillo 146, Metro: Cuatro Caminos L1,L2,L6', '2019-05-16 15:54:13', '2019-05-20', '18:30:00', 'Si quieres vivir el clásico con la mejor compañia y los mejores bocatas vente al Bar Manolo.', 'images/quedadas/bar_manolo.jpg', 60),
+(1200002, 'Mundial Fútbol Femenino 2019', 2, 'Madrid', 'Plaza de Neptuno, Metro: Banco de España (L2), Atocha (L1)', '2019-05-16 16:11:13', '2019-06-22', '20:00:00', 'Ven con tus amigos a la pantalla gigante de Plaza de Neptuno y en concreto a nuestro aforo reservado  para ver el Mundial de Fúbol Femenino que juegan España vs EEUU. ', 'images/quedadas/neptuno.jpg', 300),
+(1200003, 'Final Champions League 2019', 11, 'Madrid', 'Avenida de Arcentales, Metro: Las Musas, Estadio Metropolitano (L7)', '2019-05-16 16:35:40', '2019-06-01', '21:00:00', 'Si nos has podido conseguir entradas para ver la Final de Champions entre el Liverpool - Tottenham ,  que se juega en el Wanda Metropolitano, vente a nuestro aforo reservado para verlo en pantalla gigante al aire libre.', 'images/quedadas/wanda.jpg', 500),
+(1200004, 'Final Four Euroliga 2019', 5, 'Madrid', 'Avenida Felipe II Metro: O´donnell (L6), Goya (L2,L4)', '2019-05-16 16:46:45', '2019-05-25', '18:00:00', 'Vive en la plaza del basket en el aforo reservado para ver en pantalla gigante la final a cuatro de la mejor competición de europa del basket.', 'images/quedadas/felipe_ii.jpg', 150),
+(1200005, 'Triatlón Casa de Campo', 6, 'Madrid', 'Paseo del Embarcadero, Metro: Lago(L10)', '2019-05-16 17:04:25', '2019-06-29', '08:00:00', 'Que mejor plan que animar a los mejores triatletas del mundo entre ellos los españoles Javier Gómez Noya y  Mario Mola, en nuestra zona Triatlón Sports4Friends situada en la Casa de Campo.  ', 'images/quedadas/casa_campo.jpg', 100),
+(1200006, 'Toledo Piraguas ', 4, 'Toledo', 'Paseo del Barco Pasaje, Bus: 567 (Cogerlo Intercambiador Plaza Eliptica, Madrid)', '2019-05-16 17:20:02', '2019-07-07', '09:00:00', 'Vivir piraguismo manchego en el Rio Tajo es algo único e irrepetible, ven y verás. ', 'images/quedadas/toledo.jpg', 120);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `registros_eventos`
 --
 
@@ -399,7 +856,6 @@ CREATE TABLE `registros_eventos` (
   `id_registro` int(10) NOT NULL,
   `evento` varchar(30) CHARACTER SET utf8 NOT NULL,
   `equipo` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `p_victorias` int(11) NOT NULL,
   `fecha_creacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -407,9 +863,9 @@ CREATE TABLE `registros_eventos` (
 -- Volcado de datos para la tabla `registros_eventos`
 --
 
-INSERT INTO `registros_eventos` (`id_registro`, `evento`, `equipo`, `p_victorias`, `fecha_creacion`) VALUES
-(770001, 'baloncesto 3v3 abril 2019', 'BULL', 10, '2019-04-09'),
-(770002, 'balonmano rey del campo', 'VALENCIA', 4, '2019-04-15');
+INSERT INTO `registros_eventos` (`id_registro`, `evento`, `equipo`, `fecha_creacion`) VALUES
+(770001, 'baloncesto 3v3 abril 2019', 'REAL MADRID', '2019-04-09'),
+(770002, 'balonmano rey del campo', 'VALENCIA', '2019-04-15');
 
 -- --------------------------------------------------------
 
@@ -418,20 +874,20 @@ INSERT INTO `registros_eventos` (`id_registro`, `evento`, `equipo`, `p_victorias
 --
 
 CREATE TABLE `usuarios` (
-  `ID_USUARIO` int(10) NOT NULL,
-  `NICKNAME` varchar(15) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `NOMBRE` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `CORREO` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `PASSWORD` varchar(400) CHARACTER SET utf8 NOT NULL,
-  `ROL_USUARIO` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'USER',
-  `FOTO_USUARIO` varchar(100) DEFAULT NULL
+  `id_usuario` int(10) NOT NULL,
+  `nickname` varchar(15) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `correo` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(400) CHARACTER SET utf8 NOT NULL,
+  `rol_usuario` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'USER',
+  `foto_usuario` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID_USUARIO`, `NICKNAME`, `NOMBRE`, `CORREO`, `PASSWORD`, `ROL_USUARIO`, `FOTO_USUARIO`) VALUES
+INSERT INTO `usuarios` (`id_usuario`, `nickname`, `nombre`, `correo`, `password`, `rol_usuario`, `foto_usuario`) VALUES
 (1, 'admin', 'Administrador', 'admin@ucm.es', '$2y$10$hSK.JgAQXT5YJIz6k207I.YyHiP4WlLPr2SIlI6dPrEqCf34Z8ifa', 'ADMIN', 'admin.jpg'),
 (2, 'alv1', 'Alvaro', 'alvcarpi@ucm.es', '$2y$10$yvOHIrk7LyJH1bxhyvPbX.eAf7JguNq0RJM0OQZUcOr82z/Jji7Wi', 'USER', 'alvaro.jpg'),
 (3, 'jhce2', 'Jhimmy Ender', 'jcandela@ucm.es', '$2y$10$WvEf90rD98SDOXOIUuf5/Ou28TEZTlBkC6WNFEA6UQFqsGtfrGEUi', 'USER', 'jhimmy.jpg'),
@@ -481,16 +937,51 @@ INSERT INTO `usuarios` (`ID_USUARIO`, `NICKNAME`, `NOMBRE`, `CORREO`, `PASSWORD`
 -- Indices de la tabla `deportes`
 --
 ALTER TABLE `deportes`
-  ADD PRIMARY KEY (`ID_DEPORTE`),
-  ADD UNIQUE KEY `NOMBRE_DEPORTE` (`NOMBRE_DEPORTE`);
+  ADD PRIMARY KEY (`id_deporte`),
+  ADD UNIQUE KEY `NOMBRE_DEPORTE` (`nombre_deporte`);
 
 --
 -- Indices de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  ADD PRIMARY KEY (`ID_EQUIPO`),
-  ADD UNIQUE KEY `NOMBRE_EQUIPO` (`NOMBRE_EQUIPO`),
-  ADD KEY `DEPORTE` (`DEPORTE`);
+  ADD PRIMARY KEY (`id_equipo`),
+  ADD UNIQUE KEY `NOMBRE_EQUIPO` (`nombre_equipo`),
+  ADD KEY `DEPORTE` (`deporte`);
+
+--
+-- Indices de la tabla `estadisticas_baloncesto`
+--
+ALTER TABLE `estadisticas_baloncesto`
+  ADD PRIMARY KEY (`id_esbaloncesto`),
+  ADD KEY `es_usuario` (`es_usuario`);
+
+--
+-- Indices de la tabla `estadisticas_balonmano`
+--
+ALTER TABLE `estadisticas_balonmano`
+  ADD PRIMARY KEY (`id_esbalonmano`),
+  ADD KEY `es_usuario` (`es_usuario`);
+
+--
+-- Indices de la tabla `estadisticas_beisbol`
+--
+ALTER TABLE `estadisticas_beisbol`
+  ADD PRIMARY KEY (`id_esbeisbol`),
+  ADD KEY `es_usuario` (`es_usuario`);
+
+--
+-- Indices de la tabla `estadisticas_futbol`
+--
+ALTER TABLE `estadisticas_futbol`
+  ADD PRIMARY KEY (`id_esfutbol`),
+  ADD KEY `es_usuario` (`es_usuario`);
+
+--
+-- Indices de la tabla `estadisticas_tenis`
+--
+ALTER TABLE `estadisticas_tenis`
+  ADD PRIMARY KEY (`id_estenis`),
+  ADD KEY `es_usuario` (`es_usuario`);
 
 --
 -- Indices de la tabla `eventos`
@@ -501,12 +992,27 @@ ALTER TABLE `eventos`
   ADD KEY `deporte` (`deporte`);
 
 --
+-- Indices de la tabla `invitados`
+--
+ALTER TABLE `invitados`
+  ADD PRIMARY KEY (`id_invitado`),
+  ADD KEY `quedada` (`quedada`),
+  ADD KEY `usuario` (`usuario`);
+
+--
 -- Indices de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD PRIMARY KEY (`ID_JUGADOR`),
-  ADD KEY `USUARIO` (`USUARIO`),
-  ADD KEY `EQUIPO` (`EQUIPO`);
+  ADD PRIMARY KEY (`id_jugador`),
+  ADD KEY `USUARIO` (`usuario`),
+  ADD KEY `EQUIPO` (`equipo`);
+
+--
+-- Indices de la tabla `quedadas`
+--
+ALTER TABLE `quedadas`
+  ADD PRIMARY KEY (`id_quedada`),
+  ADD KEY `creador` (`creador`);
 
 --
 -- Indices de la tabla `registros_eventos`
@@ -520,9 +1026,9 @@ ALTER TABLE `registros_eventos`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`ID_USUARIO`),
-  ADD UNIQUE KEY `NICKNAME` (`NICKNAME`),
-  ADD UNIQUE KEY `CORREO` (`CORREO`);
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `NICKNAME` (`nickname`),
+  ADD UNIQUE KEY `CORREO` (`correo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -532,13 +1038,43 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `deportes`
 --
 ALTER TABLE `deportes`
-  MODIFY `ID_DEPORTE` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=880006;
+  MODIFY `id_deporte` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=880006;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `ID_EQUIPO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550041;
+  MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550041;
+
+--
+-- AUTO_INCREMENT de la tabla `estadisticas_baloncesto`
+--
+ALTER TABLE `estadisticas_baloncesto`
+  MODIFY `id_esbaloncesto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220041;
+
+--
+-- AUTO_INCREMENT de la tabla `estadisticas_balonmano`
+--
+ALTER TABLE `estadisticas_balonmano`
+  MODIFY `id_esbalonmano` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=660057;
+
+--
+-- AUTO_INCREMENT de la tabla `estadisticas_beisbol`
+--
+ALTER TABLE `estadisticas_beisbol`
+  MODIFY `id_esbeisbol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=440049;
+
+--
+-- AUTO_INCREMENT de la tabla `estadisticas_futbol`
+--
+ALTER TABLE `estadisticas_futbol`
+  MODIFY `id_esfutbol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110057;
+
+--
+-- AUTO_INCREMENT de la tabla `estadisticas_tenis`
+--
+ALTER TABLE `estadisticas_tenis`
+  MODIFY `id_estenis` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000017;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
@@ -550,7 +1086,7 @@ ALTER TABLE `eventos`
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `ID_JUGADOR` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330224;
+  MODIFY `id_jugador` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330224;
 
 --
 -- AUTO_INCREMENT de la tabla `registros_eventos`
@@ -562,7 +1098,7 @@ ALTER TABLE `registros_eventos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Restricciones para tablas volcadas
@@ -572,26 +1108,69 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`DEPORTE`) REFERENCES `deportes` (`ID_DEPORTE`) ON DELETE CASCADE;
+  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`id_deporte`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_baloncesto`
+--
+ALTER TABLE `estadisticas_baloncesto`
+  ADD CONSTRAINT `estadisticas_baloncesto_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_balonmano`
+--
+ALTER TABLE `estadisticas_balonmano`
+  ADD CONSTRAINT `estadisticas_balonmano_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_beisbol`
+--
+ALTER TABLE `estadisticas_beisbol`
+  ADD CONSTRAINT `estadisticas_beisbol_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_futbol`
+--
+ALTER TABLE `estadisticas_futbol`
+  ADD CONSTRAINT `estadisticas_futbol_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_tenis`
+--
+ALTER TABLE `estadisticas_tenis`
+  ADD CONSTRAINT `estadisticas_tenis_ibfk_1` FOREIGN KEY (`es_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`NOMBRE_DEPORTE`) ON DELETE CASCADE;
+  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`deporte`) REFERENCES `deportes` (`nombre_deporte`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `invitados`
+--
+ALTER TABLE `invitados`
+  ADD CONSTRAINT `invitados_ibfk_1` FOREIGN KEY (`quedada`) REFERENCES `quedadas` (`id_quedada`),
+  ADD CONSTRAINT `invitados_ibfk_2` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id_usuario`);
 
 --
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`USUARIO`) REFERENCES `usuarios` (`ID_USUARIO`) ON DELETE CASCADE,
-  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`EQUIPO`) REFERENCES `equipos` (`ID_EQUIPO`) ON DELETE CASCADE;
+  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE,
+  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `quedadas`
+--
+ALTER TABLE `quedadas`
+  ADD CONSTRAINT `quedadas_ibfk_1` FOREIGN KEY (`creador`) REFERENCES `usuarios` (`id_usuario`);
 
 --
 -- Filtros para la tabla `registros_eventos`
 --
 ALTER TABLE `registros_eventos`
-  ADD CONSTRAINT `registros_eventos_ibfk_1` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`NOMBRE_EQUIPO`) ON DELETE CASCADE,
+  ADD CONSTRAINT `registros_eventos_ibfk_1` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`nombre_equipo`) ON DELETE CASCADE,
   ADD CONSTRAINT `registros_eventos_ibfk_2` FOREIGN KEY (`evento`) REFERENCES `eventos` (`nombre_evento`) ON DELETE CASCADE;
 COMMIT;
 

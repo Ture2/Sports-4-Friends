@@ -10,15 +10,15 @@ class Jugador{
     {   
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM JUGADORES j JOIN USUARIOS u ON u.ID_USUARIO = j.USUARIO JOIN EQUIPOS e ON j.EQUIPO = e.ID_EQUIPO WHERE u.NICKNAME = '%s'", $nombre);
+        $query = sprintf("SELECT * FROM jugadores j JOIN usuarios u ON u.id_usuario = j.usuario JOIN equipos e ON j.equipo = e.id_equipo WHERE u.nickname = '%s'", $nombre);
        $rs =$conn->query($query); 
        if ( $rs ) {
             if($rs->num_rows == 0)
                 $jugador = null;
             else {
                 $row = $rs->fetch_assoc();
-                $jugador = new Jugador($row['EQUIPO'], $row['USUARIO'], $row['ROL_JUGADOR'], $row['FECHA_PJUGADOR'], $row['HORA_PJUGADOR']);
-                $jugador->set_id_jugador($row['ID_JUGADOR']);
+                $jugador = new Jugador($row['equipo'], $row['usuario'], $row['rol_jugador'], $row['fecha_pjugador'], $row['hora_pjugador']);
+                $jugador->set_id_jugador($row['id_jugador']);
                 $rs->free();
             }
         } else {
@@ -33,15 +33,15 @@ class Jugador{
     {   
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM JUGADORES j JOIN USUARIOS u ON u.ID_USUARIO = j.USUARIO JOIN EQUIPOS e ON j.EQUIPO = e.ID_EQUIPO WHERE u.NICKNAME = '%s' AND e.NOMBRE_EQUIPO = '%s'", $nombre, $equipo);
+        $query = sprintf("SELECT * FROM jugadores j JOIN usuarios u ON u.id_usuario = j.usuario JOIN equipos e ON j.equipo = e.id_equipo WHERE u.nickname = '%s' AND e.nombre_equipo = '%s'", $nombre, $equipo);
        $rs =$conn->query($query); 
        if ( $rs ) {
             if($rs->num_rows == 0)
                 $jugador = null;
             else {
                 $row = $rs->fetch_assoc();
-                $jugador = new Jugador($row['EQUIPO'], $row['USUARIO'], $row['ROL_JUGADOR'], $row['FECHA_PJUGADOR'], $row['HORA_PJUGADOR']);
-                $jugador->set_id_jugador($row['ID_JUGADOR']);
+                $jugador = new Jugador($row['equipo'], $row['usuario'], $row['rol_jugador'], $row['fecha_pjugador'], $row['hora_pjugador']);
+                $jugador->set_id_jugador($row['id_jugador']);
                 $rs->free();
             }
         } else {
@@ -57,7 +57,7 @@ class Jugador{
     {
        $app = Aplicacion::getSingleton();
        $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM JUGADORES j JOIN EQUIPOS e ON e.ID_EQUIPO = j.EQUIPO WHERE e.NOMBRE_EQUIPO = '%s'", $equipo->get_nombre_equipo());
+        $query = sprintf("SELECT * FROM jugadores j JOIN equipos e ON e.id_equipo = j.equipo WHERE e.nombre_equipo = '%s'", $equipo->get_nombre_equipo());
        $rs =$conn->query($query); 
        if ( $rs ) {
             if($rs->num_rows == 0)
@@ -65,8 +65,8 @@ class Jugador{
             else {
                 $jugadores = array();
                 while ($jugador = $rs->fetch_assoc()) {
-                    $aux = new Jugador($jugador['EQUIPO'], $jugador['USUARIO'], $jugador['ROL_JUGADOR'], $jugador['FECHA_PJUGADOR'], $jugador['HORA_PJUGADOR']);
-                     $aux->set_id_jugador($jugador['ID_JUGADOR']);
+                    $aux = new Jugador($jugador['equipo'], $jugador['usuario'], $jugador['rol_jugador'], $jugador['fecha_pjugador'], $jugador['hora_pjugador']);
+                     $aux->set_id_jugador($jugador['id_jugador']);
                     array_push($jugadores, $aux);
                 }
                 $rs->free();
@@ -109,7 +109,7 @@ class Jugador{
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO jugadores(EQUIPO, USUARIO,ROL_JUGADOR,FECHA_PJUGADOR,HORA_PJUGADOR) VALUES('%s', '%s', '%s','%s' ,'%s')"
+        $query=sprintf("INSERT INTO jugadores(equipo, usuario, rol_jugador, fecha_pjugador, hora_pjugador) VALUES('%s', '%s', '%s','%s' ,'%s')"
             , $conn->real_escape_string($jugador->equipo)
             , $conn->real_escape_string($jugador->usuario)
             ,$conn->real_escape_string($jugador->rol_jugador)
@@ -124,7 +124,7 @@ class Jugador{
         return $jugador;
     }
     
-    //Funcion que devuelve true o false dependiendo de si el usuario es lider de un equipo o no
+    //Funcion que devuelve true o false dependiendo de si el usuario es el creador de la quedada
     public function compruebaLider($nickname, $equipo){
         $resultado = false;
         if($nickname != NULL && $equipo != NULL){
@@ -145,7 +145,7 @@ class Jugador{
     private function buscarLider($user, $equipo, $jugador){
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM JUGADORES j JOIN USUARIOS u ON u.ID_USUARIO = j.USUARIO JOIN EQUIPOS e ON j.EQUIPO = e.ID_EQUIPO WHERE u.ID_USUARIO = '%s' AND e.ID_EQUIPO = '%s' AND j.ROL_JUGADOR = '1'"
+        $query = sprintf("SELECT * FROM jugadores j JOIN usuarios u ON u.id_usuario = j.usuario JOIN equipos e ON j.equipo = e.id_equipo WHERE u.id_usuario = '%s' AND e.id_equipo = '%s' AND j.rol_jugador = '1'"
             , $user->id()
             , $equipo->get_id()
             , $jugador->get_rol_jugador());
@@ -153,8 +153,8 @@ class Jugador{
         if($rs){
             if($rs->num_rows != 0){
                 $row = $rs->fetch_assoc();
-                $jugador = new Jugador($row['EQUIPO'], $row['USUARIO'], $row['ROL_JUGADOR'], $row['FECHA_PJUGADOR'], $row['HORA_PJUGADOR']);
-                $jugador->set_id_jugador($row['ID_JUGADOR']);
+                $jugador = new Jugador($row['equipo'], $row['usuario'], $row['rol_jugador'], $row['fecha_pjugador'], $row['hora_pjugador']);
+                $jugador->set_id_jugador($row['id_jugador']);
                 $rs->free();
             }else{
                 $jugador = null;
@@ -208,7 +208,7 @@ class Jugador{
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $ok = true;
-        $query=sprintf("DELETE JUGADORES FROM JUGADORES JOIN USUARIOS u ON USUARIO = u.ID_USUARIO JOIN EQUIPOS e ON EQUIPO = e.ID_EQUIPO WHERE EQUIPO = '%s' AND USUARIO = '%s'"
+        $query=sprintf("DELETE jugadores FROM jugadores JOIN usuarios u ON usuario = u.id_usuario JOIN equipos e ON equipo = e.id_equipo WHERE equipo = '%s' AND usuario = '%s'"
             , $equipo->get_id()
             , $jugador->usuario);
         if ( $conn->query($query) ) {
@@ -225,7 +225,7 @@ class Jugador{
     private static function actualiza($jugador){
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE JUGADORES SET EQUIPO = '%s', USUARIO = '%s', ROL_JUGADOR = '%s', FECHA_PJUGADOR = '%s', HORA_PJUGADOR = '%s' WHERE ID_JUGADOR = '%s'"
+        $query=sprintf("UPDATE jugadores SET equipo = '%s', usuario = '%s', rol_jugador = '%s', fecha_pjugador = '%s', hora_pjugador = '%s' WHERE id_jugador = '%s'"
             , $conn->real_escape_string($jugador->equipo)
             , $conn->real_escape_string($jugador->usuario)
             , $conn->real_escape_string($jugador->rol_jugador)
@@ -249,7 +249,7 @@ class Jugador{
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $jugador = Jugador::getJugadorPorNombre($nombreJ);
-        $query = sprintf("SELECT * FROM JUGADORES j JOIN EQUIPOS e ON j.EQUIPO = e.ID_EQUIPO WHERE j.USUARIO = '%s'", $jugador->get_usuario());
+        $query = sprintf("SELECT * FROM jugadores j JOIN equipos e ON j.equipo = e.id_equipo WHERE j.usuario = '%s'", $jugador->get_usuario());
        $rs =$conn->query($query);
 
        if ( $rs ) {
@@ -259,7 +259,7 @@ class Jugador{
                 //ARRAY QUE SOLO GUARDA LOS NOMBRES
                 $equipos = array();
                 while ($equipo = $rs->fetch_assoc()) {
-                    $aux = $equipo["NOMBRE_EQUIPO"];
+                    $aux = $equipo["nombre_equipo"];
                     array_push($equipos, $aux);
                 }
                 $rs->free();

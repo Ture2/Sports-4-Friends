@@ -26,14 +26,21 @@
 				 	$usuario = Usuario::buscaUsuario($nickname);
 			  ?>
 			<fieldset id="avatar">
+				<?php
+					if($usuario->compruebaFoto($usuario)){
+				  ?>
+				<img class ="box-logo" src=<?php echo 'images/foto_usuarios/'.$usuario->getImagenUsuario();?>>
+				<?php
+					}else{
+				  ?>
 				<img class="logoC" src="images/user.png">
-				<div>
-					<input type="file" name="imagen">
-				</div>
+				<?php
+					}
+				  ?>
 			</fieldset>
-			</div>
+		</div>
 			<div id="datos">
-				<fieldset id="perfil">
+				<fieldset id="perfil2">
 					<legend id="log">PANEL DE CONTROL</legend>
 					<?php
 						//campos que el usuario le interesa que muestre a nivel de cuenta
@@ -49,7 +56,7 @@
 			<?php
 			}else{
 			 ?>
-			 <h1>Error debes estar logueado para poder acceder al contenido de esta pagina</h1>
+			 <h1>Error debes estar logueado para poder acceder al contenido de esta p&aacutegina</h1>
 			 <?php
 				}
 			 ?>

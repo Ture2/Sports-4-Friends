@@ -30,11 +30,11 @@
             <input id="login-username" type="text" name="username" required>
           </div>
           <div class="input-block">
-            <label for="login-password">Contraseña</label>
+            <label for="login-password">Contrase&ntildea</label>
             <input id="login-password" type="password" name="password" required>
           </div>
         </fieldset>
-        <button type="submit" class="btn-login" name="login">Iniciar Sesión</button>
+        <button type="submit" class="btn-login" name="login">Iniciar Sesi&oacuten</button>
         <button formnovalidate formaction="index.php" type="submit" class="btn-login" name="volver">Inicio</button>
       </form>
     </div>
@@ -59,11 +59,11 @@
             <input id="signup-correo" type="email" name="correo" required>
           </div>
           <div class="input-block">
-            <label for="signup-password">Contraseña</label>
+            <label for="signup-password">Contrase&ntildea</label>
             <input id="signup-password" type="password" name="password" required>
           </div>
           <div class="input-block">
-            <label for="signup-password-confirm">Confirmar Contraseña</label>
+            <label for="signup-password-confirm">Confirmar Contrase&ntildea</label>
             <input id="signup-password-confirm" type="password" name="password2" required>
           </div>
         </fieldset>
