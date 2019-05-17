@@ -107,33 +107,33 @@
 			  		<div id="table">
 
 			  			<div id="fila">
-			  				<div id="header">Posici&oacuten en la liga</div>
-			  				<div id="celda"><?php echo $estadisticas["posicion"]; ?></div>
+			  				<div id="header"><p>Posici&oacuten en la liga</p></div>
+			  				<div id="celda"><p id="p-result"><?php echo $estadisticas["posicion"]; ?></p></div>
 			  			</div>
 
 			  			<div id="fila">
-			  				<div id="header">Mayor racha de partidos ganados</div>
-			  				<div id="celda"><?php echo $estadisticas["racha"]; ?></div>
+			  				<div id="header"><p>Mayor racha de partidos ganados</p></div>
+			  				<div id="celda"><p id="p-result"><?php echo $estadisticas["racha"]; ?></p></div>
 			  			</div>
 
 			  			<div id="fila">
-			  				<div id="header">&Uacuteltimo resultado</div>
-			  				<div id="celda"><?php echo $estadisticas["ultimo_resultado"]; ?></div>
+			  				<div id="header"><p>&Uacuteltimo resultado</p></div>
+			  				<div id="celda"><p id="p-result"><?php echo $estadisticas["ultimo_resultado"]; ?></p></div>
 			  			</div>
 
 			  			<div id="fila">
-			  				<div id="header">Partidos Ganados</div>
-			  				<div id="celda"><?php echo $estadisticas["ganados"]; ?></div>
+			  				<div id="header"><p>Partidos Ganados</p></div>
+			  				<div id="celda"><p id="p-result"><?php echo $estadisticas["ganados"]; ?></p></div>
 			  			</div>
 
 			  			<div id="fila">
-			  				<div id="header">Partidos Empatados</div>
-			  				<div id="celda"><?php echo $estadisticas["empatados"]; ?></div>
+			  				<div id="header"><p>Partidos Empatados</p></div>
+			  				<div id="celda"><p id="p-result"><?php echo $estadisticas["empatados"]; ?></p></div>
 			  			</div>
 
 			  			<div id="fila">
-			  				<div id="header">Partidos Perdidos</div>
-			  				<div id="celda"><?php echo $estadisticas["perdidos"]; ?></div>
+			  				<div id="header"><p>Partidos Perdidos</p></div>
+			  				<div id="celda"><p id="p-result"><?php echo $estadisticas["perdidos"]; ?></p></div>
 			  			</div>
 
 			  		</div><!--table-->

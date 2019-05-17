@@ -28,8 +28,6 @@ body {
 
 #fila{
 	display: table-row;
-	text-align: center;
-	margin: 0 auto;
 }
 
 #header{
@@ -39,7 +37,8 @@ body {
 	width: 200em;
 	font-size: 2em;
 	color: #befdb9;
-	border: solid 1px #befdb9;
+	border-bottom: solid 2px #befdb9;
+	border-radius: 1em;
 	background-color: #ab2121;
 }
 
@@ -50,8 +49,8 @@ body {
 	width: 100em;
 	font-size: 1.5em;
 	color: #ab2121;
-	border: solid 1px #ab2121;
-	border-radius: 10px;
+	border: solid 2px #ab2121;
+	border-radius: 1em;
 	background-color: #befdb9;
 }
 
@@ -1053,6 +1052,7 @@ hr {
     border: 1px solid #ccc;
     width: 100%;
     background-color: #befdb9;
+    margin-left: 3em;
 }
 
 /* Style the buttons inside the tab */
@@ -1085,7 +1085,7 @@ hr {
 /* Style the tab content */
 .tabcontent {
 	padding: 0 18px;
-	background-color: #b53c3c;
+	background-color: #ab2121;
 	display: none;
 	overflow: hidden;
 	text-align: center;
@@ -1121,4 +1121,9 @@ hr {
 	font-size: 2.4em;
 	font-family: arial;
     color: white;
+}
+
+#p-result{
+	font-family: arial;
+	color: #ab2121;
 }
