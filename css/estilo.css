@@ -13,72 +13,60 @@ body {
 }
 
 
-/* popup */
+/* tablas equipos*/
 
-#mask {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 9000;
-  background-color: #000;
-  display: none;
+#table{
+	display: table;
+	margin: 0 auto;
+	margin-bottom: 25px;
 }
 
-#boxes .window {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 440px;
-  height: 200px;
-  display: none;
-  z-index: 9999;
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
+#table1{
+	display: table;
+	margin-top: 50px;
 }
 
-#boxes #dialog {
-  width: 750px;
-  height: 300px;
-  padding: 10px;
-  background-color: darkgreen;
-  font-family: 'Segoe UI Light', sans-serif;
-  font-size: 20pt;
+#fila{
+	display: table-row;
+	text-align: center;
+	margin: 0 auto;
 }
 
-#popupfoot {
-  font-size: 16pt;
-  position: absolute;
-  margin-bottom: 15px;
-  bottom: 10px;
-  width: 500px;
-  left: 115px;
+#header{
+	display: table-cell;
+	text-align: center;
+	margin: 0 auto;
+	width: 200em;
+	font-size: 2em;
+	color: #befdb9;
+	border: solid 1px #befdb9;
+	background-color: #ab2121;
 }
 
-a#popup{
-    padding: 10px;
-    font-size: 15px;
-    position: relative;
-    background-color: #3b4465;
-    color:#eef9fe;
-    box-shadow: inset 0 0 1px 0px black;
-    text-decoration: none;
-    border:2px solid gold;
-    font-weight: bolder;
+#celda{
+	display: table-cell;
+	text-align: center;
+	margin: 0 auto;
+	width: 100em;
+	font-size: 1.5em;
+	color: #ab2121;
+	border: solid 1px #ab2121;
+	border-radius: 10px;
+	background-color: #befdb9;
 }
 
-a#popup:hover{
-	background-color: gold;
-	color:#3b4465;
-	border:2px solid #3b4465;
-	font-weight: bolder;
+div #containElem{
+	float: left;
+	flex-basis: 100%;
+	
+    margin-top: 30px;
+    background-color: #397c94;
+    margin-bottom: 5em;
+    border: 0.8em solid rgba(182, 255, 232, 1);
+    padding: 10px 10px 0 10px;
+    left: 10%;
 }
 
-#pop{
-	font-size: 15pt;
-	color:gold;
-	padding-top: 20px;
-}
 
 /* error */
 
@@ -93,10 +81,11 @@ fieldset#errorLogin {
 	border: 3px solid red;
 	width: 20em;
 	padding: 15px;
-	margin: 0 auto;
 	background-color: lightblue;
 	border-radius: 10px;
 	text-align: left;
+	margin:0 auto;
+	float:center;
 }
 
 fieldset#errorReg {
@@ -254,8 +243,6 @@ img#menu{
 	margin-right: 0.4em;
 }
 
-
-
 ul, ol {
 	display: inline-block;
 	list-style: none;
@@ -357,100 +344,6 @@ div#contenido-eventos{
     content:"";
 }
 
-/* Slideshow contenedor */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-  margin-top: 50px;
-  background-color: transparent;
-  z-index: 0;
-  border:1px solid gold;
-}
-
-/* botones pasar pagina */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: gold;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-/* posicion boton */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* texto */
-.text {
-  color: black;
-  background-color: transparent;
-  font-size: 30px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* (1/3) */
-.numbertext {
-  color: gold;
-  font-size: 20px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-  z-index: 0;
-}
-
-/* indicadores */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-  border:1px solid gold;
-}
-
-#dot{
-	text-align: center;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* animacion */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-  z-index: 0;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
 
 /* equipos */
 
@@ -607,7 +500,7 @@ fieldset#perfil2{
 }
 
 input{
-	border:1px solid darkgreen;
+	border:1px solid #4a32068a;
 }
 
 
@@ -616,44 +509,6 @@ input{
 img#fut1 {
 	width: 25em;
 	height: 25em;
-}
-
-table {
-	width: 100%;
-	border: 1px solid gold;
-	align-content: center;
-	margin-bottom: 50px;
-}
-
-th {
-	padding: 15px;
-	height: 50px;
-	text-align: center;
-	background-color: darkblue;
-	color:white;
-	font-weight: bolder;
-}
-
-td {
-	padding: 15px;
-	text-align: center;
-	background-color: lightblue;
-	color:#3b4465;
-	font-weight: bold;
-	vertical-align: middle;
-}
-
-div #containElem{
-	float: left;
-	flex-basis: 100%;
-	margin-left: 10em;
-    margin-top: 30px;
-    background-color: #397c94;
-    margin-bottom: 5em;
-    border: 0.8em solid rgba(182, 255, 232, 1);
-    padding: 10px 10px 0 10px;
-    left: 10%;
-
 }
 
 
@@ -753,13 +608,25 @@ div#errorEvento2{
 	margin-left: 200px;
 }
 
+legend#evento{
+	background: #a26c12;
+	text-decoration-color: #FFF;
+	font-size: 2em;
+	border: 1px #4a32068a;
+	padding: 2px 6px;
+	border-radius: 10px;
+	color: #fff;
+}
+
 fieldset#evento{
-	border:3px solid darkgreen;
-	background-color: lightblue;
+	border:3px solid #4a32068a;
+	background-color: #fff793;
 	text-align: center;
 	max-width: 1000px;
 	margin: auto;
 	margin-top: 50px;
+	border-style: dotted;
+	border-radius: 4%;
 }
 
 fieldset#evento1{
@@ -772,12 +639,24 @@ fieldset#evento1{
 /* Quedadas */
 
 div#quedadas {
-	max-width: 1000px;
+	flex-basis: 100%;
+	max-width: 50em;
 	margin: auto;
-	border: 1px solid black;
-	background-color: #eef9fe;
+	background-color: #0157016e;
 	margin-top: 30px;
 	margin-bottom: 30px;
+	border: 0.8em solid rgba(182, 255, 232, 1);
+  	padding: 10px 10px 0 10px;
+  	left: 10%;   
+   	background-clip: padding-box;
+	-webkit-box-shadow: 0 1.3em 1em -6px #777;
+    -moz-box-shadow: 0 1.3em 1em -6px #777;
+    box-shadow: 0 1.3em 1em -6px #777;
+    -webkit-transition:all 1.2s ease; /* Safari y Chrome */
+	-moz-transition:all 1.2s ease; /* Firefox */
+	-o-transition:all 1.2s ease; /* IE 9 */
+	-ms-transition:all 1.2s ease; /* Opera */
+	width:100%;
 }
 
 img#quedada{
@@ -794,7 +673,7 @@ pre#texto1{
 	text-transform: uppercase;
 	color:black;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 1.25em;
 }
 
 div#errorQuedada{
@@ -811,12 +690,38 @@ div#errorQuedada2{
 }
 
 fieldset#quedada{
-	border:3px solid darkgreen;
-	background-color: lightblue;
-	text-align: center;
-	max-width: 1000px;
-	margin: auto;
-	margin-top: 50px;
+	border-color: #4a32068a;
+    border-radius: 4%;
+    border-style: dotted;
+    border-width: 0.3em;
+    background-color: #fff793;
+    color: #FFF;
+    font-family: arial;
+    text-align: left;
+    margin-top: 5em;
+    margin-bottom:5em;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+h1#quedada{
+	color: #FFF;
+    font-family: arial;
+    font-size: 2.5em;
+}
+
+fieldset#perfil2{
+	border-color: #4a32068a;
+    border-radius: 4%;
+    border-style: dotted;
+    border-width: 0.3em;
+    background-color: #fff793;
+    color: #FFF;
+    font-family: arial;
+    text-align: left;
+    height: 35em;
+    margin-top: 12em;
+    margin-bottom:16em;
 }
 
 
@@ -825,21 +730,13 @@ fieldset#quedada{
 .login-equipos{
     padding: 15px;
     text-align: left;
-    font-size: 15px;
+    font-size: 1.8em;
     color: #3b4465;
     font-weight: bold;
     position: relative;
     background-color: #eef9fe;
     box-shadow: inset 0 0 1px 0px black;
-    border: 3px solid gold;
-}
-.login-equipos {
-    font-size: 1.8em;
-    color: #3b4465;
-    font-weight: 500;
-    position: relative;
-    background-color: #eef9fe;
-    border: 0.25em solid gold;
+    border: 0.1em solid gold;
 }
 
 .login-equipos:hover{
@@ -938,7 +835,7 @@ div#crearEquipoForm{
 /* pantalla equipo */
 
 #p1{
-	color: black;
+	color: #ab2121;
     /* margin-left: 400px; */
     font-size: 3.5em;
     font-family: arial;
@@ -946,20 +843,21 @@ div#crearEquipoForm{
 }
 
 #p2{
-	color: #eef9fe;
+	color: #000000;
     margin-left: 453px;
     max-width: 22em; 
 }
 
 #p3{
 	text-align: center;
-	color:black;
+	color:#ab2121;
 	text-decoration: underline;
 }
 
 #p4{
 	color:gold;
 	margin-left: 50px;
+	text-decoration: underline gold;
 }
 
 #p5{
@@ -976,7 +874,7 @@ div#crearEquipoForm{
 #h{
 	color: #FFF;
     font-family: arial;
-    font-size: 6em;
+    font-size: 5em;
 }
 
 #h1{
@@ -1014,9 +912,8 @@ a#pie {
 
 }
 
+
 /*Contenido*/
-
-
 
 main.backgroundIndexColor{
 	background-image: linear-gradient(#78DE58, #58DE9D);
@@ -1173,6 +1070,7 @@ hr {
 
 /* Change background color of buttons on hover */
 .tab button:hover {
+	color: #befdb9;
   background-color: #ab2121;
 }
 
@@ -1184,24 +1082,24 @@ hr {
 
 /* Style the tab content */
 .tabcontent {
-		padding: 0 18px;
-	  background-color: lightgray;
-	  /*display: none;*/
-	  overflow: hidden;
-	  text-align: center;
-	  color: #444;
+	padding: 0 18px;
+	background-color: lightgray;
+	/*display: none;*/
+	overflow: hidden;
+	text-align: center;
+	color: #444;
 }
 
 .tablinks{
 	background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
+	color: #444;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	text-align: left;
+	border: none;
+	outline: none;
+	transition: 0.4s;
 }
 
 .active, .tabcontent:hover {

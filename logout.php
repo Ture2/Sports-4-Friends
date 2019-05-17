@@ -28,8 +28,8 @@
 
 	<div id="contenido">
 		<div id="adios">
-			<h1 id="out">Cerrando Sesión</h1>
-			<h2 id="p5">Será redireccionado automáticamente.</h2>
+			<h1 id="out">Cerrando Sesi&oacuten</h1>
+			<h2 id="p5">Ser&aacute redireccionado autom&aacuteticamente.</h2>
 		</div>
 	</div>
 

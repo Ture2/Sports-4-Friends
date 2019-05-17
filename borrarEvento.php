@@ -26,7 +26,7 @@ if(empty($eventos))
 <head>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
-	<title></title>
+	<title>Borrar</title>
 </head>
 <body>
 
@@ -35,10 +35,10 @@ if(empty($eventos))
 	?>
 	
 	<div id="contenido">	
-
+		<div id="datos">
 		<form action="procesarBorrarEvento.php" method="POST">
-			<fieldset id="evento">
-				<legend id="log">Registra tu equipo en el evento</legend>
+			<fieldset id="quedada">
+				<legend id="log">BORRAR EVENTO</legend>
 					<p id="log">Evento: 
 						<select name="evento">
 							<?php
@@ -51,6 +51,7 @@ if(empty($eventos))
 				<button formaction="adminEventos.php" id="index" type="submit" name="cancelar">Cancelar</button>
 			</fieldset>
 		</form>
+	</div>
 	</div>
 
 	<?php 

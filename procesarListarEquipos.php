@@ -45,9 +45,8 @@
 			}else{ ?>
 				<div id = 'container-equipos'>
 					<div class = 'botones-eventos'>
-			    	   	<button  id="botonCrearEquipo" onclick ="openForm()"class = 'login-equipos'>Pulsa aquí para crear un equipo</button>
-			    	   	<button  id="botonCerrarFormulario" onclick ="closeForm()" class = 'login-equipos'>Cerrar
-			    	   	</button>
+			    	   	<button  id="botonCrearEquipo" onclick ="openForm()"class = 'login-equipos'>Crear Equipo</button>
+			    	   	<button  id="botonCerrarFormulario" onclick ="closeForm()" class = 'login-equipos'>Cerrar</button>
 			    	   	<a href='procesarListarMisEquipos.php'><button  class = 'login-equipos'>Mis equipos</button></a>
 		    	   	</div>
 	    	   	</div>

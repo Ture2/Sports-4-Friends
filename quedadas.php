@@ -37,14 +37,16 @@ $errores = array();
 
 		// si hay una sesion activa
 		if (isset($_SESSION["login"])){
-                
-		    echo "<form>";
-		    echo "<button formaction='crearQuedada.php' class='login-equipos'>Pulsa aqui para crear una quedada</button>";
-		    echo "</form>";
+            echo "<div id='container-proximosEventos'>";
+				echo "<div id='botones-eventos'>";
+		    		echo "<form>";
+		    			echo "<button formaction='crearQuedada.php' class='login-equipos'>CREAR QUEDADA</button>";
+		    		echo "</form>";
+		    	echo "</div>";
+		    echo "</div>";
 		    
 			if(count($errores) == 0){
                 
-
 				foreach ($quedadas as  $value) {
 				// vamos a hacerlo todo con id de queadadas
 				  $creador=Usuario::buscaUsuarioPorId($value->creador());  
@@ -53,19 +55,19 @@ $errores = array();
 				  
 				  ?>
 				<div id="quedadas">
-					<h1 id="h"><?=$value->nombre_quedada();?></h1>
+					<h1 id="quedada"><?=$value->nombre_quedada();?></h1>
 					<img id="quedada" src="<?=$value->ruta_foto();?>"></img>
-					<pre id=texto><?=  "Localizacion: ".$value->localizacion();?></pre>
+					<pre id=texto><?=  "Localizaci&oacuten: ".$value->localizacion();?></pre>
 					<pre id=texto><?= "CREADOR: " .$creador->nicknameUsuario()?></pre>
 					<pre id=texto><?=$value->ciudad();?></pre>
 					<pre id=texto><?=$value->fecha_quedada();?></pre>
 					<pre id=texto><?="AFORO: ".$value->get_aforo_quedada();?></pre>
-					<pre id=texto><?="NUMERO DE ASISTENTES: ".$num_invitados?></pre>
+					<pre id=texto><?="N&UacuteMERO DE ASISTENTES: ".$num_invitados?></pre>
 					<pre id=texto><?="HORA DE QUEADADA ".$value->hora_quedada();?></pre>
-					<div>
-						<a href="pantallaQuedada.php?id_quedada=<?php echo $value->id_quedada();?>"><button class ="login-equipos" >INFO QUEDADA</button>></a>
-						</div>
-				</div>
+						<div>
+							<a href="pantallaQuedada.php?id_quedada=<?php echo $value->id_quedada();?>"><button class ="login-equipos" >INFORMACI&OacuteN</button></a>
+						</div><!--a-->
+				</div><!--eventos-->
 				<?php
 				}
 				?>

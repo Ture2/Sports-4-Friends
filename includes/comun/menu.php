@@ -23,7 +23,7 @@
 			<nav>
 				<ul class="nav">
 					<li><a href="index.php"><img id="menu" src="images/inicio.png">Inicio</a></li>
-					<li><a><img id="menu" src="images/deportes.png">Deportes</a>
+					<li><a href="deportes.php"><img id="menu" src="images/deportes.png">Deportes</a>
 						<ul>
 							<?php
 								$i = 0;

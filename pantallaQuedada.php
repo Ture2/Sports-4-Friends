@@ -26,15 +26,18 @@
 	?>
 
 	<div id="contenido">
-
-	  	<h1 id="h"><?php echo $info->nombre_quedada();?></h1>
-
-		  	<div id="team">
+		<div class="titulo-equipo">
+	  		<h1 id="h"><?php echo $info->nombre_quedada();?></h1>
+	  	</div>
+		  	
+		<div id="container-eventos">
+			<div id="subcontainer-eventos1">
+				<div id="elem1"> 
+					<div id="team">
 		  		<img id="fut1" src=<?php echo $info->ruta_foto();?>>
 		  	</div>
-
 		<div>
-			<b><p id="p1">DESCRIPCION</p></b>
+			<b><p id="p1">DESCRIPCI&OacuteN</p></b>
 			<p id="p2"><?php echo $info->descripcion();?></p>
 			<div id="botones-equipo">
 				<?php					    
@@ -49,9 +52,9 @@
 						  // si el usuario es el creador de la quedada la puede eliminar
 						if($invitado->compruebaCreador($invitado, $info )  ){ ?>
 							<form action="procesarEliminarQuedada.php" method="POST">
-			    			<input class="login-equipos" type="submit" name ="boton" value="eliminar"/>
+			    			<input class="login-equipos" type="submit" name ="boton" value="Eliminar"/>
 			    			<input type="hidden" name="id_quedada" value=<?php echo $info->id_quedada();?>>
-			    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>	
+			    			<input formaction="quedadas.php" class="login-equipos" type="submit" name="boton2" value="Volver"/>	
 						</form>
 						
 						<?php } else{// resto de jugadores solo podran abandonar quedada
@@ -60,15 +63,12 @@
 						<form action="procesarAbandonarQuedada.php" method="POST">
 			    			<input class="login-equipos" type="submit" name ="boton" value="Abandonar Quedada"/>
 			    			<input type="hidden" name="id_quedada" value=<?php echo $info->id_quedada();?>>
-			    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>
+			    			<input formaction="quedadas.php" class="login-equipos" type="submit" name="boton2" value="Volver"/>
 						</form>
 					
 						<?php 
 						}
-						
-						?>		
-										
-						
+						?>
 					<?php 
 						}else {
 						    
@@ -77,49 +77,51 @@
 								<form action="procesarApuntarseAquedada.php" method="POST">
 					    			<input class="login-equipos" type="submit" name="boton2" value="Apuntarse a quedada"/>
 					    			<input type="hidden" name="id_quedada" value=<?php echo $info->id_quedada();?>>
-					    			<input onclick="history.back()" class="login-equipos" type="button" name="boton2" value="Volver"/>
+					    			<input formaction="quedadas.php" class="login-equipos" type="submit" name="boton2" value="Volver"/>
 								</form>
 						<?php 
 						}
-						
-						
+
 					if($lleno){
 						?>  
 						 <fieldset id="errorLogin">
-					<pre id="texto1">Aforo completo, busca otra quedada y unete 
-						Volver a <a href="quedadas.php">Quedadas</a>
-					</pre>
-				</fieldset>
+							<pre id="texto1">NO TIENES NING&UacuteN EVENTO DISPONIBLE</pre>
+							<pre id="texto1">Volver a <a href="quedadas.php">Eventos</a></pre>
+						</fieldset>
 					
 					<?php 
 						}
 						}
 					?>
 
-			</div>
+				</div><!--botones-->
+			</div><!--descp-->
+		</div><!--elem1-->
+	</div><!--eventos1-->
+	</div><!--eventos-->
+			<div id="container-eventos2">
+				<div id="tab">
 			  	<div id="tabla">
-			
-
-			  		<table id="tabla">
-			  			<tr>
-			  				<th>invitados</th>
-			  			</tr>
+			  		<div id="table">
+			  			<div id="fila">
+			  				<div id="header">ASISTENTES</div>
+			  			</div><!--fila-->
 			  			<?php
 			  				$invitados = Invitado::getInvitadosPorQuedada($info);
 			  				foreach ($invitados as $value){
 			  					$usuario = Usuario::buscaUsuarioPorId($value->get_usuario());
 			  				?>
-			  			<tr>
-			  				<td> <?php echo $usuario->nombreUsuario(); ?> </td>
-			  			</tr>
+			  			<div id="fila">
+			  				<div id="celda"> <?php echo $usuario->nombreUsuario(); ?> </div>
+			  			</div><!--fila-->
 			  			<?php
 			  				}
 			  				?>
-			  		</table>
-			  	</div>
-		</div>
-	  	
-	</div>
+			  		</div><!--table-->
+			  	</div><!--tabla-->
+			  </div><!--tab-->
+			 </div><!--eventos2-->
+	</div><!--contenido-->
 
 	<?php
 		require("includes/comun/pie.php");  
