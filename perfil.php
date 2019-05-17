@@ -40,13 +40,13 @@
 			</fieldset>
 		</div>
 			<div id="datos">
-				<fieldset id="perfil2">
+				<fieldset id="quedada">
 					<legend id="log">PANEL DE CONTROL</legend>
 					<?php
 						//campos que el usuario le interesa que muestre a nivel de cuenta
-						echo '<p id="perfil">Usuario: '.$usuario->nicknameUsuario().'</p>';
-						echo '<p id="perfil">Nombre: '.$usuario->nombreUsuario().'</p>';
-						echo '<p id="perfil">Correo: '.$usuario->mail().'</p>';
+						echo '<p id="log">Usuario: '.$usuario->nicknameUsuario().'</p>';
+						echo '<p id="log">Nombre: '.$usuario->nombreUsuario().'</p>';
+						echo '<p id="log">Correo: '.$usuario->mail().'</p>';
 					  ?>
 					<div>
 						<button onclick= "location.href='editarPerfil.php'" id="index" type="button" name="editar">Editar</button>

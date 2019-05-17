@@ -25,9 +25,6 @@ require_once __DIR__.'/includes/Usuario.php';
         $errores[] = "Error en el envio del id del formulario";
     }
     
-    
-    
-  
     //bucamos la quedada
     
     $quedada=Quedada::buscaQuedadaPorID($id_quedada);

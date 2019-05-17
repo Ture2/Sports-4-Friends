@@ -54,15 +54,6 @@ else
     
 
 $usu= Usuario::buscaUsuario($nickUsuario);
-
-  
-    //link para mostrar imagen
-  //http://www.formacionwebonline.com/guia-para-subir-y-visualizar-imagenes-con-php-y-mysql/
- 
-    
-
-
-
  
     $fecha=date("Y-m-d");
     $hora=date("H:i:s");
@@ -72,8 +63,7 @@ $usu= Usuario::buscaUsuario($nickUsuario);
     
     $id_equipo=$ret->get_id();
     $jugador=Jugador::crea($id_equipo,$usu->id(),"1",$fecha,$hora);
-    
- //Jugador::guardaJugador($jugador);
+
  $jugador->unirEquipo($jugador);
   
  

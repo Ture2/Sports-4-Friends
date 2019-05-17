@@ -112,7 +112,7 @@
 			  					$usuario = Usuario::buscaUsuarioPorId($value->get_usuario());
 			  				?>
 			  			<div id="fila">
-			  				<div id="header" style="font-family: arial; font-size: 1.8em; padding: 0.6em"> <?php echo $usuario->nombreUsuario(); ?> </div>
+			  				<div id="celda" style="font-family: arial; font-size: 1.8em; padding: 0.6em"> <?php echo $usuario->nombreUsuario(); ?> </div>
 			  			</div><!--fila-->
 			  			<?php
 			  				}

@@ -53,10 +53,6 @@
 						<div id="botones-equipo">
 						<?php
 
-						/*Fase sin acabar puesto que necesitamos saber si un jugador estÃƒÂ¡ ya dentro de un equipo
-						(hay que modificar la base de datos) y tambien si se ha logueado. Esto es importante para
-						decidir que botÃƒÂ³n mostrar*/
-
 							if(!isset($_SESSION["login"])){ ?>
 								<form action="procesarLogin.php" method="POST">
 					    				Desea unirse a este equipo, pulse la siguiente casilla: <input type="submit" value="Sign Up"/>
@@ -81,7 +77,6 @@
 							
 								<?php 
 								  // si el jugador es lider el equipo, tiene la posibilidad de eliminarlo  
-								  // prueba commint and push
 								if($jugador->compruebaLider($nickname, $nombreEquipo )  ){ ?>
 									<form action="procesarEliminarEquipo.php" method="POST">
 					    			<input class="login-equipos" type="submit" name ="boton" value="eliminar"/>

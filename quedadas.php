@@ -15,9 +15,6 @@ $errores = array();
      if(count($quedadas)==0){
          $errores[] = "No hay quedadas registradas";
      }
-
-
-
 ?>
 
 <!DOCTYPE html>

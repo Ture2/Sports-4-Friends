@@ -40,8 +40,6 @@
 				echo "</form>";
 				echo "</div>";
 				echo "</div>";
-	    	   //echo"<button onclick= 'location.href='crearEquipo.php''id='index' type='button' name='editar'>Pulse aqui para crear Equipo</button>";
-	    	   //<button onclick= "location.href='editarPerfil.php'" id="index" type="button" name="editar">Editar</button>
 			}else{ ?>
 				<div id = 'container-equipos'>
 					<div class = 'botones-eventos'>
@@ -96,7 +94,6 @@
 								$deportes = Deporte::getAll();
 									
 									foreach ($deportes as $valor) { 
-										//echo $valor. " ";
 									  	echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
 									  }  
 								?>

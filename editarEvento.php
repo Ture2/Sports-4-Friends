@@ -44,7 +44,7 @@ if (!isset($_SESSION['esAdmin'])) {
 										foreach ($deportes as $key => $valor) { 
 						  					echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
 						  			}?></select></p>
-<p id="log">Ciudad: <input type="text" name="ciudad"  required value=""></p>
+								<p id="log">Ciudad: <input type="text" name="ciudad"  required value=""></p>
 								<p id="log">Municipio: <input type="text" name="municipio" value=""></p>
 								<p id="log">Localizaci&oacuten: <input type="text" name="localizacion" required value=""></p>
 								<p id="log">Fecha Evento: <input type="date" name="fecha_evento" value="2019-08-08"min="2018-03-25"

@@ -1125,6 +1125,7 @@ hr {
 }
 
 .active, .tablinks:hover {
+	color:#862626;
   background-color: #ccc;
 }
 

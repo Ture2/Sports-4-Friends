@@ -8,9 +8,6 @@
 	
 	$nickname=$_SESSION['nombre'];
 	
-   
-	//$Nequipo = str_replace('%', ' ', $_POST['equipo']);
-	
 	
 	$id_quedada= $_POST['id_quedada'];
 	

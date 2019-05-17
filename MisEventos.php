@@ -38,7 +38,6 @@ $registrosEventos = RegistroEvento::registrosEventosUsuario($_SESSION['nombre'])
 			{
 	?>
 			
-
 		<main class = "backgroundIndexColor">
 			<section id="text-center">
 				<div class ="section-content-1">
@@ -58,19 +57,22 @@ $registrosEventos = RegistroEvento::registrosEventosUsuario($_SESSION['nombre'])
 			else
 			{
 			?>
-			<form>
-				<input formaction="eventos.php" class="login-equipos" type="submit" name="boton2" value="Volver"/>
-			</form>
-					<div id="evento1">
-						<fieldset id="evento1">
-								<?php foreach ($registrosEventos as $value) {?>
+			<div id="botones-eventos">
+				<form>
+					<input formaction="eventos.php" class="login-equipos" type="submit" name="boton2" value="Volver"/>
+				</form>
+			</div>
+						
+						<?php foreach ($registrosEventos as $value) {?>
+							<div id="eventos">
 								<h1 id="h"><?=$value->evento();?></h1>
 								<p id="evento">Equipo: <?=$value->equipo();?></p>
 								<p id="evento">Fecha: <?=$value->fecha_creacion();?></p>
-								<?php
+							</div>
+						<?php
 							}
-							?>
-						</fieldset>
+						?>
+						
 					</div>
 			<?php
 			}

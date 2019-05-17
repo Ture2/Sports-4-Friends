@@ -13,12 +13,7 @@
     
     
 	if( empty($usuario) ) $errores[] = "El usuario no existe";
-    
-	
-	
-	
-	
-	
+
 
 	if(count($errores) == 0){
 	    $equipos=Equipo::listaEquiposPorJugadorYlider($id_usuario);
@@ -49,13 +44,12 @@
 				echo "</form>";
 				echo "</div>";
 				echo "</div>";
-	    	   //echo"<button onclick= 'location.href='crearEquipo.php''id='index' type='button' name='editar'>Pulse aqui para crear Equipo</button>";
-	    	   //<button onclick= "location.href='editarPerfil.php'" id="index" type="button" name="editar">Editar</button>
 			}else{
 				?>
 				<div id="container-equipos">
 					<div id='botones-eventos'>
-						<a href='crearEquipo.php'><button  class ='login-equipos'>Pulsa aqui para crear un equipo</button></a>
+						<a href='crearEquipo.php'><button  class ='login-equipos'>Crear Equipo</button></a>
+						<a><button  onclick="history.back()" class ='login-equipos'>Volver</button></a>
 			    	</div>
 		    	</div>
 	    	   	<?php

@@ -22,12 +22,7 @@
 
 	
 	//ahora eliminamos el invitado 
-	
-	
-	
-	
-	
-	
+
 	header('Location: pantallaQuedada.php?id_quedada='.$id_quedada);
  ?>
 

@@ -31,7 +31,6 @@ require_once __DIR__.'/includes/Deporte.php';
 					$deportes = Deporte::getAll();
 						
 						foreach ($deportes as $valor) { 
-							//echo $valor. " ";
 						  	echo '<option value="'.$valor->nombreDeporte().'" >'.$valor->nombreDeporte().'</option>';
 						  }  
 					?>

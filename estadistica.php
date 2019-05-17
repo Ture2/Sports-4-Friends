@@ -54,7 +54,6 @@
 		  					foreach ($listaEstadisticas as $key) {
 
 		  						echo '<div id="fila">';
-			  						//$equipo = Equipo::getInfoPorNombre($key);
 									$ObjestadisticaF = json_decode($key);
 			  						echo '<div id="celda">'.$ObjestadisticaF->equipo.'</div>';
 			  						echo '<div id="celda">'.$ObjestadisticaF->partidosj.'</div>';
@@ -92,7 +91,6 @@
 	  					if($listaEstadisticas != NULL){
 		  					foreach ($listaEstadisticas as $key) {
 		  						echo '<div id="fila">';
-			  						//$equipo = Equipo::getInfoPorNombre($key);
 									$ObjestadisticaF = json_decode($key);
 			  						echo '<div id="celda">'.$ObjestadisticaF->equipo.'</div>';
 			  						echo '<div id="celda">'.$ObjestadisticaF->partidosj.'</div>';
@@ -129,7 +127,6 @@
 	  				if($listaEstadisticas != NULL){
 		  				foreach ($listaEstadisticas as $key) {
 		  					echo '<div id="fila">';
-			  					//$equipo = Equipo::getInfoPorNombre($key);
 								$ObjestadisticaF = json_decode($key);
 			  					echo '<div id="celda">'.$ObjestadisticaF->equipo.'</div>';
 			  					echo '<div id="celda">'.$ObjestadisticaF->partidosj.'</div>';
@@ -169,7 +166,6 @@
 	  				if($listaEstadisticas != NULL){
 		  				foreach ($listaEstadisticas as $key) {
 		  					echo '<div id="fila">';
-			  					//$equipo = Equipo::getInfoPorNombre($key);
 								$ObjestadisticaF = json_decode($key);
 			  					echo '<div id="celda">'.$ObjestadisticaF->equipo.'</div>';
 			  					echo '<div id="celda">'.$ObjestadisticaF->partidosj.'</div>';
@@ -213,7 +209,6 @@
 	  				if($listaEstadisticas != NULL){
 		  				foreach ($listaEstadisticas as $key) {
 		  					echo '<div id="fila">';
-			  					//$equipo = Equipo::getInfoPorNombre($key);
 								$ObjestadisticaF = json_decode($key);
 			  					echo '<div id="celda">'.$ObjestadisticaF->id_estadistica.'</div>';
 			  					echo '<div id="celda">'.$ObjestadisticaF->partidosj.'</div>';

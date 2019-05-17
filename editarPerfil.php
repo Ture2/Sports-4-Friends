@@ -37,12 +37,12 @@
 					</div>
 				</fieldset>
 			</div>
-				<fieldset id="perfil2">
-					<p id="perfil">Usuario: <input type="text" name="username" value=""></p>
-					<p id="perfil">Nombre: <input type="text" name="nombre" value=""></p>
-					<p id="perfil">Correo: <input type="text" name="correo" value=""></p>
-					<p id="perfil">Nueva Contrase&ntildea: <input type="password" name="password" value=""></p>
-					<p id="perfil">Repetir Nueva Contrase&ntildea: <input type="password" name="password2" value=""></p>
+				<fieldset id="quedada">
+					<p id="log">Usuario: <input type="text" name="username" value=""></p>
+					<p id="log">Nombre: <input type="text" name="nombre" value=""></p>
+					<p id="log">Correo: <input type="text" name="correo" value=""></p>
+					<p id="log">Nueva Contrase&ntildea: <input type="password" name="password" value=""></p>
+					<p id="log">Repetir Nueva Contrase&ntildea: <input type="password" name="password2" value=""></p>
 					<button id= "index" type="submit" name="guardar">Guardar Cambios</button>
 					<button formaction="perfil.php" id="index" type="submit" name="cancelar">Cancelar</button>
 				</fieldset>
