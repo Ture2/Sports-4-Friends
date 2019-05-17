@@ -42,7 +42,7 @@
 			<div id="subcontainer-eventos1">
 				<div id="elem1"> 
 					<div id="team">
-		  				<img id="fut1" src=<?php echo '/Sports-4-Friends/images/logo_equipos/'.$info->get_logo_equipo();?>>
+		  				<img id="fut1" src=<?php echo 'images/logo_equipos/'.$info->get_logo_equipo();?>>
 		  			</div>
 					<div>
 						<div>
