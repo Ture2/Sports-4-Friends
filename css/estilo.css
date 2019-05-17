@@ -643,6 +643,19 @@ td {
 	vertical-align: middle;
 }
 
+div #containElem{
+	float: left;
+	flex-basis: 100%;
+	margin-left: 10em;
+    margin-top: 30px;
+    background-color: #397c94;
+    margin-bottom: 5em;
+    border: 0.8em solid rgba(182, 255, 232, 1);
+    padding: 10px 10px 0 10px;
+    left: 10%;
+
+}
+
 
 /* EVENTOS */
 
@@ -1172,10 +1185,11 @@ hr {
 /* Style the tab content */
 .tabcontent {
 		padding: 0 18px;
-	  background-color: white;
-	  display: none;
+	  background-color: lightgray;
+	  /*display: none;*/
 	  overflow: hidden;
 	  text-align: center;
+	  color: #444;
 }
 
 .tablinks{
@@ -1191,7 +1205,8 @@ hr {
 }
 
 .active, .tabcontent:hover {
-  background-color: #ccc; 
+  background-color: #ccc;
+  color: #444; 
 }
 
 #h10{

@@ -3,6 +3,12 @@
 	require_once __DIR__.'/includes/Equipo.php';
 	require_once __DIR__.'/includes/Jugador.php';
 	require_once __DIR__.'/includes/Usuario.php';
+	require_once __DIR__.'/includes/Estadistica.php';
+	require_once __DIR__.'/includes/Estadistica_futbol.php';
+	require_once __DIR__.'/includes/Estadistica_baloncesto.php';
+	require_once __DIR__.'/includes/Estadistica_balonmano.php';
+	require_once __DIR__.'/includes/Estadistica_beisbol.php';
+	require_once __DIR__.'/includes/Estadistica_tenis.php';
 
 	$info = Equipo::getInfoPorNombre($_GET['equipo']);
 	$nombreEquipo=$_GET['equipo'];
@@ -144,18 +150,78 @@
 		  					$nombre = $usuario->nombreUsuario();
 		  				?>
 		  				
-		  				<button class="tablinks" id="<?php echo $nombre;?>"><?php echo $nombre;?></button>
+		  				<button class="tablinks" id="<?php echo $nombre;?>" onclick="openStats(event, '<?php echo $nombre;?>')"><?php echo $nombre;?></button>
 
 		  				<!-- El id es el nombre del jugador y estadisticas!-->
 		  				<div class = "tabcontent" id=<?php echo $nombre;?>>
-		  					<p>Partidos Jugados</p>
-		  					<p>Partidos Ganados</p>
-		  					<p>Partidos Perdidos</p>
-		  					<p>Goles</p>
-		  					<p>Asistencias</p>
-		  					<p>Tapones</p>
-		  					<p>Faltas</p>
-		  					<!-- Continuar-->
+		  					<?php
+		  						$deporte = Deporte::buscaDeportePorId($info->get_deporte());
+		  						
+		  						if($deporte->nombreDeporte() == 'FUTBOL'){
+		  							$estadisticas = Estadistica_futbol::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
+		  							$Objestadistica = json_decode($estadisticas);
+					  				echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p>Goles: ' . $Objestadistica->goles.'</p>';
+					  				echo '<p>Asistencias: '. $Objestadistica->asistencias.'</p>';
+					  				echo '<p>Tarjetas Amarillas: '. $Objestadistica->tarjetaA.'</p>';
+					  				echo '<p>Tarjetas Rojas: '. $Objestadistica->tarjetaR.'</p>';
+
+		  						}else if($deporte->nombreDeporte() == 'BALONCESTO'){
+		  							$estadisticas = Estadistica_baloncesto::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
+		  							$Objestadistica = json_decode($estadisticas);
+		  							echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p>Puntos: ' . $Objestadistica->puntos.'</p>';
+					  				echo '<p>Asistencias: '. $Objestadistica->asistencias.'</p>';
+					  				echo '<p>Tapones: '. $Objestadistica->tapones.'</p>';
+					  				echo '<p>Faltas: '. $Objestadistica->faltas.'</p>';
+
+		  						}else if($deporte->nombreDeporte() == 'BALONMANO'){
+		  							$estadisticas = Estadistica_balonmano::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
+		  							$Objestadistica = json_decode($estadisticas);
+		  							echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p>Goles: ' . $Objestadistica->goles.'</p>';
+					  				echo '<p>Asistencias: '. $Objestadistica->asistencias.'</p>';
+					  				echo '<p>Tapones: '. $Objestadistica->tapones.'</p>';
+					  				echo '<p>Faltas: '. $Objestadistica->faltas.'</p>';
+					  				echo '<p>Tarjetas Amarillas: '. $Objestadistica->tarjetaA.'</p>';
+					  				echo '<p>Tarjetas Rojas: '. $Objestadistica->tarjetaR.'</p>';
+					  				echo '<p>Expulsiones: '. $Objestadistica->expulsion.'</p>';
+		  						}else if($deporte->nombreDeporte() == 'BEISBOL'){
+		  							$estadisticas = Estadistica_beisbol::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
+		  							$Objestadistica = json_decode($estadisticas);
+		  							echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p>Strike: ' . $Objestadistica->strike.'</p>';
+					  				echo '<p>Homerun: '. $Objestadistica->homerun.'</p>';
+					  				echo '<p>Eliminaciones: '. $Objestadistica->eliminaciones.'</p>';
+		  						}else{
+		  							$estadisticas = Estadistica_tenis::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
+		  							$Objestadistica = json_decode($estadisticas);
+		  							echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p>Puntos: ' . $Objestadistica->puntos.'</p>';
+					  				echo '<p>Sets: '. $Objestadistica->sets.'</p>';
+					  				echo '<p>Juegos: '. $Objestadistica->juegos.'</p>';
+					  				echo '<p>Aces: '. $Objestadistica->aces.'</p>';
+					  				echo '<p>Dobles Faltas: '. $Objestadistica->dobles_faltas.'</p>';
+					  				echo '<p>Errores: '. $Objestadistica->errores.'</p>';
+		  						}
+
+
+		  					  ?>
 		  				</div>
 		  			<?php
 		  				}
@@ -166,6 +232,21 @@
 		</div>		
 	</div>
 
+	<script>
+		function openStats(evt, nombre) {
+		  var i, tabcontent, tablinks;
+		  tabcontent = document.getElementsByClassName("tabcontent");
+		  for (i = 0; i < tabcontent.length; i++) {
+		    tabcontent[i].style.display = "none";
+		  }
+		  tablinks = document.getElementsByClassName("tablinks");
+		  for (i = 0; i < tablinks.length; i++) {
+		    tablinks[i].className = tablinks[i].className.replace(" active", "");
+		  }
+		  document.getElementById(nombre).style.display = "block";
+		  evt.currentTarget.className += " active";
+		}
+	</script>
 
 	<?php
 		require("includes/comun/pie.php");  

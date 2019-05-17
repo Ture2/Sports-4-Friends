@@ -138,7 +138,6 @@ class Deporte
                 //var_dump($rs);
                 //$user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
                 $deporte = new Deporte($fila['nombre_deporte'], $fila['numero_maximo_jugadores'], $fila['duracion_min'], $fila['fecha_cdeporte'], $fila['hora_cdeporte']);
-                var_dump($deporte);
                 $deporte->id = $fila['id_deporte'];
                 $result = $deporte;
             }

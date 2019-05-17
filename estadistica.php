@@ -32,6 +32,7 @@
 	?>
 
 	<div id="contenido">
+		<div id="containElem">
 		<div id="tabla">
 			<p id="p4">FÚTBOL</p>
 	  		<table>
@@ -229,6 +230,7 @@
 	  				}
 	  			?>
 	  		</table>
+	  	</div>
 	  	</div>
 	</div>
 	<?php  
