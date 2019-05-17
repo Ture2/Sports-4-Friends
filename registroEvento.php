@@ -41,7 +41,7 @@ if(empty($equipos))
 
 		<form action="procesarRegistroEvento.php" method="POST">
 			<fieldset id="evento">
-				<legend id="log">Registra tu equipo en el evento</legend>
+				<legend id="evento">Registra tu equipo en el evento</legend>
 					<p id="log">Evento: 
 						<select name="evento">
 							<?php

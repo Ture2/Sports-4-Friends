@@ -34,8 +34,6 @@ else
 			if (isset($_SESSION["login"])){
 
 				if(empty($errores == 0)){
-
-					
 					?>
 					<div id="container-eventos">
 					<?php
@@ -45,10 +43,10 @@ else
 							<h1 id="h10"><?=$value->nombre_evento();?></h1>
 							<img id="img_eventos" src="<?=$value->ruta_foto();?>"></img>
 							<pre id=texto><?=$value->descripcion();?></pre>
-						</div>
+						</div><!--eventos-->
 						<?php
 						}?>
-					</div>
+					</div><!--container-->
 					<div id="container-proximosEventos">
 						<div id="botones-eventos">
 						<?php
@@ -58,16 +56,16 @@ else
 						}
 						else{
 							echo "<a href='misEventos.php'><button class='login-equipos'>MIS EVENTOS</button>";
-							echo "<a href='registroEvento.php'><button class='login-equipos'>REGISTRATE</button></a>";
+							echo "<a href='registroEvento.php'><button class='login-equipos'>REG&IacuteSTRATE</button></a>";
 						}
 						?>
-						</div>
+						</div><!--botones-->
 
-						<!-- Aquí iria la tabla -->	
 						<p></p>
-					</div>
+					</div><!--container-->
+
 		<fieldset id="errorLogin">
-			<pre id="texto1">Solo pueden inscribirsen los lideres de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
+			<pre id="texto1">Solo pueden inscribirsen los l&iacutederes de los equipos. Si no tienes equipo y quieres participar, puedes crear un <a id= "texto"href="crearEquipo.php">EQUIPO</a> y reunir a tus amigos para participar (minimo 3 personas)</pre>
 		</fieldset>
 
 					
@@ -84,16 +82,16 @@ else
 					<h1 id="h"> <?php print $errores['0'];?></h1>
 					<div id="errorQuedada2">
 						<form>
-							<button formaction='login.php' type='submit' class='login-equipos'>INICIAR SESIÓN</button></a>
+							<button formaction='login.php' type='submit' class='login-equipos'>INICIAR SESI&OacuteN</button></a>
 							<button formaction='registro.php' type='submit' class='login-equipos'>REGISTRO</button></a>
 							<button formaction='index.php' type='submit' class='login-equipos'>VOLVER</button></a>
 						</form>
-					</div>
-				</div>
+					</div><!--error2-->
+				</div><!--error-->
 			<?php
 			}
 			?>
-	</div>
+	</div><!--contenido-->
 
 	<?php
 	require("includes/comun/pie.php");

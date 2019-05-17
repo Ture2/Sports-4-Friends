@@ -37,12 +37,20 @@ $registrosEventos = RegistroEvento::registrosEventosUsuario($_SESSION['nombre'])
 			if(empty($registrosEventos))
 			{
 	?>
+			
 
-				<fieldset id="errorLogin">
-					<pre id="texto1">NO TIENES NINGUN EVENTO DISPONIBLE 
-						Volver a <a href="eventos.php">Eventos</a>
-					</pre>
-				</fieldset>
+		<main class = "backgroundIndexColor">
+			<section id="text-center">
+				<div class ="section-content-1">
+					<div class = "copy-wrapper">
+						<fieldset id="errorLogin">
+							<pre id="texto1">NO TIENES NING&UacuteN EVENTO DISPONIBLE</pre>
+							<pre id="texto1">Volver a <a href="eventos.php">Eventos</a></pre>
+						</fieldset>
+					</div>
+				</div>
+			</section>
+		</main>
 
 			<?php
 			}

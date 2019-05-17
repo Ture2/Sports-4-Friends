@@ -56,7 +56,7 @@
 			<?php
 			}else{
 			 ?>
-			 <h1>Error debes estar logueado para poder acceder al contenido de esta pagina</h1>
+			 <h1>Error debes estar logueado para poder acceder al contenido de esta p&aacutegina</h1>
 			 <?php
 				}
 			 ?>

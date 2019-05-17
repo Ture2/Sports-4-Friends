@@ -15,11 +15,7 @@ require_once __DIR__.'/includes/config.php';
 		require("contenido.php");
 		require("includes/comun/pie.php");  
 	?>
-
 	
-
 </body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-<script src="javascript/popup.js"></script>
 </html>
 

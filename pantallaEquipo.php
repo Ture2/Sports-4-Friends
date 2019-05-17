@@ -36,8 +36,8 @@
 
 	<div id="contenido">
 		<div class="titulo-equipo">
-					<h1 id="h"><?php echo $info->get_nombre_equipo();?></h1>
-				</div>
+			<h1 id="h"><?php echo $info->get_nombre_equipo();?></h1>
+		</div>
 		<div id="container-eventos">
 			<div id="subcontainer-eventos1">
 				<div id="elem1"> 
@@ -46,7 +46,7 @@
 		  			</div>
 					<div>
 						<div>
-							<b><p id="p1">DESCRIPCION</p></b>
+							<b><p id="p1">DESCRIPCI&OacuteN</p></b>
 							<p id="p2"><?php echo $info->get_descripcion_equipo();?></p>
 						</div>
 
@@ -87,9 +87,6 @@
 					    			<input class="login-equipos" type="submit" name ="boton" value="eliminar"/>
 					    			<input type="hidden" name="equipo" value=<?php echo $info->get_id();?>>
 									</form>
-										
-								
-								
 								<?php }?>
 								
 							<?php 
@@ -103,45 +100,46 @@
 								<?php 
 								}
 							}?>
-						</div>
-					</div>	
-				</div>
+						</div><!--botones-->
+					</div><!--descp-->
+				</div><!--elem1-->
 				<div id="elem1">
-			  		<table>
-			  			<tr>
-			  				<th>PosiciÃ³n en la liga</th>
-			  				<td colspan="2"><?php echo $estadisticas["posicion"]; ?></td>
-			  			</tr>
-			  			<tr>
+			  		<div id="table">
 
-			  				<th>Mayor racha de partidos ganados</th>
-			  				<td colspan="2"><?php echo $estadisticas["racha"]; ?></td>
-			  			</tr>
-			  			<tr>
-			  				<th>Ãšltimo resultado</th>
-			  				<td colspan="2"><?php echo $estadisticas["ultimo_resultado"]; ?></td>
-			  			</tr>
-			  			<tr>
-			  				<th>PG</th>
-			  				<th>PE</th>
-			  				<th>PP</th>
-			  			</tr>
-			  			<tr>
-			  				<td><?php echo $estadisticas["ganados"]; ?></td>
-			  				<td><?php echo $estadisticas["empatados"]; ?></td>
-			  				<td><?php echo $estadisticas["perdidos"]; ?></td>
-			  			</tr>
-			  		</table>
+			  			<div id="fila">
+			  				<div id="header">Posici&oacuten en la liga</div>
+			  				<div id="celda"><?php echo $estadisticas["posicion"]; ?></div>
+			  			</div>
 
-			  		<table id="tabla">
-			  			<tr>
-			  				<th>Jugadores</th>
-			  			</tr>
-			  			
-			  		</table>
-			  	</div>
-			</div>
-		</div>
+			  			<div id="fila">
+			  				<div id="header">Mayor racha de partidos ganados</div>
+			  				<div id="celda"><?php echo $estadisticas["racha"]; ?></div>
+			  			</div>
+
+			  			<div id="fila">
+			  				<div id="header">&Uacuteltimo resultado</div>
+			  				<div id="celda"><?php echo $estadisticas["ultimo_resultado"]; ?></div>
+			  			</div>
+
+			  			<div id="fila">
+			  				<div id="header">Partidos Ganados</div>
+			  				<div id="celda"><?php echo $estadisticas["ganados"]; ?></div>
+			  			</div>
+
+			  			<div id="fila">
+			  				<div id="header">Partidos Empatados</div>
+			  				<div id="celda"><?php echo $estadisticas["empatados"]; ?></div>
+			  			</div>
+
+			  			<div id="fila">
+			  				<div id="header">Partidos Perdidos</div>
+			  				<div id="celda"><?php echo $estadisticas["perdidos"]; ?></div>
+			  			</div>
+
+			  		</div><!--table-->
+			  	</div><!--elem1-->
+			</div><!--eventos1-->
+		</div><!--eventos-->
 		<div id="container-eventos2">
 			<b><p id="p3">JUGADORES</p></b>
 		  		<div class="tab">
@@ -219,15 +217,12 @@
 					  				echo '<p id="p-tabs">Dobles Faltas: '. $Objestadistica->dobles_faltas.'</p>';
 					  				echo '<p id="p-tabs">Errores: '. $Objestadistica->errores.'</p>';
 		  						}
-
-
 		  					  ?>
-		  				</div>
+		  				</div><!--tabcontent-->
 		  			<?php
 		  				}
 		  				?>
- 					
-				</div>
+		  		</div>
 		</div>
 		</div>		
 	</div>
@@ -237,9 +232,8 @@
 	</script>
 
 	<?php
-		require("includes/comun/pie.php");  
+		require("includes/comun/pie.php");
 	?>
 
 </body>
 </html>
-
