@@ -99,6 +99,7 @@
 					</div>	
 				</div>
 				<div id="elem1">
+<<<<<<< HEAD
 			  		<table>
 			  			<tr>
 			  				<th>PosiciÃ³n en la liga</th>
@@ -134,6 +135,44 @@
 			  	</div>
 			</div>
 		</div>
+=======
+			  		<div id="table">
+
+			  			<div id="fila">
+			  				<div id="header">Posici&oacuten en la liga</div>
+			  				<div id="celda"><?php echo $estadisticas["posicion"]; ?></div>
+			  			</div>
+
+			  			<div id="fila">
+			  				<div id="header">Mayor racha de partidos ganados</div>
+			  				<div id="celda"><?php echo $estadisticas["racha"]; ?></div>
+			  			</div>
+
+			  			<div id="fila">
+			  				<div id="header">&Uacuteltimo resultado</div>
+			  				<div id="celda"><?php echo $estadisticas["ultimo_resultado"]; ?></div>
+			  			</div>
+
+			  			<div id="fila">
+			  				<div id="header">Partidos Ganados</div>
+			  				<div id="celda"><?php echo $estadisticas["ganados"]; ?></div>
+			  			</div>
+
+			  			<div id="fila">
+			  				<div id="header">Partidos Empatados</div>
+			  				<div id="celda"><?php echo $estadisticas["empatados"]; ?></div>
+			  			</div>
+
+			  			<div id="fila">
+			  				<div id="header">Partidos Perdidos</div>
+			  				<div id="celda"><?php echo $estadisticas["perdidos"]; ?></div>
+			  			</div>
+
+			  		</div><!--table-->
+			  	</div><!--elem1-->
+			</div><!--eventos1-->
+		</div><!--eventos-->
+>>>>>>> parent of 07a923c... Last ture
 		<div id="container-eventos2">
 			<b><p id="p3">JUGADORES</p></b>
 		  		<div class="tab">
