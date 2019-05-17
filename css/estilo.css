@@ -953,8 +953,10 @@ div#crearEquipoForm{
 
 #p3{
 	text-align: center;
-	color:black;
-	text-decoration: underline;
+    color: #020202;
+    font-family: arial;
+    font-size: 3.5em;
+    text-decoration: underline;
 }
 
 #p4{
@@ -1185,32 +1187,40 @@ hr {
 /* Style the tab content */
 .tabcontent {
 		padding: 0 18px;
-	  background-color: lightgray;
-	  /*display: none;*/
+	  background-color: #b53c3c;
+	  display: none;
 	  overflow: hidden;
 	  text-align: center;
-	  color: #444;
 }
 
 .tablinks{
-	background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
+	background-color: #862626;
+    color: #fff;
+    cursor: pointer;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    font-size: 3em;
+    font-family: arial;
+    text-align: center;
+    border: none;
+    outline: none;
 }
 
-.active, .tabcontent:hover {
+.active, .tablinks:hover {
   background-color: #ccc;
-  color: #444; 
 }
 
 #h10{
 	color: #FFF;
     font-family: arial;
     font-size: 2.5em;
+}
+
+#p-tabs{
+	font-size: 2.4em;
+	font-family: arial;
+    color: white;
 }

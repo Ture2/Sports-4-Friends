@@ -24,6 +24,8 @@
 	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<meta charset="utf-8">
 	<title>Detalles</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="javascript/verEstadisticasJugador.js"></script>
 </head>
 <body>
@@ -150,9 +152,7 @@
 		  					$nombre = $usuario->nombreUsuario();
 		  				?>
 		  				
-		  				<button class="tablinks" id="<?php echo $nombre;?>" onclick="openStats(event, '<?php echo $nombre;?>')"><?php echo $nombre;?></button>
-
-		  				<!-- El id es el nombre del jugador y estadisticas!-->
+		  				<h4 class="tablinks"><?php echo $nombre;?></h4>
 		  				<div class = "tabcontent" id=<?php echo $nombre;?>>
 		  					<?php
 		  						$deporte = Deporte::buscaDeportePorId($info->get_deporte());
@@ -160,64 +160,64 @@
 		  						if($deporte->nombreDeporte() == 'FUTBOL'){
 		  							$estadisticas = Estadistica_futbol::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
 		  							$Objestadistica = json_decode($estadisticas);
-					  				echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
-					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
-					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
-					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
-					  				echo '<p>Goles: ' . $Objestadistica->goles.'</p>';
-					  				echo '<p>Asistencias: '. $Objestadistica->asistencias.'</p>';
-					  				echo '<p>Tarjetas Amarillas: '. $Objestadistica->tarjetaA.'</p>';
-					  				echo '<p>Tarjetas Rojas: '. $Objestadistica->tarjetaR.'</p>';
+					  				echo '<p id="p-tabs">Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p id="p-tabs">Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p id="p-tabs">Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p id="p-tabs">Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p id="p-tabs">Goles: ' . $Objestadistica->goles.'</p>';
+					  				echo '<p id="p-tabs">Asistencias: '. $Objestadistica->asistencias.'</p>';
+					  				echo '<p id="p-tabs">Tarjetas Amarillas: '. $Objestadistica->tarjetaA.'</p>';
+					  				echo '<p id="p-tabs">Tarjetas Rojas: '. $Objestadistica->tarjetaR.'</p>';
 
 		  						}else if($deporte->nombreDeporte() == 'BALONCESTO'){
 		  							$estadisticas = Estadistica_baloncesto::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
 		  							$Objestadistica = json_decode($estadisticas);
-		  							echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
-					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
-					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
-					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
-					  				echo '<p>Puntos: ' . $Objestadistica->puntos.'</p>';
-					  				echo '<p>Asistencias: '. $Objestadistica->asistencias.'</p>';
-					  				echo '<p>Tapones: '. $Objestadistica->tapones.'</p>';
-					  				echo '<p>Faltas: '. $Objestadistica->faltas.'</p>';
+		  							echo '<p id="p-tabs">Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p id="p-tabs">Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p id="p-tabs">Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p id="p-tabs">Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p id="p-tabs">Puntos: ' . $Objestadistica->puntos.'</p>';
+					  				echo '<p id="p-tabs">Asistencias: '. $Objestadistica->asistencias.'</p>';
+					  				echo '<p id="p-tabs">Tapones: '. $Objestadistica->tapones.'</p>';
+					  				echo '<p id="p-tabs">Faltas: '. $Objestadistica->faltas.'</p>';
 
 		  						}else if($deporte->nombreDeporte() == 'BALONMANO'){
 		  							$estadisticas = Estadistica_balonmano::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
 		  							$Objestadistica = json_decode($estadisticas);
-		  							echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
-					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
-					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
-					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
-					  				echo '<p>Goles: ' . $Objestadistica->goles.'</p>';
-					  				echo '<p>Asistencias: '. $Objestadistica->asistencias.'</p>';
-					  				echo '<p>Tapones: '. $Objestadistica->tapones.'</p>';
-					  				echo '<p>Faltas: '. $Objestadistica->faltas.'</p>';
-					  				echo '<p>Tarjetas Amarillas: '. $Objestadistica->tarjetaA.'</p>';
-					  				echo '<p>Tarjetas Rojas: '. $Objestadistica->tarjetaR.'</p>';
-					  				echo '<p>Expulsiones: '. $Objestadistica->expulsion.'</p>';
+		  							echo '<p id="p-tabs">Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p id="p-tabs">Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p id="p-tabs">Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p id="p-tabs">Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p id="p-tabs">Goles: ' . $Objestadistica->goles.'</p>';
+					  				echo '<p id="p-tabs">Asistencias: '. $Objestadistica->asistencias.'</p>';
+					  				echo '<p id="p-tabs">Tapones: '. $Objestadistica->tapones.'</p>';
+					  				echo '<p id="p-tabs">Faltas: '. $Objestadistica->faltas.'</p>';
+					  				echo '<p id="p-tabs">Tarjetas Amarillas: '. $Objestadistica->tarjetaA.'</p>';
+					  				echo '<p id="p-tabs">Tarjetas Rojas: '. $Objestadistica->tarjetaR.'</p>';
+					  				echo '<p id="p-tabs">Expulsiones: '. $Objestadistica->expulsion.'</p>';
 		  						}else if($deporte->nombreDeporte() == 'BEISBOL'){
 		  							$estadisticas = Estadistica_beisbol::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
 		  							$Objestadistica = json_decode($estadisticas);
-		  							echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
-					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
-					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
-					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
-					  				echo '<p>Strike: ' . $Objestadistica->strike.'</p>';
-					  				echo '<p>Homerun: '. $Objestadistica->homerun.'</p>';
-					  				echo '<p>Eliminaciones: '. $Objestadistica->eliminaciones.'</p>';
+		  							echo '<p id="p-tabs">Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p id="p-tabs">Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p id="p-tabs">Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p id="p-tabs">Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p id="p-tabs">Strike: ' . $Objestadistica->strike.'</p>';
+					  				echo '<p id="p-tabs">Homerun: '. $Objestadistica->homerun.'</p>';
+					  				echo '<p id="p-tabs">Eliminaciones: '. $Objestadistica->eliminaciones.'</p>';
 		  						}else{
 		  							$estadisticas = Estadistica_tenis::buscaEstadisticaPorEquipo($usuario->id(), $info->get_nombre_equipo());
 		  							$Objestadistica = json_decode($estadisticas);
-		  							echo '<p>Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
-					  				echo '<p>Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
-					  				echo '<p>Partidos Empatados: '. $Objestadistica->partidose.'</p>';
-					  				echo '<p>Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
-					  				echo '<p>Puntos: ' . $Objestadistica->puntos.'</p>';
-					  				echo '<p>Sets: '. $Objestadistica->sets.'</p>';
-					  				echo '<p>Juegos: '. $Objestadistica->juegos.'</p>';
-					  				echo '<p>Aces: '. $Objestadistica->aces.'</p>';
-					  				echo '<p>Dobles Faltas: '. $Objestadistica->dobles_faltas.'</p>';
-					  				echo '<p>Errores: '. $Objestadistica->errores.'</p>';
+		  							echo '<p id="p-tabs">Partidos Jugados: '. $Objestadistica->partidosj.'</p>';
+					  				echo '<p id="p-tabs">Partidos Ganados: '. $Objestadistica->partidosg.'</p>';
+					  				echo '<p id="p-tabs">Partidos Empatados: '. $Objestadistica->partidose.'</p>';
+					  				echo '<p id="p-tabs">Partidos Perdidos: ' . $Objestadistica->partidosp.'</p>';
+					  				echo '<p id="p-tabs">Puntos: ' . $Objestadistica->puntos.'</p>';
+					  				echo '<p id="p-tabs">Sets: '. $Objestadistica->sets.'</p>';
+					  				echo '<p id="p-tabs">Juegos: '. $Objestadistica->juegos.'</p>';
+					  				echo '<p id="p-tabs">Aces: '. $Objestadistica->aces.'</p>';
+					  				echo '<p id="p-tabs">Dobles Faltas: '. $Objestadistica->dobles_faltas.'</p>';
+					  				echo '<p id="p-tabs">Errores: '. $Objestadistica->errores.'</p>';
 		  						}
 
 
@@ -233,19 +233,7 @@
 	</div>
 
 	<script>
-		function openStats(evt, nombre) {
-		  var i, tabcontent, tablinks;
-		  tabcontent = document.getElementsByClassName("tabcontent");
-		  for (i = 0; i < tabcontent.length; i++) {
-		    tabcontent[i].style.display = "none";
-		  }
-		  tablinks = document.getElementsByClassName("tablinks");
-		  for (i = 0; i < tablinks.length; i++) {
-		    tablinks[i].className = tablinks[i].className.replace(" active", "");
-		  }
-		  document.getElementById(nombre).style.display = "block";
-		  evt.currentTarget.className += " active";
-		}
+		$(".tab").accordion({ header: ".tablinks", collapsible: true, active: false }); 	
 	</script>
 
 	<?php
