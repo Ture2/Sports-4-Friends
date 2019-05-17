@@ -28,7 +28,7 @@ if (!isset($_SESSION['esAdmin'])) {
 	<div id="contenido">
 	<div id="datos">
 		<form action="procesarEditarEvento.php" method="POST" enctype="multipart/form-data">
-				<fieldset id="perfil2">
+				<fieldset id="perfil">
 						<legend id="log">EDITAR EVENTOS</legend>
 
 							<p id="perfil">Nombre Evento: 

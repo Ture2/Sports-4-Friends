@@ -180,11 +180,12 @@ if (count($erroresFormulario) === 0)
 		</fieldset>
 	</div>
 	
+	<div id="datos">
 		<form action="procesarEditarEvento.php" method="POST" enctype="multipart/form-data">
 				<fieldset id="perfil">
 						<legend id="log">EDITAR EVENTOS</legend>
 
-							<p id="perfil2">Nombre Evento:  
+							<p id="perfil">Nombre Evento:  
 								<select name="nombre_evento" id="evento" required>
 									<?php $eventos = Eventos::listarEventos();
 										foreach ($eventos as  $valor) { 
@@ -210,7 +211,7 @@ if (count($erroresFormulario) === 0)
 				</fieldset>
 		</form>
 	</div>
-
+	</div>
 	<?php 
 		include("includes/comun/pie.php"); 
 	?>
