@@ -46,7 +46,6 @@ body {
   font-size: 20pt;
 }
 
-<<<<<<< HEAD
 #popupfoot {
   font-size: 16pt;
   position: absolute;
@@ -73,35 +72,6 @@ a#popup:hover{
 	color:#3b4465;
 	border:2px solid #3b4465;
 	font-weight: bolder;
-=======
-#fila{
-	display: table-row;
-	text-align: center;
-	margin: 0 auto;
-}
-
-#header{
-	display: table-cell;
-	text-align: center;
-	margin: 0 auto;
-	width: 200em;
-	font-size: 2em;
-	color: #befdb9;
-	border: solid 1px #befdb9;
-	background-color: #ab2121;
-}
-
-#celda{
-	display: table-cell;
-	text-align: center;
-	margin: 0 auto;
-	width: 100em;
-	font-size: 1.5em;
-	color: #ab2121;
-	border: solid 1px #ab2121;
-	border-radius: 10px;
-	background-color: #befdb9;
->>>>>>> parent of 07a923c... Last ture
 }
 
 #pop{
@@ -1187,19 +1157,11 @@ hr {
 
 /* Style the tab content */
 .tabcontent {
-<<<<<<< HEAD
 		padding: 0 18px;
 	  background-color: white;
 	  display: none;
 	  overflow: hidden;
 	  text-align: center;
-=======
-	padding: 0 18px;
-	background-color: #b53c3c;
-	display: none;
-	overflow: hidden;
-	text-align: center;
->>>>>>> parent of 07a923c... Last ture
 }
 
 .tablinks{
@@ -1222,13 +1184,4 @@ hr {
 	color: #FFF;
     font-family: arial;
     font-size: 2.5em;
-<<<<<<< HEAD
-=======
-}
-
-#p-tabs{
-	font-size: 2.4em;
-	font-family: arial;
-    color: white;
->>>>>>> parent of 07a923c... Last ture
 }
