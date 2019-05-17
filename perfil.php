@@ -38,9 +38,9 @@
 					}
 				  ?>
 			</fieldset>
-			</div>
+		</div>
 			<div id="datos">
-				<fieldset id="perfil">
+				<fieldset id="perfil2">
 					<legend id="log">PANEL DE CONTROL</legend>
 					<?php
 						//campos que el usuario le interesa que muestre a nivel de cuenta

@@ -37,7 +37,7 @@
 					</div>
 				</fieldset>
 			</div>
-				<fieldset id="perfil">
+				<fieldset id="perfil2">
 					<p id="perfil">Usuario: <input type="text" name="username" value=""></p>
 					<p id="perfil">Nombre: <input type="text" name="nombre" value=""></p>
 					<p id="perfil">Correo: <input type="text" name="correo" value=""></p>
