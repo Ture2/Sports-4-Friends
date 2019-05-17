@@ -149,7 +149,7 @@ var_dump($erroresFormulario);
 
 	<div id="datos">
 		<form action="procesarEvento.php" method="POST" enctype="multipart/form-data">
-				<fieldset id="perfil">
+				<fieldset id="perfil2">
 						<legend id="log">REGISTRO DEL EVENTO</legend>
 							<p id="perfil">Nombre Evento: <input type="text" name="nombre_evento"  required value=""></p>
 							<p id="perfil">Deporte:

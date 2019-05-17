@@ -11,7 +11,6 @@ if (!isset($_SESSION['esAdmin'])) {
 
 $errores = array();
 
-
 $eventos = Eventos::listarEventos();
 
 if(!isset($eventos))
